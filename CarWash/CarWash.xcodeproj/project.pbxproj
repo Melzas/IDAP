@@ -10,6 +10,8 @@
 		0837D97B18ACE7B5006829B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0837D97A18ACE7B5006829B6 /* Foundation.framework */; };
 		0837D97E18ACE7B5006829B6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0837D97D18ACE7B5006829B6 /* main.m */; };
 		0837D98218ACE7B5006829B6 /* CarWash.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0837D98118ACE7B5006829B6 /* CarWash.1 */; };
+		0837D98B18ACED14006829B6 /* CWRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 0837D98A18ACED14006829B6 /* CWRoom.m */; };
+		0837D98E18ACF296006829B6 /* CWCarWashRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 0837D98D18ACF296006829B6 /* CWCarWashRoom.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +33,10 @@
 		0837D97D18ACE7B5006829B6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0837D98018ACE7B5006829B6 /* CarWash-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CarWash-Prefix.pch"; sourceTree = "<group>"; };
 		0837D98118ACE7B5006829B6 /* CarWash.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = CarWash.1; sourceTree = "<group>"; };
+		0837D98918ACED14006829B6 /* CWRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWRoom.h; path = CarWash/CWRoom.h; sourceTree = "<group>"; };
+		0837D98A18ACED14006829B6 /* CWRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CWRoom.m; path = CarWash/CWRoom.m; sourceTree = "<group>"; };
+		0837D98C18ACF296006829B6 /* CWCarWashRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWCarWashRoom.h; path = CarWash/CWCarWashRoom.h; sourceTree = "<group>"; };
+		0837D98D18ACF296006829B6 /* CWCarWashRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CWCarWashRoom.m; path = CarWash/CWCarWashRoom.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +54,7 @@
 		0837D96E18ACE7B4006829B6 = {
 			isa = PBXGroup;
 			children = (
+				0837D98818ACECCD006829B6 /* Room */,
 				0837D97C18ACE7B5006829B6 /* CarWash */,
 				0837D97918ACE7B5006829B6 /* Frameworks */,
 				0837D97818ACE7B5006829B6 /* Products */,
@@ -86,6 +93,17 @@
 				0837D98018ACE7B5006829B6 /* CarWash-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0837D98818ACECCD006829B6 /* Room */ = {
+			isa = PBXGroup;
+			children = (
+				0837D98918ACED14006829B6 /* CWRoom.h */,
+				0837D98A18ACED14006829B6 /* CWRoom.m */,
+				0837D98C18ACF296006829B6 /* CWCarWashRoom.h */,
+				0837D98D18ACF296006829B6 /* CWCarWashRoom.m */,
+			);
+			name = Room;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +157,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0837D98B18ACED14006829B6 /* CWRoom.m in Sources */,
 				0837D97E18ACE7B5006829B6 /* main.m in Sources */,
+				0837D98E18ACF296006829B6 /* CWCarWashRoom.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
