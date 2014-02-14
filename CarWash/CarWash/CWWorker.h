@@ -8,10 +8,10 @@
 
 + (instancetype)workerWithName:(NSString *)name
 						salary:(NSUInteger)salary
-			 yearsOfExperiance:(NSUInteger)yearsOfExperience;
+			 yearsOfExperience:(NSUInteger)yearsOfExperience;
 
 - (instancetype)initWithName:(NSString *)name
 					  salary:(NSUInteger)salary
-		   yearsOfExperiance:(NSUInteger)yearsOfExperience;
+		   yearsOfExperience:(NSUInteger)yearsOfExperience;
 
 @end

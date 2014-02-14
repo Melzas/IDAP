@@ -14,14 +14,14 @@
 
 + (instancetype)workerWithName:(NSString *)name
 						salary:(NSUInteger)salary
-			 yearsOfExperiance:(NSUInteger)yearsOfExperience
+			 yearsOfExperience:(NSUInteger)yearsOfExperience
 {
-	id worker = [[self alloc] initWithName:name salary:salary yearsOfExperiance:yearsOfExperience];
+	id worker = [[self alloc] initWithName:name salary:salary yearsOfExperience:yearsOfExperience];
 	return [worker autorelease];
 }
 
 #pragma mark -
-#pragma Initializations and Deallocations
+#pragma mark Initializations and Deallocations
 
 - (void)dealloc {
 	self.name = nil;
@@ -31,7 +31,7 @@
 
 - (instancetype)initWithName:(NSString *)name
 					  salary:(NSUInteger)salary
-		   yearsOfExperiance:(NSUInteger)yearsOfExperience
+		   yearsOfExperience:(NSUInteger)yearsOfExperience
 {
 	if(self = [super init]) {
 		self.name = name;
