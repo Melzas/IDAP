@@ -17,6 +17,7 @@
 		0837D99218AD2B51006829B6 /* CWWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0837D99118AD2B51006829B6 /* CWWorker.m */; };
 		0837D99518AD3619006829B6 /* CWCarWasher.m in Sources */ = {isa = PBXBuildFile; fileRef = 0837D99418AD3619006829B6 /* CWCarWasher.m */; };
 		0837D99818AD3713006829B6 /* CWBooker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0837D99718AD3713006829B6 /* CWBooker.m */; };
+		0857C87518AF8DE600F774C1 /* CWCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0857C87418AF8DE600F774C1 /* CWCar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,6 +53,8 @@
 		0837D99418AD3619006829B6 /* CWCarWasher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CWCarWasher.m; path = CarWash/CWCarWasher.m; sourceTree = "<group>"; };
 		0837D99618AD3713006829B6 /* CWBooker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWBooker.h; path = CarWash/CWBooker.h; sourceTree = "<group>"; };
 		0837D99718AD3713006829B6 /* CWBooker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CWBooker.m; path = CarWash/CWBooker.m; sourceTree = "<group>"; };
+		0857C87318AF8DE600F774C1 /* CWCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWCar.h; path = CarWash/CWCar.h; sourceTree = "<group>"; };
+		0857C87418AF8DE600F774C1 /* CWCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CWCar.m; path = CarWash/CWCar.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +81,7 @@
 		0837D96E18ACE7B4006829B6 = {
 			isa = PBXGroup;
 			children = (
+				0857C87218AF8DC500F774C1 /* Car */,
 				080C115518AEB32D0019C518 /* Building */,
 				0837D98F18AD2B23006829B6 /* Worker */,
 				0837D98818ACECCD006829B6 /* Room */,
@@ -147,6 +151,15 @@
 			name = Worker;
 			sourceTree = "<group>";
 		};
+		0857C87218AF8DC500F774C1 /* Car */ = {
+			isa = PBXGroup;
+			children = (
+				0857C87318AF8DE600F774C1 /* CWCar.h */,
+				0857C87418AF8DE600F774C1 /* CWCar.m */,
+			);
+			name = Car;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -201,6 +214,7 @@
 				0837D98B18ACED14006829B6 /* CWRoom.m in Sources */,
 				080C115418AEB2890019C518 /* CWDirector.m in Sources */,
 				0837D99218AD2B51006829B6 /* CWWorker.m in Sources */,
+				0857C87518AF8DE600F774C1 /* CWCar.m in Sources */,
 				0837D99518AD3619006829B6 /* CWCarWasher.m in Sources */,
 				0837D97E18ACE7B5006829B6 /* main.m in Sources */,
 				0837D98E18ACF296006829B6 /* CWCarWashRoom.m in Sources */,

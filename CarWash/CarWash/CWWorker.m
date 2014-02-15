@@ -33,7 +33,7 @@
 					  salary:(NSUInteger)salary
 		   yearsOfExperience:(NSUInteger)yearsOfExperience
 {
-	if(self = [super init]) {
+	if (self = [super init]) {
 		self.name = name;
 		self.salary = salary;
 		self.yearsOfExperience = yearsOfExperience;
