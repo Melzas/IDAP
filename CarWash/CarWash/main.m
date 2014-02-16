@@ -58,7 +58,8 @@ int main(int argc, const char * argv[]) {
 		while (totalCarCount <= 100) {
 			NSUInteger carCountInWave = 1 + arc4random() % 3;
 			for (NSUInteger i = 0; i < carCountInWave; ++i) {
-				CWCar *car = [CWCar car];
+				NSString *carName = [NSString stringWithFormat:@"Car %lu", i];
+				CWCar *car = [CWCar carWithName:carName];
 				[carWashBuilding addCar:car];
 			}
 			[carWashBuilding washAllCars];

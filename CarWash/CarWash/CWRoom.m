@@ -60,6 +60,9 @@
 
 - (CWWorker *)randomWorker {
 	NSArray *allWorkers = self.mutableWorkers;
+	if ([allWorkers count] == 0) {
+		return nil;
+	}
 	NSUInteger randomWorkerIndex = arc4random() % [allWorkers count];
 	return [[allWorkers[randomWorkerIndex] retain] autorelease];
 }
