@@ -1,5 +1,7 @@
 #import "CWBuilding.h"
 
+#import "CWRoom.h"
+
 @interface CWBuilding ()
 @property (nonatomic, retain)	NSMutableArray	*mutableRooms;
 
@@ -42,7 +44,7 @@
 #pragma mark -
 #pragma mark Public
 
-- (void)addRoom:(id)room {
+- (void)addRoom:(CWRoom *)room {
 	[self.mutableRooms addObject:room];
 }
 
