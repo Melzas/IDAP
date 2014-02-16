@@ -1,5 +1,7 @@
 #import <Foundation/Foundation.h>
 
+@class CWWorker;
+
 @interface CWRoom : NSObject
 @property (nonatomic, readonly)	NSArray		*workers;
 @property (nonatomic, readonly)	NSUInteger	workerCapacity;
@@ -9,6 +11,7 @@
 
 - (NSArray *)workers;
 
-- (BOOL)addWorker:(id)worker;
+- (BOOL)addWorker:(CWWorker *)worker;
+- (CWWorker *)randomWorker;
 
 @end

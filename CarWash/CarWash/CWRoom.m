@@ -1,5 +1,7 @@
 #import "CWRoom.h"
 
+#import "CWWorker.h"
+
 @interface CWRoom ()
 @property (nonatomic, retain)		NSMutableArray	*mutableWorkers;
 @property (nonatomic, readwrite)	NSUInteger		workerCapacity;
@@ -48,12 +50,18 @@
 #pragma mark -
 #pragma mark Public
 
-- (BOOL)addWorker:(id)worker {
+- (BOOL)addWorker:(CWWorker *)worker {
 	if ([self.mutableWorkers count] == self.workerCapacity) {
 		return NO;
 	}
 	[self.mutableWorkers addObject:worker];
 	return YES;
+}
+
+- (CWWorker *)randomWorker {
+	NSArray *allWorkers = self.mutableWorkers;
+	NSUInteger randomWorkerIndex = arc4random() % [allWorkers count];
+	return [[allWorkers[randomWorkerIndex] retain] autorelease];
 }
 
 @end

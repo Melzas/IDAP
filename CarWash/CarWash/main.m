@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-#import "CWBuilding.h"
+#import "CWCarWashBuilding.h"
 #import "CWCarWashRoom.h"
 
 #import "CWCarWasher.h"
@@ -28,7 +28,7 @@ int main(int argc, const char * argv[]) {
 		[bookerRoom addWorker:bookerJane];
 		
 		
-	    CWBuilding *carWashBuilding = [CWBuilding building];
+	    CWCarWashBuilding *carWashBuilding = [CWCarWashBuilding building];
 		
 		CWCarWashRoom *firstCarWashRoom = [CWCarWashRoom roomWithWorkerCapacity:2 carCapacity:2];
 		CWCarWasher *carWasherSam = [CWCarWasher workerWithName:@"Sam"
@@ -56,7 +56,15 @@ int main(int argc, const char * argv[]) {
 		
 		NSUInteger totalCarCount = 0;
 		while (totalCarCount <= 100) {
+			NSUInteger carCountInWave = 1 + arc4random() % 3;
+			for (NSUInteger i = 0; i < carCountInWave; ++i) {
+				CWCar *car = [CWCar car];
+				[carWashBuilding addCar:car];
+			}
+			[carWashBuilding washAllCars];
+			totalCarCount += carCountInWave;
 		}
+		NSLog(@"Director profit: %lu", directorAlex.money);
 	}
     return 0;
 }

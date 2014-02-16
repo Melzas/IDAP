@@ -1,5 +1,7 @@
 #import "CWRoom.h"
 
+@class CWCar;
+
 @interface CWCarWashRoom : CWRoom
 @property (nonatomic, readonly)	NSArray		*cars;
 @property (nonatomic, readonly)	NSUInteger	carCapacity;
@@ -11,6 +13,8 @@
 
 - (NSArray *)cars;
 
-- (BOOL)addCar:(id)car;
+- (BOOL)addCar:(CWCar *)car;
+
+- (void)washAllCars;
 
 @end

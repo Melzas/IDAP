@@ -1,5 +1,8 @@
 #import "CWCarWashRoom.h"
 
+#import "CWCar.h"
+#import "CWCarWasher.h"
+
 @interface CWCarWashRoom ()
 @property (nonatomic, retain)		NSMutableArray	*mutableCars;
 @property (nonatomic, readwrite)	NSUInteger		carCapacity;
@@ -50,12 +53,27 @@
 #pragma mark -
 #pragma mark Public
 
-- (BOOL)addCar:(id)car {
+- (BOOL)addCar:(CWCar *)car {
 	if ([self.mutableCars count] == self.carCapacity) {
 		return NO;
 	}
 	[self.mutableCars addObject:car];
 	return YES;
+}
+
+- (void)washAllCars {
+	for (CWCar *car in self.mutableCars) {
+		CWCarWasher *randomCarWasher = (CWCarWasher *)[self randomWorker];
+		[randomCarWasher washCar:car];
+	}
+	[self.mutableCars removeAllObjects];
+}
+
+- (BOOL)addWorker:(CWWorker *)worker {
+	if ([worker isMemberOfClass:[CWCarWasher class]]) {
+		return [super addWorker:worker];
+	}
+	return NO;
 }
 
 @end
