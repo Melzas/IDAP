@@ -24,8 +24,8 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-	self.moneyCollector = nil;
 	self.name = nil;
+	self.moneyCollector = nil;
 	
 	[super dealloc];
 }

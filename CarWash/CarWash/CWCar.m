@@ -21,6 +21,12 @@ const NSUInteger kCWCarWashPrice = 200;
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
+- (void)dealloc {
+	self.name = nil;
+	
+	[super dealloc];
+}
+
 - (instancetype)init {
 	return [self initWithName:nil];
 }

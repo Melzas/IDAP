@@ -32,6 +32,10 @@
 	[super dealloc];
 }
 
+- (instancetype)initWithWorkerCapacity:(NSUInteger)workerCapacity {
+	return [self initWithWorkerCapacity:workerCapacity carCapacity:0];
+}
+
 - (instancetype)initWithWorkerCapacity:(NSUInteger)workerCapacity
 						   carCapacity:(NSUInteger)carCapacity
 {

@@ -9,8 +9,6 @@
 + (instancetype)roomWithWorkerCapacity:(NSUInteger)workerCapacity;
 - (instancetype)initWithWorkerCapacity:(NSUInteger)workerCapacity;
 
-- (NSArray *)workers;
-
 - (BOOL)addWorker:(CWWorker *)worker;
 - (CWWorker *)randomWorker;
 

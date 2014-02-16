@@ -11,10 +11,7 @@
 - (instancetype)initWithWorkerCapacity:(NSUInteger)workerCapacity
 						   carCapacity:(NSUInteger)carCapacity;
 
-- (NSArray *)cars;
-
 - (BOOL)addCar:(CWCar *)car;
-
 - (void)washAllCars;
 
 @end
