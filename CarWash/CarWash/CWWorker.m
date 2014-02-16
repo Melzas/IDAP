@@ -24,6 +24,7 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
+	self.moneyCollector = nil;
 	self.name = nil;
 	
 	[super dealloc];
@@ -39,6 +40,13 @@
 		self.yearsOfExperience = yearsOfExperience;
 	}
 	return self;
+}
+
+#pragma mark -
+#pragma mark CWJobAcceptance
+
+- (void)jobCompletedByWorker:(CWWorker *)worker {
+	
 }
 
 @end

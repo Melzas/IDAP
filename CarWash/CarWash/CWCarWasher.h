@@ -1,8 +1,9 @@
 #import "CWWorker.h"
 
+#import "CWCar.h"
+
 @interface CWCarWasher : CWWorker
 
-- (void)washCar:(id)car;
-- (void)giveMoneyToBooker:(id)booker;
+- (void)washCar:(CWCar *)car;
 
 @end

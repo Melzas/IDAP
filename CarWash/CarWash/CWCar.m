@@ -1,5 +1,9 @@
 #import "CWCar.h"
 
+#import "CWWorker.h"
+
+const NSUInteger kCWCarWashPrice = 200;
+
 @implementation CWCar
 
 #pragma mark -
@@ -17,6 +21,14 @@
 		self.money = arc4random() % 500;
 	}
 	return self;
+}
+
+#pragma mark -
+#pragma mark CWJobAcceptance
+
+- (void)jobCompletedByWorker:(CWWorker *)worker {
+	self.money -= kCWCarWashPrice;
+	worker.money = kCWCarWashPrice;
 }
 
 @end

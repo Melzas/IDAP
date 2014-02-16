@@ -55,6 +55,7 @@
 		0837D99718AD3713006829B6 /* CWBooker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CWBooker.m; path = CarWash/CWBooker.m; sourceTree = "<group>"; };
 		0857C87318AF8DE600F774C1 /* CWCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWCar.h; path = CarWash/CWCar.h; sourceTree = "<group>"; };
 		0857C87418AF8DE600F774C1 /* CWCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CWCar.m; path = CarWash/CWCar.m; sourceTree = "<group>"; };
+		0857C87718B0215400F774C1 /* CWJobAcceptance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CWJobAcceptance.h; path = CarWash/CWJobAcceptance.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +82,7 @@
 		0837D96E18ACE7B4006829B6 = {
 			isa = PBXGroup;
 			children = (
+				0857C87718B0215400F774C1 /* CWJobAcceptance.h */,
 				0857C87218AF8DC500F774C1 /* Car */,
 				080C115518AEB32D0019C518 /* Building */,
 				0837D98F18AD2B23006829B6 /* Worker */,

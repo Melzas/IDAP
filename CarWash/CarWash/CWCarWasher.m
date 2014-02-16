@@ -2,12 +2,10 @@
 
 @implementation CWCarWasher
 
-- (void)washCar:(id)car {
-	
-}
-
-- (void)giveMoneyToBooker:(id)booker {
-	
+- (void)washCar:(CWCar *)car {
+	car.cleanness = kCWClean;
+	[car jobCompletedByWorker:self];
+	[self.moneyCollector jobCompletedByWorker:self];
 }
 
 @end
