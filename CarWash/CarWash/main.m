@@ -55,7 +55,7 @@ int main(int argc, const char * argv[]) {
 		[adminBuilding addRoom:directorRoom];
 		
 		NSUInteger totalCarCount = 0;
-		while (totalCarCount <= 100) {
+		while (totalCarCount <= 3) {
 			NSUInteger carCountInWave = 1 + arc4random() % 3;
 			for (NSUInteger i = 0; i < carCountInWave; ++i) {
 				NSString *carName = [NSString stringWithFormat:@"Car %lu", i + totalCarCount];
@@ -65,8 +65,12 @@ int main(int argc, const char * argv[]) {
 			[carWashBuilding washAllCars];
 			totalCarCount += carCountInWave;
 		}
+	
+		NSRunLoop *loop = [NSRunLoop currentRunLoop];
+		[loop run];
 		NSLog(@"Director profit: %lu", directorAlex.money);
 	}
+	
     return 0;
 }
 

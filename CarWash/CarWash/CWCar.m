@@ -43,9 +43,12 @@ const NSUInteger kCWCarWashPrice = 200;
 #pragma mark CWJobAcceptance
 
 - (void)jobCompletedByWorker:(CWWorker *)worker {
-	NSLog(@"%@ is clean, give %lu dollars to %@", self.name, kCWCarWashPrice, worker.name);
-	self.money -= kCWCarWashPrice;
-	worker.money = kCWCarWashPrice;
+	dispatch_async(dispatch_get_main_queue(), ^{
+		sleep(arc4random_uniform(5));
+		NSLog(@"%@ is clean, give %lu dollars to %@", self.name, kCWCarWashPrice, worker.name);
+		self.money -= kCWCarWashPrice;
+		worker.money = kCWCarWashPrice;
+	});
 }
 
 @end
