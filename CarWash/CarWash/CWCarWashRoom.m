@@ -65,6 +65,15 @@
 	return YES;
 }
 
+- (BOOL)removeCar:(CWCar *)car {
+	NSUInteger carIndex = [self.mutableCars indexOfObjectIdenticalTo:car];
+	if (NSNotFound == carIndex) {
+		return NO;
+	}
+	[self.mutableCars removeObjectAtIndex:carIndex];
+	return YES;
+}
+
 - (void)washAllCars {
 	for (CWCar *car in self.mutableCars) {
 		CWCarWasher *randomCarWasher = (CWCarWasher *)[self randomWorker];

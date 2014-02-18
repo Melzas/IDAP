@@ -48,4 +48,8 @@
 	[self.mutableRooms addObject:room];
 }
 
+- (void)removeRoom:(CWRoom *)room {
+	[self.mutableRooms removeObjectIdenticalTo:room];
+}
+
 @end

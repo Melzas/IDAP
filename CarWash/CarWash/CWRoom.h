@@ -10,6 +10,7 @@
 - (instancetype)initWithWorkerCapacity:(NSUInteger)workerCapacity;
 
 - (BOOL)addWorker:(CWWorker *)worker;
+- (BOOL)removeWorker:(CWWorker *)worker;
 - (CWWorker *)randomWorker;
 
 @end

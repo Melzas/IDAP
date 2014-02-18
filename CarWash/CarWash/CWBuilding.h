@@ -8,5 +8,6 @@
 + (instancetype)building;
 
 - (void)addRoom:(CWRoom *)room;
+- (void)removeRoom:(CWRoom *)room;
 
 @end

@@ -58,6 +58,15 @@
 	return YES;
 }
 
+- (BOOL)removeWorker:(CWWorker *)worker {
+	NSUInteger workerIndex = [self.mutableWorkers indexOfObjectIdenticalTo:worker];
+	if (NSNotFound == workerIndex) {
+		return NO;
+	}
+	[self.mutableWorkers removeObjectAtIndex:workerIndex];
+	return YES;
+}
+
 - (CWWorker *)randomWorker {
 	NSArray *allWorkers = self.mutableWorkers;
 	if ([allWorkers count] == 0) {

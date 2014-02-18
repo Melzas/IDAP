@@ -12,6 +12,8 @@
 						   carCapacity:(NSUInteger)carCapacity;
 
 - (BOOL)addCar:(CWCar *)car;
+- (BOOL)removeCar:(CWCar *)car;
+
 - (void)washAllCars;
 
 @end
