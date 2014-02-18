@@ -72,7 +72,7 @@
 	if ([allWorkers count] == 0) {
 		return nil;
 	}
-	NSUInteger randomWorkerIndex = arc4random() % [allWorkers count];
+	NSUInteger randomWorkerIndex = arc4random_uniform((uint32_t)[allWorkers count]);
 	return [[allWorkers[randomWorkerIndex] retain] autorelease];
 }
 
