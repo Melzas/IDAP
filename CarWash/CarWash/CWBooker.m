@@ -22,7 +22,12 @@
 	self.money += worker.money;
 	NSLog(@"Booker %@ got %lu dollars from %@", self.name, worker.money, worker.name);
 	worker.money = 0;
-	[self performSelectorInBackground:@selector(countMoney) withObject:nil];
+	if (!self.isBusy) {
+		self.busy = YES;
+		[self performSelectorInBackground:@selector(countMoney) withObject:nil];
+	} else {
+		
+	}
 }
 
 @end

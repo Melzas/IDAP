@@ -6,8 +6,10 @@
 @property (nonatomic, readonly)		NSString	*name;
 @property (nonatomic, readonly)		NSUInteger	salary;
 @property (nonatomic, readonly)		NSUInteger	yearsOfExperience;
-@property (nonatomic, readonly)		NSArray		*jobAccepters;
 @property (nonatomic, assign)		NSUInteger	money;
+
+@property (nonatomic, readonly)		NSArray		*jobAccepters;
+@property (nonatomic, readonly)		NSArray		*serviceQueue;
 
 @property (atomic, assign, getter = isBusy)	BOOL	busy;
 
