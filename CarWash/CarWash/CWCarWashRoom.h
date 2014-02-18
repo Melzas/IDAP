@@ -1,19 +1,12 @@
 #import "CWRoom.h"
 
+#import "CWJobAcceptance.h"
+
 @class CWCar;
 
-@interface CWCarWashRoom : CWRoom
+@interface CWCarWashRoom : CWRoom <CWJobAcceptance>
 @property (nonatomic, readonly)	NSArray		*cars;
-@property (nonatomic, readonly)	NSUInteger	carCapacity;
 
-+ (instancetype)roomWithWorkerCapacity:(NSUInteger)workerCapacity
-						   carCapacity:(NSUInteger)carCapacity;
-- (instancetype)initWithWorkerCapacity:(NSUInteger)workerCapacity
-						   carCapacity:(NSUInteger)carCapacity;
-
-- (BOOL)addCar:(CWCar *)car;
-- (BOOL)removeCar:(CWCar *)car;
-
-- (void)washAllCars;
+- (void)washCar:(CWCar *)car;
 
 @end

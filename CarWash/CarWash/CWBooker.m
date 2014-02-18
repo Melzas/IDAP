@@ -9,8 +9,8 @@
 	@autoreleasepool {
 		sleep(arc4random_uniform(5));
 		NSLog(@"Booker %@ counts money: %lu", self.name, self.money);
-		[self.moneyCollector performSelectorOnMainThread:@selector(jobCompletedByWorker:)
-											  withObject:self
+		[self performSelectorOnMainThread:@selector(notify)
+											  withObject:nil
 										   waitUntilDone:NO];
 	}
 }

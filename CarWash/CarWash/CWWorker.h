@@ -3,11 +3,13 @@
 #import "CWJobAcceptance.h"
 
 @interface CWWorker : NSObject <CWJobAcceptance>
-@property (nonatomic, readonly)	NSString	*name;
-@property (nonatomic, readonly)	NSUInteger	salary;
-@property (nonatomic, readonly)	NSUInteger	yearsOfExperience;
-@property (nonatomic, assign)	NSUInteger	money;
-@property (nonatomic, retain)	CWWorker	*moneyCollector;
+@property (nonatomic, readonly)		NSString	*name;
+@property (nonatomic, readonly)		NSUInteger	salary;
+@property (nonatomic, readonly)		NSUInteger	yearsOfExperience;
+@property (nonatomic, readonly)		NSArray		*jobAccepters;
+@property (nonatomic, assign)		NSUInteger	money;
+
+@property (atomic, assign, getter = isBusy)	BOOL	busy;
 
 + (instancetype)workerWithName:(NSString *)name
 						salary:(NSUInteger)salary
@@ -16,5 +18,9 @@
 - (instancetype)initWithName:(NSString *)name
 					  salary:(NSUInteger)salary
 		   yearsOfExperience:(NSUInteger)yearsOfExperience;
+
+- (void)addJobAccepter:(id<CWJobAcceptance>)jobAccepter;
+- (void)removeJobAccepter:(id<CWJobAcceptance>)jobAcceptor;
+- (void)notify;
 
 @end

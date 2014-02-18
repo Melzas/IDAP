@@ -23,30 +23,16 @@
 #pragma mark -
 #pragma mark Public
 
-- (BOOL)addCar:(CWCar *)car {
-	for (CWCarWashRoom *carWashRoom in self.carWashRooms) {
-		BOOL isCarAdded = [carWashRoom addCar:car];
-		if (isCarAdded) {
-			return YES;
+- (void)washCar:(CWCar *)car {
+	NSArray *carWashRooms = self.carWashRooms;
+	for (CWCarWashRoom *carWashRoom in carWashRooms) {
+		if ([carWashRoom freeWorker]) {
+			[carWashRoom washCar:car];
+			return;
 		}
 	}
-	return NO;
-}
-
-- (BOOL)removeCar:(CWCar *)car {
-	for (CWCarWashRoom *carWashRoom in self.carWashRooms) {
-		BOOL isCarRemoved = [carWashRoom removeCar:car];
-		if (isCarRemoved) {
-			return YES;
-		}
-	}
-	return NO;
-}
-
-- (void)washAllCars {
-	for (CWCarWashRoom *carWashRoom in self.carWashRooms) {
-		[carWashRoom washAllCars];
-	}
+	NSUInteger randomRoomIndex = arc4random_uniform((u_int32_t)[carWashRooms count]);
+	[carWashRooms[randomRoomIndex] washCar:car];
 }
 
 @end

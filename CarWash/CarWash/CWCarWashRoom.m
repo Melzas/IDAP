@@ -5,23 +5,12 @@
 
 @interface CWCarWashRoom ()
 @property (nonatomic, retain)		NSMutableArray	*mutableCars;
-@property (nonatomic, readwrite)	NSUInteger		carCapacity;
 
 @end
 
 @implementation CWCarWashRoom
 
 @dynamic cars;
-
-#pragma mark -
-#pragma mark Class Methods
-
-+ (instancetype)roomWithWorkerCapacity:(NSUInteger)workerCapacity
-						   carCapacity:(NSUInteger)carCapacity
-{
-	id room = [[self alloc] initWithWorkerCapacity:workerCapacity carCapacity:carCapacity];
-	return [room autorelease];
-}
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -33,16 +22,8 @@
 }
 
 - (instancetype)initWithWorkerCapacity:(NSUInteger)workerCapacity {
-	return [self initWithWorkerCapacity:workerCapacity carCapacity:0];
-}
-
-- (instancetype)initWithWorkerCapacity:(NSUInteger)workerCapacity
-						   carCapacity:(NSUInteger)carCapacity
-{
-	self = [super initWithWorkerCapacity:workerCapacity];
-	if (self) {
-		self.carCapacity = carCapacity;
-		self.mutableCars = [NSMutableArray arrayWithCapacity:carCapacity];
+	if ([super initWithWorkerCapacity:workerCapacity]) {
+		self.mutableCars = [NSMutableArray array];
 	}
 	return self;
 }
@@ -57,29 +38,14 @@
 #pragma mark -
 #pragma mark Public
 
-- (BOOL)addCar:(CWCar *)car {
-	if ([self.mutableCars count] == self.carCapacity) {
-		return NO;
+- (void)washCar:(CWCar *)car {
+	CWCarWasher *freeCarWasher = (CWCarWasher *)self.freeWorker;
+	if (freeCarWasher) {
+		freeCarWasher.busy = YES;
+		[freeCarWasher performSelectorInBackground:@selector(washCar:) withObject:car];
+	} else {
+		[self.mutableCars addObject:car];
 	}
-	[self.mutableCars addObject:car];
-	return YES;
-}
-
-- (BOOL)removeCar:(CWCar *)car {
-	NSUInteger carIndex = [self.mutableCars indexOfObjectIdenticalTo:car];
-	if (NSNotFound == carIndex) {
-		return NO;
-	}
-	[self.mutableCars removeObjectAtIndex:carIndex];
-	return YES;
-}
-
-- (void)washAllCars {
-	for (CWCar *car in self.mutableCars) {
-		CWCarWasher *randomCarWasher = (CWCarWasher *)[self randomWorker];
-		[randomCarWasher washCar:car];
-	}
-	[self.mutableCars removeAllObjects];
 }
 
 - (BOOL)addWorker:(CWWorker *)worker {
@@ -87,6 +53,20 @@
 		return [super addWorker:worker];
 	}
 	return NO;
+}
+
+#pragma mark -
+#pragma mark CWJobAcceptance
+
+- (void)jobCompletedByWorker:(CWWorker *)worker {
+	if (0 == [self.mutableCars count]) {
+		worker.busy = NO;
+	} else {
+		CWCarWasher *carWasher = (CWCarWasher *)worker;
+		CWCar *car = [self.mutableCars firstObject];
+		[self.mutableCars removeObject:car];
+		[carWasher performSelectorInBackground:@selector(washCar:) withObject:car];
+	}
 }
 
 @end

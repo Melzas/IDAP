@@ -21,33 +21,38 @@ int main(int argc, const char * argv[]) {
 		
 		CWRoom *bookerRoom = [CWRoom roomWithWorkerCapacity:2];
 		CWBooker *bookerMatt = [CWBooker workerWithName:@"Matt" salary:800 yearsOfExperience:4];
-		bookerMatt.moneyCollector = directorAlex;
+		[bookerMatt addJobAccepter:directorAlex];
 		CWBooker *bookerJane = [CWBooker workerWithName:@"Jane" salary:200 yearsOfExperience:0];
-		bookerJane.moneyCollector = directorAlex;
+		[bookerJane addJobAccepter:directorAlex];
 		[bookerRoom addWorker:bookerMatt];
 		[bookerRoom addWorker:bookerJane];
 		
 		
 	    CWCarWashBuilding *carWashBuilding = [CWCarWashBuilding building];
 		
-		CWCarWashRoom *firstCarWashRoom = [CWCarWashRoom roomWithWorkerCapacity:2 carCapacity:2];
+		CWCarWashRoom *firstCarWashRoom = [CWCarWashRoom roomWithWorkerCapacity:2];
 		CWCarWasher *carWasherSam = [CWCarWasher workerWithName:@"Sam"
 														   salary:500
 												yearsOfExperience:2];
-		carWasherSam.moneyCollector = bookerMatt;
+		[carWasherSam addJobAccepter:firstCarWashRoom];
+		[carWasherSam addJobAccepter:bookerMatt];
 		CWCarWasher *carWasherAnn = [CWCarWasher workerWithName:@"Ann"
 															salary:400
 												 yearsOfExperience:1];
-		carWasherAnn.moneyCollector = bookerJane;
+		[carWasherAnn addJobAccepter:firstCarWashRoom];
+		[carWasherAnn addJobAccepter:bookerJane];
+		
 		[firstCarWashRoom addWorker:carWasherSam];
 		[firstCarWashRoom addWorker:carWasherAnn];
 		[carWashBuilding addRoom:firstCarWashRoom];
 		
-		CWCarWashRoom *secondCarWashRoom = [CWCarWashRoom roomWithWorkerCapacity:1 carCapacity:1];
+		CWCarWashRoom *secondCarWashRoom = [CWCarWashRoom roomWithWorkerCapacity:1];
 		CWCarWasher *carWasherAndy = [CWCarWasher workerWithName:@"Andy"
 														  salary:1000
 											   yearsOfExperience:15];
-		carWasherAndy.moneyCollector = bookerJane;
+		[carWasherAndy addJobAccepter:secondCarWashRoom];
+		[carWasherAndy addJobAccepter:bookerJane];
+		
 		[secondCarWashRoom addWorker:carWasherAndy];
 		[carWashBuilding addRoom:secondCarWashRoom];
 		
@@ -55,14 +60,14 @@ int main(int argc, const char * argv[]) {
 		[adminBuilding addRoom:directorRoom];
 		
 		NSUInteger totalCarCount = 0;
-		while (totalCarCount <= 3) {
-			NSUInteger carCountInWave = 1 + arc4random() % 3;
+		while (totalCarCount <= 5) {
+			sleep(arc4random_uniform(5));
+			NSUInteger carCountInWave = 5;//1 + arc4random_uniform(5);
 			for (NSUInteger i = 0; i < carCountInWave; ++i) {
 				NSString *carName = [NSString stringWithFormat:@"Car %lu", i + totalCarCount];
 				CWCar *car = [CWCar carWithName:carName];
-				[carWashBuilding addCar:car];
+				[carWashBuilding washCar:car];
 			}
-			[carWashBuilding washAllCars];
 			totalCarCount += carCountInWave;
 		}
 	
