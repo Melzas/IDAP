@@ -60,9 +60,9 @@ int main(int argc, const char * argv[]) {
 		[adminBuilding addRoom:directorRoom];
 		
 		NSUInteger totalCarCount = 0;
-		while (totalCarCount <= 5) {
+		while (totalCarCount <= 6) {
 			sleep(arc4random_uniform(5));
-			NSUInteger carCountInWave = 5;//1 + arc4random_uniform(5);
+			NSUInteger carCountInWave = 1 + arc4random_uniform(5);
 			for (NSUInteger i = 0; i < carCountInWave; ++i) {
 				NSString *carName = [NSString stringWithFormat:@"Car %lu", i + totalCarCount];
 				CWCar *car = [CWCar carWithName:carName];

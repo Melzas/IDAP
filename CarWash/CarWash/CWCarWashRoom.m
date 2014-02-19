@@ -63,7 +63,7 @@
 		worker.busy = NO;
 	} else {
 		CWCarWasher *carWasher = (CWCarWasher *)worker;
-		CWCar *car = [self.mutableCars firstObject];
+		CWCar *car = self.mutableCars[0];
 		[self.mutableCars removeObject:car];
 		[carWasher performSelectorInBackground:@selector(washCar:) withObject:car];
 	}

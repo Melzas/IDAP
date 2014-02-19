@@ -1,32 +1,47 @@
 #import "CWBooker.h"
 
+@interface CWBooker ()
+
+- (void)processQueue;
+
+@end
+
 @implementation CWBooker
 
 #pragma mark -
 #pragma mark Public
 
-- (void)countMoney {
+- (void)countMoneyOfWorker:(CWWorker *)worker {
 	@autoreleasepool {
 		sleep(arc4random_uniform(5));
-		NSLog(@"Booker %@ counts money: %lu", self.name, self.money);
+		self.money += worker.money;
+		NSLog(@"Booker %@ counts %lu dollars from %@", self.name, worker.money, worker.name);
+		worker.money = 0;
 		[self performSelectorOnMainThread:@selector(notify)
-											  withObject:nil
-										   waitUntilDone:NO];
+							   withObject:nil
+							waitUntilDone:NO];
+		[self performSelectorOnMainThread:@selector(removeWorkerFromQueue:)
+							   withObject:worker
+							waitUntilDone:YES];
+		[self performSelectorOnMainThread:@selector(processQueue)
+							   withObject:nil waitUntilDone:NO];
 	}
+}
+
+- (void)processQueue {
+	[self processQueueWithSelector:@selector(countMoneyOfWorker:)];
 }
 
 #pragma mark -
 #pragma mark CWJobAcceptance
 
 - (void)jobCompletedByWorker:(CWWorker *)worker {
-	self.money += worker.money;
-	NSLog(@"Booker %@ got %lu dollars from %@", self.name, worker.money, worker.name);
-	worker.money = 0;
+	if (NSNotFound == [self.serviceQueue indexOfObjectIdenticalTo:worker]) {
+		[self addWorkerToQueue:worker];
+	}
 	if (!self.isBusy) {
 		self.busy = YES;
-		[self performSelectorInBackground:@selector(countMoney) withObject:nil];
-	} else {
-		
+		[self processQueue];
 	}
 }
 

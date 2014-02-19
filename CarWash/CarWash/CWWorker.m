@@ -79,6 +79,24 @@
 	}
 }
 
+- (void)addWorkerToQueue:(CWWorker *)worker {
+	[self.mutableServiceQueue addObject:worker];
+}
+
+- (void)removeWorkerFromQueue:(CWWorker *)worker {
+	[self.mutableServiceQueue removeObject:worker];
+}
+
+- (void)processQueueWithSelector:(SEL)selector {
+	NSArray *serviceQueue = self.serviceQueue;
+	if (0 == [serviceQueue count]) {
+		self.busy = NO;
+	} else {
+		CWWorker *workerFromQueue = serviceQueue[0];
+		[self performSelectorInBackground:selector withObject:workerFromQueue];
+	}
+}
+
 #pragma mark -
 #pragma mark CWJobAcceptance
 

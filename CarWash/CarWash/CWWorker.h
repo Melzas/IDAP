@@ -25,4 +25,8 @@
 - (void)removeJobAccepter:(id<CWJobAcceptance>)jobAcceptor;
 - (void)notify;
 
+- (void)addWorkerToQueue:(CWWorker *)worker;
+- (void)removeWorkerFromQueue:(CWWorker *)worker;
+- (void)processQueueWithSelector:(SEL)selector;
+
 @end

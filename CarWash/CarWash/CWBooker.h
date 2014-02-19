@@ -2,6 +2,6 @@
 
 @interface CWBooker : CWWorker
 
-- (void)countMoney;
+- (void)countMoneyOfWorker:(CWWorker *)worker;
 
 @end

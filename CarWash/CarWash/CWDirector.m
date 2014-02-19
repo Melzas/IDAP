@@ -3,6 +3,7 @@
 @interface CWDirector ()
 
 - (void)gainProfitFromWorker:(CWWorker *)worker;
+- (void)processQueue;
 
 @end
 
@@ -21,14 +22,29 @@
 			  worker.name,
 			  self.money);
 		worker.money = 0;
+		
+		[self performSelectorOnMainThread:@selector(removeWorkerFromQueue:)
+							   withObject:worker
+							waitUntilDone:YES];
+		[self performSelectorOnMainThread:@selector(processQueue)
+							   withObject:nil waitUntilDone:NO];
 	}
+}
+
+- (void)processQueue {
+	[self processQueueWithSelector:@selector(gainProfitFromWorker:)];
 }
 
 #pragma mark -
 #pragma mark CWJobAcceptance
 
 - (void)jobCompletedByWorker:(CWWorker *)worker {
-	[self performSelectorInBackground:@selector(gainProfitFromWorker:) withObject:worker];
-}
+	if (NSNotFound == [self.serviceQueue indexOfObjectIdenticalTo:worker]) {
+		[self addWorkerToQueue:worker];
+	}
+	if (!self.isBusy) {
+		self.busy = YES;
+		[self processQueue];
+	}}
 
 @end
