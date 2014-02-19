@@ -2,7 +2,9 @@
 
 #import "CWWorker.h"
 
-const NSUInteger kCWCarWashPrice = 200;
+static const NSUInteger kCWCarWashPrice = 200;
+static const NSUInteger kCWCarMinMoney = 200;
+static const NSUInteger kCWCarMaxMoney = 500;
 
 @interface CWCar ()
 @property (nonatomic, copy, readwrite)	NSString	*name;
@@ -34,7 +36,7 @@ const NSUInteger kCWCarWashPrice = 200;
 - (instancetype)initWithName:(NSString *)name {
 	if (self = [super init]) {
 		self.name = name;
-		self.money = arc4random() % 500;
+		self.money = kCWCarMinMoney + arc4random_uniform(kCWCarMaxMoney - kCWCarMinMoney + 1);
 	}
 	return self;
 }

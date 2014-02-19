@@ -7,7 +7,7 @@
 @property (nonatomic, readonly)		NSString	*name;
 @property (nonatomic, readonly)		NSUInteger	salary;
 @property (nonatomic, readonly)		NSUInteger	yearsOfExperience;
-@property (nonatomic, assign)		NSUInteger	money;
+@property (atomic, assign)			NSUInteger	money;
 @property (nonatomic, readonly)		NSArray		*jobAccepters;
 
 + (instancetype)workerWithName:(NSString *)name

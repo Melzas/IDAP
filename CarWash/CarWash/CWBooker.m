@@ -11,9 +11,10 @@
 
 - (void)countMoneyOfWorker:(CWWorker *)worker {
 	sleep(arc4random_uniform(5));
-	self.money += worker.money;
-	NSLog(@"Booker %@ counts %lu dollars from %@", self.name, worker.money, worker.name);
-	worker.money = 0;
+	NSUInteger money = worker.money;
+	self.money += money;
+	worker.money -= money;
+	NSLog(@"Booker %@ counts %lu dollars from %@", self.name, money, worker.name);
 }
 
 - (void)performBackgroundTask:(id)object {

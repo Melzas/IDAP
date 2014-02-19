@@ -56,15 +56,24 @@ int main(int argc, const char * argv[]) {
 		[adminBuilding addRoom:bookerRoom];
 		[adminBuilding addRoom:directorRoom];
 		
+		const NSUInteger maxCarCount = 100;
 		NSUInteger totalCarCount = 0;
-		while (totalCarCount <= 6) {
-			sleep(arc4random_uniform(5));
+		
+		dispatch_queue_t carQueue = dispatch_queue_create("carQueue", DISPATCH_QUEUE_SERIAL);
+		
+		while (totalCarCount < maxCarCount) {
 			NSUInteger carCountInWave = 1 + arc4random_uniform(5);
-			for (NSUInteger i = 0; i < carCountInWave; ++i) {
-				NSString *carName = [NSString stringWithFormat:@"Car %lu", i + totalCarCount];
-				CWCar *car = [CWCar carWithName:carName];
-				[carWashBuilding addCar:car];
+			if (totalCarCount + carCountInWave > maxCarCount) {
+				carCountInWave = maxCarCount - totalCarCount;
 			}
+			dispatch_async(carQueue, ^{
+				sleep(arc4random_uniform(5));
+				for (NSUInteger i = 0; i < carCountInWave; ++i) {
+					NSString *carName = [NSString stringWithFormat:@"Car %lu", i + totalCarCount];
+					CWCar *car = [CWCar carWithName:carName];
+					[carWashBuilding addCar:car];
+				}
+			});
 			totalCarCount += carCountInWave;
 		}
 	

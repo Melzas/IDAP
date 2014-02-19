@@ -25,7 +25,4 @@
 	return NO;
 }
 
-#pragma mark -
-#pragma mark CWJobAcceptance
-
 @end

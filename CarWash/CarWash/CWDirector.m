@@ -9,17 +9,18 @@
 @implementation CWDirector
 
 #pragma mark -
-#pragma mark Private
+#pragma mark Public
 
 - (void)gainProfitFromWorker:(CWWorker *)worker {
 	sleep(arc4random_uniform(5));
-	self.money += worker.money;
+	NSUInteger money = worker.money;
+	self.money += money;
+	worker.money -= money;
 	NSLog(@"Director %@ got %lu dollars from %@. Total: %lu\n\n",
 		  self.name,
-		  worker.money,
+		  money,
 		  worker.name,
 		  self.money);
-	worker.money = 0;
 }
 
 - (void)performBackgroundTask:(id)object {
