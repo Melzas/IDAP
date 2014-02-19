@@ -34,12 +34,10 @@ int main(int argc, const char * argv[]) {
 		CWCarWasher *carWasherSam = [CWCarWasher workerWithName:@"Sam"
 														   salary:500
 												yearsOfExperience:2];
-		[carWasherSam addJobAccepter:firstCarWashRoom];
 		[carWasherSam addJobAccepter:bookerMatt];
 		CWCarWasher *carWasherAnn = [CWCarWasher workerWithName:@"Ann"
 															salary:400
 												 yearsOfExperience:1];
-		[carWasherAnn addJobAccepter:firstCarWashRoom];
 		[carWasherAnn addJobAccepter:bookerJane];
 		
 		[firstCarWashRoom addWorker:carWasherSam];
@@ -50,7 +48,6 @@ int main(int argc, const char * argv[]) {
 		CWCarWasher *carWasherAndy = [CWCarWasher workerWithName:@"Andy"
 														  salary:1000
 											   yearsOfExperience:15];
-		[carWasherAndy addJobAccepter:secondCarWashRoom];
 		[carWasherAndy addJobAccepter:bookerJane];
 		
 		[secondCarWashRoom addWorker:carWasherAndy];
@@ -66,7 +63,7 @@ int main(int argc, const char * argv[]) {
 			for (NSUInteger i = 0; i < carCountInWave; ++i) {
 				NSString *carName = [NSString stringWithFormat:@"Car %lu", i + totalCarCount];
 				CWCar *car = [CWCar carWithName:carName];
-				[carWashBuilding washCar:car];
+				[carWashBuilding addCar:car];
 			}
 			totalCarCount += carCountInWave;
 		}

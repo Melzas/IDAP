@@ -77,4 +77,14 @@
 	return nil;
 }
 
+- (CWWorker *)randomWorker {
+	NSArray *workers = self.mutableWorkers;
+	if (0 == [workers count]) {
+		return nil;
+	}
+	
+	NSUInteger randomWorkerIndex = arc4random_uniform((uint32_t)[workers count]);
+	return [[workers[randomWorkerIndex] retain] autorelease];
+}
+
 @end

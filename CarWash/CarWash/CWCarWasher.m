@@ -6,17 +6,23 @@
 #pragma mark Public
 
 - (void)washCar:(CWCar *)car {
+	[self addObjectToQueue:car];
+}
+
+- (void)performBackgroundTask:(id)object {
 	@autoreleasepool {
 		sleep(arc4random_uniform(5));
+		CWCar *car = (CWCar *)object;
 		NSLog(@"%@ washes %@", self.name, car.name);
 		car.cleanness = kCWClean;
-		[car performSelectorOnMainThread:@selector(jobCompletedByWorker:)
-							  withObject:self
-						   waitUntilDone:YES];
-		[self performSelectorOnMainThread:@selector(notify)
-											  withObject:nil
-										   waitUntilDone:NO];
+		[super performBackgroundTask:car];
 	}
+}
+
+- (void)performMainThreadTask:(id)object {
+	[object jobCompletedByWorker:self];
+	[self notify];
+	[super performMainThreadTask:object];
 }
 
 @end

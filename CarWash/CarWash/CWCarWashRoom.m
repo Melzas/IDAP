@@ -3,48 +3,18 @@
 #import "CWCar.h"
 #import "CWCarWasher.h"
 
-@interface CWCarWashRoom ()
-@property (nonatomic, retain)		NSMutableArray	*mutableCars;
-
-@end
-
 @implementation CWCarWashRoom
-
-@dynamic cars;
-
-#pragma mark -
-#pragma mark Initializations and Deallocations
-
-- (void)dealloc {
-	self.mutableCars = nil;
-	
-	[super dealloc];
-}
-
-- (instancetype)initWithWorkerCapacity:(NSUInteger)workerCapacity {
-	if ([super initWithWorkerCapacity:workerCapacity]) {
-		self.mutableCars = [NSMutableArray array];
-	}
-	return self;
-}
-
-#pragma mark -
-#pragma mark Accessors
-
-- (NSArray *)cars {
-	return [[self.mutableCars copy] autorelease];
-}
 
 #pragma mark -
 #pragma mark Public
 
-- (void)washCar:(CWCar *)car {
-	CWCarWasher *freeCarWasher = (CWCarWasher *)self.freeWorker;
+- (void)addCar:(CWCar *)car {
+	CWCarWasher *freeCarWasher = (CWCarWasher *)[self freeWorker];
 	if (freeCarWasher) {
-		freeCarWasher.busy = YES;
-		[freeCarWasher performSelectorInBackground:@selector(washCar:) withObject:car];
+		[freeCarWasher washCar:car];
 	} else {
-		[self.mutableCars addObject:car];
+		CWCarWasher *randomCarWasher = (CWCarWasher *)[self randomWorker];
+		[randomCarWasher washCar:car];
 	}
 }
 
@@ -57,16 +27,5 @@
 
 #pragma mark -
 #pragma mark CWJobAcceptance
-
-- (void)jobCompletedByWorker:(CWWorker *)worker {
-	if (0 == [self.mutableCars count]) {
-		worker.busy = NO;
-	} else {
-		CWCarWasher *carWasher = (CWCarWasher *)worker;
-		CWCar *car = self.mutableCars[0];
-		[self.mutableCars removeObject:car];
-		[carWasher performSelectorInBackground:@selector(washCar:) withObject:car];
-	}
-}
 
 @end

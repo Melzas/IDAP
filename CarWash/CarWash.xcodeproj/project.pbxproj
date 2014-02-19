@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		080C115418AEB2890019C518 /* CWDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 080C115318AEB2890019C518 /* CWDirector.m */; };
 		080C115818AEB3CC0019C518 /* CWBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 080C115718AEB3CC0019C518 /* CWBuilding.m */; };
+		083500EB18B5385A004B8C23 /* IDPServiceQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 083500EA18B5385A004B8C23 /* IDPServiceQueue.m */; };
 		0837D97B18ACE7B5006829B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0837D97A18ACE7B5006829B6 /* Foundation.framework */; };
 		0837D97E18ACE7B5006829B6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0837D97D18ACE7B5006829B6 /* main.m */; };
 		0837D98218ACE7B5006829B6 /* CarWash.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0837D98118ACE7B5006829B6 /* CarWash.1 */; };
@@ -39,6 +40,8 @@
 		080C115318AEB2890019C518 /* CWDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CWDirector.m; path = CarWash/CWDirector.m; sourceTree = "<group>"; };
 		080C115618AEB3CC0019C518 /* CWBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWBuilding.h; path = CarWash/CWBuilding.h; sourceTree = "<group>"; };
 		080C115718AEB3CC0019C518 /* CWBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CWBuilding.m; path = CarWash/CWBuilding.m; sourceTree = "<group>"; };
+		083500E918B5385A004B8C23 /* IDPServiceQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDPServiceQueue.h; path = CarWash/IDPServiceQueue.h; sourceTree = "<group>"; };
+		083500EA18B5385A004B8C23 /* IDPServiceQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IDPServiceQueue.m; path = CarWash/IDPServiceQueue.m; sourceTree = "<group>"; };
 		0837D97718ACE7B5006829B6 /* CarWash */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CarWash; sourceTree = BUILT_PRODUCTS_DIR; };
 		0837D97A18ACE7B5006829B6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0837D97D18ACE7B5006829B6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -84,10 +87,20 @@
 			name = Building;
 			sourceTree = "<group>";
 		};
+		083500E818B537DD004B8C23 /* Queue */ = {
+			isa = PBXGroup;
+			children = (
+				083500E918B5385A004B8C23 /* IDPServiceQueue.h */,
+				083500EA18B5385A004B8C23 /* IDPServiceQueue.m */,
+			);
+			name = Queue;
+			sourceTree = "<group>";
+		};
 		0837D96E18ACE7B4006829B6 = {
 			isa = PBXGroup;
 			children = (
 				0857C87718B0215400F774C1 /* CWJobAcceptance.h */,
+				083500E818B537DD004B8C23 /* Queue */,
 				0857C87218AF8DC500F774C1 /* Car */,
 				080C115518AEB32D0019C518 /* Building */,
 				0837D98F18AD2B23006829B6 /* Worker */,
@@ -224,6 +237,7 @@
 				0837D99218AD2B51006829B6 /* CWWorker.m in Sources */,
 				0857C87518AF8DE600F774C1 /* CWCar.m in Sources */,
 				0837D99518AD3619006829B6 /* CWCarWasher.m in Sources */,
+				083500EB18B5385A004B8C23 /* IDPServiceQueue.m in Sources */,
 				0837D97E18ACE7B5006829B6 /* main.m in Sources */,
 				0837D98E18ACF296006829B6 /* CWCarWashRoom.m in Sources */,
 				0837D99818AD3713006829B6 /* CWBooker.m in Sources */,

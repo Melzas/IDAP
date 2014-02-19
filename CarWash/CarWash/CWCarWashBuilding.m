@@ -23,16 +23,16 @@
 #pragma mark -
 #pragma mark Public
 
-- (void)washCar:(CWCar *)car {
+- (void)addCar:(CWCar *)car {
 	NSArray *carWashRooms = self.carWashRooms;
 	for (CWCarWashRoom *carWashRoom in carWashRooms) {
 		if ([carWashRoom freeWorker]) {
-			[carWashRoom washCar:car];
+			[carWashRoom addCar:car];
 			return;
 		}
 	}
 	NSUInteger randomRoomIndex = arc4random_uniform((u_int32_t)[carWashRooms count]);
-	[carWashRooms[randomRoomIndex] washCar:car];
+	[carWashRooms[randomRoomIndex] addCar:car];
 }
 
 @end

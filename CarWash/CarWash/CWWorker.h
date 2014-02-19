@@ -1,17 +1,14 @@
 #import <Foundation/Foundation.h>
 
 #import "CWJobAcceptance.h"
+#import "IDPServiceQueue.h"
 
-@interface CWWorker : NSObject <CWJobAcceptance>
+@interface CWWorker : IDPServiceQueue <CWJobAcceptance>
 @property (nonatomic, readonly)		NSString	*name;
 @property (nonatomic, readonly)		NSUInteger	salary;
 @property (nonatomic, readonly)		NSUInteger	yearsOfExperience;
 @property (nonatomic, assign)		NSUInteger	money;
-
 @property (nonatomic, readonly)		NSArray		*jobAccepters;
-@property (nonatomic, readonly)		NSArray		*serviceQueue;
-
-@property (atomic, assign, getter = isBusy)	BOOL	busy;
 
 + (instancetype)workerWithName:(NSString *)name
 						salary:(NSUInteger)salary
@@ -24,9 +21,5 @@
 - (void)addJobAccepter:(id<CWJobAcceptance>)jobAccepter;
 - (void)removeJobAccepter:(id<CWJobAcceptance>)jobAcceptor;
 - (void)notify;
-
-- (void)addWorkerToQueue:(CWWorker *)worker;
-- (void)removeWorkerFromQueue:(CWWorker *)worker;
-- (void)processQueueWithSelector:(SEL)selector;
 
 @end

@@ -1,12 +1,9 @@
 #import "CWRoom.h"
 
-#import "CWJobAcceptance.h"
-
 @class CWCar;
 
-@interface CWCarWashRoom : CWRoom <CWJobAcceptance>
-@property (nonatomic, readonly)	NSArray		*cars;
+@interface CWCarWashRoom : CWRoom
 
-- (void)washCar:(CWCar *)car;
+- (void)addCar:(CWCar *)car;
 
 @end

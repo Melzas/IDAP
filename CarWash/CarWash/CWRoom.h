@@ -12,5 +12,6 @@
 - (BOOL)addWorker:(CWWorker *)worker;
 - (BOOL)removeWorker:(CWWorker *)worker;
 - (CWWorker *)freeWorker;
+- (CWWorker *)randomWorker;
 
 @end

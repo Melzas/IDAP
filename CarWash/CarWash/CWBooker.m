@@ -2,8 +2,6 @@
 
 @interface CWBooker ()
 
-- (void)processQueue;
-
 @end
 
 @implementation CWBooker
@@ -12,37 +10,30 @@
 #pragma mark Public
 
 - (void)countMoneyOfWorker:(CWWorker *)worker {
+	sleep(arc4random_uniform(5));
+	self.money += worker.money;
+	NSLog(@"Booker %@ counts %lu dollars from %@", self.name, worker.money, worker.name);
+	worker.money = 0;
+}
+
+- (void)performBackgroundTask:(id)object {
 	@autoreleasepool {
-		sleep(arc4random_uniform(5));
-		self.money += worker.money;
-		NSLog(@"Booker %@ counts %lu dollars from %@", self.name, worker.money, worker.name);
-		worker.money = 0;
-		[self performSelectorOnMainThread:@selector(notify)
-							   withObject:nil
-							waitUntilDone:NO];
-		[self performSelectorOnMainThread:@selector(removeWorkerFromQueue:)
-							   withObject:worker
-							waitUntilDone:YES];
-		[self performSelectorOnMainThread:@selector(processQueue)
-							   withObject:nil waitUntilDone:NO];
+		CWWorker *worker = (CWWorker *)object;
+		[self countMoneyOfWorker:worker];
+		[super performBackgroundTask:worker];
 	}
 }
 
-- (void)processQueue {
-	[self processQueueWithSelector:@selector(countMoneyOfWorker:)];
+- (void)performMainThreadTask:(id)object {
+	[self notify];
+	[super performMainThreadTask:object];
 }
 
 #pragma mark -
 #pragma mark CWJobAcceptance
 
 - (void)jobCompletedByWorker:(CWWorker *)worker {
-	if (NSNotFound == [self.serviceQueue indexOfObjectIdenticalTo:worker]) {
-		[self addWorkerToQueue:worker];
-	}
-	if (!self.isBusy) {
-		self.busy = YES;
-		[self processQueue];
-	}
+	[self addObjectToQueue:worker];
 }
 
 @end

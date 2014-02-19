@@ -7,6 +7,6 @@
 @interface CWCarWashBuilding : CWBuilding
 @property (nonatomic, readonly)	NSArray	*carWashRooms;
 
-- (void)washCar:(CWCar *)car;
+- (void)addCar:(CWCar *)car;
 
 @end
