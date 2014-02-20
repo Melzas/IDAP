@@ -13,7 +13,7 @@
 -(NSArray *)carWashRooms {
 	NSMutableArray *carWashRooms = [NSMutableArray array];
 	for (CWRoom *room in self.rooms) {
-		if ([room isMemberOfClass:[CWCarWashRoom class]]) {
+		if ([room isKindOfClass:[CWCarWashRoom class]]) {
 			[carWashRooms addObject:room];
 		}
 	}
