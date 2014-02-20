@@ -1,16 +1,17 @@
 #import "CWWorker.h"
 
+#import "IDPObservableWrapper.h"
+
 @interface CWWorker ()
 @property (nonatomic, copy, readwrite)		NSString		*name;
 @property (nonatomic, assign, readwrite)	NSUInteger		salary;
 @property (nonatomic, assign, readwrite)	NSUInteger		yearsOfExperience;
-@property (nonatomic, retain)				NSMutableArray	*mutableJobAccepters;
+@property (nonatomic, retain)				NSMutableArray	*mutableObservers;
+@property (nonatomic, retain)				NSMutableArray	*mutableObservables;
 
 @end
 
 @implementation CWWorker
-
-@dynamic jobAccepters;
 
 #pragma mark -
 #pragma mark Class Methods
@@ -28,7 +29,7 @@
 
 - (void)dealloc {
 	self.name = nil;
-	self.mutableJobAccepters = nil;
+	self.mutableObservers = nil;
 	
 	[super dealloc];
 }
@@ -41,7 +42,7 @@
 		self.name = name;
 		self.salary = salary;
 		self.yearsOfExperience = yearsOfExperience;
-		self.mutableJobAccepters = [NSMutableArray array];
+		self.mutableObservers = [NSMutableArray array];
 	}
 	return self;
 }
@@ -49,25 +50,50 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (NSArray *)jobAccepters {
-	return [[self.mutableJobAccepters copy] autorelease];
+- (NSArray *)observers {
+	return [[self.mutableObservers copy] autorelease];
+}
+
+- (NSArray *)observables {
+	return [[self.mutableObservables copy] autorelease];
 }
 
 #pragma mark -
-#pragma mark Public
+#pragma mark IDPObservable
 
-- (void)addJobAccepter:(id<CWJobAcceptance>)jobAccepter {
-	[self.mutableJobAccepters addObject:jobAccepter];
+- (void)addObserver:(id<CWJobAcceptance>)jobAccepter {
+	[self.mutableObservers addObject:jobAccepter];
+	[jobAccepter addObservable:self];
 }
 
-- (void)removeJobAccepter:(id<CWJobAcceptance>)jobAcceptor {
-	[self.mutableJobAccepters removeObjectIdenticalTo:jobAcceptor];
+- (void)removeObserver:(id<CWJobAcceptance>)jobAcceptor {
+	[self.mutableObservers removeObjectIdenticalTo:jobAcceptor];
+	[jobAcceptor removeObservable:self];
 }
 
 - (void)notify {
-	for (id<CWJobAcceptance> jobAccepter in self.mutableJobAccepters) {
+	for (id<CWJobAcceptance> jobAccepter in self.mutableObservers) {
 		[jobAccepter jobCompletedByWorker:self];
 	}
+}
+
+#pragma mark -
+#pragma mark IDPObserver
+
+- (void)addObservable:(id<IDPObservable>)observable {
+	IDPObservableWrapper *observableWrapper = [[[IDPObservableWrapper alloc] init] autorelease];
+	observableWrapper.observable = observable;
+	[self.mutableObservables addObject:observableWrapper];
+}
+
+- (void)removeObservable:(id<IDPObservable>)observable {
+	NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
+	for (NSUInteger i = 0; i < [self.mutableObservables count]; ++i) {
+		if (observable == self.mutableObservables[i]) {
+			[indexSet addIndex:i];
+		}
+	}
+	[self.mutableObservables removeObjectsAtIndexes:indexSet];
 }
 
 #pragma mark -

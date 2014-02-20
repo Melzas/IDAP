@@ -55,9 +55,9 @@
 	
 	CWRoom *bookerRoom = [CWRoom roomWithWorkerCapacity:2];
 	CWBooker *bookerMatt = [CWBooker workerWithName:@"Matt" salary:800 yearsOfExperience:4];
-	[bookerMatt addJobAccepter:directorAlex];
+	[bookerMatt addObserver:directorAlex];
 	CWBooker *bookerJane = [CWBooker workerWithName:@"Jane" salary:200 yearsOfExperience:0];
-	[bookerJane addJobAccepter:directorAlex];
+	[bookerJane addObserver:directorAlex];
 	[bookerRoom addWorker:bookerMatt];
 	[bookerRoom addWorker:bookerJane];
 	
@@ -70,12 +70,12 @@
 	CWCarWasher *carWasherSam = [CWCarWasher workerWithName:@"Sam"
 													 salary:500
 										  yearsOfExperience:2];
-	[carWasherSam addJobAccepter:bookerMatt];
+	[carWasherSam addObserver:bookerMatt];
 	
 	CWCarWasher *carWasherAnn = [CWCarWasher workerWithName:@"Ann"
 													 salary:400
 										  yearsOfExperience:1];
-	[carWasherAnn addJobAccepter:bookerJane];
+	[carWasherAnn addObserver:bookerJane];
 	
 	[firstCarWashRoom addWorker:carWasherSam];
 	[firstCarWashRoom addWorker:carWasherAnn];
@@ -84,7 +84,7 @@
 	CWCarWasher *carWasherAndy = [CWCarWasher workerWithName:@"Andy"
 													  salary:1000
 										   yearsOfExperience:15];
-	[carWasherAndy addJobAccepter:bookerJane];
+	[carWasherAndy addObserver:bookerJane];
 	
 	[secondCarWashRoom addWorker:carWasherAndy];
 	
