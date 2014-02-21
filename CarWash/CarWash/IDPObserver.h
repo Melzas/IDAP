@@ -4,4 +4,6 @@
 
 @interface IDPObserver : NSObject <IDPObserver>
 
++ (instancetype)observer;
+
 @end

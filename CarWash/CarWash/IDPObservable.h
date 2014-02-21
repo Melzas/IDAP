@@ -4,4 +4,6 @@
 
 @interface IDPObservable : NSObject <IDPObservable>
 
++ (instancetype)observable;
+
 @end

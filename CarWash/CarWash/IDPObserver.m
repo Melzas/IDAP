@@ -10,6 +10,13 @@
 @implementation IDPObserver
 
 #pragma mark -
+#pragma mark Class Methods
+
++ (instancetype)observer {
+	return [[[self alloc] init] autorelease];
+}
+
+#pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
@@ -45,7 +52,7 @@
 	[self.mutableObservables removeObjectsAtIndexes:indexSet];
 }
 
-- (void)notify {
+- (void)didReceiveNotificationFromObservable:(id<IDPObservable>)observable {
 	
 }
 

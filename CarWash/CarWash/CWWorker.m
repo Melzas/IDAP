@@ -1,13 +1,15 @@
 #import "CWWorker.h"
 
-#import "IDPObservableWrapper.h"
+#import "IDPObservable.h"
+#import "IDPObserver.h"
 
 @interface CWWorker ()
 @property (nonatomic, copy, readwrite)		NSString		*name;
 @property (nonatomic, assign, readwrite)	NSUInteger		salary;
 @property (nonatomic, assign, readwrite)	NSUInteger		yearsOfExperience;
-@property (nonatomic, retain)				NSMutableArray	*mutableObservers;
-@property (nonatomic, retain)				NSMutableArray	*mutableObservables;
+
+@property (nonatomic, retain)	IDPObservable	*observable;
+@property (nonatomic, retain)	IDPObserver		*observer;
 
 @end
 
@@ -29,7 +31,8 @@
 
 - (void)dealloc {
 	self.name = nil;
-	self.mutableObservers = nil;
+	self.observable = nil;
+	self.observer = nil;
 	
 	[super dealloc];
 }
@@ -42,7 +45,9 @@
 		self.name = name;
 		self.salary = salary;
 		self.yearsOfExperience = yearsOfExperience;
-		self.mutableObservers = [NSMutableArray array];
+		
+		self.observable = [IDPObservable observable];
+		self.observer = [IDPObserver observer];
 	}
 	return self;
 }
@@ -51,49 +56,41 @@
 #pragma mark Accessors
 
 - (NSArray *)observers {
-	return [[self.mutableObservers copy] autorelease];
+	return self.observable.observers;
 }
 
 - (NSArray *)observables {
-	return [[self.mutableObservables copy] autorelease];
+	return self.observer.observables;
 }
 
 #pragma mark -
 #pragma mark IDPObservable
 
 - (void)addObserver:(id<CWJobAcceptance>)jobAccepter {
-	[self.mutableObservers addObject:jobAccepter];
-	[jobAccepter addObservable:self];
+	[self.observable addObserver:jobAccepter];
 }
 
-- (void)removeObserver:(id<CWJobAcceptance>)jobAcceptor {
-	[self.mutableObservers removeObjectIdenticalTo:jobAcceptor];
-	[jobAcceptor removeObservable:self];
+- (void)removeObserver:(id<CWJobAcceptance>)jobAccepter {
+	[self.observable removeObserver:jobAccepter];
 }
 
-- (void)notify {
-	for (id<CWJobAcceptance> jobAccepter in self.mutableObservers) {
-		[jobAccepter jobCompletedByWorker:self];
-	}
+- (void)notifyObserversWithObservable:(id<IDPObservable>)observable {
+	[self.observable notifyObserversWithObservable:observable];
 }
 
 #pragma mark -
 #pragma mark IDPObserver
 
 - (void)addObservable:(id<IDPObservable>)observable {
-	IDPObservableWrapper *observableWrapper = [[[IDPObservableWrapper alloc] init] autorelease];
-	observableWrapper.observable = observable;
-	[self.mutableObservables addObject:observableWrapper];
+	[self.observer addObservable:observable];
 }
 
 - (void)removeObservable:(id<IDPObservable>)observable {
-	NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
-	for (NSUInteger i = 0; i < [self.mutableObservables count]; ++i) {
-		if (observable == self.mutableObservables[i]) {
-			[indexSet addIndex:i];
-		}
-	}
-	[self.mutableObservables removeObjectsAtIndexes:indexSet];
+	[self.observer removeObservable:observable];
+}
+
+- (void)didReceiveNotificationFromObservable:(id<IDPObservable>)observable {
+	
 }
 
 #pragma mark -

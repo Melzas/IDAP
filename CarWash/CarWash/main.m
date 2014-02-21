@@ -7,7 +7,7 @@ int main(int argc, const char * argv[]) {
 	@autoreleasepool {
 		CWCarWash *carWash = [CWCarWash carWash];
 		CWCarQueue *carQueue = [CWCarQueue carQueueWithCarWashBuilding:carWash.carWashBuilding
-															  carCount:100];
+															  carCount:10];
 		[carQueue start];
 	
 		NSRunLoop *loop = [NSRunLoop currentRunLoop];

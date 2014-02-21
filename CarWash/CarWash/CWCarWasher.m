@@ -21,7 +21,7 @@
 
 - (void)performMainThreadTask:(id)object {
 	[object jobCompletedByWorker:self];
-	[self notify];
+	[self notifyObserversWithObservable:self];
 	[super performMainThreadTask:object];
 }
 

@@ -1,6 +1,7 @@
 #import "CWCar.h"
 
 #import "CWWorker.h"
+#import "IDPObserver.h"
 
 static const NSUInteger kCWCarWashPrice = 200;
 static const NSUInteger kCWCarMinMoney = 200;
@@ -8,6 +9,8 @@ static const NSUInteger kCWCarMaxMoney = 500;
 
 @interface CWCar ()
 @property (nonatomic, copy, readwrite)	NSString	*name;
+
+@property (nonatomic, retain)	IDPObserver	*observer;
 
 @end
 
@@ -25,6 +28,7 @@ static const NSUInteger kCWCarMaxMoney = 500;
 
 - (void)dealloc {
 	self.name = nil;
+	self.observer = nil;
 	
 	[super dealloc];
 }
@@ -37,8 +41,28 @@ static const NSUInteger kCWCarMaxMoney = 500;
 	if (self = [super init]) {
 		self.name = name;
 		self.money = kCWCarMinMoney + arc4random_uniform(kCWCarMaxMoney - kCWCarMinMoney + 1);
+		self.observer = [IDPObserver observer];
 	}
 	return self;
+}
+
+#pragma mark -
+#pragma mark IDPObserver
+
+- (void)addObservable:(id<IDPObservable>)observable {
+	[self.observer addObservable:observable];
+}
+
+- (void)removeObservable:(id<IDPObservable>)observable {
+	[self.observer removeObservable:observable];
+}
+
+- (NSArray *)observables {
+	return [self.observer observables];
+}
+
+- (void)didReceiveNotificationFromObservable:(id<IDPObservable>)observable {
+	[self jobCompletedByWorker:(CWWorker *)observable];
 }
 
 #pragma mark -

@@ -26,8 +26,12 @@
 }
 
 - (void)performMainThreadTask:(id)object {
-	[self notify];
+	[self notifyObserversWithObservable:self];
 	[super performMainThreadTask:object];
+}
+
+- (void)didReceiveNotificationFromObservable:(id<IDPObservable>)observable {
+	[self jobCompletedByWorker:(CWWorker *)observable];
 }
 
 #pragma mark -

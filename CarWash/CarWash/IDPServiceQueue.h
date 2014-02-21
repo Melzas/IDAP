@@ -12,6 +12,4 @@
 - (void)performBackgroundTask:(id)object;
 - (void)performMainThreadTask:(id)object;
 
-- (void)queueDidFinishProcessingOfObject:(id)object;
-
 @end

@@ -1,6 +1,7 @@
 #import "CWCarQueue.h"
 
 #import "CWCar.h"
+#import "CWCarWashBuilding.h"
 
 @interface CWCarQueue ()
 @property (nonatomic, retain, readwrite)	CWCarWashBuilding	*carWashBuilding;

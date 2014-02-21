@@ -65,10 +65,6 @@
 }
 
 - (void)performMainThreadTask:(id)object {
-	[self queueDidFinishProcessingOfObject:object];
-}
-	
-- (void)queueDidFinishProcessingOfObject:(id)object {
 	[self removeObjectFromQueue:object];
 	[self processNextObjectInQueue];
 }

@@ -1,8 +1,8 @@
 #import <Foundation/Foundation.h>
 
-#import "IDPObservable.h"
-#import "IDPServiceQueue.h"
+#import "IDPObservableProtocol.h"
 #import "CWJobAcceptance.h"
+#import "IDPServiceQueue.h"
 
 @interface CWWorker : IDPServiceQueue <CWJobAcceptance, IDPObservable>
 @property (nonatomic, readonly)		NSString	*name;

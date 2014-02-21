@@ -31,6 +31,10 @@
 	}
 }
 
+- (void)didReceiveNotificationFromObservable:(id<IDPObservable>)observable {
+	[self jobCompletedByWorker:(CWWorker *)observable];
+}
+
 #pragma mark -
 #pragma mark CWJobAcceptance
 

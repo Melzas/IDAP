@@ -6,7 +6,7 @@
 
 - (void)addObserver:(id<IDPObserver>)observer;
 - (void)removeObserver:(id<IDPObserver>)observer;
-- (void)notifyObservers;
+- (void)notifyObserversWithObservable:(id<IDPObservable>)observable;
 
 - (NSArray *)observers;
 
