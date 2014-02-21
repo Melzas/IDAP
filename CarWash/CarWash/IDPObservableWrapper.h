@@ -1,8 +1,11 @@
 #import <Foundation/Foundation.h>
 
-#import "IDPObservable.h"
+#import "IDPObservableProtocol.h"
 
 @interface IDPObservableWrapper : NSObject
-@property (nonatomic, assign)	id<IDPObservable>	observable;
+@property (nonatomic, readonly)	id<IDPObservable>	observable;
+
++ (instancetype)wrapperWithObservable:(id<IDPObservable>)observable;
+- (instancetype)initWithObservable:(id<IDPObservable>)observable;
 
 @end

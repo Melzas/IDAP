@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0801BE1418B7356E001BA2CF /* IDPObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 0801BE1318B7356E001BA2CF /* IDPObserver.m */; };
+		0801BE1718B7398A001BA2CF /* IDPObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0801BE1618B7398A001BA2CF /* IDPObservable.m */; };
 		080C115418AEB2890019C518 /* CWDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 080C115318AEB2890019C518 /* CWDirector.m */; };
 		080C115818AEB3CC0019C518 /* CWBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 080C115718AEB3CC0019C518 /* CWBuilding.m */; };
 		083500EB18B5385A004B8C23 /* IDPServiceQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 083500EA18B5385A004B8C23 /* IDPServiceQueue.m */; };
@@ -39,6 +41,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0801BE1218B7356E001BA2CF /* IDPObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDPObserver.h; path = CarWash/IDPObserver.h; sourceTree = "<group>"; };
+		0801BE1318B7356E001BA2CF /* IDPObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IDPObserver.m; path = CarWash/IDPObserver.m; sourceTree = "<group>"; };
+		0801BE1518B7398A001BA2CF /* IDPObservable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDPObservable.h; path = CarWash/IDPObservable.h; sourceTree = "<group>"; };
+		0801BE1618B7398A001BA2CF /* IDPObservable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IDPObservable.m; path = CarWash/IDPObservable.m; sourceTree = "<group>"; };
 		080C115218AEB2890019C518 /* CWDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWDirector.h; path = CarWash/CWDirector.h; sourceTree = "<group>"; };
 		080C115318AEB2890019C518 /* CWDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CWDirector.m; path = CarWash/CWDirector.m; sourceTree = "<group>"; };
 		080C115618AEB3CC0019C518 /* CWBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWBuilding.h; path = CarWash/CWBuilding.h; sourceTree = "<group>"; };
@@ -69,8 +75,8 @@
 		08628AEC18B60850002B07EA /* CWCarQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWCarQueue.m; sourceTree = "<group>"; };
 		08628AEE18B60FE0002B07EA /* IDPObservableWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDPObservableWrapper.h; path = CarWash/IDPObservableWrapper.h; sourceTree = "<group>"; };
 		08628AEF18B60FE0002B07EA /* IDPObservableWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IDPObservableWrapper.m; path = CarWash/IDPObservableWrapper.m; sourceTree = "<group>"; };
-		08628AF218B611A7002B07EA /* IDPObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IDPObserver.h; path = CarWash/IDPObserver.h; sourceTree = "<group>"; };
-		08628AF318B611BD002B07EA /* IDPObservable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IDPObservable.h; path = CarWash/IDPObservable.h; sourceTree = "<group>"; };
+		08628AF218B611A7002B07EA /* IDPObserverProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IDPObserverProtocol.h; path = CarWash/IDPObserverProtocol.h; sourceTree = "<group>"; };
+		08628AF318B611BD002B07EA /* IDPObservableProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IDPObservableProtocol.h; path = CarWash/IDPObservableProtocol.h; sourceTree = "<group>"; };
 		08AFBBE918B0E33200497DE9 /* CWCarWashBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWCarWashBuilding.h; path = CarWash/CWCarWashBuilding.h; sourceTree = "<group>"; };
 		08AFBBEA18B0E33200497DE9 /* CWCarWashBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CWCarWashBuilding.m; path = CarWash/CWCarWashBuilding.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -199,10 +205,14 @@
 		08628AF118B61100002B07EA /* Observer */ = {
 			isa = PBXGroup;
 			children = (
-				08628AF218B611A7002B07EA /* IDPObserver.h */,
-				08628AF318B611BD002B07EA /* IDPObservable.h */,
+				08628AF218B611A7002B07EA /* IDPObserverProtocol.h */,
+				08628AF318B611BD002B07EA /* IDPObservableProtocol.h */,
 				08628AEE18B60FE0002B07EA /* IDPObservableWrapper.h */,
 				08628AEF18B60FE0002B07EA /* IDPObservableWrapper.m */,
+				0801BE1218B7356E001BA2CF /* IDPObserver.h */,
+				0801BE1318B7356E001BA2CF /* IDPObserver.m */,
+				0801BE1518B7398A001BA2CF /* IDPObservable.h */,
+				0801BE1618B7398A001BA2CF /* IDPObservable.m */,
 			);
 			name = Observer;
 			sourceTree = "<group>";
@@ -259,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08628AF018B60FE0002B07EA /* IDPObservableWrapper.m in Sources */,
+				0801BE1418B7356E001BA2CF /* IDPObserver.m in Sources */,
 				0837D98B18ACED14006829B6 /* CWRoom.m in Sources */,
 				08AFBBEB18B0E33200497DE9 /* CWCarWashBuilding.m in Sources */,
 				080C115418AEB2890019C518 /* CWDirector.m in Sources */,
@@ -269,6 +280,7 @@
 				08628AED18B60850002B07EA /* CWCarQueue.m in Sources */,
 				0837D97E18ACE7B5006829B6 /* main.m in Sources */,
 				0837D98E18ACF296006829B6 /* CWCarWashRoom.m in Sources */,
+				0801BE1718B7398A001BA2CF /* IDPObservable.m in Sources */,
 				0837D99818AD3713006829B6 /* CWBooker.m in Sources */,
 				080C115818AEB3CC0019C518 /* CWBuilding.m in Sources */,
 				08628AE718B5FEA4002B07EA /* CWCarWash.m in Sources */,

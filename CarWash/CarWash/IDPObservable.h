@@ -1,13 +1,7 @@
 #import <Foundation/Foundation.h>
 
-@protocol IDPObserver;
+#import "IDPObservableProtocol.h"
 
-@protocol IDPObservable <NSObject>
-
-- (void)addObserver:(id<IDPObserver>)observer;
-- (void)removeObserver:(id<IDPObserver>)observer;
-- (void)notify;
-
-- (NSArray *)observers;
+@interface IDPObservable : NSObject <IDPObservable>
 
 @end
