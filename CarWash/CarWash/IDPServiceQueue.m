@@ -1,7 +1,11 @@
 #import "IDPServiceQueue.h"
 
+typedef void(^CWOperationBlock)(NSMutableArray *queue, id object);
+
 @interface IDPServiceQueue ()
-@property (nonatomic, retain)	NSMutableArray	*mutableQueue;
+@property (atomic, retain)	NSMutableArray	*mutableQueue;
+
+- (void)performSynchronizedOperationWithObject:(id)object operation:(CWOperationBlock)operation;
 
 @end
 
@@ -29,16 +33,23 @@
 #pragma mark Accessors
 
 - (NSArray *)queue {
-	return [[self.mutableQueue copy] autorelease];
+	__block NSArray *queueCopy;
+	[self performSynchronizedOperationWithObject:nil operation:^(NSMutableArray *queue, id object) {
+		queueCopy = [[queue copy] autorelease];
+	}];
+	return queueCopy;
 }
 
 #pragma mark -
 #pragma mark Public
 
 - (void)addObjectToQueue:(id)object {
-	if (NSNotFound == [self.mutableQueue indexOfObjectIdenticalTo:object]) {
-		[self.mutableQueue addObject:object];
-	}
+	[self performSynchronizedOperationWithObject:object
+									   operation:^(NSMutableArray *queue, id object) {
+		if (NSNotFound == [queue indexOfObjectIdenticalTo:object]) {
+			[queue addObject:object];
+		}
+	}];
 	if (!self.isBusy) {
 		self.busy = YES;
 		[self processNextObjectInQueue];
@@ -46,11 +57,14 @@
 }
 
 - (void)removeObjectFromQueue:(id)object {
-	[self.mutableQueue removeObject:object];
+	[self performSynchronizedOperationWithObject:object
+									   operation:^(NSMutableArray *queue, id object) {
+		[queue removeObject:object];
+	}];
 }
 
 - (void)processNextObjectInQueue {
-	id object = [self.mutableQueue firstObject];
+	id object = [self.queue firstObject];
 	if (object) {
 		[self performSelectorInBackground:@selector(performBackgroundTask:) withObject:object];
 	} else {
@@ -67,6 +81,15 @@
 - (void)performMainThreadTask:(id)object {
 	[self removeObjectFromQueue:object];
 	[self processNextObjectInQueue];
+}
+
+#pragma mark -
+#pragma mark Private
+
+- (void)performSynchronizedOperationWithObject:(id)object operation:(CWOperationBlock)operation {
+	@synchronized(self.mutableQueue) {
+		operation(self.mutableQueue, object);
+	}
 }
 
 @end
