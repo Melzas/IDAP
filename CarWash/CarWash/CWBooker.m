@@ -17,17 +17,15 @@
 	NSLog(@"Booker %@ counts %lu dollars from %@", self.name, money, worker.name);
 }
 
-- (void)performBackgroundTask:(id)object {
+- (void)performInBackground:(id)object {
 	@autoreleasepool {
 		CWWorker *worker = (CWWorker *)object;
 		[self countMoneyOfWorker:worker];
-		[super performBackgroundTask:worker];
 	}
 }
 
-- (void)performMainThreadTask:(id)object {
+- (void)performOnMainThread:(id)object {
 	[self notifyObserversWithObservable:self];
-	[super performMainThreadTask:object];
 }
 
 - (void)didReceiveNotificationFromObservable:(id<IDPObservable>)observable {

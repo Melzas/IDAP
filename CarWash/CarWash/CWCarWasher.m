@@ -9,20 +9,18 @@
 	[self addObjectToQueue:car];
 }
 
-- (void)performBackgroundTask:(id)object {
+- (void)performInBackground:(id)object {
 	@autoreleasepool {
 		sleep(arc4random_uniform(5));
 		CWCar *car = (CWCar *)object;
 		NSLog(@"%@ washes %@", self.name, car.name);
 		car.cleanness = kCWClean;
-		[super performBackgroundTask:car];
 	}
 }
 
-- (void)performMainThreadTask:(id)object {
+- (void)performOnMainThread:(id)object {
 	[object jobCompletedByWorker:self];
 	[self notifyObserversWithObservable:self];
-	[super performMainThreadTask:object];
 }
 
 @end

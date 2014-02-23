@@ -23,11 +23,10 @@
 		  self.money);
 }
 
-- (void)performBackgroundTask:(id)object {
+- (void)performInBackground:(id)object {
 	@autoreleasepool {
 		CWWorker *worker = (CWWorker *)object;
 		[self gainProfitFromWorker:worker];
-		[super performBackgroundTask:worker];
 	}
 }
 

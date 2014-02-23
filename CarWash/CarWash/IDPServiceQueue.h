@@ -9,7 +9,7 @@
 - (void)removeObjectFromQueue:(id)object;
 - (void)processNextObjectInQueue;
 
-- (void)performBackgroundTask:(id)object;
-- (void)performMainThreadTask:(id)object;
+- (void)performInBackground:(id)object;
+- (void)performOnMainThread:(id)object;
 
 @end

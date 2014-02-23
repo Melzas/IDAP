@@ -5,6 +5,9 @@ typedef void(^CWOperationBlock)(NSMutableArray *queue);
 @interface IDPServiceQueue ()
 @property (atomic, retain)	NSMutableArray	*mutableQueue;
 
+- (void)performBackgroundTask:(id)object;
+- (void)performMainThreadTask:(id)object;
+
 - (void)performSynchronizedOperation:(CWOperationBlock)operation;
 
 @end
@@ -45,7 +48,7 @@ typedef void(^CWOperationBlock)(NSMutableArray *queue);
 
 - (void)addObjectToQueue:(id)object {
 	[self performSynchronizedOperation:^(NSMutableArray *queue) {
-		if (NSNotFound == [queue indexOfObjectIdenticalTo:object]) {
+		if (![queue containsObject:object]) {
 			[queue addObject:object];
 		}
 	}];
@@ -70,19 +73,30 @@ typedef void(^CWOperationBlock)(NSMutableArray *queue);
 	}
 }
 
+- (void)performInBackground:(id)object {
+	
+}
+
+- (void)performOnMainThread:(id)object {
+	
+}
+
+#pragma mark -
+#pragma mark Private
+
 - (void)performBackgroundTask:(id)object {
+	[self performInBackground:object];
 	[self performSelectorOnMainThread:@selector(performMainThreadTask:)
 						   withObject:object
 						waitUntilDone:NO];
 }
 
 - (void)performMainThreadTask:(id)object {
+	[self performOnMainThread:object];
 	[self removeObjectFromQueue:object];
 	[self processNextObjectInQueue];
 }
 
-#pragma mark -
-#pragma mark Private
 
 - (void)performSynchronizedOperation:(CWOperationBlock)operation {
 	@synchronized(self) {
