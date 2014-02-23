@@ -1,11 +1,11 @@
 #import "IDPServiceQueue.h"
 
-typedef void(^CWOperationBlock)(NSMutableArray *queue, id object);
+typedef void(^CWOperationBlock)(NSMutableArray *queue);
 
 @interface IDPServiceQueue ()
 @property (atomic, retain)	NSMutableArray	*mutableQueue;
 
-- (void)performSynchronizedOperationWithObject:(id)object operation:(CWOperationBlock)operation;
+- (void)performSynchronizedOperation:(CWOperationBlock)operation;
 
 @end
 
@@ -34,7 +34,7 @@ typedef void(^CWOperationBlock)(NSMutableArray *queue, id object);
 
 - (NSArray *)queue {
 	__block NSArray *queueCopy;
-	[self performSynchronizedOperationWithObject:nil operation:^(NSMutableArray *queue, id object) {
+	[self performSynchronizedOperation:^(NSMutableArray *queue) {
 		queueCopy = [[queue copy] autorelease];
 	}];
 	return queueCopy;
@@ -44,8 +44,7 @@ typedef void(^CWOperationBlock)(NSMutableArray *queue, id object);
 #pragma mark Public
 
 - (void)addObjectToQueue:(id)object {
-	[self performSynchronizedOperationWithObject:object
-									   operation:^(NSMutableArray *queue, id object) {
+	[self performSynchronizedOperation:^(NSMutableArray *queue) {
 		if (NSNotFound == [queue indexOfObjectIdenticalTo:object]) {
 			[queue addObject:object];
 		}
@@ -57,8 +56,7 @@ typedef void(^CWOperationBlock)(NSMutableArray *queue, id object);
 }
 
 - (void)removeObjectFromQueue:(id)object {
-	[self performSynchronizedOperationWithObject:object
-									   operation:^(NSMutableArray *queue, id object) {
+	[self performSynchronizedOperation:^(NSMutableArray *queue) {
 		[queue removeObject:object];
 	}];
 }
@@ -86,9 +84,9 @@ typedef void(^CWOperationBlock)(NSMutableArray *queue, id object);
 #pragma mark -
 #pragma mark Private
 
-- (void)performSynchronizedOperationWithObject:(id)object operation:(CWOperationBlock)operation {
-	@synchronized(self.mutableQueue) {
-		operation(self.mutableQueue, object);
+- (void)performSynchronizedOperation:(CWOperationBlock)operation {
+	@synchronized(self) {
+		operation(self.mutableQueue);
 	}
 }
 
