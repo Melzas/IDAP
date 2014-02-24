@@ -3,7 +3,7 @@
 #import "CWCar.h"
 #import "CWCarWashBuilding.h"
 
-static const uint32_t kCWCarWaveMaxDelay = 3;
+static const uint32_t kCWCarWaveMaxDelay = 0;
 static const uint32_t kCWCarMaxCountInWave = 5;
 
 @interface CWCarQueue ()

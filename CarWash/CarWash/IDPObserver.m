@@ -1,6 +1,7 @@
 #import "IDPObserver.h"
 
 #import "IDPObservableWrapper.h"
+#import "NSObject+IDPExtensions.h"
 
 @interface IDPObserver ()
 @property (nonatomic, retain)	NSMutableArray	*mutableObservables;
@@ -13,7 +14,7 @@
 #pragma mark Class Methods
 
 + (instancetype)observer {
-	return [[[self alloc] init] autorelease];
+	return [self object];
 }
 
 #pragma mark -

@@ -1,6 +1,7 @@
 #import "CWBuilding.h"
 
 #import "CWRoom.h"
+#import "NSObject+IDPExtensions.h"
 
 @interface CWBuilding ()
 @property (nonatomic, retain)	NSMutableArray	*mutableRooms;
@@ -15,7 +16,7 @@
 #pragma mark Class Methods
 
 + (instancetype)building {
-	return [[[self alloc] init] autorelease];
+	return [self object];
 }
 
 #pragma mark -

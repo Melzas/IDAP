@@ -1,5 +1,7 @@
 #import "CWCarWash.h"
 
+#import "NSObject+IDPExtensions.h"
+
 #import "CWCarWashBuilding.h"
 #import "CWCarWashRoom.h"
 
@@ -21,7 +23,7 @@
 #pragma mark Class methods
 
 + (instancetype)carWash {
-	return [[[self alloc] init] autorelease];
+	return [self object];
 }
 
 #pragma mark -
@@ -80,13 +82,17 @@
 	[firstCarWashRoom addWorker:carWasherSam];
 	[firstCarWashRoom addWorker:carWasherAnn];
 	
-	CWCarWashRoom *secondCarWashRoom = [CWCarWashRoom roomWithWorkerCapacity:1];
+	CWCarWashRoom *secondCarWashRoom = [CWCarWashRoom roomWithWorkerCapacity:2];
 	CWCarWasher *carWasherAndy = [CWCarWasher workerWithName:@"Andy"
 													  salary:1000
 										   yearsOfExperience:15];
 	[carWasherAndy addObserver:bookerJane];
 	
+	CWCarWasher *carWasherKate = [CWCarWasher workerWithName:@"Kate" salary:95 yearsOfExperience:0];
+	[carWasherKate addObserver:bookerJane];
+	
 	[secondCarWashRoom addWorker:carWasherAndy];
+	[secondCarWashRoom addWorker:carWasherKate];
 	
 	[self.carWashBuilding addRoom:firstCarWashRoom];
 	[self.carWashBuilding addRoom:secondCarWashRoom];

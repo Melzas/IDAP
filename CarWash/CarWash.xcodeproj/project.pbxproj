@@ -24,6 +24,7 @@
 		08628AE718B5FEA4002B07EA /* CWCarWash.m in Sources */ = {isa = PBXBuildFile; fileRef = 08628AE618B5FEA4002B07EA /* CWCarWash.m */; };
 		08628AED18B60850002B07EA /* CWCarQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 08628AEC18B60850002B07EA /* CWCarQueue.m */; };
 		08628AF018B60FE0002B07EA /* IDPObservableWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 08628AEF18B60FE0002B07EA /* IDPObservableWrapper.m */; };
+		0870295618BB5B9900D730AC /* NSObject+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0870295518BB5B9900D730AC /* NSObject+IDPExtensions.m */; };
 		08AFBBEB18B0E33200497DE9 /* CWCarWashBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 08AFBBEA18B0E33200497DE9 /* CWCarWashBuilding.m */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,8 @@
 		08628AEF18B60FE0002B07EA /* IDPObservableWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IDPObservableWrapper.m; path = CarWash/IDPObservableWrapper.m; sourceTree = "<group>"; };
 		08628AF218B611A7002B07EA /* IDPObserverProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IDPObserverProtocol.h; path = CarWash/IDPObserverProtocol.h; sourceTree = "<group>"; };
 		08628AF318B611BD002B07EA /* IDPObservableProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IDPObservableProtocol.h; path = CarWash/IDPObservableProtocol.h; sourceTree = "<group>"; };
+		0870295418BB5B9900D730AC /* NSObject+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+IDPExtensions.h"; path = "CarWash/NSObject+IDPExtensions.h"; sourceTree = "<group>"; };
+		0870295518BB5B9900D730AC /* NSObject+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+IDPExtensions.m"; path = "CarWash/NSObject+IDPExtensions.m"; sourceTree = "<group>"; };
 		08AFBBE918B0E33200497DE9 /* CWCarWashBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWCarWashBuilding.h; path = CarWash/CWCarWashBuilding.h; sourceTree = "<group>"; };
 		08AFBBEA18B0E33200497DE9 /* CWCarWashBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CWCarWashBuilding.m; path = CarWash/CWCarWashBuilding.m; sourceTree = "<group>"; };
 		08FF01EC18BB3F1F00DBE102 /* IDPQueueable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IDPQueueable.h; path = CarWash/IDPQueueable.h; sourceTree = "<group>"; };
@@ -118,6 +121,8 @@
 		0837D96E18ACE7B4006829B6 = {
 			isa = PBXGroup;
 			children = (
+				0870295418BB5B9900D730AC /* NSObject+IDPExtensions.h */,
+				0870295518BB5B9900D730AC /* NSObject+IDPExtensions.m */,
 				0857C87718B0215400F774C1 /* CWJobAcceptance.h */,
 				08628AF118B61100002B07EA /* Observer */,
 				083500E818B537DD004B8C23 /* Queue */,
@@ -276,6 +281,7 @@
 				08AFBBEB18B0E33200497DE9 /* CWCarWashBuilding.m in Sources */,
 				080C115418AEB2890019C518 /* CWDirector.m in Sources */,
 				0837D99218AD2B51006829B6 /* CWWorker.m in Sources */,
+				0870295618BB5B9900D730AC /* NSObject+IDPExtensions.m in Sources */,
 				0857C87518AF8DE600F774C1 /* CWCar.m in Sources */,
 				0837D99518AD3619006829B6 /* CWCarWasher.m in Sources */,
 				083500EB18B5385A004B8C23 /* IDPServiceQueue.m in Sources */,
