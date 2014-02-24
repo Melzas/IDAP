@@ -46,30 +46,34 @@ typedef void(^CWOperationBlock)(NSMutableArray *queue);
 #pragma mark -
 #pragma mark Public
 
-- (void)addObjectToQueue:(id)object {
+- (void)addObjectToQueue:(id<IDPQueueable>)object {
 	[self performSynchronizedOperation:^(NSMutableArray *queue) {
 		if (![queue containsObject:object]) {
+			[object setInQueue:YES];
 			[queue addObject:object];
 		}
 	}];
-	if (!self.isBusy) {
-		self.busy = YES;
-		[self processNextObjectInQueue];
-	}
+	
+	[self processNextObjectInQueue];
 }
 
-- (void)removeObjectFromQueue:(id)object {
+- (void)removeObjectFromQueue:(id<IDPQueueable>)object {
 	[self performSynchronizedOperation:^(NSMutableArray *queue) {
-		[queue removeObject:object];
+		[queue removeObjectIdenticalTo:object];
+		[object setInQueue:NO];
 	}];
+	
+	self.busy = NO;
+	if ([object isKindOfClass:[IDPServiceQueue class]]) {
+		[(IDPServiceQueue*)object processNextObjectInQueue];
+	}
 }
 
 - (void)processNextObjectInQueue {
 	id object = [self.queue firstObject];
-	if (object) {
+	if (object && !self.busy && !self.inQueue) {
+		self.busy = YES;
 		[self performSelectorInBackground:@selector(performBackgroundTask:) withObject:object];
-	} else {
-		self.busy = NO;
 	}
 }
 

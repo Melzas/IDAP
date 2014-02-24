@@ -79,6 +79,7 @@
 		08628AF318B611BD002B07EA /* IDPObservableProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IDPObservableProtocol.h; path = CarWash/IDPObservableProtocol.h; sourceTree = "<group>"; };
 		08AFBBE918B0E33200497DE9 /* CWCarWashBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWCarWashBuilding.h; path = CarWash/CWCarWashBuilding.h; sourceTree = "<group>"; };
 		08AFBBEA18B0E33200497DE9 /* CWCarWashBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CWCarWashBuilding.m; path = CarWash/CWCarWashBuilding.m; sourceTree = "<group>"; };
+		08FF01EC18BB3F1F00DBE102 /* IDPQueueable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IDPQueueable.h; path = CarWash/IDPQueueable.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +110,7 @@
 			children = (
 				083500E918B5385A004B8C23 /* IDPServiceQueue.h */,
 				083500EA18B5385A004B8C23 /* IDPServiceQueue.m */,
+				08FF01EC18BB3F1F00DBE102 /* IDPQueueable.h */,
 			);
 			name = Queue;
 			sourceTree = "<group>";
