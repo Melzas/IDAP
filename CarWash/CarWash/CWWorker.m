@@ -3,6 +3,8 @@
 #import "IDPObservable.h"
 #import "IDPObserver.h"
 
+static const uint32_t	kCWWorkerMaxDelay = 3;
+
 @interface CWWorker ()
 @property (nonatomic, copy, readwrite)		NSString		*name;
 @property (nonatomic, assign, readwrite)	NSUInteger		salary;

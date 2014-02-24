@@ -3,6 +3,9 @@
 #import "CWCar.h"
 #import "CWCarWashBuilding.h"
 
+static const uint32_t kCWCarWaveMaxDelay = 3;
+static const uint32_t kCWCarMaxCountInWave = 5;
+
 @interface CWCarQueue ()
 @property (nonatomic, retain, readwrite)	CWCarWashBuilding	*carWashBuilding;
 @property (nonatomic, assign, readwrite)	NSUInteger			carCount;
@@ -38,12 +41,12 @@
 - (void)start {
 	NSUInteger totalCarCount = 0;
 	while (totalCarCount < self.carCount) {
-		NSUInteger carCountInWave = 1 + arc4random_uniform(5);
+		NSUInteger carCountInWave = 1 + arc4random_uniform(kCWCarMaxCountInWave - 1);
 		if (totalCarCount + carCountInWave > self.carCount) {
 			carCountInWave = self.carCount - totalCarCount;
 		}
 		dispatch_async(self.dispatchQueue, ^{
-			sleep(arc4random_uniform(5));
+			sleep(arc4random_uniform(kCWCarWaveMaxDelay));
 			for (NSUInteger i = 0; i < carCountInWave; ++i) {
 				NSString *carName = [NSString stringWithFormat:@"Car %lu", i + totalCarCount];
 				CWCar *car = [CWCar carWithName:carName];

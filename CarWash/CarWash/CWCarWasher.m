@@ -11,7 +11,7 @@
 
 - (void)performInBackground:(id)object {
 	@autoreleasepool {
-		sleep(arc4random_uniform(5));
+		sleep(arc4random_uniform(kCWWorkerMaxDelay));
 		CWCar *car = (CWCar *)object;
 		NSLog(@"%@ washes %@", self.name, car.name);
 		car.cleanness = kCWClean;

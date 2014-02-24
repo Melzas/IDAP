@@ -4,6 +4,8 @@
 #import "CWJobAcceptance.h"
 #import "IDPServiceQueue.h"
 
+static const uint32_t	kCWWorkerMaxDelay;
+
 @interface CWWorker : IDPServiceQueue <CWJobAcceptance, IDPObservable>
 @property (nonatomic, readonly)		NSString	*name;
 @property (nonatomic, readonly)		NSUInteger	salary;

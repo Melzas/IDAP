@@ -10,7 +10,7 @@
 #pragma mark Public
 
 - (void)countMoneyOfWorker:(CWWorker *)worker {
-	sleep(arc4random_uniform(5));
+	sleep(arc4random_uniform(kCWWorkerMaxDelay));
 	NSUInteger money = worker.money;
 	self.money += money;
 	worker.money -= money;
