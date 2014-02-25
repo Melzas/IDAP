@@ -21,6 +21,8 @@
 		08524D9618BC80ED00BE0CAA /* BoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 08524D9518BC80ED00BE0CAA /* BoxTests.m */; };
 		08524DA118BC875D00BE0CAA /* BXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08524DA018BC875D00BE0CAA /* BXViewController.m */; };
 		08524DA418BC880300BE0CAA /* NSObject+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 08524DA318BC880300BE0CAA /* NSObject+IDPExtensions.m */; };
+		08524DA718BCA82600BE0CAA /* BXView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08524DA618BCA82600BE0CAA /* BXView.m */; };
+		08524DA918BCA8F600BE0CAA /* BXViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08524DA818BCA8F600BE0CAA /* BXViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,9 @@
 		08524DA018BC875D00BE0CAA /* BXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXViewController.m; sourceTree = "<group>"; };
 		08524DA218BC880300BE0CAA /* NSObject+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+IDPExtensions.h"; sourceTree = "<group>"; };
 		08524DA318BC880300BE0CAA /* NSObject+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+IDPExtensions.m"; sourceTree = "<group>"; };
+		08524DA518BCA82600BE0CAA /* BXView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXView.h; sourceTree = "<group>"; };
+		08524DA618BCA82600BE0CAA /* BXView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXView.m; sourceTree = "<group>"; };
+		08524DA818BCA8F600BE0CAA /* BXViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BXViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +124,9 @@
 				08524D8018BC80ED00BE0CAA /* BXAppDelegate.m */,
 				08524D9F18BC875D00BE0CAA /* BXViewController.h */,
 				08524DA018BC875D00BE0CAA /* BXViewController.m */,
+				08524DA518BCA82600BE0CAA /* BXView.h */,
+				08524DA618BCA82600BE0CAA /* BXView.m */,
+				08524DA818BCA8F600BE0CAA /* BXViewController.xib */,
 				08524D8218BC80ED00BE0CAA /* Images.xcassets */,
 				08524D7718BC80ED00BE0CAA /* Supporting Files */,
 			);
@@ -231,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08524D7B18BC80ED00BE0CAA /* InfoPlist.strings in Resources */,
+				08524DA918BCA8F600BE0CAA /* BXViewController.xib in Resources */,
 				08524D8318BC80ED00BE0CAA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,6 +263,7 @@
 				08524D8118BC80ED00BE0CAA /* BXAppDelegate.m in Sources */,
 				08524D7D18BC80ED00BE0CAA /* main.m in Sources */,
 				08524DA418BC880300BE0CAA /* NSObject+IDPExtensions.m in Sources */,
+				08524DA718BCA82600BE0CAA /* BXView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
