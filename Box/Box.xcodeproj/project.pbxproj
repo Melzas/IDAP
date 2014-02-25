@@ -19,6 +19,8 @@
 		08524D8C18BC80ED00BE0CAA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08524D7418BC80ED00BE0CAA /* UIKit.framework */; };
 		08524D9418BC80ED00BE0CAA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08524D9218BC80ED00BE0CAA /* InfoPlist.strings */; };
 		08524D9618BC80ED00BE0CAA /* BoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 08524D9518BC80ED00BE0CAA /* BoxTests.m */; };
+		08524DA118BC875D00BE0CAA /* BXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08524DA018BC875D00BE0CAA /* BXViewController.m */; };
+		08524DA418BC880300BE0CAA /* NSObject+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 08524DA318BC880300BE0CAA /* NSObject+IDPExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,10 @@
 		08524D9118BC80ED00BE0CAA /* BoxTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BoxTests-Info.plist"; sourceTree = "<group>"; };
 		08524D9318BC80ED00BE0CAA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		08524D9518BC80ED00BE0CAA /* BoxTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoxTests.m; sourceTree = "<group>"; };
+		08524D9F18BC875D00BE0CAA /* BXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXViewController.h; sourceTree = "<group>"; };
+		08524DA018BC875D00BE0CAA /* BXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXViewController.m; sourceTree = "<group>"; };
+		08524DA218BC880300BE0CAA /* NSObject+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+IDPExtensions.h"; sourceTree = "<group>"; };
+		08524DA318BC880300BE0CAA /* NSObject+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+IDPExtensions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +113,12 @@
 		08524D7618BC80ED00BE0CAA /* Box */ = {
 			isa = PBXGroup;
 			children = (
+				08524DA218BC880300BE0CAA /* NSObject+IDPExtensions.h */,
+				08524DA318BC880300BE0CAA /* NSObject+IDPExtensions.m */,
 				08524D7F18BC80ED00BE0CAA /* BXAppDelegate.h */,
 				08524D8018BC80ED00BE0CAA /* BXAppDelegate.m */,
+				08524D9F18BC875D00BE0CAA /* BXViewController.h */,
+				08524DA018BC875D00BE0CAA /* BXViewController.m */,
 				08524D8218BC80ED00BE0CAA /* Images.xcassets */,
 				08524D7718BC80ED00BE0CAA /* Supporting Files */,
 			);
@@ -240,8 +250,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08524DA118BC875D00BE0CAA /* BXViewController.m in Sources */,
 				08524D8118BC80ED00BE0CAA /* BXAppDelegate.m in Sources */,
 				08524D7D18BC80ED00BE0CAA /* main.m in Sources */,
+				08524DA418BC880300BE0CAA /* NSObject+IDPExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
