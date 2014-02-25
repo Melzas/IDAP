@@ -28,6 +28,24 @@ static const NSUInteger kBXBoxSpeed = 5;
 }
 
 #pragma mark -
+#pragma mark Accesors
+
+- (void)setBoxCorner:(BXBoxCorner)boxCorner {
+	_boxCorner = boxCorner;
+	switch (_boxCorner) {
+		case kBXUpperLeft:
+			break;
+		case kBXUpperRight:
+			break;
+		case kBXLowerLeft:
+			break;
+		case kBXLowerRight:
+		default:
+			break;
+	}
+}
+
+#pragma mark -
 #pragma mark Public
 
 - (void)animateBox {
@@ -41,6 +59,17 @@ static const NSUInteger kBXBoxSpeed = 5;
 						 self.distance = -self.distance;
 						 [self animateBox];
 					 }];
+}
+
+- (void)setBoxPosition:(BXBoxCorner)position animated:(BOOL)animated {
+	
+}
+
+- (void)setBoxPosition:(BXBoxCorner)position
+			  animated:(BOOL)animated
+	 completionHandler:(BXCompletionBlock)completionBlock
+{
+	
 }
 
 @end
