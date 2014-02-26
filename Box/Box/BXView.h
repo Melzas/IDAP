@@ -13,7 +13,6 @@ typedef void(^BXCompletionBlock)(BOOL completed);
 @property (nonatomic, readonly)	IBOutlet UIView	*box;
 @property (nonatomic, assign)	BXBoxCorner		boxCorner;
 
-- (void)animateBox;
 - (void)setBoxPosition:(BXBoxCorner)position animated:(BOOL)animated;
 - (void)setBoxPosition:(BXBoxCorner)position
 			  animated:(BOOL)animated

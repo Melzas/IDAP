@@ -1,10 +1,9 @@
 #import "BXView.h"
 
-static const NSUInteger kBXBoxSpeed = 5;
+static const NSUInteger kBXBoxAnimationDuration = 5;
 
 @interface BXView ()
 @property (nonatomic, retain, readwrite)	UIView		*box;
-@property (nonatomic, assign)				NSInteger	distance;
 
 @end
 
@@ -19,57 +18,65 @@ static const NSUInteger kBXBoxSpeed = 5;
 	[super dealloc];
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        self.distance = self.frame.size.width - self.box.frame.size.width;
-    }
-    return self;
-}
-
 #pragma mark -
-#pragma mark Accesors
+#pragma mark Accessors
 
 - (void)setBoxCorner:(BXBoxCorner)boxCorner {
 	_boxCorner = boxCorner;
+	float x;
+	float y;
+	
 	switch (_boxCorner) {
 		case kBXUpperLeft:
+			x = self.frame.origin.x;
+			y = self.frame.origin.y;
 			break;
 		case kBXUpperRight:
+			x = self.frame.origin.x + self.frame.size.width - self.box.frame.size.width;
+			y = self.frame.origin.y;
 			break;
 		case kBXLowerLeft:
+			x = self.frame.origin.x;
+			y = self.frame.origin.y + self.frame.size.height - self.box.frame.size.height;
 			break;
 		case kBXLowerRight:
+			x = self.frame.origin.x + self.frame.size.width - self.box.frame.size.width;
+			y = self.frame.origin.y + self.frame.size.height - self.box.frame.size.height;
 		default:
 			break;
 	}
+	CGPoint cornerPoint = CGPointMake(x, y);
+	CGSize boxSize = CGSizeMake(self.box.frame.size.width, self.box.frame.size.height);
+	self.box.frame = (CGRect){cornerPoint, boxSize};
 }
 
 #pragma mark -
 #pragma mark Public
 
-- (void)animateBox {
-	[UIView animateWithDuration:kBXBoxSpeed
-					 animations:^{
-						 CGRect boxFrame = self.box.frame;
-						 boxFrame.origin.x += self.distance;
-						 self.box.frame = boxFrame;
-					 }
-					 completion:^(BOOL finished) {
-						 self.distance = -self.distance;
-						 [self animateBox];
-					 }];
-}
-
 - (void)setBoxPosition:(BXBoxCorner)position animated:(BOOL)animated {
-	
+	[self setBoxPosition:position animated:animated completionHandler:nil];
 }
 
 - (void)setBoxPosition:(BXBoxCorner)position
 			  animated:(BOOL)animated
 	 completionHandler:(BXCompletionBlock)completionBlock
 {
-	
+	if (animated) {
+		[UIView animateWithDuration:kBXBoxAnimationDuration
+						 animations:^{
+							 self.boxCorner = position;
+						 }
+						 completion:^(BOOL finished) {
+							 if (completionBlock) {
+								 completionBlock(finished);
+							 }
+						 }];
+	} else {
+		self.boxCorner = position;
+		if (completionBlock) {
+			completionBlock(YES);
+		}
+	}
 }
 
 @end
