@@ -1,6 +1,6 @@
 #import "BXView.h"
 
-static const NSUInteger kBXBoxAnimationDuration = 5;
+static const NSUInteger kBXBoxAnimationDuration = 2;
 
 @interface BXView ()
 @property (nonatomic, retain, readwrite)	UIView		*box;
@@ -23,8 +23,8 @@ static const NSUInteger kBXBoxAnimationDuration = 5;
 
 - (void)setBoxCorner:(BXBoxCorner)boxCorner {
 	_boxCorner = boxCorner;
-	float x;
-	float y;
+	CGFloat x;
+	CGFloat y;
 	
 	switch (_boxCorner) {
 		case kBXUpperLeft:
@@ -72,10 +72,12 @@ static const NSUInteger kBXBoxAnimationDuration = 5;
 							 }
 						 }];
 	} else {
-		self.boxCorner = position;
-		if (completionBlock) {
-			completionBlock(YES);
-		}
+		dispatch_async(dispatch_get_main_queue(), ^{
+			self.boxCorner = position;
+			if (completionBlock) {
+				completionBlock(YES);
+			}
+		});
 	}
 }
 
