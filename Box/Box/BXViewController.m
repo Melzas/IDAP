@@ -24,6 +24,7 @@ static const NSUInteger kBXCornerSequenceCount = sizeof(kBXCornerSequence)
 #pragma mark View Lifecycle
 
 - (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
 	[self animateBox];
 }
 
@@ -31,7 +32,10 @@ static const NSUInteger kBXCornerSequenceCount = sizeof(kBXCornerSequence)
 #pragma mark Accessors
 
 - (BXView *)boxView {
-	return (BXView *)self.view;
+	if ([self.view isKindOfClass:[BXView class]]) {
+		return (BXView *)self.view;
+	}
+	return nil;
 }
 
 #pragma mark -
