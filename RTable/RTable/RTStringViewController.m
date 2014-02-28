@@ -8,10 +8,13 @@ static const NSUInteger kRTStringCount = 10;
 static const NSUInteger kRTStringLength = 12;
 
 static NSString * const kRTCellIdentifier = @"kRTCell";
+static NSString * const kRTCellImageName = @"Lenna.png";
 
 @interface RTStringViewController ()
 @property (nonatomic, retain, readwrite)	RTStringStorage			*stringStorage;
 @property (nonatomic, retain, readwrite)	RTRandomStringGenerator	*randomStringGenerator;
+
+@property (nonatomic, retain)	UIImage	*cellImage;
 
 @end
 
@@ -23,6 +26,7 @@ static NSString * const kRTCellIdentifier = @"kRTCell";
 - (void)dealloc {
 	self.stringStorage = nil;
 	self.randomStringGenerator = nil;
+	self.cellImage = nil;
 	
     [super dealloc];
 }
@@ -36,6 +40,7 @@ static NSString * const kRTCellIdentifier = @"kRTCell";
 		for (NSUInteger i = 0; i < kRTStringCount; ++i) {
 			[self.stringStorage addString:[self.randomStringGenerator generateRandomString]];
 		}
+		self.cellImage = [UIImage imageNamed:kRTCellImageName];
     }
     return self;
 }
@@ -57,6 +62,7 @@ static NSString * const kRTCellIdentifier = @"kRTCell";
 			  reuseIdentifier:kRTCellIdentifier];
 	}
 	cell.textLabel.text = [self.stringStorage strings][indexPath.row];
+	cell.imageView.image = self.cellImage;
 	return cell;
 }
 

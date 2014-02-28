@@ -12,6 +12,8 @@
 		0858DA1518C074AC00278000 /* RTStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0858DA1318C074AC00278000 /* RTStringViewController.m */; };
 		0858DA1618C074AC00278000 /* RTStringViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0858DA1418C074AC00278000 /* RTStringViewController.xib */; };
 		0858DA1918C07ECE00278000 /* RTRandomStringGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0858DA1818C07ECE00278000 /* RTRandomStringGenerator.m */; };
+		0858DA1D18C099CB00278000 /* Lenna.png in Resources */ = {isa = PBXBuildFile; fileRef = 0858DA1B18C099CB00278000 /* Lenna.png */; };
+		0858DA1E18C099CB00278000 /* Lenna@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0858DA1C18C099CB00278000 /* Lenna@2x.png */; };
 		086042CE18BF4037006DFC4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 086042CD18BF4037006DFC4D /* Foundation.framework */; };
 		086042D018BF4037006DFC4D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 086042CF18BF4037006DFC4D /* CoreGraphics.framework */; };
 		086042D218BF4038006DFC4D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 086042D118BF4038006DFC4D /* UIKit.framework */; };
@@ -46,6 +48,8 @@
 		0858DA1418C074AC00278000 /* RTStringViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RTStringViewController.xib; sourceTree = "<group>"; };
 		0858DA1718C07ECE00278000 /* RTRandomStringGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTRandomStringGenerator.h; sourceTree = "<group>"; };
 		0858DA1818C07ECE00278000 /* RTRandomStringGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTRandomStringGenerator.m; sourceTree = "<group>"; };
+		0858DA1B18C099CB00278000 /* Lenna.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lenna.png; sourceTree = "<group>"; };
+		0858DA1C18C099CB00278000 /* Lenna@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Lenna@2x.png"; sourceTree = "<group>"; };
 		086042CA18BF4037006DFC4D /* RTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		086042CD18BF4037006DFC4D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		086042CF18BF4037006DFC4D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -88,6 +92,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0858DA1A18C099CB00278000 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				0858DA1B18C099CB00278000 /* Lenna.png */,
+				0858DA1C18C099CB00278000 /* Lenna@2x.png */,
+			);
+			name = Images;
+			path = ../Images;
+			sourceTree = "<group>";
+		};
 		086042C118BF4037006DFC4D = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +148,7 @@
 				0858DA1218C074AC00278000 /* RTStringViewController.h */,
 				0858DA1318C074AC00278000 /* RTStringViewController.m */,
 				0858DA1418C074AC00278000 /* RTStringViewController.xib */,
+				0858DA1A18C099CB00278000 /* Images */,
 			);
 			path = RTable;
 			sourceTree = "<group>";
@@ -245,7 +260,9 @@
 			files = (
 				086042D818BF4038006DFC4D /* InfoPlist.strings in Resources */,
 				086042E018BF4038006DFC4D /* Images.xcassets in Resources */,
+				0858DA1D18C099CB00278000 /* Lenna.png in Resources */,
 				0858DA1618C074AC00278000 /* RTStringViewController.xib in Resources */,
+				0858DA1E18C099CB00278000 /* Lenna@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
