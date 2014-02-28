@@ -1,5 +1,8 @@
 #import "RTAppDelegate.h"
 
+#import "NSObject+IDPExtensions.h"
+#import "RTStringViewController.h"
+
 @implementation RTAppDelegate
 
 - (BOOL)			  application:(UIApplication *)application
@@ -7,6 +10,9 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.window.backgroundColor = [UIColor whiteColor];
+	
+	RTStringViewController *stringViewController = [RTStringViewController object];
+	self.window.rootViewController = stringViewController;
     [self.window makeKeyAndVisible];
     return YES;
 }

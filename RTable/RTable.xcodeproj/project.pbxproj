@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0858DA0E18C0704600278000 /* RTStringStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0858DA0D18C0704600278000 /* RTStringStorage.m */; };
 		0858DA1118C0714F00278000 /* NSObject+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0858DA1018C0714F00278000 /* NSObject+IDPExtensions.m */; };
+		0858DA1518C074AC00278000 /* RTStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0858DA1318C074AC00278000 /* RTStringViewController.m */; };
+		0858DA1618C074AC00278000 /* RTStringViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0858DA1418C074AC00278000 /* RTStringViewController.xib */; };
 		086042CE18BF4037006DFC4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 086042CD18BF4037006DFC4D /* Foundation.framework */; };
 		086042D018BF4037006DFC4D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 086042CF18BF4037006DFC4D /* CoreGraphics.framework */; };
 		086042D218BF4038006DFC4D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 086042D118BF4038006DFC4D /* UIKit.framework */; };
@@ -38,6 +40,9 @@
 		0858DA0D18C0704600278000 /* RTStringStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringStorage.m; sourceTree = "<group>"; };
 		0858DA0F18C0714F00278000 /* NSObject+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+IDPExtensions.h"; sourceTree = "<group>"; };
 		0858DA1018C0714F00278000 /* NSObject+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+IDPExtensions.m"; sourceTree = "<group>"; };
+		0858DA1218C074AC00278000 /* RTStringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStringViewController.h; sourceTree = "<group>"; };
+		0858DA1318C074AC00278000 /* RTStringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringViewController.m; sourceTree = "<group>"; };
+		0858DA1418C074AC00278000 /* RTStringViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RTStringViewController.xib; sourceTree = "<group>"; };
 		086042CA18BF4037006DFC4D /* RTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		086042CD18BF4037006DFC4D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		086042CF18BF4037006DFC4D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -121,6 +126,9 @@
 				086042D418BF4038006DFC4D /* Supporting Files */,
 				0858DA0C18C0704600278000 /* RTStringStorage.h */,
 				0858DA0D18C0704600278000 /* RTStringStorage.m */,
+				0858DA1218C074AC00278000 /* RTStringViewController.h */,
+				0858DA1318C074AC00278000 /* RTStringViewController.m */,
+				0858DA1418C074AC00278000 /* RTStringViewController.xib */,
 			);
 			path = RTable;
 			sourceTree = "<group>";
@@ -232,6 +240,7 @@
 			files = (
 				086042D818BF4038006DFC4D /* InfoPlist.strings in Resources */,
 				086042E018BF4038006DFC4D /* Images.xcassets in Resources */,
+				0858DA1618C074AC00278000 /* RTStringViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0858DA1518C074AC00278000 /* RTStringViewController.m in Sources */,
 				086042DE18BF4038006DFC4D /* RTAppDelegate.m in Sources */,
 				0858DA0E18C0704600278000 /* RTStringStorage.m in Sources */,
 				086042DA18BF4038006DFC4D /* main.m in Sources */,
