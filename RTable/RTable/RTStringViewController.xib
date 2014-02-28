@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RTStringViewController">
             <connections>
+                <outlet property="tableView" destination="nh7-eX-sgp" id="ITi-F9-o1a"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -26,8 +27,16 @@
                     <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
-                        <barButtonItem title="Add" width="137" id="Rkj-nl-xNY"/>
-                        <barButtonItem title="Edit" width="150" id="wjG-9o-IqD"/>
+                        <barButtonItem title="Add" width="137" id="Rkj-nl-xNY">
+                            <connections>
+                                <action selector="addButtonTapped:" destination="-1" id="2HF-5b-Hv3"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Edit" width="150" id="wjG-9o-IqD">
+                            <connections>
+                                <action selector="editButtonTapped:" destination="-1" id="mzv-ag-DZn"/>
+                            </connections>
+                        </barButtonItem>
                     </items>
                 </toolbar>
             </subviews>
