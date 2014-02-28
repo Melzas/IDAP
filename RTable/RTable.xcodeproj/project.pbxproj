@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0858DA0E18C0704600278000 /* RTStringStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0858DA0D18C0704600278000 /* RTStringStorage.m */; };
 		086042CE18BF4037006DFC4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 086042CD18BF4037006DFC4D /* Foundation.framework */; };
 		086042D018BF4037006DFC4D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 086042CF18BF4037006DFC4D /* CoreGraphics.framework */; };
 		086042D218BF4038006DFC4D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 086042D118BF4038006DFC4D /* UIKit.framework */; };
@@ -32,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0858DA0C18C0704600278000 /* RTStringStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStringStorage.h; sourceTree = "<group>"; };
+		0858DA0D18C0704600278000 /* RTStringStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringStorage.m; sourceTree = "<group>"; };
 		086042CA18BF4037006DFC4D /* RTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		086042CD18BF4037006DFC4D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		086042CF18BF4037006DFC4D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -111,6 +114,8 @@
 				086042DD18BF4038006DFC4D /* RTAppDelegate.m */,
 				086042DF18BF4038006DFC4D /* Images.xcassets */,
 				086042D418BF4038006DFC4D /* Supporting Files */,
+				0858DA0C18C0704600278000 /* RTStringStorage.h */,
+				0858DA0D18C0704600278000 /* RTStringStorage.m */,
 			);
 			path = RTable;
 			sourceTree = "<group>";
@@ -241,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				086042DE18BF4038006DFC4D /* RTAppDelegate.m in Sources */,
+				0858DA0E18C0704600278000 /* RTStringStorage.m in Sources */,
 				086042DA18BF4038006DFC4D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,6 +448,7 @@
 				086042F818BF4038006DFC4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		086042F918BF4038006DFC4D /* Build configuration list for PBXNativeTarget "RTableTests" */ = {
 			isa = XCConfigurationList;
@@ -450,6 +457,7 @@
 				086042FB18BF4038006DFC4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
