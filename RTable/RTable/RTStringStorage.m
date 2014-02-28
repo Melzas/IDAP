@@ -12,6 +12,19 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
+- (void)dealloc {
+	self.mutableStrings = nil;
+	
+    [super dealloc];
+}
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.mutableStrings = [NSMutableArray array];
+    }
+    return self;
+}
 
 
 #pragma mark -
@@ -19,6 +32,23 @@
 
 - (NSArray *)strings {
 	return [[self.mutableStrings copy] autorelease];
+}
+
+#pragma mark -
+#pragma mark Public
+
+- (void)addString:(NSString *)string {
+	[self.mutableStrings addObject:string];
+}
+
+- (void)removeString:(NSString *)string {
+	[self.mutableStrings removeObject:string];
+}
+
+- (void)moveStringFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
+	NSString *stringToMove = [[self.mutableStrings[fromIndex] retain] autorelease];
+	[self.mutableStrings removeObject:stringToMove];
+	[self.mutableStrings insertObject:stringToMove atIndex:toIndex];
 }
 
 @end
