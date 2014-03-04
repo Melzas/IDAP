@@ -1,9 +1,11 @@
 #import "BXView.h"
 
-static const NSUInteger kBXBoxAnimationDuration = 2;
+static const NSTimeInterval kBXBoxAnimationDuration = 2.0f;
 
 @interface BXView ()
 @property (nonatomic, retain, readwrite)	UIView		*box;
+
+- (CGPoint)pointForCorner:(BXBoxCorner)corner;
 
 @end
 
@@ -23,36 +25,8 @@ static const NSUInteger kBXBoxAnimationDuration = 2;
 
 - (void)setBoxCorner:(BXBoxCorner)boxCorner {
 	_boxCorner = boxCorner;
-	
-	CGPoint frameOrigin = self.frame.origin;
-	CGSize frameSize = self.frame.size;
-	CGSize boxSize = self.box.frame.size;
-	
-	CGFloat x;
-	CGFloat y;
-	
-	switch (_boxCorner) {
-		case kBXUpperLeft:
-			x = frameOrigin.x;
-			y = frameOrigin.y;
-			break;
-		case kBXUpperRight:
-			x = frameOrigin.x + frameSize.width - boxSize.width;
-			y = self.frame.origin.y;
-			break;
-		case kBXLowerLeft:
-			x = frameOrigin.x;
-			y = frameOrigin.y + frameSize.height - boxSize.height;
-			break;
-		case kBXLowerRight:
-			x = frameOrigin.x + frameSize.width - boxSize.width;
-			y = frameOrigin.y + frameSize.height - boxSize.height;
-		default:
-			break;
-	}
-	
-	CGPoint cornerPoint = CGPointMake(x, y);
-	self.box.frame = (CGRect){cornerPoint, boxSize};
+	CGPoint boxPoint = [self pointForCorner:boxCorner];
+	self.box.frame = (CGRect){boxPoint, self.box.frame.size};
 }
 
 #pragma mark -
@@ -84,6 +58,29 @@ static const NSUInteger kBXBoxAnimationDuration = 2;
 			}
 		});
 	}
+}
+
+- (CGPoint)pointForCorner:(BXBoxCorner)corner {
+	CGPoint frameOrigin = self.frame.origin;
+	CGSize frameSize = self.frame.size;
+	CGSize boxSize = self.box.frame.size;
+	
+	switch (corner) {
+		case kBXUpperLeft:
+			return CGPointMake(frameOrigin.x,
+							   frameOrigin.y);
+		case kBXUpperRight:
+			return CGPointMake(frameOrigin.x + frameSize.width - boxSize.width,
+							   frameOrigin.y);
+		case kBXLowerLeft:
+			return CGPointMake(frameOrigin.x,
+							   frameOrigin.y + frameSize.height - boxSize.height);
+		case kBXLowerRight:
+			return CGPointMake(frameOrigin.x + frameSize.width - boxSize.width,
+							   frameOrigin.y + frameSize.height - boxSize.height);
+	}
+	
+	return CGPointZero;
 }
 
 @end

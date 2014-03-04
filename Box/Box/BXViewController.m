@@ -34,7 +34,7 @@ static const NSUInteger kBXCornerSequenceSize = sizeof(kBXCornerSequence)
 #pragma mark Accessors
 
 - (BXView *)boxView {
-	if ([self.view isKindOfClass:[BXView class]]) {
+	if ([self isViewLoaded] && [self.view isKindOfClass:[BXView class]]) {
 		return (BXView *)self.view;
 	}
 	return nil;
