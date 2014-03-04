@@ -7,7 +7,7 @@
 static const NSUInteger kRTStringCount = 10;
 static const NSUInteger kRTStringLength = 12;
 
-static NSString * const kRTCellIdentifier = @"kRTCell";
+static NSString * const kRTCellReuseIdentifier = @"kRTCellReuseIdentifier";
 static NSString * const kRTCellImageName = @"Lenna.png";
 
 @interface RTStringViewController ()
@@ -42,6 +42,7 @@ static NSString * const kRTCellImageName = @"Lenna.png";
 		}
 		self.cellImage = [UIImage imageNamed:kRTCellImageName];
     }
+	
     return self;
 }
 
@@ -55,11 +56,12 @@ static NSString * const kRTCellImageName = @"Lenna.png";
 - (UITableViewCell *)tableView:(UITableView *)tableView
 		 cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kRTCellIdentifier];
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kRTCellReuseIdentifier];
 	if (!cell) {
 		cell = [[UITableViewCell alloc]
 				initWithStyle:UITableViewCellStyleDefault
-			  reuseIdentifier:kRTCellIdentifier];
+			  reuseIdentifier:kRTCellReuseIdentifier];
+		[cell autorelease];
 	}
 	cell.textLabel.text = [self.stringStorage strings][indexPath.row];
 	cell.imageView.image = self.cellImage;

@@ -1,5 +1,7 @@
 #import "RTRandomStringGenerator.h"
 
+static NSString * const letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
 @implementation RTRandomStringGenerator
 
 #pragma mark -
@@ -17,8 +19,8 @@
     if (self) {
         self.stringLength = stringLength;
     }
-    return self;
 	
+    return self;
 }
 
 - (instancetype)init {
@@ -29,9 +31,6 @@
 #pragma mark Public
 
 - (NSString *)generateRandomString {
-	static NSString * const letters =
-		@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-	
 	NSMutableString *randomString = [NSMutableString stringWithCapacity:self.stringLength];
 	for (int i = 0; i < self.stringLength; ++i) {
 		unichar randomLetter = [letters characterAtIndex: arc4random_uniform([letters length])];

@@ -135,20 +135,20 @@
 		086042D318BF4038006DFC4D /* RTable */ = {
 			isa = PBXGroup;
 			children = (
-				0858DA1718C07ECE00278000 /* RTRandomStringGenerator.h */,
-				0858DA1818C07ECE00278000 /* RTRandomStringGenerator.m */,
 				0858DA0F18C0714F00278000 /* NSObject+IDPExtensions.h */,
 				0858DA1018C0714F00278000 /* NSObject+IDPExtensions.m */,
+				0858DA1718C07ECE00278000 /* RTRandomStringGenerator.h */,
+				0858DA1818C07ECE00278000 /* RTRandomStringGenerator.m */,
 				086042DC18BF4038006DFC4D /* RTAppDelegate.h */,
 				086042DD18BF4038006DFC4D /* RTAppDelegate.m */,
-				086042DF18BF4038006DFC4D /* Images.xcassets */,
-				086042D418BF4038006DFC4D /* Supporting Files */,
 				0858DA0C18C0704600278000 /* RTStringStorage.h */,
 				0858DA0D18C0704600278000 /* RTStringStorage.m */,
 				0858DA1218C074AC00278000 /* RTStringViewController.h */,
 				0858DA1318C074AC00278000 /* RTStringViewController.m */,
 				0858DA1418C074AC00278000 /* RTStringViewController.xib */,
+				086042D418BF4038006DFC4D /* Supporting Files */,
 				0858DA1A18C099CB00278000 /* Images */,
+				086042DF18BF4038006DFC4D /* Images.xcassets */,
 			);
 			path = RTable;
 			sourceTree = "<group>";
