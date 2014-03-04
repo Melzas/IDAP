@@ -8,11 +8,13 @@ static const BXBoxCorner kBXCornerSequence[] = {
 	kBXUpperRight,
 	kBXUpperLeft
 };
-static const NSUInteger kBXCornerSequenceCount = sizeof(kBXCornerSequence)
+static const NSUInteger kBXCornerSequenceSize = sizeof(kBXCornerSequence)
 	/ sizeof(kBXCornerSequence[0]);
 
 @interface BXViewController ()
 @property (nonatomic, assign)	NSUInteger	currentCornerIndex;
+
+- (void)animateBox;
 
 @end
 
@@ -46,7 +48,7 @@ static const NSUInteger kBXCornerSequenceCount = sizeof(kBXCornerSequence)
 						animated:YES
 			   completionHandler:^(BOOL completed) {
 				   ++self.currentCornerIndex;
-				   if (kBXCornerSequenceCount == self.currentCornerIndex) {
+				   if (kBXCornerSequenceSize == self.currentCornerIndex) {
 					   self.currentCornerIndex = 0;
 				   }
 				   [self animateBox];

@@ -23,30 +23,35 @@ static const NSUInteger kBXBoxAnimationDuration = 2;
 
 - (void)setBoxCorner:(BXBoxCorner)boxCorner {
 	_boxCorner = boxCorner;
+	
+	CGPoint frameOrigin = self.frame.origin;
+	CGSize frameSize = self.frame.size;
+	CGSize boxSize = self.box.frame.size;
+	
 	CGFloat x;
 	CGFloat y;
 	
 	switch (_boxCorner) {
 		case kBXUpperLeft:
-			x = self.frame.origin.x;
-			y = self.frame.origin.y;
+			x = frameOrigin.x;
+			y = frameOrigin.y;
 			break;
 		case kBXUpperRight:
-			x = self.frame.origin.x + self.frame.size.width - self.box.frame.size.width;
+			x = frameOrigin.x + frameSize.width - boxSize.width;
 			y = self.frame.origin.y;
 			break;
 		case kBXLowerLeft:
-			x = self.frame.origin.x;
-			y = self.frame.origin.y + self.frame.size.height - self.box.frame.size.height;
+			x = frameOrigin.x;
+			y = frameOrigin.y + frameSize.height - boxSize.height;
 			break;
 		case kBXLowerRight:
-			x = self.frame.origin.x + self.frame.size.width - self.box.frame.size.width;
-			y = self.frame.origin.y + self.frame.size.height - self.box.frame.size.height;
+			x = frameOrigin.x + frameSize.width - boxSize.width;
+			y = frameOrigin.y + frameSize.height - boxSize.height;
 		default:
 			break;
 	}
+	
 	CGPoint cornerPoint = CGPointMake(x, y);
-	CGSize boxSize = CGSizeMake(self.box.frame.size.width, self.box.frame.size.height);
 	self.box.frame = (CGRect){cornerPoint, boxSize};
 }
 

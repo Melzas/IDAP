@@ -5,6 +5,4 @@
 @interface BXViewController : UIViewController
 @property (nonatomic, readonly)	BXView	*boxView;
 
-- (void)animateBox;
-
 @end
