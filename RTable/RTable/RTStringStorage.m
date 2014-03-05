@@ -1,5 +1,7 @@
 #import "RTStringStorage.h"
 
+static NSString * const kRTStringsKey = @"kRTStringsKey";
+
 @interface RTStringStorage ()
 @property (nonatomic, retain)	NSMutableArray	*mutableStrings;
 
@@ -23,15 +25,32 @@
     if (self) {
         self.mutableStrings = [NSMutableArray array];
     }
+	
     return self;
 }
-
 
 #pragma mark -
 #pragma mark Accessors
 
 - (NSArray *)strings {
 	return [[self.mutableStrings copy] autorelease];
+}
+
+
+#pragma mark -
+#pragma mark NSCoding
+
+- (id)initWithCoder:(NSCoder *)decoder {
+	self = [super init];
+	if (self) {
+		self.mutableStrings = [decoder decodeObjectForKey:kRTStringsKey];
+	}
+	
+	return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+	[coder encodeObject:self.mutableStrings forKey:kRTStringsKey];
 }
 
 #pragma mark -

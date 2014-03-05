@@ -90,6 +90,14 @@ static const NSUInteger kRTStringLength = 12;
 #pragma mark -
 #pragma mark Public
 
+- (void)saveStorageToFile:(NSString *)fileName {
+	[NSKeyedArchiver archiveRootObject:self.stringStorage toFile:fileName];
+}
+
+- (void)loadStorageFromFile:(NSString *)fileName {
+	self.stringStorage = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+}
+
 - (IBAction)addButtonTapped:(id)addButton {
 	[self.stringStorage addString:[self.randomStringGenerator generateRandomString]];
 	
