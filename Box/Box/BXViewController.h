@@ -3,6 +3,6 @@
 @class BXView;
 
 @interface BXViewController : UIViewController
-@property (nonatomic, readonly)	BXView	*boxView;
+@property (nonatomic, readonly)	BXView	*mainView;
 
 @end

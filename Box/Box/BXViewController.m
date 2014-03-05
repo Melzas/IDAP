@@ -2,14 +2,14 @@
 
 #import "BXView.h"
 
-static const BXBoxCorner kBXCornerSequence[] = {
+static const BXBoxPosition kBXPositionSequence[] = {
 	kBXLowerRight,
 	kBXLowerLeft,
 	kBXUpperRight,
 	kBXUpperLeft
 };
-static const NSUInteger kBXCornerSequenceSize = sizeof(kBXCornerSequence)
-	/ sizeof(kBXCornerSequence[0]);
+static const NSUInteger kBXPositionSequenceSize = sizeof(kBXPositionSequence)
+	/ sizeof(kBXPositionSequence[0]);
 
 @interface BXViewController ()
 @property (nonatomic, assign)	NSUInteger	currentCornerIndex;
@@ -20,7 +20,7 @@ static const NSUInteger kBXCornerSequenceSize = sizeof(kBXCornerSequence)
 
 @implementation BXViewController
 
-@dynamic boxView;
+@dynamic mainView;
 
 #pragma mark -
 #pragma mark View Lifecycle
@@ -33,10 +33,11 @@ static const NSUInteger kBXCornerSequenceSize = sizeof(kBXCornerSequence)
 #pragma mark -
 #pragma mark Accessors
 
-- (BXView *)boxView {
+- (BXView *)mainView {
 	if ([self isViewLoaded] && [self.view isKindOfClass:[BXView class]]) {
 		return (BXView *)self.view;
 	}
+	
 	return nil;
 }
 
@@ -44,11 +45,11 @@ static const NSUInteger kBXCornerSequenceSize = sizeof(kBXCornerSequence)
 #pragma mark Public
 
 - (void)animateBox {
-	[self.boxView setBoxPosition:kBXCornerSequence[self.currentCornerIndex]
+	[self.mainView setBoxPosition:kBXPositionSequence[self.currentCornerIndex]
 						animated:YES
 			   completionHandler:^(BOOL completed) {
 				   ++self.currentCornerIndex;
-				   if (kBXCornerSequenceSize == self.currentCornerIndex) {
+				   if (kBXPositionSequenceSize == self.currentCornerIndex) {
 					   self.currentCornerIndex = 0;
 				   }
 				   [self animateBox];

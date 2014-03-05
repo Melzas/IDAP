@@ -5,16 +5,17 @@ typedef enum {
 	kBXUpperRight,
 	kBXLowerLeft,
 	kBXLowerRight
-} BXBoxCorner;
+} BXBoxPosition;
 
 typedef void(^BXCompletionBlock)(BOOL completed);
 
 @interface BXView : UIView
-@property (nonatomic, readonly)	IBOutlet UIView	*box;
-@property (nonatomic, assign)	BXBoxCorner		boxCorner;
+@property (nonatomic, readonly)	IBOutlet UIView		*boxView;
+@property (nonatomic, assign)	BXBoxPosition		boxPosition;
 
-- (void)setBoxPosition:(BXBoxCorner)position animated:(BOOL)animated;
-- (void)setBoxPosition:(BXBoxCorner)position
+- (void)setBoxPosition:(BXBoxPosition)position animated:(BOOL)animated;
+
+- (void)setBoxPosition:(BXBoxPosition)position
 			  animated:(BOOL)animated
 	 completionHandler:(BXCompletionBlock)completionBlock;
 

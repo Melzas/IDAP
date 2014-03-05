@@ -3,9 +3,9 @@
 static const NSTimeInterval kBXBoxAnimationDuration = 2.0f;
 
 @interface BXView ()
-@property (nonatomic, retain, readwrite)	UIView		*box;
+@property (nonatomic, retain, readwrite)	UIView	*boxView;
 
-- (CGPoint)pointForCorner:(BXBoxCorner)corner;
+- (CGPoint)pointForPosition:(BXBoxPosition)position;
 
 @end
 
@@ -15,7 +15,7 @@ static const NSTimeInterval kBXBoxAnimationDuration = 2.0f;
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-	self.box = nil;
+	self.boxView = nil;
 	
 	[super dealloc];
 }
@@ -23,49 +23,45 @@ static const NSTimeInterval kBXBoxAnimationDuration = 2.0f;
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setBoxCorner:(BXBoxCorner)boxCorner {
-	_boxCorner = boxCorner;
-	CGPoint boxPoint = [self pointForCorner:boxCorner];
-	self.box.frame = (CGRect){boxPoint, self.box.frame.size};
+- (void)setBoxPosition:(BXBoxPosition)position {
+	[self setBoxPosition:position animated:NO];
 }
 
 #pragma mark -
 #pragma mark Public
 
-- (void)setBoxPosition:(BXBoxCorner)position animated:(BOOL)animated {
+- (void)setBoxPosition:(BXBoxPosition)position animated:(BOOL)animated {
 	[self setBoxPosition:position animated:animated completionHandler:nil];
 }
 
-- (void)setBoxPosition:(BXBoxCorner)position
+- (void)setBoxPosition:(BXBoxPosition)position
 			  animated:(BOOL)animated
 	 completionHandler:(BXCompletionBlock)completionBlock
 {
-	if (animated) {
-		[UIView animateWithDuration:kBXBoxAnimationDuration
-						 animations:^{
-							 self.boxCorner = position;
+	NSTimeInterval animationDuration = animated ? kBXBoxAnimationDuration : 0.0f;
+	
+	[UIView animateWithDuration:animationDuration
+					 animations:^{
+						 CGPoint boxPoint = [self pointForPosition:position];
+						 self.boxView.frame = (CGRect){boxPoint, self.boxView.frame.size};
+					 }
+					 completion:^(BOOL finished) {
+						 _boxPosition = position;
+						 if (completionBlock) {
+							 completionBlock(finished);
 						 }
-						 completion:^(BOOL finished) {
-							 if (completionBlock) {
-								 completionBlock(finished);
-							 }
-						 }];
-	} else {
-		dispatch_async(dispatch_get_main_queue(), ^{
-			self.boxCorner = position;
-			if (completionBlock) {
-				completionBlock(YES);
-			}
-		});
-	}
+					 }];
 }
 
-- (CGPoint)pointForCorner:(BXBoxCorner)corner {
+#pragma mark -
+#pragma mark Private
+
+- (CGPoint)pointForPosition:(BXBoxPosition)position {
 	CGPoint frameOrigin = self.frame.origin;
 	CGSize frameSize = self.frame.size;
-	CGSize boxSize = self.box.frame.size;
+	CGSize boxSize = self.boxView.frame.size;
 	
-	switch (corner) {
+	switch (position) {
 		case kBXUpperLeft:
 			return CGPointMake(frameOrigin.x,
 							   frameOrigin.y);

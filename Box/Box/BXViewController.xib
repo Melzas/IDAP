@@ -23,7 +23,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <connections>
-                <outlet property="box" destination="MhF-Mm-D9k" id="ydr-mH-Q6f"/>
+                <outlet property="boxView" destination="MhF-Mm-D9k" id="b3x-pB-ySQ"/>
             </connections>
         </view>
     </objects>
