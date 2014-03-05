@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		082D632618C70A0900B314B8 /* RTStringView.m in Sources */ = {isa = PBXBuildFile; fileRef = 082D632518C70A0900B314B8 /* RTStringView.m */; };
 		0858DA0E18C0704600278000 /* RTStringStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0858DA0D18C0704600278000 /* RTStringStorage.m */; };
 		0858DA1118C0714F00278000 /* NSObject+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0858DA1018C0714F00278000 /* NSObject+IDPExtensions.m */; };
 		0858DA1518C074AC00278000 /* RTStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0858DA1318C074AC00278000 /* RTStringViewController.m */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		082D632418C70A0900B314B8 /* RTStringView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStringView.h; sourceTree = "<group>"; };
+		082D632518C70A0900B314B8 /* RTStringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringView.m; sourceTree = "<group>"; };
 		0858DA0C18C0704600278000 /* RTStringStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStringStorage.h; sourceTree = "<group>"; };
 		0858DA0D18C0704600278000 /* RTStringStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringStorage.m; sourceTree = "<group>"; };
 		0858DA0F18C0714F00278000 /* NSObject+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+IDPExtensions.h"; sourceTree = "<group>"; };
@@ -135,17 +138,19 @@
 		086042D318BF4038006DFC4D /* RTable */ = {
 			isa = PBXGroup;
 			children = (
-				0858DA0F18C0714F00278000 /* NSObject+IDPExtensions.h */,
-				0858DA1018C0714F00278000 /* NSObject+IDPExtensions.m */,
-				0858DA1718C07ECE00278000 /* RTRandomStringGenerator.h */,
-				0858DA1818C07ECE00278000 /* RTRandomStringGenerator.m */,
 				086042DC18BF4038006DFC4D /* RTAppDelegate.h */,
 				086042DD18BF4038006DFC4D /* RTAppDelegate.m */,
+				0858DA0F18C0714F00278000 /* NSObject+IDPExtensions.h */,
+				0858DA1018C0714F00278000 /* NSObject+IDPExtensions.m */,
 				0858DA0C18C0704600278000 /* RTStringStorage.h */,
 				0858DA0D18C0704600278000 /* RTStringStorage.m */,
+				0858DA1718C07ECE00278000 /* RTRandomStringGenerator.h */,
+				0858DA1818C07ECE00278000 /* RTRandomStringGenerator.m */,
 				0858DA1218C074AC00278000 /* RTStringViewController.h */,
 				0858DA1318C074AC00278000 /* RTStringViewController.m */,
 				0858DA1418C074AC00278000 /* RTStringViewController.xib */,
+				082D632418C70A0900B314B8 /* RTStringView.h */,
+				082D632518C70A0900B314B8 /* RTStringView.m */,
 				086042D418BF4038006DFC4D /* Supporting Files */,
 				0858DA1A18C099CB00278000 /* Images */,
 				086042DF18BF4038006DFC4D /* Images.xcassets */,
@@ -281,6 +286,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				082D632618C70A0900B314B8 /* RTStringView.m in Sources */,
 				0858DA1518C074AC00278000 /* RTStringViewController.m in Sources */,
 				086042DE18BF4038006DFC4D /* RTAppDelegate.m in Sources */,
 				0858DA0E18C0704600278000 /* RTStringStorage.m in Sources */,

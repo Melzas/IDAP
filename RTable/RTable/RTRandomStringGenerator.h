@@ -5,6 +5,7 @@
 
 + (instancetype)generatorWithStringLength:(NSUInteger)stringLength;
 - (instancetype)initWithStringLength:(NSUInteger)stringLength;
+
 - (NSString *)generateRandomString;
 
 @end
