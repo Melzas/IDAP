@@ -1,9 +1,9 @@
 #import <UIKit/UIKit.h>
 
-@interface RTStringViewController : UIViewController <UITableViewDataSource>
+@class RTStringStorage;
 
-- (void)saveStorageToFile:(NSString *)fileName;
-- (void)loadStorageFromFile:(NSString *)fileName;
+@interface RTStringViewController : UIViewController <UITableViewDataSource>
+@property (nonatomic, readonly)	RTStringStorage	*stringStorage;
 
 - (IBAction)addButtonTapped:(id)addButton;
 - (IBAction)editButtonTapped:(id)editButton;

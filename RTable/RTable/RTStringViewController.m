@@ -9,9 +9,9 @@ static const NSUInteger kRTStringCount = 10;
 static const NSUInteger kRTStringLength = 12;
 
 @interface RTStringViewController ()
-@property (nonatomic, readonly)	RTStringView			*stringView;
-@property (nonatomic, retain)	RTStringStorage			*stringStorage;
-@property (nonatomic, retain)	RTRandomStringGenerator	*randomStringGenerator;
+@property (nonatomic, readonly)				RTStringView			*stringView;
+@property (nonatomic, retain, readwrite)	RTStringStorage			*stringStorage;
+@property (nonatomic, retain)				RTRandomStringGenerator	*randomStringGenerator;
 
 - (void)fillStorageWithRandomStrings;
 
@@ -34,8 +34,13 @@ static const NSUInteger kRTStringLength = 12;
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+		self.randomStringGenerator =
+			[RTRandomStringGenerator generatorWithStringLength:kRTStringLength];
+		
         self.stringStorage = [RTStringStorage object];
-		[self fillStorageWithRandomStrings];
+		if (![self.stringStorage loadFromFile]) {
+			[self fillStorageWithRandomStrings];
+		}
     }
 	
     return self;
@@ -90,14 +95,6 @@ static const NSUInteger kRTStringLength = 12;
 #pragma mark -
 #pragma mark Public
 
-- (void)saveStorageToFile:(NSString *)fileName {
-	[NSKeyedArchiver archiveRootObject:self.stringStorage toFile:fileName];
-}
-
-- (void)loadStorageFromFile:(NSString *)fileName {
-	self.stringStorage = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
-}
-
 - (IBAction)addButtonTapped:(id)addButton {
 	[self.stringStorage addString:[self.randomStringGenerator generateRandomString]];
 	
@@ -115,9 +112,6 @@ static const NSUInteger kRTStringLength = 12;
 #pragma mark Private
 
 - (void)fillStorageWithRandomStrings {
-	self.randomStringGenerator =
-		[RTRandomStringGenerator generatorWithStringLength:kRTStringLength];
-	
 	for (NSUInteger i = 0; i < kRTStringCount; ++i) {
 		[self.stringStorage addString:[self.randomStringGenerator generateRandomString]];
 	}

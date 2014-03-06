@@ -1,6 +1,7 @@
 #import "RTStringStorage.h"
 
 static NSString * const kRTStringsKey = @"kRTStringsKey";
+static NSString * const kRTStorageFileName = @"RTStorageFileName.plist";
 
 @interface RTStringStorage ()
 @property (nonatomic, retain)	NSMutableArray	*mutableStrings;
@@ -23,7 +24,7 @@ static NSString * const kRTStringsKey = @"kRTStringsKey";
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.mutableStrings = [NSMutableArray array];
+		self.mutableStrings = [NSMutableArray array];
     }
 	
     return self;
@@ -34,23 +35,6 @@ static NSString * const kRTStringsKey = @"kRTStringsKey";
 
 - (NSArray *)strings {
 	return [[self.mutableStrings copy] autorelease];
-}
-
-
-#pragma mark -
-#pragma mark NSCoding
-
-- (id)initWithCoder:(NSCoder *)decoder {
-	self = [super init];
-	if (self) {
-		self.mutableStrings = [decoder decodeObjectForKey:kRTStringsKey];
-	}
-	
-	return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)coder {
-	[coder encodeObject:self.mutableStrings forKey:kRTStringsKey];
 }
 
 #pragma mark -
@@ -68,6 +52,20 @@ static NSString * const kRTStringsKey = @"kRTStringsKey";
 	NSString *stringToMove = [[self.mutableStrings[fromIndex] retain] autorelease];
 	[self.mutableStrings removeObject:stringToMove];
 	[self.mutableStrings insertObject:stringToMove atIndex:toIndex];
+}
+
+- (BOOL)loadFromFile {
+	NSArray *stringsFromFile = [NSArray arrayWithContentsOfFile:kRTStorageFileName];
+	if (stringsFromFile) {
+		self.mutableStrings = [NSMutableArray arrayWithArray:stringsFromFile];
+		return YES;
+	}
+	
+	return NO;
+}
+
+- (BOOL)saveToFile {
+	return [self.mutableStrings writeToFile:kRTStorageFileName atomically:YES];
 }
 
 @end

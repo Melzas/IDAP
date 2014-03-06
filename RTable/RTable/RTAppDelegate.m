@@ -2,8 +2,25 @@
 
 #import "NSObject+IDPExtensions.h"
 #import "RTStringViewController.h"
+#import "RTStringStorage.h"
 
 @implementation RTAppDelegate
+
+@dynamic stringViewController;
+
+#pragma mark -
+#pragma mark Accessors
+
+- (RTStringViewController *)stringViewController {
+	if ([self.window.rootViewController isKindOfClass:[RTStringViewController class]]) {
+		return (RTStringViewController *)self.window.rootViewController;
+	}
+	
+	return nil;
+}
+
+#pragma mark -
+#pragma mark UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
@@ -20,7 +37,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-
+	[self.stringViewController.stringStorage saveToFile];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
