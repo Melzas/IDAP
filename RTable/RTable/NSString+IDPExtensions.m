@@ -5,9 +5,6 @@ static NSString * const kRTRandomStringCharacterSet =
 
 @implementation NSString (IDPExtensions)
 
-#pragma mark -
-#pragma mark Class Methods
-
 + (NSString *)randomStringOfLength:(NSUInteger)length {
 	NSMutableString *randomString = [NSMutableString stringWithCapacity:length];
 	NSUInteger characterSetLength = [kRTRandomStringCharacterSet length];

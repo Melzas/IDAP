@@ -12,7 +12,7 @@
 
 @interface RTMainViewController ()
 @property (nonatomic, retain, readwrite)	RTTableModel	*tableModel;
-@property (nonatomic, readonly)				RTMainView	*mainView;
+@property (nonatomic, readonly)				RTMainView		*mainView;
 
 @end
 
