@@ -59,7 +59,7 @@
 }
 
 #pragma mark -
-#pragma mark Public
+#pragma mark Interface Handling
 
 - (IBAction)onAdd:(id)sender {
 	[self.tableModel addCellModel:[RTCellModel model]];
@@ -89,7 +89,7 @@
 		 cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	RTCellView *cell = [self.mainView.tableView cellForClass:[RTCellView class]];
-	cell.textLabel.text = [self.tableModel.cellModels[indexPath.row] string];
+	[cell fillFromModel:self.tableModel.cellModels[indexPath.row]];
 	
 	return cell;
 }

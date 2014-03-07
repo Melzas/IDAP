@@ -2,9 +2,7 @@
 
 #import "RTCellModel.h"
 
-static NSString * const kRTCellModelsKey	= @"kRTCellModelsKey";
 static NSString * const kRTStorageFileName	= @"RTStorageFileName.plist";
-
 static const NSUInteger kRTCellModelCount	= 10;
 
 @interface RTTableModel ()
