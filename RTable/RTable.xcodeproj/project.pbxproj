@@ -12,7 +12,6 @@
 		0858DA1118C0714F00278000 /* NSObject+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0858DA1018C0714F00278000 /* NSObject+IDPExtensions.m */; };
 		0858DA1518C074AC00278000 /* RTStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0858DA1318C074AC00278000 /* RTStringViewController.m */; };
 		0858DA1618C074AC00278000 /* RTStringViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0858DA1418C074AC00278000 /* RTStringViewController.xib */; };
-		0858DA1918C07ECE00278000 /* RTRandomStringGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0858DA1818C07ECE00278000 /* RTRandomStringGenerator.m */; };
 		0858DA1D18C099CB00278000 /* Lenna.png in Resources */ = {isa = PBXBuildFile; fileRef = 0858DA1B18C099CB00278000 /* Lenna.png */; };
 		0858DA1E18C099CB00278000 /* Lenna@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0858DA1C18C099CB00278000 /* Lenna@2x.png */; };
 		086042CE18BF4037006DFC4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 086042CD18BF4037006DFC4D /* Foundation.framework */; };
@@ -27,6 +26,7 @@
 		086042E918BF4038006DFC4D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 086042D118BF4038006DFC4D /* UIKit.framework */; };
 		086042F118BF4038006DFC4D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 086042EF18BF4038006DFC4D /* InfoPlist.strings */; };
 		086042F318BF4038006DFC4D /* RTableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 086042F218BF4038006DFC4D /* RTableTests.m */; };
+		08E5773018C9A53A00BB156F /* NSString+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E5772F18C9A53A00BB156F /* NSString+IDPExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,13 +44,11 @@
 		082D632518C70A0900B314B8 /* RTStringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringView.m; sourceTree = "<group>"; };
 		0858DA0C18C0704600278000 /* RTStringStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStringStorage.h; sourceTree = "<group>"; };
 		0858DA0D18C0704600278000 /* RTStringStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringStorage.m; sourceTree = "<group>"; };
-		0858DA0F18C0714F00278000 /* NSObject+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+IDPExtensions.h"; sourceTree = "<group>"; };
-		0858DA1018C0714F00278000 /* NSObject+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+IDPExtensions.m"; sourceTree = "<group>"; };
+		0858DA0F18C0714F00278000 /* NSObject+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+IDPExtensions.h"; path = "RTable/NSObject+IDPExtensions.h"; sourceTree = "<group>"; };
+		0858DA1018C0714F00278000 /* NSObject+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+IDPExtensions.m"; path = "RTable/NSObject+IDPExtensions.m"; sourceTree = "<group>"; };
 		0858DA1218C074AC00278000 /* RTStringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStringViewController.h; sourceTree = "<group>"; };
 		0858DA1318C074AC00278000 /* RTStringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringViewController.m; sourceTree = "<group>"; };
 		0858DA1418C074AC00278000 /* RTStringViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RTStringViewController.xib; sourceTree = "<group>"; };
-		0858DA1718C07ECE00278000 /* RTRandomStringGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTRandomStringGenerator.h; sourceTree = "<group>"; };
-		0858DA1818C07ECE00278000 /* RTRandomStringGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTRandomStringGenerator.m; sourceTree = "<group>"; };
 		0858DA1B18C099CB00278000 /* Lenna.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lenna.png; sourceTree = "<group>"; };
 		0858DA1C18C099CB00278000 /* Lenna@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Lenna@2x.png"; sourceTree = "<group>"; };
 		086042CA18BF4037006DFC4D /* RTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +67,8 @@
 		086042EE18BF4038006DFC4D /* RTableTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RTableTests-Info.plist"; sourceTree = "<group>"; };
 		086042F018BF4038006DFC4D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		086042F218BF4038006DFC4D /* RTableTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTableTests.m; sourceTree = "<group>"; };
+		08E5772E18C9A53A00BB156F /* NSString+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+IDPExtensions.h"; path = "RTable/NSString+IDPExtensions.h"; sourceTree = "<group>"; };
+		08E5772F18C9A53A00BB156F /* NSString+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+IDPExtensions.m"; path = "RTable/NSString+IDPExtensions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +108,7 @@
 		086042C118BF4037006DFC4D = {
 			isa = PBXGroup;
 			children = (
+				08E5773118C9A54200BB156F /* Extensions */,
 				086042D318BF4038006DFC4D /* RTable */,
 				086042EC18BF4038006DFC4D /* RTableTests */,
 				086042CC18BF4037006DFC4D /* Frameworks */,
@@ -140,12 +141,8 @@
 			children = (
 				086042DC18BF4038006DFC4D /* RTAppDelegate.h */,
 				086042DD18BF4038006DFC4D /* RTAppDelegate.m */,
-				0858DA0F18C0714F00278000 /* NSObject+IDPExtensions.h */,
-				0858DA1018C0714F00278000 /* NSObject+IDPExtensions.m */,
 				0858DA0C18C0704600278000 /* RTStringStorage.h */,
 				0858DA0D18C0704600278000 /* RTStringStorage.m */,
-				0858DA1718C07ECE00278000 /* RTRandomStringGenerator.h */,
-				0858DA1818C07ECE00278000 /* RTRandomStringGenerator.m */,
 				0858DA1218C074AC00278000 /* RTStringViewController.h */,
 				0858DA1318C074AC00278000 /* RTStringViewController.m */,
 				0858DA1418C074AC00278000 /* RTStringViewController.xib */,
@@ -185,6 +182,17 @@
 				086042EF18BF4038006DFC4D /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		08E5773118C9A54200BB156F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0858DA0F18C0714F00278000 /* NSObject+IDPExtensions.h */,
+				0858DA1018C0714F00278000 /* NSObject+IDPExtensions.m */,
+				08E5772E18C9A53A00BB156F /* NSString+IDPExtensions.h */,
+				08E5772F18C9A53A00BB156F /* NSString+IDPExtensions.m */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,11 +296,11 @@
 			files = (
 				082D632618C70A0900B314B8 /* RTStringView.m in Sources */,
 				0858DA1518C074AC00278000 /* RTStringViewController.m in Sources */,
+				08E5773018C9A53A00BB156F /* NSString+IDPExtensions.m in Sources */,
 				086042DE18BF4038006DFC4D /* RTAppDelegate.m in Sources */,
 				0858DA0E18C0704600278000 /* RTStringStorage.m in Sources */,
 				086042DA18BF4038006DFC4D /* main.m in Sources */,
 				0858DA1118C0714F00278000 /* NSObject+IDPExtensions.m in Sources */,
-				0858DA1918C07ECE00278000 /* RTRandomStringGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
