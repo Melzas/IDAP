@@ -1,9 +1,9 @@
 #import <UIKit/UIKit.h>
 
-@class RTStringStorage;
+@class RTTableModel;
 
 @interface RTStringViewController : UIViewController <UITableViewDataSource>
-@property (nonatomic, readonly)	RTStringStorage	*stringStorage;
+@property (nonatomic, readonly)	RTTableModel	*stringStorage;
 
 - (IBAction)addButtonTapped:(id)addButton;
 - (IBAction)editButtonTapped:(id)editButton;

@@ -2,7 +2,7 @@
 
 #import "NSObject+IDPExtensions.h"
 #import "RTStringViewController.h"
-#import "RTStringStorage.h"
+#import "RTTableModel.h"
 
 @implementation RTAppDelegate
 

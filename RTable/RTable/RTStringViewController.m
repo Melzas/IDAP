@@ -2,7 +2,7 @@
 
 #import "RTStringView.h"
 #import "NSObject+IDPExtensions.h"
-#import "RTStringStorage.h"
+#import "RTTableModel.h"
 #import "RTRandomStringGenerator.h"
 
 static const NSUInteger kRTStringCount = 10;
@@ -10,7 +10,7 @@ static const NSUInteger kRTStringLength = 12;
 
 @interface RTStringViewController ()
 @property (nonatomic, readonly)				RTStringView			*stringView;
-@property (nonatomic, retain, readwrite)	RTStringStorage			*stringStorage;
+@property (nonatomic, retain, readwrite)	RTTableModel			*stringStorage;
 @property (nonatomic, retain)				RTRandomStringGenerator	*randomStringGenerator;
 
 - (void)fillStorageWithRandomStrings;
@@ -37,7 +37,7 @@ static const NSUInteger kRTStringLength = 12;
 		self.randomStringGenerator =
 			[RTRandomStringGenerator generatorWithStringLength:kRTStringLength];
 		
-        self.stringStorage = [RTStringStorage object];
+        self.stringStorage = [RTTableModel object];
 		if (![self.stringStorage loadFromFile]) {
 			[self fillStorageWithRandomStrings];
 		}
