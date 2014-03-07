@@ -1,5 +1,7 @@
 #import "UITableView+IDPExtensions.h"
 
+#import "NSBundle+IDPExtensions.h"
+
 @implementation UITableView (IDPExtensions)
 
 - (id)cellForClass:(Class)class {
@@ -7,14 +9,7 @@
 	id cell = [self dequeueReusableCellWithIdentifier:className];
 	
 	if (nil == cell) {
-		NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:className owner:nil options:nil];
-		
-		for(id object in nibObjects) {
-			if ([object isMemberOfClass:class]) {
-				cell = object;
-				break;
-			}
-		}
+		cell = [[NSBundle mainBundle] loadClass:class];
 	}
 	
 	return cell;

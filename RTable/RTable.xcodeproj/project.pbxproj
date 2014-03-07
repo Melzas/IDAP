@@ -31,6 +31,7 @@
 		08E5773818C9AFBC00BB156F /* UITableView+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E5773718C9AFBC00BB156F /* UITableView+IDPExtensions.m */; };
 		08E5773C18C9B64A00BB156F /* RTCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E5773B18C9B64A00BB156F /* RTCellView.m */; };
 		08E5774118C9C2DC00BB156F /* RTCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08E5774018C9C2DC00BB156F /* RTCellView.xib */; };
+		08E5774418C9C46300BB156F /* NSBundle+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E5774318C9C46300BB156F /* NSBundle+IDPExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,8 @@
 		08E5773A18C9B64A00BB156F /* RTCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTCellView.h; path = RTable/RTCellView.h; sourceTree = "<group>"; };
 		08E5773B18C9B64A00BB156F /* RTCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTCellView.m; path = RTable/RTCellView.m; sourceTree = "<group>"; };
 		08E5774018C9C2DC00BB156F /* RTCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RTCellView.xib; path = RTable/RTCellView.xib; sourceTree = "<group>"; };
+		08E5774218C9C46300BB156F /* NSBundle+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSBundle+IDPExtensions.h"; path = "RTable/NSBundle+IDPExtensions.h"; sourceTree = "<group>"; };
+		08E5774318C9C46300BB156F /* NSBundle+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+IDPExtensions.m"; path = "RTable/NSBundle+IDPExtensions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +206,8 @@
 				08E5772F18C9A53A00BB156F /* NSString+IDPExtensions.m */,
 				08E5773618C9AFBC00BB156F /* UITableView+IDPExtensions.h */,
 				08E5773718C9AFBC00BB156F /* UITableView+IDPExtensions.m */,
+				08E5774218C9C46300BB156F /* NSBundle+IDPExtensions.h */,
+				08E5774318C9C46300BB156F /* NSBundle+IDPExtensions.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -345,6 +350,7 @@
 				08E5773C18C9B64A00BB156F /* RTCellView.m in Sources */,
 				086042DE18BF4038006DFC4D /* RTAppDelegate.m in Sources */,
 				0858DA0E18C0704600278000 /* RTTableModel.m in Sources */,
+				08E5774418C9C46300BB156F /* NSBundle+IDPExtensions.m in Sources */,
 				086042DA18BF4038006DFC4D /* main.m in Sources */,
 				0858DA1118C0714F00278000 /* NSObject+IDPExtensions.m in Sources */,
 				08E5773518C9A7BE00BB156F /* RTCellModel.m in Sources */,
