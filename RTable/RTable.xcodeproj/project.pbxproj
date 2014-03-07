@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		082D632618C70A0900B314B8 /* RTStringView.m in Sources */ = {isa = PBXBuildFile; fileRef = 082D632518C70A0900B314B8 /* RTStringView.m */; };
+		082D632618C70A0900B314B8 /* RTMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 082D632518C70A0900B314B8 /* RTMainView.m */; };
 		0858DA0E18C0704600278000 /* RTTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0858DA0D18C0704600278000 /* RTTableModel.m */; };
 		0858DA1118C0714F00278000 /* NSObject+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0858DA1018C0714F00278000 /* NSObject+IDPExtensions.m */; };
-		0858DA1518C074AC00278000 /* RTStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0858DA1318C074AC00278000 /* RTStringViewController.m */; };
-		0858DA1618C074AC00278000 /* RTStringViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0858DA1418C074AC00278000 /* RTStringViewController.xib */; };
+		0858DA1518C074AC00278000 /* RTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0858DA1318C074AC00278000 /* RTMainViewController.m */; };
+		0858DA1618C074AC00278000 /* RTMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0858DA1418C074AC00278000 /* RTMainViewController.xib */; };
 		0858DA1D18C099CB00278000 /* Lenna.png in Resources */ = {isa = PBXBuildFile; fileRef = 0858DA1B18C099CB00278000 /* Lenna.png */; };
 		0858DA1E18C099CB00278000 /* Lenna@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0858DA1C18C099CB00278000 /* Lenna@2x.png */; };
 		086042CE18BF4037006DFC4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 086042CD18BF4037006DFC4D /* Foundation.framework */; };
@@ -28,6 +28,9 @@
 		086042F318BF4038006DFC4D /* RTableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 086042F218BF4038006DFC4D /* RTableTests.m */; };
 		08E5773018C9A53A00BB156F /* NSString+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E5772F18C9A53A00BB156F /* NSString+IDPExtensions.m */; };
 		08E5773518C9A7BE00BB156F /* RTCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E5773418C9A7BE00BB156F /* RTCellModel.m */; };
+		08E5773818C9AFBC00BB156F /* UITableView+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E5773718C9AFBC00BB156F /* UITableView+IDPExtensions.m */; };
+		08E5773C18C9B64A00BB156F /* RTCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E5773B18C9B64A00BB156F /* RTCellView.m */; };
+		08E5774118C9C2DC00BB156F /* RTCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08E5774018C9C2DC00BB156F /* RTCellView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,15 +44,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		082D632418C70A0900B314B8 /* RTStringView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStringView.h; sourceTree = "<group>"; };
-		082D632518C70A0900B314B8 /* RTStringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringView.m; sourceTree = "<group>"; };
+		082D632418C70A0900B314B8 /* RTMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTMainView.h; path = RTable/RTMainView.h; sourceTree = "<group>"; };
+		082D632518C70A0900B314B8 /* RTMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMainView.m; path = RTable/RTMainView.m; sourceTree = "<group>"; };
 		0858DA0C18C0704600278000 /* RTTableModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTTableModel.h; path = RTable/RTTableModel.h; sourceTree = "<group>"; };
 		0858DA0D18C0704600278000 /* RTTableModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTTableModel.m; path = RTable/RTTableModel.m; sourceTree = "<group>"; };
 		0858DA0F18C0714F00278000 /* NSObject+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+IDPExtensions.h"; path = "RTable/NSObject+IDPExtensions.h"; sourceTree = "<group>"; };
 		0858DA1018C0714F00278000 /* NSObject+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+IDPExtensions.m"; path = "RTable/NSObject+IDPExtensions.m"; sourceTree = "<group>"; };
-		0858DA1218C074AC00278000 /* RTStringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTStringViewController.h; sourceTree = "<group>"; };
-		0858DA1318C074AC00278000 /* RTStringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTStringViewController.m; sourceTree = "<group>"; };
-		0858DA1418C074AC00278000 /* RTStringViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RTStringViewController.xib; sourceTree = "<group>"; };
+		0858DA1218C074AC00278000 /* RTMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMainViewController.h; sourceTree = "<group>"; };
+		0858DA1318C074AC00278000 /* RTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMainViewController.m; sourceTree = "<group>"; };
+		0858DA1418C074AC00278000 /* RTMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RTMainViewController.xib; path = RTable/RTMainViewController.xib; sourceTree = "<group>"; };
 		0858DA1B18C099CB00278000 /* Lenna.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lenna.png; sourceTree = "<group>"; };
 		0858DA1C18C099CB00278000 /* Lenna@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Lenna@2x.png"; sourceTree = "<group>"; };
 		086042CA18BF4037006DFC4D /* RTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,9 +63,9 @@
 		086042D718BF4038006DFC4D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		086042D918BF4038006DFC4D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		086042DB18BF4038006DFC4D /* RTable-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RTable-Prefix.pch"; sourceTree = "<group>"; };
-		086042DC18BF4038006DFC4D /* RTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTAppDelegate.h; sourceTree = "<group>"; };
-		086042DD18BF4038006DFC4D /* RTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTAppDelegate.m; sourceTree = "<group>"; };
-		086042DF18BF4038006DFC4D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		086042DC18BF4038006DFC4D /* RTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RTAppDelegate.h; path = RTable/RTAppDelegate.h; sourceTree = "<group>"; };
+		086042DD18BF4038006DFC4D /* RTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RTAppDelegate.m; path = RTable/RTAppDelegate.m; sourceTree = "<group>"; };
+		086042DF18BF4038006DFC4D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RTable/Images.xcassets; sourceTree = "<group>"; };
 		086042E518BF4038006DFC4D /* RTableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		086042E618BF4038006DFC4D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		086042EE18BF4038006DFC4D /* RTableTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RTableTests-Info.plist"; sourceTree = "<group>"; };
@@ -72,6 +75,11 @@
 		08E5772F18C9A53A00BB156F /* NSString+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+IDPExtensions.m"; path = "RTable/NSString+IDPExtensions.m"; sourceTree = "<group>"; };
 		08E5773318C9A7BE00BB156F /* RTCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTCellModel.h; path = RTable/RTCellModel.h; sourceTree = "<group>"; };
 		08E5773418C9A7BE00BB156F /* RTCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTCellModel.m; path = RTable/RTCellModel.m; sourceTree = "<group>"; };
+		08E5773618C9AFBC00BB156F /* UITableView+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableView+IDPExtensions.h"; path = "RTable/UITableView+IDPExtensions.h"; sourceTree = "<group>"; };
+		08E5773718C9AFBC00BB156F /* UITableView+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableView+IDPExtensions.m"; path = "RTable/UITableView+IDPExtensions.m"; sourceTree = "<group>"; };
+		08E5773A18C9B64A00BB156F /* RTCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTCellView.h; path = RTable/RTCellView.h; sourceTree = "<group>"; };
+		08E5773B18C9B64A00BB156F /* RTCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTCellView.m; path = RTable/RTCellView.m; sourceTree = "<group>"; };
+		08E5774018C9C2DC00BB156F /* RTCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RTCellView.xib; path = RTable/RTCellView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,16 +112,22 @@
 				0858DA1B18C099CB00278000 /* Lenna.png */,
 				0858DA1C18C099CB00278000 /* Lenna@2x.png */,
 			);
-			name = Images;
-			path = ../Images;
+			path = Images;
 			sourceTree = "<group>";
 		};
 		086042C118BF4037006DFC4D = {
 			isa = PBXGroup;
 			children = (
+				086042DC18BF4038006DFC4D /* RTAppDelegate.h */,
+				086042DD18BF4038006DFC4D /* RTAppDelegate.m */,
 				08E5773118C9A54200BB156F /* Extensions */,
 				08E5773218C9A72000BB156F /* Model */,
-				086042D318BF4038006DFC4D /* RTable */,
+				086042D318BF4038006DFC4D /* Controller */,
+				08E5773F18C9BC1A00BB156F /* View */,
+				08E5773918C9B59D00BB156F /* Nibs */,
+				086042D418BF4038006DFC4D /* Supporting Files */,
+				0858DA1A18C099CB00278000 /* Images */,
+				086042DF18BF4038006DFC4D /* Images.xcassets */,
 				086042EC18BF4038006DFC4D /* RTableTests */,
 				086042CC18BF4037006DFC4D /* Frameworks */,
 				086042CB18BF4037006DFC4D /* Products */,
@@ -140,20 +154,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		086042D318BF4038006DFC4D /* RTable */ = {
+		086042D318BF4038006DFC4D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				086042DC18BF4038006DFC4D /* RTAppDelegate.h */,
-				086042DD18BF4038006DFC4D /* RTAppDelegate.m */,
-				0858DA1218C074AC00278000 /* RTStringViewController.h */,
-				0858DA1318C074AC00278000 /* RTStringViewController.m */,
-				0858DA1418C074AC00278000 /* RTStringViewController.xib */,
-				082D632418C70A0900B314B8 /* RTStringView.h */,
-				082D632518C70A0900B314B8 /* RTStringView.m */,
-				086042D418BF4038006DFC4D /* Supporting Files */,
-				0858DA1A18C099CB00278000 /* Images */,
-				086042DF18BF4038006DFC4D /* Images.xcassets */,
+				0858DA1218C074AC00278000 /* RTMainViewController.h */,
+				0858DA1318C074AC00278000 /* RTMainViewController.m */,
 			);
+			name = Controller;
 			path = RTable;
 			sourceTree = "<group>";
 		};
@@ -166,6 +173,7 @@
 				086042DB18BF4038006DFC4D /* RTable-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = RTable;
 			sourceTree = "<group>";
 		};
 		086042EC18BF4038006DFC4D /* RTableTests */ = {
@@ -193,6 +201,8 @@
 				0858DA1018C0714F00278000 /* NSObject+IDPExtensions.m */,
 				08E5772E18C9A53A00BB156F /* NSString+IDPExtensions.h */,
 				08E5772F18C9A53A00BB156F /* NSString+IDPExtensions.m */,
+				08E5773618C9AFBC00BB156F /* UITableView+IDPExtensions.h */,
+				08E5773718C9AFBC00BB156F /* UITableView+IDPExtensions.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -206,6 +216,26 @@
 				08E5773418C9A7BE00BB156F /* RTCellModel.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		08E5773918C9B59D00BB156F /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				08E5774018C9C2DC00BB156F /* RTCellView.xib */,
+				0858DA1418C074AC00278000 /* RTMainViewController.xib */,
+			);
+			name = Nibs;
+			sourceTree = "<group>";
+		};
+		08E5773F18C9BC1A00BB156F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				082D632418C70A0900B314B8 /* RTMainView.h */,
+				082D632518C70A0900B314B8 /* RTMainView.m */,
+				08E5773A18C9B64A00BB156F /* RTCellView.h */,
+				08E5773B18C9B64A00BB156F /* RTCellView.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,8 +316,9 @@
 			files = (
 				086042D818BF4038006DFC4D /* InfoPlist.strings in Resources */,
 				086042E018BF4038006DFC4D /* Images.xcassets in Resources */,
+				08E5774118C9C2DC00BB156F /* RTCellView.xib in Resources */,
 				0858DA1D18C099CB00278000 /* Lenna.png in Resources */,
-				0858DA1618C074AC00278000 /* RTStringViewController.xib in Resources */,
+				0858DA1618C074AC00278000 /* RTMainViewController.xib in Resources */,
 				0858DA1E18C099CB00278000 /* Lenna@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,9 +338,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				082D632618C70A0900B314B8 /* RTStringView.m in Sources */,
-				0858DA1518C074AC00278000 /* RTStringViewController.m in Sources */,
+				082D632618C70A0900B314B8 /* RTMainView.m in Sources */,
+				0858DA1518C074AC00278000 /* RTMainViewController.m in Sources */,
+				08E5773818C9AFBC00BB156F /* UITableView+IDPExtensions.m in Sources */,
 				08E5773018C9A53A00BB156F /* NSString+IDPExtensions.m in Sources */,
+				08E5773C18C9B64A00BB156F /* RTCellView.m in Sources */,
 				086042DE18BF4038006DFC4D /* RTAppDelegate.m in Sources */,
 				0858DA0E18C0704600278000 /* RTTableModel.m in Sources */,
 				086042DA18BF4038006DFC4D /* main.m in Sources */,

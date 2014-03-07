@@ -1,22 +1,19 @@
 #import "RTAppDelegate.h"
 
 #import "NSObject+IDPExtensions.h"
-#import "RTStringViewController.h"
+#import "RTMainViewController.h"
 #import "RTTableModel.h"
 
 @implementation RTAppDelegate
 
-@dynamic stringViewController;
-
 #pragma mark -
-#pragma mark Accessors
+#pragma Initializations and Deallocations
 
-- (RTStringViewController *)stringViewController {
-	if ([self.window.rootViewController isKindOfClass:[RTStringViewController class]]) {
-		return (RTStringViewController *)self.window.rootViewController;
-	}
+- (void)dealloc {
+	self.window = nil;
+	self.mainViewController = nil;
 	
-	return nil;
+	[super dealloc];
 }
 
 #pragma mark -
@@ -26,8 +23,8 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.window.backgroundColor = [UIColor whiteColor];
 	
-	RTStringViewController *stringViewController = [RTStringViewController object];
-	self.window.rootViewController = stringViewController;
+	self.mainViewController = [RTMainViewController object];
+	self.window.rootViewController = self.mainViewController;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -37,7 +34,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-	[self.stringViewController.stringStorage saveToFile];
+	[self.mainViewController.tableModel save];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
