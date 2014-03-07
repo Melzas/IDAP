@@ -1,10 +1,9 @@
 #import <UIKit/UIKit.h>
 
-@interface RTStringView : UIView
+@interface RTMainView : UIView
 @property (nonatomic, retain)	IBOutlet UITableView		*tableView;
 @property (nonatomic, retain)	IBOutlet UIBarButtonItem	*editButton;
 
-- (UITableViewCell *)availableCell;
-- (void)changeEditingMode;
+@property (nonatomic, assign, getter = isTableViewEditing)	BOOL	tableViewEditing;
 
 @end

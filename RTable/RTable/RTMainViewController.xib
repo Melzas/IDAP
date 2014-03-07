@@ -4,13 +4,13 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RTStringViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RTMainViewController">
             <connections>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="1" customClass="RTStringView">
+        <view contentMode="scaleToFill" id="1" customClass="RTMainView">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -28,12 +28,12 @@
                     <items>
                         <barButtonItem title="Add" width="137" id="Rkj-nl-xNY">
                             <connections>
-                                <action selector="addButtonTapped:" destination="-1" id="2HF-5b-Hv3"/>
+                                <action selector="onAdd:" destination="-1" id="mcz-PJ-apd"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem title="Edit" width="150" id="wjG-9o-IqD">
                             <connections>
-                                <action selector="editButtonTapped:" destination="-1" id="mzv-ag-DZn"/>
+                                <action selector="onEdit:" destination="-1" id="a5h-Tz-QnH"/>
                             </connections>
                         </barButtonItem>
                     </items>
