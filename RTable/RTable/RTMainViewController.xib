@@ -38,6 +38,17 @@
                         </barButtonItem>
                     </items>
                 </toolbar>
+                <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="myX-nk-4DI" userLabel="Spinner Background View">
+                    <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="IEQ-0r-1s6" userLabel="Spinner">
+                            <rect key="frame" x="142" y="223" width="37" height="37"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -53,6 +64,8 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <connections>
                 <outlet property="editButton" destination="wjG-9o-IqD" id="3u3-Ui-Mfd"/>
+                <outlet property="spinner" destination="IEQ-0r-1s6" id="Ktz-KT-lmv"/>
+                <outlet property="spinnerBackgroundView" destination="myX-nk-4DI" id="OSK-QB-B8d"/>
                 <outlet property="tableView" destination="nh7-eX-sgp" id="A36-GL-x7r"/>
             </connections>
         </view>

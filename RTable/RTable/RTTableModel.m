@@ -8,7 +8,9 @@ static const NSUInteger kRTCellModelCount	= 10;
 @interface RTTableModel ()
 @property (nonatomic, retain)	NSMutableArray	*mutableCellModels;
 @property (nonatomic, readonly)	NSString		*savePath;
-@property (nonatomic, assign, readwrite)		BOOL	loaded;
+
+@property (nonatomic, assign, readwrite)	RTTableModelLoadState	loadState;
+
 
 - (void)generateModels;
 
@@ -70,14 +72,19 @@ static const NSUInteger kRTCellModelCount	= 10;
 }
 
 - (void)load {
-	NSArray *modelsFromFile = [NSKeyedUnarchiver unarchiveObjectWithFile:self.savePath];
-	if (modelsFromFile) {
-		self.mutableCellModels = [NSMutableArray arrayWithArray:modelsFromFile];
-	} else {
-		[self generateModels];
-	}
-	
-	self.loaded = YES;
+	self.loadState = kRTTableModelLoading;
+	dispatch_async(dispatch_queue_create("loadQueue", DISPATCH_QUEUE_SERIAL), ^{
+		NSArray *modelsFromFile = [NSKeyedUnarchiver unarchiveObjectWithFile:self.savePath];
+		if (modelsFromFile) {
+			self.mutableCellModels = [NSMutableArray arrayWithArray:modelsFromFile];
+		} else {
+			[self generateModels];
+		}
+		
+		dispatch_async(dispatch_get_main_queue(), ^{
+			self.loadState = kRTTableModelLoaded;
+		});
+	});
 }
 
 - (void)save {
@@ -88,6 +95,7 @@ static const NSUInteger kRTCellModelCount	= 10;
 	[self save];
 	
 	self.mutableCellModels = [NSMutableArray array];
+	self.loadState = kRTTableModelNotLoaded;
 }
 
 #pragma mark -

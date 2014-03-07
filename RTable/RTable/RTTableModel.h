@@ -2,10 +2,15 @@
 
 @class RTCellModel;
 
-@interface RTTableModel : NSObject
-@property (nonatomic, readonly)	NSArray	*cellModels;
+typedef enum {
+	kRTTableModelNotLoaded,
+	kRTTableModelLoading,
+	kRTTableModelLoaded
+} RTTableModelLoadState;
 
-@property (nonatomic, readonly, getter = isLoaded)	BOOL	loaded;
+@interface RTTableModel : NSObject
+@property (nonatomic, readonly)	NSArray					*cellModels;
+@property (nonatomic, readonly)	RTTableModelLoadState	loadState;
 
 - (void)addCellModel:(RTCellModel *)cellModel;
 - (void)removeCellModel:(RTCellModel *)cellModel;
