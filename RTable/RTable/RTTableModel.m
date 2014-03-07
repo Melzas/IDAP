@@ -70,7 +70,7 @@ static const NSUInteger kRTCellModelCount	= 10;
 }
 
 - (void)load {
-	NSArray *modelsFromFile = [NSArray arrayWithContentsOfFile:self.savePath];
+	NSArray *modelsFromFile = [NSKeyedUnarchiver unarchiveObjectWithFile:self.savePath];
 	if (modelsFromFile) {
 		self.mutableCellModels = [NSMutableArray arrayWithArray:modelsFromFile];
 	} else {
@@ -81,7 +81,7 @@ static const NSUInteger kRTCellModelCount	= 10;
 }
 
 - (void)save {
-	[self.mutableCellModels writeToFile:self.savePath atomically:YES];
+	[NSKeyedArchiver archiveRootObject:self.mutableCellModels toFile:self.savePath];
 }
 
 - (void)dump {

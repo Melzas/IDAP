@@ -3,7 +3,8 @@
 #import "NSObject+IDPExtensions.h"
 #import "NSString+IDPExtensions.h"
 
-static const NSUInteger kRTStringLength = 12;
+static const NSUInteger kRTStringLength = 7;
+static NSString * const kRTStringKey	= @"kRTStringKey";
 
 @implementation RTCellModel
 
@@ -15,6 +16,22 @@ static const NSUInteger kRTStringLength = 12;
 	model.string = [NSString randomStringOfLength:kRTStringLength];
 	
 	return model;
+}
+
+#pragma mark -
+#pragma mark NSCoding
+
+- (id)initWithCoder:(NSCoder *)decoder {
+	self = [super init];
+	if (self) {
+		self.string = [decoder decodeObjectForKey:kRTStringKey];
+	}
+	
+	return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+	[coder encodeObject:self.string forKey:kRTStringKey];
 }
 
 @end
