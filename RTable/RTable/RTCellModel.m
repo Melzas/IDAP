@@ -3,7 +3,7 @@
 #import "NSObject+IDPExtensions.h"
 #import "NSString+IDPExtensions.h"
 
-static const NSUInteger kRTStringLength = 7;
+static const NSUInteger kRTStringLength = 10;
 static NSString * const kRTStringKey	= @"kRTStringKey";
 
 @implementation RTCellModel

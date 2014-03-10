@@ -73,7 +73,10 @@ static const NSUInteger kRTCellModelCount	= 10;
 
 - (void)load {
 	self.loadState = kRTTableModelLoading;
-	dispatch_async(dispatch_queue_create("loadQueue", DISPATCH_QUEUE_SERIAL), ^{
+	
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		sleep(2);
+		
 		NSArray *modelsFromFile = [NSKeyedUnarchiver unarchiveObjectWithFile:self.savePath];
 		if (modelsFromFile) {
 			self.mutableCellModels = [NSMutableArray arrayWithArray:modelsFromFile];
@@ -83,6 +86,8 @@ static const NSUInteger kRTCellModelCount	= 10;
 		
 		dispatch_async(dispatch_get_main_queue(), ^{
 			self.loadState = kRTTableModelLoaded;
+			
+			[self notifyObserversWithObservableObject:self];
 		});
 	});
 }

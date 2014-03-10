@@ -1,5 +1,7 @@
 #import <Foundation/Foundation.h>
 
+#import "IDPObservableObject.h"
+
 @class RTCellModel;
 
 typedef enum {
@@ -8,7 +10,7 @@ typedef enum {
 	kRTTableModelLoaded
 } RTTableModelLoadState;
 
-@interface RTTableModel : NSObject
+@interface RTTableModel : IDPObservableObject
 @property (nonatomic, readonly)	NSArray					*cellModels;
 @property (nonatomic, readonly)	RTTableModelLoadState	loadState;
 

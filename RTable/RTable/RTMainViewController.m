@@ -55,6 +55,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
+	[self.tableModel addObserver:self];
 	[self.tableModel load];
 }
 
@@ -113,6 +114,15 @@
 {
 	[self.tableModel moveCellModelFromIndex:sourceIndexPath.row
 									toIndex:destinationIndexPath.row];
+}
+
+#pragma mark -
+#pragma mark IDPObserver
+
+- (void)didReceiveNotificationFromObservableObject:(id<IDPObservableObject>)observableObject {
+	[self.mainView.spinner stopAnimating];
+	self.mainView.spinnerBackgroundView.hidden = YES;
+	[self.mainView.tableView reloadData];
 }
 
 @end

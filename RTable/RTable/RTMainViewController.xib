@@ -38,7 +38,7 @@
                         </barButtonItem>
                     </items>
                 </toolbar>
-                <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="myX-nk-4DI" userLabel="Spinner Background View">
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="myX-nk-4DI" userLabel="Spinner Background View">
                     <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -54,10 +54,14 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="nh7-eX-sgp" secondAttribute="trailing" id="3LI-wH-L3Q"/>
                 <constraint firstItem="nh7-eX-sgp" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" symbolic="YES" id="5ol-Xo-5bq"/>
+                <constraint firstItem="myX-nk-4DI" firstAttribute="leading" secondItem="THm-mj-Jdq" secondAttribute="leading" id="7t0-wK-bIC"/>
                 <constraint firstItem="nh7-eX-sgp" firstAttribute="leading" secondItem="THm-mj-Jdq" secondAttribute="leading" id="N6v-V1-4g9"/>
+                <constraint firstItem="myX-nk-4DI" firstAttribute="trailing" secondItem="THm-mj-Jdq" secondAttribute="trailing" id="P5c-nn-dyn"/>
                 <constraint firstItem="nh7-eX-sgp" firstAttribute="trailing" secondItem="THm-mj-Jdq" secondAttribute="trailing" id="Rjd-wZ-Saa"/>
+                <constraint firstItem="myX-nk-4DI" firstAttribute="top" secondItem="nh7-eX-sgp" secondAttribute="top" id="Tf1-SF-R4B"/>
                 <constraint firstItem="nh7-eX-sgp" firstAttribute="bottom" secondItem="THm-mj-Jdq" secondAttribute="top" id="Tp8-wF-goM"/>
                 <constraint firstItem="nh7-eX-sgp" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="XSj-ik-6qr"/>
+                <constraint firstItem="myX-nk-4DI" firstAttribute="bottom" secondItem="THm-mj-Jdq" secondAttribute="bottom" id="hbH-rD-jAJ"/>
                 <constraint firstAttribute="bottom" secondItem="THm-mj-Jdq" secondAttribute="bottom" id="l24-FD-e6o"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
