@@ -4,10 +4,13 @@
 
 @protocol IDPObserver <NSObject>
 
-- (void)addObservable:(id<IDPObservable>)observable;
-- (void)removeObservable:(id<IDPObservable>)observable;
-- (void)didReceiveNotificationFromObservable:(id<IDPObservable>)observable;
+- (void)didReceiveNotificationFromObservableObject:(id<IDPObservableObject>)observableObject;
 
-- (NSArray *)observables;
+@optional
+
+- (void)addObservableObject:(id<IDPObservableObject>)observableObject;
+- (void)removeObservableObject:(id<IDPObservableObject>)observableObject;
+
+- (NSArray *)observableObjects;
 
 @end

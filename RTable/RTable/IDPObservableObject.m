@@ -1,19 +1,21 @@
-#import "IDPObservable.h"
+#import "IDPObservableObject.h"
 
 #import "IDPObserverProtocol.h"
 
-@interface IDPObservable ()
+#import "NSObject+IDPExtensions.h"
+
+@interface IDPObservableObject ()
 @property (nonatomic, retain)	NSMutableArray	*mutableObservers;
 
 @end
 
-@implementation IDPObservable
+@implementation IDPObservableObject
 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)observable {
-	return [[[self alloc] init] autorelease];
++ (instancetype)observableObject {
+	return [self object];
 }
 
 #pragma mark -
@@ -22,7 +24,9 @@
 - (void)dealloc {
 	self.mutableObservers = nil;
 	for (id<IDPObserver> observer in self.mutableObservers) {
-		[observer removeObservable:self];
+		if ([observer respondsToSelector:@selector(removeObservableObject:)]) {
+			[observer removeObservableObject:self];
+		}
 	}
 	
     [super dealloc];
@@ -41,17 +45,23 @@
 
 - (void)addObserver:(id<IDPObserver>)observer {
 	[self.mutableObservers addObject:observer];
-	[observer addObservable:self];
+	
+	if ([observer respondsToSelector:@selector(addObservableObject:)]) {
+		[observer addObservableObject:self];
+	}
 }
 
 - (void)removeObserver:(id<IDPObserver>)observer {
 	[self.mutableObservers removeObjectIdenticalTo:observer];
-	[observer removeObservable:self];
+	
+	if ([observer respondsToSelector:@selector(removeObservableObject:)]) {
+		[observer removeObservableObject:self];
+	}
 }
 
-- (void)notifyObserversWithObservable:(id<IDPObservable>)observable {
+- (void)notifyObserversWithObservableObject:(id<IDPObservableObject>)observableObject {
 	for (id<IDPObserver> observer in self.mutableObservers) {
-		[observer didReceiveNotificationFromObservable:observable];
+		[observer didReceiveNotificationFromObservableObject:observableObject];
 	}
 }
 

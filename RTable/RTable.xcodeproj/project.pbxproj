@@ -32,8 +32,8 @@
 		08E5773C18C9B64A00BB156F /* RTCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E5773B18C9B64A00BB156F /* RTCellView.m */; };
 		08E5774118C9C2DC00BB156F /* RTCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08E5774018C9C2DC00BB156F /* RTCellView.xib */; };
 		08E5774418C9C46300BB156F /* NSBundle+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E5774318C9C46300BB156F /* NSBundle+IDPExtensions.m */; };
-		08E5774E18C9DD7200BB156F /* IDPObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E5774718C9DD7200BB156F /* IDPObservable.m */; };
-		08E5774F18C9DD7200BB156F /* IDPObservableWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E5774A18C9DD7200BB156F /* IDPObservableWrapper.m */; };
+		08E5774E18C9DD7200BB156F /* IDPObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E5774718C9DD7200BB156F /* IDPObservableObject.m */; };
+		08E5774F18C9DD7200BB156F /* IDPWeakReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E5774A18C9DD7200BB156F /* IDPWeakReference.m */; };
 		08E5775018C9DD7200BB156F /* IDPObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E5774C18C9DD7200BB156F /* IDPObserver.m */; };
 /* End PBXBuildFile section */
 
@@ -86,11 +86,11 @@
 		08E5774018C9C2DC00BB156F /* RTCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RTCellView.xib; path = RTable/RTCellView.xib; sourceTree = "<group>"; };
 		08E5774218C9C46300BB156F /* NSBundle+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSBundle+IDPExtensions.h"; path = "RTable/NSBundle+IDPExtensions.h"; sourceTree = "<group>"; };
 		08E5774318C9C46300BB156F /* NSBundle+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+IDPExtensions.m"; path = "RTable/NSBundle+IDPExtensions.m"; sourceTree = "<group>"; };
-		08E5774618C9DD7200BB156F /* IDPObservable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDPObservable.h; path = RTable/IDPObservable.h; sourceTree = "<group>"; };
-		08E5774718C9DD7200BB156F /* IDPObservable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IDPObservable.m; path = RTable/IDPObservable.m; sourceTree = "<group>"; };
+		08E5774618C9DD7200BB156F /* IDPObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDPObservableObject.h; path = RTable/IDPObservableObject.h; sourceTree = "<group>"; };
+		08E5774718C9DD7200BB156F /* IDPObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IDPObservableObject.m; path = RTable/IDPObservableObject.m; sourceTree = "<group>"; };
 		08E5774818C9DD7200BB156F /* IDPObservableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDPObservableProtocol.h; path = RTable/IDPObservableProtocol.h; sourceTree = "<group>"; };
-		08E5774918C9DD7200BB156F /* IDPObservableWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDPObservableWrapper.h; path = RTable/IDPObservableWrapper.h; sourceTree = "<group>"; };
-		08E5774A18C9DD7200BB156F /* IDPObservableWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IDPObservableWrapper.m; path = RTable/IDPObservableWrapper.m; sourceTree = "<group>"; };
+		08E5774918C9DD7200BB156F /* IDPWeakReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDPWeakReference.h; path = RTable/IDPWeakReference.h; sourceTree = "<group>"; };
+		08E5774A18C9DD7200BB156F /* IDPWeakReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IDPWeakReference.m; path = RTable/IDPWeakReference.m; sourceTree = "<group>"; };
 		08E5774B18C9DD7200BB156F /* IDPObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDPObserver.h; path = RTable/IDPObserver.h; sourceTree = "<group>"; };
 		08E5774C18C9DD7200BB156F /* IDPObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IDPObserver.m; path = RTable/IDPObserver.m; sourceTree = "<group>"; };
 		08E5774D18C9DD7200BB156F /* IDPObserverProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDPObserverProtocol.h; path = RTable/IDPObserverProtocol.h; sourceTree = "<group>"; };
@@ -258,14 +258,14 @@
 		08E5774518C9DD4B00BB156F /* Observer */ = {
 			isa = PBXGroup;
 			children = (
-				08E5774618C9DD7200BB156F /* IDPObservable.h */,
-				08E5774718C9DD7200BB156F /* IDPObservable.m */,
+				08E5774918C9DD7200BB156F /* IDPWeakReference.h */,
+				08E5774A18C9DD7200BB156F /* IDPWeakReference.m */,
 				08E5774818C9DD7200BB156F /* IDPObservableProtocol.h */,
-				08E5774918C9DD7200BB156F /* IDPObservableWrapper.h */,
-				08E5774A18C9DD7200BB156F /* IDPObservableWrapper.m */,
+				08E5774618C9DD7200BB156F /* IDPObservableObject.h */,
+				08E5774718C9DD7200BB156F /* IDPObservableObject.m */,
+				08E5774D18C9DD7200BB156F /* IDPObserverProtocol.h */,
 				08E5774B18C9DD7200BB156F /* IDPObserver.h */,
 				08E5774C18C9DD7200BB156F /* IDPObserver.m */,
-				08E5774D18C9DD7200BB156F /* IDPObserverProtocol.h */,
 			);
 			name = Observer;
 			sourceTree = "<group>";
@@ -376,10 +376,10 @@
 				08E5773018C9A53A00BB156F /* NSString+IDPExtensions.m in Sources */,
 				08E5773C18C9B64A00BB156F /* RTCellView.m in Sources */,
 				086042DE18BF4038006DFC4D /* RTAppDelegate.m in Sources */,
-				08E5774F18C9DD7200BB156F /* IDPObservableWrapper.m in Sources */,
+				08E5774F18C9DD7200BB156F /* IDPWeakReference.m in Sources */,
 				0858DA0E18C0704600278000 /* RTTableModel.m in Sources */,
 				08E5774418C9C46300BB156F /* NSBundle+IDPExtensions.m in Sources */,
-				08E5774E18C9DD7200BB156F /* IDPObservable.m in Sources */,
+				08E5774E18C9DD7200BB156F /* IDPObservableObject.m in Sources */,
 				086042DA18BF4038006DFC4D /* main.m in Sources */,
 				08E5775018C9DD7200BB156F /* IDPObserver.m in Sources */,
 				0858DA1118C0714F00278000 /* NSObject+IDPExtensions.m in Sources */,

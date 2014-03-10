@@ -2,11 +2,13 @@
 
 @protocol IDPObserver;
 
-@protocol IDPObservable <NSObject>
+@protocol IDPObservableObject <NSObject>
+
+@optional
 
 - (void)addObserver:(id<IDPObserver>)observer;
 - (void)removeObserver:(id<IDPObserver>)observer;
-- (void)notifyObserversWithObservable:(id<IDPObservable>)observable;
+- (void)notifyObserversWithObservableObject:(id<IDPObservableObject>)observableObject;
 
 - (NSArray *)observers;
 

@@ -1,9 +1,9 @@
 #import "IDPObserver.h"
 
-#import "IDPObservableWrapper.h"
+#import "IDPWeakReference.h"
 
 @interface IDPObserver ()
-@property (nonatomic, retain)	NSMutableArray	*mutableObservables;
+@property (nonatomic, retain)	NSMutableArray	*mutableObservableObjects;
 
 @end
 
@@ -20,7 +20,7 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-	self.mutableObservables = nil;
+	self.mutableObservableObjects = nil;
 	
     [super dealloc];
 }
@@ -28,7 +28,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.mutableObservables = [NSMutableArray array];
+        self.mutableObservableObjects = [NSMutableArray array];
     }
     return self;
 }
@@ -36,28 +36,31 @@
 #pragma mark -
 #pragma mark IDPObserver
 
-- (void)addObservable:(id<IDPObservable>)observable {
-	IDPObservableWrapper *wrapper = [IDPObservableWrapper wrapperWithObservable:observable];
-	[self.mutableObservables addObject:wrapper];
+- (void)addObservableObject:(id<IDPObservableObject>)observableObject {
+	IDPWeakReference *weakObservableObject = [IDPWeakReference referenceWithObject:observableObject];
+	
+	[self.mutableObservableObjects addObject:weakObservableObject];
 }
 
-- (void)removeObservable:(id<IDPObservable>)observable {
+- (void)removeObservableObject:(id<IDPObservableObject>)observableObject {
 	NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
-	for (NSUInteger i = 0; i < [self.mutableObservables count]; ++i) {
-		IDPObservableWrapper *wrapper = self.mutableObservables[i];
-		if (observable == wrapper.observable) {
+	
+	for (NSUInteger i = 0; i < [self.mutableObservableObjects count]; ++i) {
+		IDPWeakReference *weakObservableObjectReference = self.mutableObservableObjects[i];
+		if (observableObject == weakObservableObjectReference.object) {
 			[indexSet addIndex:i];
 		}
 	}
-	[self.mutableObservables removeObjectsAtIndexes:indexSet];
+	
+	[self.mutableObservableObjects removeObjectsAtIndexes:indexSet];
 }
 
-- (void)didReceiveNotificationFromObservable:(id<IDPObservable>)observable {
+- (void)didReceiveNotificationFromObservableObject:(id<IDPObservableObject>)observableObject {
 	
 }
 
 - (NSArray *)observables {
-	return [[self.mutableObservables copy] autorelease];
+	return [[self.mutableObservableObjects copy] autorelease];
 }
 
 @end
