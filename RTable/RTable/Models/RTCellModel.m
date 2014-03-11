@@ -5,6 +5,7 @@
 
 static const NSUInteger kRTStringLength = 10;
 static NSString * const kRTStringKey	= @"kRTStringKey";
+static NSString * const kRTImageName	= @"Lenna.png";
 
 @implementation RTCellModel
 
@@ -16,6 +17,23 @@ static NSString * const kRTStringKey	= @"kRTStringKey";
 	model.string = [NSString randomStringOfLength:kRTStringLength];
 	
 	return model;
+}
+
+#pragma mark -
+#pragma mark Public
+
+- (void)performLoading {
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		sleep(1 + arc4random_uniform(2));
+		self.image = [UIImage imageNamed:kRTImageName];
+
+		[self finishLoading];
+	});
+}
+
+- (void)cleanup {
+	self.string = nil;
+	self.image = nil;
 }
 
 #pragma mark -

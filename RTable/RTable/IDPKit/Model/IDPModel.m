@@ -62,8 +62,10 @@
 }
 
 - (void)finishLoading {
-	self.state = kIDPModelLoaded;
-	[self notifyObserversOfModelDidLoad];
+	dispatch_async(dispatch_get_main_queue(), ^{
+		self.state = kIDPModelLoaded;
+		[self notifyObserversOfModelDidLoad];
+	});
 }
 
 - (void)notifyObserversOfModelWillLoad {

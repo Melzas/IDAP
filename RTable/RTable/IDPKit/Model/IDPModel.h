@@ -34,7 +34,7 @@ typedef enum {
 - (void)performLoading;
 
 // This method should be called manually after the model was loaded
-// Notifies observers of successful loading and sets the corresponding state
+// Notifies observers of successful loading and sets the corresponding state on main thread
 - (void)finishLoading;
 
 // These methods are private. You should never call them directly

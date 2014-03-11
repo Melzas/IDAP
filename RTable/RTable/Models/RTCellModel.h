@@ -1,7 +1,10 @@
 #import <Foundation/Foundation.h>
 
-@interface RTCellModel : NSObject <NSCoding>
+#import "IDPModel.h"
+
+@interface RTCellModel : IDPModel <NSCoding>
 @property (nonatomic, copy)	NSString	*string;
+@property (nonatomic, copy) UIImage		*image;
 
 // returns model with random string
 + (instancetype)model;
