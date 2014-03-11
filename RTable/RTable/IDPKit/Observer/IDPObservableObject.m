@@ -81,7 +81,7 @@
 	dispatch_async(dispatch_get_main_queue(), ^{
 		for (id<IDPObserver> observer in self.observers) {
 			if ([observer respondsToSelector:selector]) {
-				[observer performSelector:selector];
+				[observer performSelector:selector withObject:self];
 			}
 		}
 	});
@@ -91,7 +91,7 @@
 	dispatch_async(dispatch_get_main_queue(), ^{
 		for (id<IDPObserver> observer in self.observers) {
 			if ([observer respondsToSelector:selector]) {
-				[observer performSelector:selector withObject:object];
+				[observer performSelector:selector withObject:self withObject:object];
 			}
 		}
 	});
