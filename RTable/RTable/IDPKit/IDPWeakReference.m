@@ -25,4 +25,20 @@
     return self;
 }
 
+#pragma mark -
+#pragma mark Public
+
+- (NSUInteger)hash {
+	return (NSUInteger)self.object;
+}
+
+- (BOOL)isEqual:(id)object {
+	if ([object isMemberOfClass:[self class]]) {
+		IDPWeakReference *reference = (IDPWeakReference *)object;
+		return reference.object == self.object;
+	}
+	
+	return NO;
+}
+
 @end
