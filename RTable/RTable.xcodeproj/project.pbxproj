@@ -211,14 +211,14 @@
 		08E2FC6618CEEE8500D289CE /* IDPKit */ = {
 			isa = PBXGroup;
 			children = (
-				08E2FC6718CEEE8500D289CE /* IDPObservableObject.h */,
-				08E2FC6818CEEE8500D289CE /* IDPObservableObject.m */,
-				08E2FC6918CEEE8500D289CE /* IDPObservableProtocol.h */,
-				08E2FC6A18CEEE8500D289CE /* IDPObserver.h */,
-				08E2FC6B18CEEE8500D289CE /* IDPObserver.m */,
-				08E2FC6C18CEEE8500D289CE /* IDPObserverProtocol.h */,
 				08E2FC6D18CEEE8500D289CE /* IDPWeakReference.h */,
 				08E2FC6E18CEEE8500D289CE /* IDPWeakReference.m */,
+				08E2FC6918CEEE8500D289CE /* IDPObservableProtocol.h */,
+				08E2FC6718CEEE8500D289CE /* IDPObservableObject.h */,
+				08E2FC6818CEEE8500D289CE /* IDPObservableObject.m */,
+				08E2FC6C18CEEE8500D289CE /* IDPObserverProtocol.h */,
+				08E2FC6A18CEEE8500D289CE /* IDPObserver.h */,
+				08E2FC6B18CEEE8500D289CE /* IDPObserver.m */,
 			);
 			name = IDPKit;
 			path = RTable/IDPKit;

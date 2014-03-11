@@ -4,8 +4,6 @@
 
 @protocol IDPObserver <NSObject>
 
-- (void)didReceiveNotificationFromObservableObject:(id<IDPObservableObject>)observableObject;
-
 @optional
 
 - (void)addObservableObject:(id<IDPObservableObject>)observableObject;

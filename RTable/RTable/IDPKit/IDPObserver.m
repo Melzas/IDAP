@@ -1,6 +1,6 @@
 #import "IDPObserver.h"
 
-#import "IDPWeakReference.h"
+#import "NSObject+IDPExtensions.h"
 
 @interface IDPObserver ()
 @property (nonatomic, retain)	NSMutableArray	*mutableObservableObjects;
@@ -13,7 +13,7 @@
 #pragma mark Class Methods
 
 + (instancetype)observer {
-	return [[[self alloc] init] autorelease];
+	return [self object];
 }
 
 #pragma mark -
@@ -21,6 +21,11 @@
 
 - (void)dealloc {
 	self.mutableObservableObjects = nil;
+	for (id<IDPObservableObject> observer in self.mutableObservableObjects) {
+		if ([observer respondsToSelector:@selector(removeObserver:)]) {
+			[observer removeObserver:self];
+		}
+	}
 	
     [super dealloc];
 }
@@ -37,26 +42,11 @@
 #pragma mark IDPObserver
 
 - (void)addObservableObject:(id<IDPObservableObject>)observableObject {
-	IDPWeakReference *weakObservableObject = [IDPWeakReference referenceWithObject:observableObject];
-	
-	[self.mutableObservableObjects addObject:weakObservableObject];
+	[self.mutableObservableObjects addObject:observableObject];
 }
 
 - (void)removeObservableObject:(id<IDPObservableObject>)observableObject {
-	NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
-	
-	for (NSUInteger i = 0; i < [self.mutableObservableObjects count]; ++i) {
-		IDPWeakReference *weakObservableObjectReference = self.mutableObservableObjects[i];
-		if (observableObject == weakObservableObjectReference.object) {
-			[indexSet addIndex:i];
-		}
-	}
-	
-	[self.mutableObservableObjects removeObjectsAtIndexes:indexSet];
-}
-
-- (void)didReceiveNotificationFromObservableObject:(id<IDPObservableObject>)observableObject {
-	
+	[self.mutableObservableObjects removeObject:observableObject];
 }
 
 - (NSArray *)observables {

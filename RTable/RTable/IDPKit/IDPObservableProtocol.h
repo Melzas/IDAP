@@ -8,8 +8,9 @@
 
 - (void)addObserver:(id<IDPObserver>)observer;
 - (void)removeObserver:(id<IDPObserver>)observer;
-- (void)notifyObserversWithObservableObject:(id<IDPObservableObject>)observableObject;
-
 - (NSArray *)observers;
+
+- (void)notifyObserversOnMainThreadWithSelector:(SEL)selector;
+- (void)notifyObserversOnMainThreadWithSelector:(SEL)selector object:(id)object;
 
 @end

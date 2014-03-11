@@ -1,8 +1,10 @@
 #import "IDPObservableObject.h"
 
+#import "NSObject+IDPExtensions.h"
+
 #import "IDPObserverProtocol.h"
 
-#import "NSObject+IDPExtensions.h"
+#import "IDPWeakReference.h"
 
 @interface IDPObservableObject ()
 @property (nonatomic, retain)	NSMutableArray	*mutableObservers;
@@ -23,11 +25,6 @@
 
 - (void)dealloc {
 	self.mutableObservers = nil;
-	for (id<IDPObserver> observer in self.mutableObservers) {
-		if ([observer respondsToSelector:@selector(removeObservableObject:)]) {
-			[observer removeObservableObject:self];
-		}
-	}
 	
     [super dealloc];
 }
@@ -41,32 +38,63 @@
 }
 
 #pragma mark -
+#pragma mark Accessors
+
+- (NSArray *)observers {
+	NSArray *observers = nil;
+	observers = [[self.mutableObservers copy] autorelease];
+    
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:[observers count]];
+    for (IDPWeakReference *reference in observers) {
+        [result addObject:reference.object];
+    }
+    
+    return [[result copy] autorelease];
+}
+
+#pragma mark -
 #pragma mark IDPObserver
 
 - (void)addObserver:(id<IDPObserver>)observer {
-	[self.mutableObservers addObject:observer];
+	NSMutableArray *mutableObservers = self.mutableObservers;
+	IDPWeakReference *reference = [IDPWeakReference referenceWithObject:observer];
+	if ([mutableObservers containsObject:reference]) {
+		return;
+	}
 	
+	[mutableObservers addObject:reference];
 	if ([observer respondsToSelector:@selector(addObservableObject:)]) {
 		[observer addObservableObject:self];
 	}
 }
 
 - (void)removeObserver:(id<IDPObserver>)observer {
-	[self.mutableObservers removeObjectIdenticalTo:observer];
+	IDPWeakReference *reference = [IDPWeakReference referenceWithObject:observer];
+	[self.mutableObservers removeObject:reference];
 	
 	if ([observer respondsToSelector:@selector(removeObservableObject:)]) {
 		[observer removeObservableObject:self];
 	}
 }
 
-- (void)notifyObserversWithObservableObject:(id<IDPObservableObject>)observableObject {
-	for (id<IDPObserver> observer in self.mutableObservers) {
-		[observer didReceiveNotificationFromObservableObject:observableObject];
-	}
+- (void)notifyObserversOnMainThreadWithSelector:(SEL)selector {
+	dispatch_async(dispatch_get_main_queue(), ^{
+		for (id<IDPObserver> observer in self.observers) {
+			if ([observer respondsToSelector:selector]) {
+				[observer performSelector:selector];
+			}
+		}
+	});
 }
 
-- (NSArray *)observers {
-	return [[self.mutableObservers copy] autorelease];
+- (void)notifyObserversOnMainThreadWithSelector:(SEL)selector object:(id)object {
+	dispatch_async(dispatch_get_main_queue(), ^{
+		for (id<IDPObserver> observer in self.observers) {
+			if ([observer respondsToSelector:selector]) {
+				[observer performSelector:selector withObject:object];
+			}
+		}
+	});
 }
 
 @end
