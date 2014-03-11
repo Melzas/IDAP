@@ -15,7 +15,7 @@
 @interface RTMainViewController ()
 @property (nonatomic, retain)	RTTableModel	*tableModel;
 @property (nonatomic, readonly)	RTMainView		*mainView;
-@property (nonatomic, readonly) IDPObserver		*observer;
+@property (nonatomic, retain)	IDPObserver		*observer;
 
 @end
 
@@ -28,6 +28,7 @@
 
 - (void)dealloc {
 	self.tableModel = nil;
+	self.observer = nil;
 	
     [super dealloc];
 }
@@ -36,6 +37,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.tableModel = [RTTableModel object];
+		self.observer = [IDPObserver object];
     }
 	
     return self;
@@ -93,7 +95,9 @@
 		 cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	RTCellView *cell = [self.mainView.tableView cellForClass:[RTCellView class]];
-	[cell fillFromModel:self.tableModel.cellModels[indexPath.row]];
+	RTCellModel *cellModel = self.tableModel.cellModels[indexPath.row];
+	[cellModel addObserver:cell];
+	[cellModel load];
 	
 	return cell;
 }
