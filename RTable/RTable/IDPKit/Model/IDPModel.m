@@ -3,7 +3,7 @@
 #import "IDPModelObserver.h"
 
 @interface IDPModel ()
-@property (nonatomic, assign) IDPModelState   state;
+@property (atomic, assign) IDPModelState   state;
 
 @end
 

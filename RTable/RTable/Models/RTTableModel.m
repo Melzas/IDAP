@@ -9,9 +9,6 @@ static const NSUInteger kRTCellModelCount	= 10;
 @property (nonatomic, retain)	NSMutableArray	*mutableCellModels;
 @property (nonatomic, readonly)	NSString		*savePath;
 
-@property (nonatomic, assign, readwrite)	RTTableModelLoadState	loadState;
-
-
 - (void)generateModels;
 
 @end
@@ -19,24 +16,6 @@ static const NSUInteger kRTCellModelCount	= 10;
 @implementation RTTableModel
 
 @dynamic cellModels;
-
-#pragma mark -
-#pragma mark Initializations and Deallocations
-
-- (void)dealloc {
-	self.mutableCellModels = nil;
-	
-    [super dealloc];
-}
-
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-		self.mutableCellModels = [NSMutableArray array];
-    }
-	
-    return self;
-}
 
 #pragma mark -
 #pragma mark Accessors
@@ -71,9 +50,15 @@ static const NSUInteger kRTCellModelCount	= 10;
 	[cellModels insertObject:cellModelToMove atIndex:toIndex];
 }
 
-- (void)load {
-	self.loadState = kRTTableModelLoading;
-	
+- (void)save {
+	[NSKeyedArchiver archiveRootObject:self.mutableCellModels toFile:self.savePath];
+}
+
+- (void)prepareForLoad {
+	self.mutableCellModels = [NSMutableArray array];
+}
+
+- (void)performLoading {
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		sleep(2);
 		
@@ -84,23 +69,14 @@ static const NSUInteger kRTCellModelCount	= 10;
 			[self generateModels];
 		}
 		
-		dispatch_async(dispatch_get_main_queue(), ^{
-			self.loadState = kRTTableModelLoaded;
-			
-			[self notifyObserversWithObservableObject:self];
-		});
+		[self finishLoading];
 	});
 }
 
-- (void)save {
-	[NSKeyedArchiver archiveRootObject:self.mutableCellModels toFile:self.savePath];
-}
-
-- (void)dump {
+- (void)cleanup {
 	[self save];
 	
-	self.mutableCellModels = [NSMutableArray array];
-	self.loadState = kRTTableModelNotLoaded;
+	self.mutableCellModels = nil;
 }
 
 #pragma mark -

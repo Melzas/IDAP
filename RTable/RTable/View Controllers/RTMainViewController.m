@@ -3,6 +3,8 @@
 #import "NSObject+IDPExtensions.h"
 #import "UITableView+IDPExtensions.h"
 
+#import "IDPObserver.h"
+
 #import "RTTableModel.h"
 #import "RTCellModel.h"
 
@@ -11,8 +13,9 @@
 
 
 @interface RTMainViewController ()
-@property (nonatomic, retain, readwrite)	RTTableModel	*tableModel;
-@property (nonatomic, readonly)				RTMainView		*mainView;
+@property (nonatomic, retain)	RTTableModel	*tableModel;
+@property (nonatomic, readonly)	RTMainView		*mainView;
+@property (nonatomic, readonly) IDPObserver		*observer;
 
 @end
 
@@ -119,7 +122,18 @@
 #pragma mark -
 #pragma mark IDPObserver
 
-- (void)didReceiveNotificationFromObservableObject:(id<IDPObservableObject>)observableObject {
+- (void)addObservableObject:(id<IDPObservableObject>)observableObject {
+	[self.observer addObservableObject:observableObject];
+}
+
+- (void)removeObservableObject:(id<IDPObservableObject>)observableObject {
+	[self.observer removeObservableObject:observableObject];
+}
+
+#pragma mark -
+#pragma mark IDPModelObserver
+
+- (void)modelDidLoad:(id)model {
 	[self.mainView.spinner stopAnimating];
 	self.mainView.spinnerBackgroundView.hidden = YES;
 	[self.mainView.tableView reloadData];

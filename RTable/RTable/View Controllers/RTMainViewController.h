@@ -1,10 +1,10 @@
 #import <UIKit/UIKit.h>
 
-#import "IDPObserverProtocol.h"
+#import "IDPModelObserver.h"
 
 @class RTTableModel;
 
-@interface RTMainViewController : UIViewController <UITableViewDataSource, IDPObserver>
+@interface RTMainViewController : UIViewController <UITableViewDataSource, IDPModelObserver>
 @property (nonatomic, readonly)	RTTableModel	*tableModel;
 
 - (IBAction)onAdd:(id)sender;

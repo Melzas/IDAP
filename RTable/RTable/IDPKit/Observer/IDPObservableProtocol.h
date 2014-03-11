@@ -5,7 +5,6 @@
 @protocol IDPObservableObject <NSObject>
 
 @optional
-
 - (void)addObserver:(id<IDPObserver>)observer;
 - (void)removeObserver:(id<IDPObserver>)observer;
 - (NSArray *)observers;

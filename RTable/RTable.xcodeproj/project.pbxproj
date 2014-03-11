@@ -209,7 +209,7 @@
 				08E2FC6118CEEE2200D289CE /* UITableView+IDPExtensions.m */,
 			);
 			name = Categories;
-			path = RTable/Categories;
+			path = ../Categories;
 			sourceTree = "<group>";
 		};
 		08E2FC6618CEEE8500D289CE /* IDPKit */ = {
@@ -218,6 +218,7 @@
 				08E2FC9418CF059D00D289CE /* Reference */,
 				08E2FC8D18CF059D00D289CE /* Observer */,
 				08E2FC9A18CF05B200D289CE /* Model */,
+				08E2FC5918CEEE2200D289CE /* Categories */,
 			);
 			name = IDPKit;
 			path = RTable/IDPKit;
@@ -227,7 +228,6 @@
 			isa = PBXGroup;
 			children = (
 				08E2FC6618CEEE8500D289CE /* IDPKit */,
-				08E2FC5918CEEE2200D289CE /* Categories */,
 				08E2FC8918CEEFC800D289CE /* App Delegate */,
 				08E2FC7318CEEF7300D289CE /* Models */,
 				08E2FC7818CEEF7300D289CE /* View Controllers */,
