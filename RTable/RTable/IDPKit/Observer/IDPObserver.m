@@ -20,12 +20,12 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-	self.mutableObservableObjects = nil;
-	for (id<IDPObservableObject> observer in self.mutableObservableObjects) {
-		if ([observer respondsToSelector:@selector(removeObserver:)]) {
-			[observer removeObserver:self];
+	for (id<IDPObservableObject> observableObject in self.mutableObservableObjects) {
+		if ([observableObject respondsToSelector:@selector(removeObserver:)]) {
+			[observableObject removeObserver:self];
 		}
 	}
+	self.mutableObservableObjects = nil;
 	
     [super dealloc];
 }

@@ -41,15 +41,14 @@
 #pragma mark Accessors
 
 - (NSArray *)observers {
-	NSArray *observers = nil;
-	observers = [[self.mutableObservers copy] autorelease];
+	NSArray *references = [[self.mutableObservers copy] autorelease];
     
-    NSMutableArray *result = [NSMutableArray arrayWithCapacity:[observers count]];
-    for (IDPWeakReference *reference in observers) {
-        [result addObject:reference.object];
+    NSMutableArray *observers = [NSMutableArray arrayWithCapacity:[references count]];
+    for (IDPWeakReference *reference in references) {
+        [observers addObject:reference.object];
     }
     
-    return [[result copy] autorelease];
+    return [[observers copy] autorelease];
 }
 
 #pragma mark -

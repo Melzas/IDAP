@@ -16,12 +16,17 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (void)delete:(id)sender {
+- (void)dealloc {
 	self.observer = nil;
 	
 	[super dealloc];
 }
 
+- (void)awakeFromNib {
+	self.observer = [IDPObserver observer];
+	
+	[super awakeFromNib];
+}
 
 #pragma mark -
 #pragma mark Accessors
