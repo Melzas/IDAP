@@ -35,6 +35,7 @@
 		08E2FC9718CF059D00D289CE /* IDPObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E2FC8F18CF059D00D289CE /* IDPObservableObject.m */; };
 		08E2FC9818CF059D00D289CE /* IDPObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E2FC9218CF059D00D289CE /* IDPObserver.m */; };
 		08E2FC9918CF059D00D289CE /* IDPWeakReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E2FC9618CF059D00D289CE /* IDPWeakReference.m */; };
+		08E2FC9D18CF07C400D289CE /* IDPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E2FC9C18CF07C400D289CE /* IDPModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,9 @@
 		08E2FC9318CF059D00D289CE /* IDPObserverProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObserverProtocol.h; sourceTree = "<group>"; };
 		08E2FC9518CF059D00D289CE /* IDPWeakReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPWeakReference.h; sourceTree = "<group>"; };
 		08E2FC9618CF059D00D289CE /* IDPWeakReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPWeakReference.m; sourceTree = "<group>"; };
+		08E2FC9B18CF07C400D289CE /* IDPModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPModel.h; sourceTree = "<group>"; };
+		08E2FC9C18CF07C400D289CE /* IDPModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModel.m; sourceTree = "<group>"; };
+		08E2FC9E18CF07FA00D289CE /* IDPModelObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDPModelObserver.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,6 +307,9 @@
 		08E2FC9A18CF05B200D289CE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				08E2FC9B18CF07C400D289CE /* IDPModel.h */,
+				08E2FC9C18CF07C400D289CE /* IDPModel.m */,
+				08E2FC9E18CF07FA00D289CE /* IDPModelObserver.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -419,6 +426,7 @@
 				08E2FC9918CF059D00D289CE /* IDPWeakReference.m in Sources */,
 				08E2FC8218CEEF7300D289CE /* RTCellModel.m in Sources */,
 				086042DA18BF4038006DFC4D /* main.m in Sources */,
+				08E2FC9D18CF07C400D289CE /* IDPModel.m in Sources */,
 				08E2FC8C18CEEFC800D289CE /* RTAppDelegate.m in Sources */,
 				08E2FC6318CEEE2200D289CE /* NSObject+IDPExtensions.m in Sources */,
 			);
