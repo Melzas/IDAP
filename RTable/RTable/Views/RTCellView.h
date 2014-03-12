@@ -9,4 +9,6 @@
 @property (nonatomic, retain)	IBOutlet UIImageView				*imageView;
 @property (nonatomic, retain)	IBOutlet UIActivityIndicatorView	*spinner;
 
+@property (nonatomic, retain)	RTCellModel	*model;
+
 @end

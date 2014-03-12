@@ -2,8 +2,6 @@
 
 #import "NSObject+IDPExtensions.h"
 
-#import "IDPObserverProtocol.h"
-
 #import "IDPWeakReference.h"
 
 @interface IDPObservableObject ()
@@ -54,7 +52,7 @@
 #pragma mark -
 #pragma mark IDPObserver
 
-- (void)addObserver:(id<IDPObserver>)observer {
+- (void)addObserver:(id)observer {
 	NSMutableArray *mutableObservers = self.mutableObservers;
 	IDPWeakReference *reference = [IDPWeakReference referenceWithObject:observer];
 	if ([mutableObservers containsObject:reference]) {
@@ -62,23 +60,16 @@
 	}
 	
 	[mutableObservers addObject:reference];
-	if ([observer respondsToSelector:@selector(addObservableObject:)]) {
-		[observer addObservableObject:self];
-	}
 }
 
-- (void)removeObserver:(id<IDPObserver>)observer {
+- (void)removeObserver:(id)observer {
 	IDPWeakReference *reference = [IDPWeakReference referenceWithObject:observer];
 	[self.mutableObservers removeObject:reference];
-	
-	if ([observer respondsToSelector:@selector(removeObservableObject:)]) {
-		[observer removeObservableObject:self];
-	}
 }
 
 - (void)notifyObserversOnMainThreadWithSelector:(SEL)selector {
 	dispatch_async(dispatch_get_main_queue(), ^{
-		for (id<IDPObserver> observer in self.observers) {
+		for (id observer in self.observers) {
 			if ([observer respondsToSelector:selector]) {
 				[observer performSelector:selector withObject:self];
 			}
@@ -88,7 +79,7 @@
 
 - (void)notifyObserversOnMainThreadWithSelector:(SEL)selector object:(id)object {
 	dispatch_async(dispatch_get_main_queue(), ^{
-		for (id<IDPObserver> observer in self.observers) {
+		for (id observer in self.observers) {
 			if ([observer respondsToSelector:selector]) {
 				[observer performSelector:selector withObject:self withObject:object];
 			}

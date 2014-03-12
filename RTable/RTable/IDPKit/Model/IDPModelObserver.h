@@ -1,8 +1,6 @@
 #import <Foundation/Foundation.h>
 
-#import "IDPObserver.h"
-
-@protocol IDPModelObserver <IDPObserver>
+@protocol IDPModelObserver <NSObject>
 
 @optional
 - (void)modelWillLoad:(id)model;

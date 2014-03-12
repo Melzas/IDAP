@@ -1,9 +1,9 @@
 #import <UIKit/UIKit.h>
 
-@class RTMainViewController;
+@class RTTableModel;
 
 @interface RTAppDelegate : UIResponder <UIApplicationDelegate>
 @property (nonatomic, retain)	UIWindow				*window;
-@property (nonatomic, retain)	RTMainViewController	*mainViewController;
+@property (nonatomic, retain)	RTTableModel			*tableModel;
 
 @end

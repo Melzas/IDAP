@@ -1,13 +1,11 @@
 #import "RTCellView.h"
 
-#import "IDPObserver.h"
-
 #import "RTCellModel.h"
 
 @interface RTCellView ()
-@property (nonatomic, retain)	IDPObserver	*observer;
 
 - (void)fillFromModel:(RTCellModel *)cellModel;
+- (void)loadModel;
 
 @end
 
@@ -17,15 +15,10 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-	self.observer = nil;
+	self.spinner = nil;
+	self.model = nil;
 	
 	[super dealloc];
-}
-
-- (void)awakeFromNib {
-	self.observer = [IDPObserver observer];
-	
-	[super awakeFromNib];
 }
 
 #pragma mark -
@@ -33,6 +26,17 @@
 
 - (NSString *)restorationIdentifier {
 	return NSStringFromClass([self class]);
+}
+
+- (void)setModel:(RTCellModel *)model {
+	if (model != _model) {
+		[_model removeObserver:self];
+		[_model release];
+		_model = [model retain];
+		[_model addObserver:self];
+		
+		[self loadModel];
+	}
 }
 
 #pragma mark -
@@ -44,15 +48,12 @@
 }
 
 #pragma mark -
-#pragma mark IDPObserver
+#pragma mark Private
 
-- (void)addObservableObject:(id<IDPObservableObject>)observableObject {
+- (void)loadModel {
 	[self.spinner startAnimating];
-	[self.observer addObservableObject:observableObject];
-}
-
-- (void)removeObservableObject:(id<IDPObservableObject>)observableObject {
-	[self.observer removeObservableObject:observableObject];
+	
+	[self.model load];
 }
 
 #pragma mark -
@@ -60,6 +61,7 @@
 
 - (void)modelDidLoad:(id)model {
 	[self fillFromModel:model];
+	
 	[self.spinner stopAnimating];
 }
 

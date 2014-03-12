@@ -28,7 +28,7 @@
 	
 	for(id<NSObject> object in nibObjects) {
 		if ([object isMemberOfClass:class]) {
-			return object;
+			return [[object retain] autorelease];
 		}
 	}
 	

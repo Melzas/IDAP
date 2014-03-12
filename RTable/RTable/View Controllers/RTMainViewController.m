@@ -3,8 +3,6 @@
 #import "NSObject+IDPExtensions.h"
 #import "UITableView+IDPExtensions.h"
 
-#import "IDPObserver.h"
-
 #import "RTTableModel.h"
 #import "RTCellModel.h"
 
@@ -13,9 +11,9 @@
 
 
 @interface RTMainViewController ()
-@property (nonatomic, retain)	RTTableModel	*tableModel;
 @property (nonatomic, readonly)	RTMainView		*mainView;
-@property (nonatomic, retain)	IDPObserver		*observer;
+
+- (void)loadTableModel;
 
 @end
 
@@ -28,19 +26,17 @@
 
 - (void)dealloc {
 	self.tableModel = nil;
-	self.observer = nil;
 	
     [super dealloc];
 }
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.tableModel = [RTTableModel object];
-		self.observer = [IDPObserver object];
-    }
+#pragma mark -
+#pragma mark View Lifecycle
+
+- (void)didReceiveMemoryWarning {
+	[self.tableModel dump];
 	
-    return self;
+	[super didReceiveMemoryWarning];
 }
 
 #pragma mark -
@@ -54,14 +50,15 @@
 	return  nil;
 }
 
-#pragma mark -
-#pragma mark View Lifecycle
-
-- (void)viewDidLoad {
-	[super viewDidLoad];
-	
-	[self.tableModel addObserver:self];
-	[self.tableModel load];
+- (void)setTableModel:(RTTableModel *)tableModel {
+	if (tableModel != _tableModel) {
+		[_tableModel removeObserver:self];
+		[_tableModel release];
+		_tableModel = [tableModel retain];
+		[_tableModel addObserver:self];
+		
+		[self loadTableModel];
+	}
 }
 
 #pragma mark -
@@ -85,6 +82,15 @@
 }
 
 #pragma mark -
+#pragma mark Private
+
+- (void)loadTableModel {
+	self.mainView.spinnerBackgroundView.hidden = NO;
+	
+	[self.tableModel load];
+}
+
+#pragma mark -
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -96,8 +102,7 @@
 {
 	RTCellView *cell = [self.mainView.tableView cellForClass:[RTCellView class]];
 	RTCellModel *cellModel = self.tableModel.cellModels[indexPath.row];
-	[cellModel addObserver:cell];
-	[cellModel load];
+	cell.model = cellModel;
 	
 	return cell;
 }
@@ -124,23 +129,13 @@
 }
 
 #pragma mark -
-#pragma mark IDPObserver
-
-- (void)addObservableObject:(id<IDPObservableObject>)observableObject {
-	[self.observer addObservableObject:observableObject];
-}
-
-- (void)removeObservableObject:(id<IDPObservableObject>)observableObject {
-	[self.observer removeObservableObject:observableObject];
-}
-
-#pragma mark -
 #pragma mark IDPModelObserver
 
 - (void)modelDidLoad:(id)model {
-	[self.mainView.spinner stopAnimating];
-	self.mainView.spinnerBackgroundView.hidden = YES;
-	[self.mainView.tableView reloadData];
+	RTMainView *mainView = self.mainView;
+	
+	mainView.spinnerBackgroundView.hidden = YES;
+	[mainView.tableView reloadData];
 }
 
 @end

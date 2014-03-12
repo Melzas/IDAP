@@ -33,7 +33,6 @@
 		08E2FC8818CEEF7300D289CE /* RTMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08E2FC8118CEEF7300D289CE /* RTMainView.xib */; };
 		08E2FC8C18CEEFC800D289CE /* RTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E2FC8B18CEEFC800D289CE /* RTAppDelegate.m */; };
 		08E2FC9718CF059D00D289CE /* IDPObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E2FC8F18CF059D00D289CE /* IDPObservableObject.m */; };
-		08E2FC9818CF059D00D289CE /* IDPObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E2FC9218CF059D00D289CE /* IDPObserver.m */; };
 		08E2FC9918CF059D00D289CE /* IDPWeakReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E2FC9618CF059D00D289CE /* IDPWeakReference.m */; };
 		08E2FC9D18CF07C400D289CE /* IDPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E2FC9C18CF07C400D289CE /* IDPModel.m */; };
 		08E2FCA118CF1B9200D289CE /* Spacer.png in Resources */ = {isa = PBXBuildFile; fileRef = 08E2FC9F18CF1B9200D289CE /* Spacer.png */; };
@@ -92,9 +91,6 @@
 		08E2FC8E18CF059D00D289CE /* IDPObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObservableObject.h; sourceTree = "<group>"; };
 		08E2FC8F18CF059D00D289CE /* IDPObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObservableObject.m; sourceTree = "<group>"; };
 		08E2FC9018CF059D00D289CE /* IDPObservableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObservableProtocol.h; sourceTree = "<group>"; };
-		08E2FC9118CF059D00D289CE /* IDPObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObserver.h; sourceTree = "<group>"; };
-		08E2FC9218CF059D00D289CE /* IDPObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObserver.m; sourceTree = "<group>"; };
-		08E2FC9318CF059D00D289CE /* IDPObserverProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObserverProtocol.h; sourceTree = "<group>"; };
 		08E2FC9518CF059D00D289CE /* IDPWeakReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPWeakReference.h; sourceTree = "<group>"; };
 		08E2FC9618CF059D00D289CE /* IDPWeakReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPWeakReference.m; sourceTree = "<group>"; };
 		08E2FC9B18CF07C400D289CE /* IDPModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPModel.h; sourceTree = "<group>"; };
@@ -294,9 +290,6 @@
 				08E2FC8E18CF059D00D289CE /* IDPObservableObject.h */,
 				08E2FC8F18CF059D00D289CE /* IDPObservableObject.m */,
 				08E2FC9018CF059D00D289CE /* IDPObservableProtocol.h */,
-				08E2FC9118CF059D00D289CE /* IDPObserver.h */,
-				08E2FC9218CF059D00D289CE /* IDPObserver.m */,
-				08E2FC9318CF059D00D289CE /* IDPObserverProtocol.h */,
 			);
 			path = Observer;
 			sourceTree = "<group>";
@@ -427,7 +420,6 @@
 				08E2FC8518CEEF7300D289CE /* RTCellView.m in Sources */,
 				08E2FC8318CEEF7300D289CE /* RTTableModel.m in Sources */,
 				08E2FC8418CEEF7300D289CE /* RTMainViewController.m in Sources */,
-				08E2FC9818CF059D00D289CE /* IDPObserver.m in Sources */,
 				08E2FC9718CF059D00D289CE /* IDPObservableObject.m in Sources */,
 				08E2FC8718CEEF7300D289CE /* RTMainView.m in Sources */,
 				08E2FC6218CEEE2200D289CE /* NSBundle+IDPExtensions.m in Sources */,
