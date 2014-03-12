@@ -3,6 +3,8 @@
 #import "NSObject+IDPExtensions.h"
 #import "NSString+IDPExtensions.h"
 
+#import "IDPImageModel.h"
+
 static const NSUInteger kRTStringLength = 10;
 static NSString * const kRTStringKey	= @"kRTStringKey";
 static NSString * const kRTImageName	= @"Lenna.png";
@@ -20,20 +22,38 @@ static NSString * const kRTImageName	= @"Lenna.png";
 }
 
 #pragma mark -
-#pragma mark Public
+#pragma mark Accessors
 
-- (void)performLoading {
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		sleep(1 + arc4random_uniform(2));
-		self.image = [UIImage imageNamed:kRTImageName];
-
-		[self finishLoading];
-	});
+- (void)setImageModel:(IDPImageModel *)imageModel {
+	if (imageModel != _imageModel) {
+		[_imageModel removeObserver:self];
+		[_imageModel release];
+		_imageModel = [imageModel retain];
+		[_imageModel addObserver:self];
+	}
 }
+
+#pragma mark -
+#pragma mark Public
 
 - (void)cleanup {
 	self.string = nil;
-	self.image = nil;
+	self.imageModel = nil;
+}
+
+- (void)prepareForLoad {
+	self.imageModel = [IDPImageModel modelWithImageFromFilePath:kRTImageName];
+}
+
+- (void)performLoading {
+	[self.imageModel load];
+}
+
+#pragma mark -
+#pragma mark IDPModelObserver
+
+- (void)modelDidLoad:(id)model {
+	[self finishLoading];
 }
 
 #pragma mark -

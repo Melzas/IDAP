@@ -1,5 +1,6 @@
 #import "RTCellView.h"
 
+#import "IDPImageModel.h"
 #import "RTCellModel.h"
 
 @interface RTCellView ()
@@ -43,7 +44,7 @@
 #pragma mark Public
 
 - (void)fillFromModel:(RTCellModel *)cellModel {
-	self.imageView.image = cellModel.image;
+	self.imageView.image = cellModel.imageModel.image;
 	self.textLabel.text = cellModel.string;
 }
 
