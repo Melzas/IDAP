@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		080C0B0418D1978100F12020 /* IDPImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 080C0B0118D1978100F12020 /* IDPImageCache.m */; };
+		080C0B0518D1978100F12020 /* IDPImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 080C0B0318D1978100F12020 /* IDPImageModel.m */; };
 		0858DA1D18C099CB00278000 /* Lenna.png in Resources */ = {isa = PBXBuildFile; fileRef = 0858DA1B18C099CB00278000 /* Lenna.png */; };
 		0858DA1E18C099CB00278000 /* Lenna@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0858DA1C18C099CB00278000 /* Lenna@2x.png */; };
 		086042CE18BF4037006DFC4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 086042CD18BF4037006DFC4D /* Foundation.framework */; };
@@ -20,8 +22,6 @@
 		086042E918BF4038006DFC4D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 086042D118BF4038006DFC4D /* UIKit.framework */; };
 		086042F118BF4038006DFC4D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 086042EF18BF4038006DFC4D /* InfoPlist.strings */; };
 		086042F318BF4038006DFC4D /* RTableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 086042F218BF4038006DFC4D /* RTableTests.m */; };
-		08B329CC18D059530037E82A /* IDPImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 08B329CB18D059530037E82A /* IDPImageModel.m */; };
-		08B329CF18D0639B0037E82A /* IDPImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 08B329CE18D0639B0037E82A /* IDPImageCache.m */; };
 		08B329D218D065E70037E82A /* IDPSingletonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 08B329D118D065E70037E82A /* IDPSingletonModel.m */; };
 		08E2FC6218CEEE2200D289CE /* NSBundle+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E2FC5B18CEEE2200D289CE /* NSBundle+IDPExtensions.m */; };
 		08E2FC6318CEEE2200D289CE /* NSObject+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E2FC5D18CEEE2200D289CE /* NSObject+IDPExtensions.m */; };
@@ -53,6 +53,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		080C0B0018D1978100F12020 /* IDPImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPImageCache.h; sourceTree = "<group>"; };
+		080C0B0118D1978100F12020 /* IDPImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPImageCache.m; sourceTree = "<group>"; };
+		080C0B0218D1978100F12020 /* IDPImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPImageModel.h; sourceTree = "<group>"; };
+		080C0B0318D1978100F12020 /* IDPImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPImageModel.m; sourceTree = "<group>"; };
 		0858DA1B18C099CB00278000 /* Lenna.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lenna.png; sourceTree = "<group>"; };
 		0858DA1C18C099CB00278000 /* Lenna@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Lenna@2x.png"; sourceTree = "<group>"; };
 		086042CA18BF4037006DFC4D /* RTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,10 +73,6 @@
 		086042EE18BF4038006DFC4D /* RTableTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RTableTests-Info.plist"; sourceTree = "<group>"; };
 		086042F018BF4038006DFC4D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		086042F218BF4038006DFC4D /* RTableTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTableTests.m; sourceTree = "<group>"; };
-		08B329CA18D059530037E82A /* IDPImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPImageModel.h; sourceTree = "<group>"; };
-		08B329CB18D059530037E82A /* IDPImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPImageModel.m; sourceTree = "<group>"; };
-		08B329CD18D0639B0037E82A /* IDPImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPImageCache.h; sourceTree = "<group>"; };
-		08B329CE18D0639B0037E82A /* IDPImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPImageCache.m; sourceTree = "<group>"; };
 		08B329D018D065E70037E82A /* IDPSingletonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSingletonModel.h; sourceTree = "<group>"; };
 		08B329D118D065E70037E82A /* IDPSingletonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPSingletonModel.m; sourceTree = "<group>"; };
 		08E2FC5A18CEEE2200D289CE /* NSBundle+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+IDPExtensions.h"; sourceTree = "<group>"; };
@@ -133,6 +133,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		080C0AFF18D1978100F12020 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				080C0B0018D1978100F12020 /* IDPImageCache.h */,
+				080C0B0118D1978100F12020 /* IDPImageCache.m */,
+				080C0B0218D1978100F12020 /* IDPImageModel.h */,
+				080C0B0318D1978100F12020 /* IDPImageModel.m */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 		0858DA1A18C099CB00278000 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +240,7 @@
 				08E2FC9418CF059D00D289CE /* Reference */,
 				08E2FC8D18CF059D00D289CE /* Observer */,
 				08E2FC9A18CF05B200D289CE /* Model */,
+				080C0AFF18D1978100F12020 /* Image */,
 				08E2FC5918CEEE2200D289CE /* Categories */,
 			);
 			name = IDPKit;
@@ -320,10 +332,6 @@
 				08E2FC9E18CF07FA00D289CE /* IDPModelObserver.h */,
 				08B329D018D065E70037E82A /* IDPSingletonModel.h */,
 				08B329D118D065E70037E82A /* IDPSingletonModel.m */,
-				08B329CA18D059530037E82A /* IDPImageModel.h */,
-				08B329CB18D059530037E82A /* IDPImageModel.m */,
-				08B329CD18D0639B0037E82A /* IDPImageCache.h */,
-				08B329CE18D0639B0037E82A /* IDPImageCache.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -435,8 +443,8 @@
 				08E2FC8518CEEF7300D289CE /* RTCellView.m in Sources */,
 				08E2FC8318CEEF7300D289CE /* RTTableModel.m in Sources */,
 				08B329D218D065E70037E82A /* IDPSingletonModel.m in Sources */,
-				08B329CC18D059530037E82A /* IDPImageModel.m in Sources */,
 				08E2FC8418CEEF7300D289CE /* RTMainViewController.m in Sources */,
+				080C0B0518D1978100F12020 /* IDPImageModel.m in Sources */,
 				08E2FC9718CF059D00D289CE /* IDPObservableObject.m in Sources */,
 				08E2FC8718CEEF7300D289CE /* RTMainView.m in Sources */,
 				08E2FC6218CEEE2200D289CE /* NSBundle+IDPExtensions.m in Sources */,
@@ -445,7 +453,7 @@
 				086042DA18BF4038006DFC4D /* main.m in Sources */,
 				08E2FC9D18CF07C400D289CE /* IDPModel.m in Sources */,
 				08E2FC8C18CEEFC800D289CE /* RTAppDelegate.m in Sources */,
-				08B329CF18D0639B0037E82A /* IDPImageCache.m in Sources */,
+				080C0B0418D1978100F12020 /* IDPImageCache.m in Sources */,
 				08E2FC6318CEEE2200D289CE /* NSObject+IDPExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
