@@ -1,6 +1,7 @@
 #import "IDPImageModel.h"
 
 #import "NSObject+IDPExtensions.h"
+#import "NSBundle+IDPExtensions.h"
 
 #import "IDPImageCache.h"
 
@@ -40,7 +41,9 @@
 	
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		sleep(1 + arc4random_uniform(8));
-		self.image = [UIImage imageNamed:self.path];
+		
+		NSString *fullImagePath = [[NSBundle mainBundle] fullPathForResource:self.path];
+		self.image = [UIImage imageWithContentsOfFile:fullImagePath];
 		[sharedImageCache addImage:self];
 		
 		[self finishLoading];

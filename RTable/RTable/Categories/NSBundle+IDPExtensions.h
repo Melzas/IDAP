@@ -16,4 +16,6 @@
 		options:(NSDictionary *)options
 		nibName:(NSString *)nibName;
 
+- (NSString *)fullPathForResource:(NSString *)resourceFilePath;
+
 @end

@@ -35,4 +35,8 @@
 	return nil;
 }
 
+- (NSString *)fullPathForResource:(NSString *)resourceFilePath {
+	return [[self resourcePath] stringByAppendingPathComponent:resourceFilePath];
+}
+
 @end

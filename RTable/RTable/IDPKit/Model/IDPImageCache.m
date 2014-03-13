@@ -48,15 +48,24 @@ static IDPImageCache *sharedImageCache = nil;
 #pragma mark Public
 
 - (void)addImage:(IDPImageModel *)imageModel {
-	[self.imageCache setObject:imageModel.image forKey:imageModel.path];
+	@synchronized(self) {
+		[self.imageCache setObject:imageModel.image forKey:imageModel.path];
+	}
 }
 
 - (void)removeImage:(IDPImageModel *)imageModel {
-	[self.imageCache removeObjectForKey:imageModel.path];
+	@synchronized(self) {
+		[self.imageCache removeObjectForKey:imageModel.path];
+	}
 }
 
 - (UIImage *)cachedImageForPath:(NSString *)imagePath {
-	return [self.imageCache objectForKey:imagePath];
+	UIImage *image = nil;
+	@synchronized(self) {
+		image = [self.imageCache objectForKey:imagePath];
+	}
+	
+	return image;
 }
 
 #pragma mark -
