@@ -85,7 +85,7 @@
 #pragma mark Private
 
 - (void)loadTableModel {
-	self.mainView.spinnerBackgroundView.hidden = NO;
+	self.mainView.loadingView.hidden = NO;
 	
 	[self.tableModel load];
 }
@@ -134,7 +134,7 @@
 - (void)modelDidLoad:(id)model {
 	RTMainView *mainView = self.mainView;
 	
-	mainView.spinnerBackgroundView.hidden = YES;
+	mainView.loadingView.hidden = YES;
 	[mainView.tableView reloadData];
 }
 

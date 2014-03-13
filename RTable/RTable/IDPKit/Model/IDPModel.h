@@ -17,20 +17,14 @@ typedef enum {
 // Unloads the model from memory and inform observers of unloading state.
 - (void)dump;
 
-// Intended for subclassing.
-// Should purge the memory from model.
-// Called in dealloc and dump
-// Default implementation does nothing.
+// Intended for subclassing. Should purge the model from memory.
+// Called in dealloc and dump. Default implementation does nothing.
 - (void)cleanup;
 
-// Intended for subclassing.
-// Should perform preparation steps before loading
-// Called in load.
+// Intended for subclassing. Should perform preparation steps before loading.
 - (void)prepareForLoad;
 
-// Intended for subclassing.
-// Should load the model into memory
-// Called in load.
+// Intended for subclassing. Should load the model into memory.
 - (void)performLoading;
 
 // This method should be called manually after the model was loaded
@@ -38,8 +32,8 @@ typedef enum {
 - (void)finishLoading;
 
 // These methods are private. You should never call them directly
-- (void)notifyObserversOfModelWillLoad;
-- (void)notifyObserversOfModelDidLoad;
-- (void)notifyObserversOfModelDidUnload;
+- (void)notifyObserversOfWillLoad;
+- (void)notifyObserversOflDidLoad;
+- (void)notifyObserversOfDidUnload;
 
 @end

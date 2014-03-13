@@ -38,7 +38,7 @@
                         </barButtonItem>
                     </items>
                 </toolbar>
-                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="myX-nk-4DI" userLabel="Spinner Background View">
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="myX-nk-4DI" userLabel="Loading View">
                     <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -68,8 +68,8 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <connections>
                 <outlet property="editButton" destination="wjG-9o-IqD" id="3u3-Ui-Mfd"/>
+                <outlet property="loadingView" destination="myX-nk-4DI" id="M33-pX-exy"/>
                 <outlet property="spinner" destination="IEQ-0r-1s6" id="Ktz-KT-lmv"/>
-                <outlet property="spinnerBackgroundView" destination="myX-nk-4DI" id="OSK-QB-B8d"/>
                 <outlet property="tableView" destination="nh7-eX-sgp" id="A36-GL-x7r"/>
             </connections>
         </view>

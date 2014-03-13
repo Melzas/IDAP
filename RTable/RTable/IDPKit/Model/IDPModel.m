@@ -20,7 +20,7 @@
 
 - (BOOL)load {
 	if (kIDPModelLoaded == self.state) {
-		[self notifyObserversOfModelDidLoad];
+		[self notifyObserversOflDidLoad];
 		return NO;
 	}
 	
@@ -30,7 +30,7 @@
 	
 	[self prepareForLoad];
 	self.state = kIDPModelLoading;
-	[self notifyObserversOfModelWillLoad];
+	[self notifyObserversOfWillLoad];
 	[self performLoading];
 	
 	return YES;
@@ -43,7 +43,7 @@
     
     self.state = kIDPModelUnloaded;
     [self cleanup];
-    [self notifyObserversOfModelDidUnload];
+    [self notifyObserversOfDidUnload];
 }
 
 - (void)cleanup {
@@ -64,19 +64,19 @@
 - (void)finishLoading {
 	dispatch_async(dispatch_get_main_queue(), ^{
 		self.state = kIDPModelLoaded;
-		[self notifyObserversOfModelDidLoad];
+		[self notifyObserversOflDidLoad];
 	});
 }
 
-- (void)notifyObserversOfModelWillLoad {
+- (void)notifyObserversOfWillLoad {
 	[self notifyObserversOnMainThreadWithSelector:@selector(modelWillLoad:)];
 }
 
-- (void)notifyObserversOfModelDidLoad {
+- (void)notifyObserversOflDidLoad {
 	[self notifyObserversOnMainThreadWithSelector:@selector(modelDidLoad:)];
 }
 
-- (void)notifyObserversOfModelDidUnload {
+- (void)notifyObserversOfDidUnload {
 	[self notifyObserversOnMainThreadWithSelector:@selector(modelDidUnload:)];
 }
 

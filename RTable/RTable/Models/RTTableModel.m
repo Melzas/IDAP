@@ -2,7 +2,7 @@
 
 #import "RTCellModel.h"
 
-static NSString * const kRTStorageFileName	= @"RTStorageFileName.plist";
+static NSString * const kRTStorageFileName	= @"RTTableModel.plist";
 static const NSUInteger kRTCellModelCount	= 10;
 
 @interface RTTableModel ()
@@ -33,6 +33,12 @@ static const NSUInteger kRTCellModelCount	= 10;
 
 #pragma mark -
 #pragma mark Public
+
+- (void)cleanup {
+	[self save];
+	
+	self.mutableCellModels = nil;
+}
 
 - (void)addCellModel:(RTCellModel *)cellModel {
 	[self.mutableCellModels addObject:cellModel];
@@ -71,12 +77,6 @@ static const NSUInteger kRTCellModelCount	= 10;
 		
 		[self finishLoading];
 	});
-}
-
-- (void)cleanup {
-	[self save];
-	
-	self.mutableCellModels = nil;
 }
 
 #pragma mark -

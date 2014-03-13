@@ -11,6 +11,7 @@
 
 - (void)dealloc {
 	self.window = nil;
+	self.tableModel = nil;
 	
 	[super dealloc];
 }

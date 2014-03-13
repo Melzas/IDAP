@@ -15,12 +15,12 @@
 #pragma mark Class methods
 
 + (id)__sharedObject {
-    NSAssert(NO, @"overridde me");
+    NSAssert(NO, @"override me");
     return NULL;
 }
 
 + (id)sharedObject {
-    NSAssert(NO, @"overridde me");
+    NSAssert(NO, @"override me");
     return NULL;
 }
 
@@ -34,15 +34,11 @@
 }
 
 + (id)allocWithZone:(NSZone *)zone {
-	//    static dispatch_once_t once;
-    
     __block id result = [self __sharedObject];
     
-	//    dispatch_once(&once, ^{
 	if (![self __sharedObject]) {
 		result = [super allocWithZone:zone];
 	}
-	//    });
     
     return result;
 }
