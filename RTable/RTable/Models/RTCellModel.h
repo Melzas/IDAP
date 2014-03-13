@@ -6,9 +6,9 @@
 
 @class IDPImageModel;
 
-@interface RTCellModel : IDPModel <NSCoding, IDPModelObserver>
-@property (nonatomic, copy)	NSString		*string;
-@property (nonatomic, copy) IDPImageModel	*imageModel;
+@interface RTCellModel : IDPModel <NSCoding>
+@property (nonatomic, copy)		NSString		*string;
+@property (nonatomic, retain)	IDPImageModel	*imageModel;
 
 // returns model with random string
 + (instancetype)model;

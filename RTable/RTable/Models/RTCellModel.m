@@ -22,18 +22,6 @@ static NSString * const kRTImageName	= @"Lenna.png";
 }
 
 #pragma mark -
-#pragma mark Accessors
-
-- (void)setImageModel:(IDPImageModel *)imageModel {
-	if (imageModel != _imageModel) {
-		[_imageModel removeObserver:self];
-		[_imageModel release];
-		_imageModel = [imageModel retain];
-		[_imageModel addObserver:self];
-	}
-}
-
-#pragma mark -
 #pragma mark Public
 
 - (void)cleanup {
@@ -47,12 +35,7 @@ static NSString * const kRTImageName	= @"Lenna.png";
 
 - (void)performLoading {
 	[self.imageModel load];
-}
-
-#pragma mark -
-#pragma mark IDPModelObserver
-
-- (void)modelDidLoad:(id)model {
+	
 	[self finishLoading];
 }
 

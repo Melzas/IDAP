@@ -1,6 +1,9 @@
 #import "RTCellView.h"
 
+#import "IDPPropertyMacros.h"
+
 #import "IDPImageModel.h"
+
 #import "RTCellModel.h"
 
 @interface RTCellView ()
@@ -16,7 +19,6 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-	self.spinner = nil;
 	self.model = nil;
 	
 	[super dealloc];
@@ -30,30 +32,23 @@
 }
 
 - (void)setModel:(RTCellModel *)model {
-	if (model != _model) {
-		[_model removeObserver:self];
-		[_model release];
-		_model = [model retain];
-		[_model addObserver:self];
-		
-		[self loadModel];
-	}
+	IDPNonatomicRetainPropertySynthesizeWithObserver(_model, model);
+
+	[self loadModel];
 }
 
 #pragma mark -
 #pragma mark Public
 
 - (void)fillFromModel:(RTCellModel *)cellModel {
-	self.imageView.image = cellModel.imageModel.image;
 	self.textLabel.text = cellModel.string;
+	self.asyncImageView.model = cellModel.imageModel;
 }
 
 #pragma mark -
 #pragma mark Private
 
 - (void)loadModel {
-	[self.spinner startAnimating];
-	
 	[self.model load];
 }
 
@@ -62,8 +57,6 @@
 
 - (void)modelDidLoad:(id)model {
 	[self fillFromModel:model];
-	
-	[self.spinner stopAnimating];
 }
 
 @end

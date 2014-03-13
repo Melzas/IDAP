@@ -3,6 +3,8 @@
 #import "NSObject+IDPExtensions.h"
 #import "UITableView+IDPExtensions.h"
 
+#import "IDPPropertyMacros.h"
+
 #import "RTTableModel.h"
 #import "RTCellModel.h"
 
@@ -51,14 +53,9 @@
 }
 
 - (void)setTableModel:(RTTableModel *)tableModel {
-	if (tableModel != _tableModel) {
-		[_tableModel removeObserver:self];
-		[_tableModel release];
-		_tableModel = [tableModel retain];
-		[_tableModel addObserver:self];
-		
-		[self loadTableModel];
-	}
+	IDPNonatomicRetainPropertySynthesizeWithObserver(_tableModel, tableModel);
+
+	[self loadTableModel];
 }
 
 #pragma mark -

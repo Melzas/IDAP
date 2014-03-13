@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		080C0B0418D1978100F12020 /* IDPImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 080C0B0118D1978100F12020 /* IDPImageCache.m */; };
 		080C0B0518D1978100F12020 /* IDPImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 080C0B0318D1978100F12020 /* IDPImageModel.m */; };
+		080C0B0818D19C2600F12020 /* RTImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 080C0B0718D19C2600F12020 /* RTImageView.m */; };
 		0858DA1D18C099CB00278000 /* Lenna.png in Resources */ = {isa = PBXBuildFile; fileRef = 0858DA1B18C099CB00278000 /* Lenna.png */; };
 		0858DA1E18C099CB00278000 /* Lenna@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0858DA1C18C099CB00278000 /* Lenna@2x.png */; };
 		086042CE18BF4037006DFC4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 086042CD18BF4037006DFC4D /* Foundation.framework */; };
@@ -57,6 +58,9 @@
 		080C0B0118D1978100F12020 /* IDPImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPImageCache.m; sourceTree = "<group>"; };
 		080C0B0218D1978100F12020 /* IDPImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPImageModel.h; sourceTree = "<group>"; };
 		080C0B0318D1978100F12020 /* IDPImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPImageModel.m; sourceTree = "<group>"; };
+		080C0B0618D19C2600F12020 /* RTImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTImageView.h; path = ../IDPKit/Image/RTImageView.h; sourceTree = "<group>"; };
+		080C0B0718D19C2600F12020 /* RTImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTImageView.m; path = ../IDPKit/Image/RTImageView.m; sourceTree = "<group>"; };
+		080C0B0918D19CDF00F12020 /* IDPPropertyMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDPPropertyMacros.h; sourceTree = "<group>"; };
 		0858DA1B18C099CB00278000 /* Lenna.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lenna.png; sourceTree = "<group>"; };
 		0858DA1C18C099CB00278000 /* Lenna@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Lenna@2x.png"; sourceTree = "<group>"; };
 		086042CA18BF4037006DFC4D /* RTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -237,6 +241,7 @@
 		08E2FC6618CEEE8500D289CE /* IDPKit */ = {
 			isa = PBXGroup;
 			children = (
+				080C0B0918D19CDF00F12020 /* IDPPropertyMacros.h */,
 				08E2FC9418CF059D00D289CE /* Reference */,
 				08E2FC8D18CF059D00D289CE /* Observer */,
 				08E2FC9A18CF05B200D289CE /* Model */,
@@ -290,6 +295,8 @@
 				08E2FC7F18CEEF7300D289CE /* RTMainView.h */,
 				08E2FC8018CEEF7300D289CE /* RTMainView.m */,
 				08E2FC8118CEEF7300D289CE /* RTMainView.xib */,
+				080C0B0618D19C2600F12020 /* RTImageView.h */,
+				080C0B0718D19C2600F12020 /* RTImageView.m */,
 			);
 			name = Views;
 			path = RTable/Views;
@@ -448,6 +455,7 @@
 				08E2FC9718CF059D00D289CE /* IDPObservableObject.m in Sources */,
 				08E2FC8718CEEF7300D289CE /* RTMainView.m in Sources */,
 				08E2FC6218CEEE2200D289CE /* NSBundle+IDPExtensions.m in Sources */,
+				080C0B0818D19C2600F12020 /* RTImageView.m in Sources */,
 				08E2FC9918CF059D00D289CE /* IDPWeakReference.m in Sources */,
 				08E2FC8218CEEF7300D289CE /* RTCellModel.m in Sources */,
 				086042DA18BF4038006DFC4D /* main.m in Sources */,

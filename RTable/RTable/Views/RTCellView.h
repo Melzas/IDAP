@@ -2,12 +2,13 @@
 
 #import "IDPModelObserver.h"
 
+#import "RTImageView.h"
+
 @class RTCellModel;
 
 @interface RTCellView : UITableViewCell <IDPModelObserver>
-@property (nonatomic, retain)	IBOutlet UILabel					*textLabel;
-@property (nonatomic, retain)	IBOutlet UIImageView				*imageView;
-@property (nonatomic, retain)	IBOutlet UIActivityIndicatorView	*spinner;
+@property (nonatomic, retain)	IBOutlet UILabel		*textLabel;
+@property (nonatomic, retain)	IBOutlet RTImageView	*asyncImageView;
 
 @property (nonatomic, retain)	RTCellModel	*model;
 
