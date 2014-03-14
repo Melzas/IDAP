@@ -4,7 +4,7 @@
 
 #import "IDPImageModel.h"
 
-static IDPImageCache *sharedImageCache = nil;
+static IDPImageCache *IDPSharedImageCache = nil;
 
 @interface IDPImageCache ()
 @property (nonatomic, retain)	NSCache	*imageCache;
@@ -19,10 +19,10 @@ static IDPImageCache *sharedImageCache = nil;
 + (id)sharedObject {
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-		sharedImageCache = [[self alloc] init];
+		IDPSharedImageCache = [[self alloc] init];
 	});
 	
-	return sharedImageCache;
+	return IDPSharedImageCache;
 }
 
 
@@ -72,7 +72,7 @@ static IDPImageCache *sharedImageCache = nil;
 #pragma mark Private
 
 + (id)__sharedObject {
-	return sharedImageCache;
+	return IDPSharedImageCache;
 }
 
 @end

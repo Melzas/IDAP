@@ -7,9 +7,8 @@
 @class RTCellModel;
 
 @interface RTCellView : UITableViewCell <IDPModelObserver>
-@property (nonatomic, retain)	IBOutlet UILabel		*textLabel;
+@property (nonatomic, retain)	IBOutlet UILabel		*label;
 @property (nonatomic, retain)	IBOutlet RTImageView	*asyncImageView;
-
-@property (nonatomic, retain)	RTCellModel	*model;
+@property (nonatomic, retain)	RTCellModel				*model;
 
 @end

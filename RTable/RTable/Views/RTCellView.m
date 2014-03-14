@@ -19,6 +19,8 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
+	self.label = nil;
+	self.asyncImageView = nil;
 	self.model = nil;
 	
 	[super dealloc];
@@ -41,7 +43,7 @@
 #pragma mark Public
 
 - (void)fillFromModel:(RTCellModel *)cellModel {
-	self.textLabel.text = cellModel.string;
+	self.label.text = cellModel.string;
 	self.asyncImageView.model = cellModel.imageModel;
 }
 

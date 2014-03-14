@@ -59,7 +59,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="asyncImageView" destination="dFh-US-dIC" id="66p-1a-qck"/>
-                <outlet property="textLabel" destination="Toi-p2-xdq" id="vm9-2M-fvN"/>
+                <outlet property="label" destination="Toi-p2-xdq" id="9k3-At-QX6"/>
             </connections>
         </tableViewCell>
     </objects>

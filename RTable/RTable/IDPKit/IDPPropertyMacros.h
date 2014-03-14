@@ -32,7 +32,7 @@
 			if (ivar != newObject) { \
 				[ivar removeObserver:self]; \
 				[ivar release]; \
-				ivar=[newObject retain]; \
+				ivar = [newObject retain]; \
 				[ivar addObserver:self]; \
 			} \
 		} while(0)

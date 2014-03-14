@@ -14,6 +14,8 @@
 - (void)dealloc {
 	self.tableView = nil;
 	self.editButton = nil;
+	self.loadingView = nil;
+	self.spinner = nil;
 	
 	[super dealloc];
 }
