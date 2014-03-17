@@ -93,6 +93,7 @@
 		08A353C618D6DA9800A3E673 /* UIView+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A3537A18D6DA9800A3E673 /* UIView+IDPExtensions.m */; };
 		08A353C718D6DA9800A3E673 /* UIViewController+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A3537C18D6DA9800A3E673 /* UIViewController+IDPExtensions.m */; };
 		08A353C818D6DA9800A3E673 /* UIViewController+IDPInitialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A3537E18D6DA9800A3E673 /* UIViewController+IDPInitialization.m */; };
+		08A353CA18D6DD3C00A3E673 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A353C918D6DD3C00A3E673 /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -259,6 +260,7 @@
 		08A3537C18D6DA9800A3E673 /* UIViewController+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+IDPExtensions.m"; sourceTree = "<group>"; };
 		08A3537D18D6DA9800A3E673 /* UIViewController+IDPInitialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+IDPInitialization.h"; sourceTree = "<group>"; };
 		08A3537E18D6DA9800A3E673 /* UIViewController+IDPInitialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+IDPInitialization.m"; sourceTree = "<group>"; };
+		08A353C918D6DD3C00A3E673 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08A352AB18D6D69F00A3E673 /* CoreGraphics.framework in Frameworks */,
+				08A353CA18D6DD3C00A3E673 /* FacebookSDK.framework in Frameworks */,
 				08A352AD18D6D69F00A3E673 /* UIKit.framework in Frameworks */,
 				08A352A918D6D69F00A3E673 /* Foundation.framework in Frameworks */,
 			);
@@ -308,6 +311,7 @@
 		08A352A718D6D69F00A3E673 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				08A353C918D6DD3C00A3E673 /* FacebookSDK.framework */,
 				08A352A818D6D69F00A3E673 /* Foundation.framework */,
 				08A352AA18D6D69F00A3E673 /* CoreGraphics.framework */,
 				08A352AC18D6D69F00A3E673 /* UIKit.framework */,
@@ -1031,6 +1035,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/melzas/Projects/FacebookSDK,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FacebookFriends/FacebookFriends-Prefix.pch";
 				INFOPLIST_FILE = "FacebookFriends/FacebookFriends-Info.plist";
@@ -1044,6 +1052,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/melzas/Projects/FacebookSDK,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FacebookFriends/FacebookFriends-Prefix.pch";
 				INFOPLIST_FILE = "FacebookFriends/FacebookFriends-Info.plist";
