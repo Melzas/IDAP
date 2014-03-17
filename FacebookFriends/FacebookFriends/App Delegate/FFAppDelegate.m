@@ -8,6 +8,8 @@
 
 #import "FFAppDelegate.h"
 
+#import "FFMainViewController.h"
+
 @implementation FFAppDelegate
 
 #pragma mark -
@@ -25,9 +27,21 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.window.backgroundColor = [UIColor whiteColor];
+	
+	FFMainViewController *mainViewController = [FFMainViewController defaultNibController];
+	self.window.rootViewController = mainViewController;
+	
     [self.window makeKeyAndVisible];
 	
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+			openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+		 annotation:(id)annotation
+{
+	return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

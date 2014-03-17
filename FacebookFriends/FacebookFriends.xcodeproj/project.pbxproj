@@ -12,7 +12,6 @@
 		08A352AD18D6D69F00A3E673 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A352AC18D6D69F00A3E673 /* UIKit.framework */; };
 		08A352B318D6D69F00A3E673 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08A352B118D6D69F00A3E673 /* InfoPlist.strings */; };
 		08A352B518D6D69F00A3E673 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A352B418D6D69F00A3E673 /* main.m */; };
-		08A352B918D6D69F00A3E673 /* FFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A352B818D6D69F00A3E673 /* FFAppDelegate.m */; };
 		08A352BB18D6D69F00A3E673 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A352BA18D6D69F00A3E673 /* Images.xcassets */; };
 		08A352C218D6D69F00A3E673 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A352C118D6D69F00A3E673 /* XCTest.framework */; };
 		08A352C318D6D69F00A3E673 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A352A818D6D69F00A3E673 /* Foundation.framework */; };
@@ -94,6 +93,10 @@
 		08A353C718D6DA9800A3E673 /* UIViewController+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A3537C18D6DA9800A3E673 /* UIViewController+IDPExtensions.m */; };
 		08A353C818D6DA9800A3E673 /* UIViewController+IDPInitialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A3537E18D6DA9800A3E673 /* UIViewController+IDPInitialization.m */; };
 		08A353CA18D6DD3C00A3E673 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A353C918D6DD3C00A3E673 /* FacebookSDK.framework */; };
+		08A353D418D6E46100A3E673 /* FFMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A353D318D6E46100A3E673 /* FFMainViewController.m */; };
+		08A353D618D6E46B00A3E673 /* FFMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08A353D518D6E46B00A3E673 /* FFMainViewController.xib */; };
+		08A353DD18D6E4EE00A3E673 /* FFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A353DC18D6E4EE00A3E673 /* FFAppDelegate.m */; };
+		08A353E018D6E8CC00A3E673 /* FFMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A353DF18D6E8CC00A3E673 /* FFMainView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,8 +118,6 @@
 		08A352B218D6D69F00A3E673 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		08A352B418D6D69F00A3E673 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		08A352B618D6D69F00A3E673 /* FacebookFriends-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FacebookFriends-Prefix.pch"; sourceTree = "<group>"; };
-		08A352B718D6D69F00A3E673 /* FFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFAppDelegate.h; sourceTree = "<group>"; };
-		08A352B818D6D69F00A3E673 /* FFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFAppDelegate.m; sourceTree = "<group>"; };
 		08A352BA18D6D69F00A3E673 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		08A352C018D6D69F00A3E673 /* FacebookFriendsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FacebookFriendsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A352C118D6D69F00A3E673 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -261,6 +262,13 @@
 		08A3537D18D6DA9800A3E673 /* UIViewController+IDPInitialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+IDPInitialization.h"; sourceTree = "<group>"; };
 		08A3537E18D6DA9800A3E673 /* UIViewController+IDPInitialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+IDPInitialization.m"; sourceTree = "<group>"; };
 		08A353C918D6DD3C00A3E673 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		08A353D218D6E46100A3E673 /* FFMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFMainViewController.h; sourceTree = "<group>"; };
+		08A353D318D6E46100A3E673 /* FFMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFMainViewController.m; sourceTree = "<group>"; };
+		08A353D518D6E46B00A3E673 /* FFMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FFMainViewController.xib; sourceTree = "<group>"; };
+		08A353DB18D6E4EE00A3E673 /* FFAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFAppDelegate.h; sourceTree = "<group>"; };
+		08A353DC18D6E4EE00A3E673 /* FFAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFAppDelegate.m; sourceTree = "<group>"; };
+		08A353DE18D6E8CC00A3E673 /* FFMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFMainView.h; sourceTree = "<group>"; };
+		08A353DF18D6E8CC00A3E673 /* FFMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFMainView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,10 +331,12 @@
 		08A352AE18D6D69F00A3E673 /* FacebookFriends */ = {
 			isa = PBXGroup;
 			children = (
-				08A352B718D6D69F00A3E673 /* FFAppDelegate.h */,
-				08A352B818D6D69F00A3E673 /* FFAppDelegate.m */,
-				08A352BA18D6D69F00A3E673 /* Images.xcassets */,
+				08A353DA18D6E4EE00A3E673 /* App Delegate */,
+				08A353E118D6EF9600A3E673 /* Models */,
+				08A353CB18D6E3CC00A3E673 /* View Controllers */,
+				08A353CC18D6E3CC00A3E673 /* Views */,
 				08A352AF18D6D69F00A3E673 /* Supporting Files */,
+				08A352BA18D6D69F00A3E673 /* Images.xcassets */,
 			);
 			path = FacebookFriends;
 			sourceTree = "<group>";
@@ -745,6 +755,41 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		08A353CB18D6E3CC00A3E673 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				08A353D218D6E46100A3E673 /* FFMainViewController.h */,
+				08A353D318D6E46100A3E673 /* FFMainViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		08A353CC18D6E3CC00A3E673 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				08A353D518D6E46B00A3E673 /* FFMainViewController.xib */,
+				08A353DE18D6E8CC00A3E673 /* FFMainView.h */,
+				08A353DF18D6E8CC00A3E673 /* FFMainView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		08A353DA18D6E4EE00A3E673 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				08A353DB18D6E4EE00A3E673 /* FFAppDelegate.h */,
+				08A353DC18D6E4EE00A3E673 /* FFAppDelegate.m */,
+			);
+			path = "App Delegate";
+			sourceTree = "<group>";
+		};
+		08A353E118D6EF9600A3E673 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -823,6 +868,7 @@
 			files = (
 				08A353B218D6DA9800A3E673 /* .gitignore in Resources */,
 				08A3538A18D6DA9800A3E673 /* .gitignore in Resources */,
+				08A353D618D6E46B00A3E673 /* FFMainViewController.xib in Resources */,
 				08A3538218D6DA9800A3E673 /* README.md in Resources */,
 				08A353B818D6DA9800A3E673 /* README.md in Resources */,
 				08A353BA18D6DA9800A3E673 /* .gitignore in Resources */,
@@ -864,12 +910,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				08A3538918D6DA9800A3E673 /* NSManagedObjectID+IDPExtensions.m in Sources */,
+				08A353D418D6E46100A3E673 /* FFMainViewController.m in Sources */,
 				08A353A818D6DA9800A3E673 /* NSObject+IDPOCExtensionsPrivate.m in Sources */,
 				08A3539D18D6DA9800A3E673 /* IDPKVOMutableArray.m in Sources */,
 				08A3538618D6DA9800A3E673 /* IDPCoreDataManager.m in Sources */,
 				08A353A418D6DA9800A3E673 /* IDPOCContext.m in Sources */,
 				08A353BF18D6DA9800A3E673 /* UIAlertView+IDPExtensions.m in Sources */,
-				08A352B918D6D69F00A3E673 /* FFAppDelegate.m in Sources */,
 				08A353A718D6DA9800A3E673 /* NSObject+IDPOCExtensions.m in Sources */,
 				08A3539518D6DA9800A3E673 /* NSString+IDPExtensions.m in Sources */,
 				08A3538E18D6DA9800A3E673 /* IDPMath.m in Sources */,
@@ -888,6 +934,7 @@
 				08A353C718D6DA9800A3E673 /* UIViewController+IDPExtensions.m in Sources */,
 				08A3539018D6DA9800A3E673 /* NSBundle+IDPExtensions.m in Sources */,
 				08A353C518D6DA9800A3E673 /* UITableView+IDPCellLoading.m in Sources */,
+				08A353DD18D6E4EE00A3E673 /* FFAppDelegate.m in Sources */,
 				08A353AA18D6DA9800A3E673 /* IDPReference.m in Sources */,
 				08A353A118D6DA9800A3E673 /* IDPMutableArray.m in Sources */,
 				08A353A218D6DA9800A3E673 /* IDPMutableDictionary.m in Sources */,
@@ -913,6 +960,7 @@
 				08A3539418D6DA9800A3E673 /* NSObject+IDPExtensions.m in Sources */,
 				08A353C218D6DA9800A3E673 /* UIImage+IDPExtensions.m in Sources */,
 				08A353C118D6DA9800A3E673 /* UIEvent+IDPExtensions.m in Sources */,
+				08A353E018D6E8CC00A3E673 /* FFMainView.m in Sources */,
 				08A353B118D6DA9800A3E673 /* IDPWeakArray.m in Sources */,
 				08A353A318D6DA9800A3E673 /* IDPModelMixin.m in Sources */,
 				08A353C318D6DA9800A3E673 /* UINib+IDPExtensions.m in Sources */,
@@ -1042,6 +1090,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FacebookFriends/FacebookFriends-Prefix.pch";
 				INFOPLIST_FILE = "FacebookFriends/FacebookFriends-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1059,6 +1108,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FacebookFriends/FacebookFriends-Prefix.pch";
 				INFOPLIST_FILE = "FacebookFriends/FacebookFriends-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
