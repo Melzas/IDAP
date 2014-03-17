@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="0Bd-kd-A5h" customClass="FFFriendCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0Bd-kd-A5h" id="DXQ-Gs-eo4">
+                <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Toi-p2-xdq">
+                        <rect key="frame" x="70" y="0.0" width="202" height="43"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dFh-US-dIC" userLabel="Picture View" customClass="FFImageView">
+                        <rect key="frame" x="15" y="1" width="40" height="40"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Spacer.png" translatesAutoresizingMaskIntoConstraints="NO" id="d7K-Rk-vA2">
+                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="nE8-bI-zaT">
+                                <rect key="frame" x="10" y="10" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="d7K-Rk-vA2" firstAttribute="centerY" secondItem="nE8-bI-zaT" secondAttribute="centerY" id="6G8-I9-PBD"/>
+                            <constraint firstItem="d7K-Rk-vA2" firstAttribute="top" secondItem="dFh-US-dIC" secondAttribute="top" id="6No-9e-Y6w"/>
+                            <constraint firstItem="d7K-Rk-vA2" firstAttribute="leading" secondItem="dFh-US-dIC" secondAttribute="leading" id="FLS-vu-Ob3"/>
+                            <constraint firstAttribute="trailing" secondItem="d7K-Rk-vA2" secondAttribute="trailing" id="I0f-NG-YMm"/>
+                            <constraint firstItem="nE8-bI-zaT" firstAttribute="centerX" secondItem="d7K-Rk-vA2" secondAttribute="centerX" id="Lr8-vU-2iu"/>
+                            <constraint firstAttribute="bottom" secondItem="d7K-Rk-vA2" secondAttribute="bottom" id="jSv-cR-VJQ"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="imageView" destination="d7K-Rk-vA2" id="cU5-wp-NgO"/>
+                            <outlet property="spinner" destination="nE8-bI-zaT" id="3a6-Xh-9BG"/>
+                        </connections>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Toi-p2-xdq" secondAttribute="trailing" constant="15" id="AK7-zQ-j1C"/>
+                    <constraint firstItem="Toi-p2-xdq" firstAttribute="leading" secondItem="dFh-US-dIC" secondAttribute="trailing" constant="15" id="Oxe-hY-8gH"/>
+                    <constraint firstItem="dFh-US-dIC" firstAttribute="centerY" secondItem="Toi-p2-xdq" secondAttribute="centerY" id="bMo-TY-VzX"/>
+                    <constraint firstItem="dFh-US-dIC" firstAttribute="leading" secondItem="DXQ-Gs-eo4" secondAttribute="leading" constant="15" id="ebn-OR-ltg"/>
+                    <constraint firstAttribute="bottom" secondItem="Toi-p2-xdq" secondAttribute="bottom" id="km2-wh-Mx1"/>
+                    <constraint firstItem="Toi-p2-xdq" firstAttribute="top" secondItem="DXQ-Gs-eo4" secondAttribute="top" id="tOo-1S-31B"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="label" destination="Toi-p2-xdq" id="9k3-At-QX6"/>
+                <outlet property="pictureView" destination="dFh-US-dIC" id="VLz-m8-2qH"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Spacer.png" width="40" height="40"/>
+    </resources>
+</document>
