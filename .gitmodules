@@ -1,0 +1,3 @@
+[submodule "IDPKit"]
+	path = IDPKit
+	url = https://github.com/idapgroup/IDPKit.git
