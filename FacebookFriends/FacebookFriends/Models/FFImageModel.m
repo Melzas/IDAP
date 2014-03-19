@@ -5,6 +5,8 @@
 
 #import "FFImageCache.h"
 
+static NSString * const kFFImagePathKey = @"kFFImagePathKey";
+
 @interface FFImageModel ()
 @property (nonatomic, retain)	UIImage		*image;
 @property (nonatomic, copy)		NSString	*path;
@@ -96,6 +98,22 @@
 - (void)loadFromURL {
 	NSURL *imageUrl = [NSURL URLWithString:self.path];
 	self.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
+}
+
+#pragma mark -
+#pragma mark NSCoding
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    self = [super init];
+    if (self) {
+		self.path = [decoder decodeObjectForKey:kFFImagePathKey];
+	}
+	
+	return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+	[coder encodeObject:self.path forKey:kFFImagePathKey];
 }
 
 @end

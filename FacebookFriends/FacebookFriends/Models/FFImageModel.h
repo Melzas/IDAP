@@ -1,6 +1,6 @@
 #import "IDPModel.h"
 
-@interface FFImageModel : IDPModel
+@interface FFImageModel : IDPModel <NSCoding>
 @property (nonatomic, readonly)	UIImage		*image;
 @property (nonatomic, readonly)	NSString	*path;
 
