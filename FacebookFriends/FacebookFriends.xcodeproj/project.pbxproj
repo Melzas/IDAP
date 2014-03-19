@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		082C727C18D97A980098200B /* FFImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 082C727918D97A980098200B /* FFImageCache.m */; };
+		082C727D18D97A980098200B /* FFImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 082C727B18D97A980098200B /* FFImageModel.m */; };
+		082C728118D983B20098200B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082C728018D983B20098200B /* SystemConfiguration.framework */; };
+		082C728418D98FE40098200B /* FFImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 082C728318D98FE40098200B /* FFImageView.m */; };
 		08A352A918D6D69F00A3E673 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A352A818D6D69F00A3E673 /* Foundation.framework */; };
 		08A352AB18D6D69F00A3E673 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A352AA18D6D69F00A3E673 /* CoreGraphics.framework */; };
 		08A352AD18D6D69F00A3E673 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A352AC18D6D69F00A3E673 /* UIKit.framework */; };
@@ -110,6 +114,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		082C727818D97A980098200B /* FFImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFImageCache.h; sourceTree = "<group>"; };
+		082C727918D97A980098200B /* FFImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFImageCache.m; sourceTree = "<group>"; };
+		082C727A18D97A980098200B /* FFImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFImageModel.h; sourceTree = "<group>"; };
+		082C727B18D97A980098200B /* FFImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFImageModel.m; sourceTree = "<group>"; };
+		082C727E18D983590098200B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		082C728018D983B20098200B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		082C728218D98FE40098200B /* FFImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFImageView.h; sourceTree = "<group>"; };
+		082C728318D98FE40098200B /* FFImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFImageView.m; sourceTree = "<group>"; };
 		08A352A518D6D69F00A3E673 /* FacebookFriends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookFriends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A352A818D6D69F00A3E673 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		08A352AA18D6D69F00A3E673 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -276,6 +288,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				082C728118D983B20098200B /* SystemConfiguration.framework in Frameworks */,
 				08A352AB18D6D69F00A3E673 /* CoreGraphics.framework in Frameworks */,
 				08A353CA18D6DD3C00A3E673 /* FacebookSDK.framework in Frameworks */,
 				08A352AD18D6D69F00A3E673 /* UIKit.framework in Frameworks */,
@@ -319,6 +332,8 @@
 		08A352A718D6D69F00A3E673 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				082C728018D983B20098200B /* SystemConfiguration.framework */,
+				082C727E18D983590098200B /* CFNetwork.framework */,
 				08A353C918D6DD3C00A3E673 /* FacebookSDK.framework */,
 				08A352A818D6D69F00A3E673 /* Foundation.framework */,
 				08A352AA18D6D69F00A3E673 /* CoreGraphics.framework */,
@@ -767,6 +782,8 @@
 		08A353CC18D6E3CC00A3E673 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				082C728218D98FE40098200B /* FFImageView.h */,
+				082C728318D98FE40098200B /* FFImageView.m */,
 				08A353D518D6E46B00A3E673 /* FFMainViewController.xib */,
 				08A353DE18D6E8CC00A3E673 /* FFMainView.h */,
 				08A353DF18D6E8CC00A3E673 /* FFMainView.m */,
@@ -786,6 +803,10 @@
 		08A353E118D6EF9600A3E673 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				082C727818D97A980098200B /* FFImageCache.h */,
+				082C727918D97A980098200B /* FFImageCache.m */,
+				082C727A18D97A980098200B /* FFImageModel.h */,
+				082C727B18D97A980098200B /* FFImageModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -945,6 +966,7 @@
 				08A353AF18D6DA9800A3E673 /* IDPURLConnection.m in Sources */,
 				08A352B518D6D69F00A3E673 /* main.m in Sources */,
 				08A353AC18D6DA9800A3E673 /* IDPWeakReference.m in Sources */,
+				082C727C18D97A980098200B /* FFImageCache.m in Sources */,
 				08A353A518D6DA9800A3E673 /* IDPOCImplementation.m in Sources */,
 				08A3539218D6DA9800A3E673 /* NSDateComponents+IDPExtinsions.m in Sources */,
 				08A3538818D6DA9800A3E673 /* NSManagedObjectContext+IDPExtensions.m in Sources */,
@@ -955,8 +977,10 @@
 				08A3538D18D6DA9800A3E673 /* CGGeometry+IDPExtensions.m in Sources */,
 				08A3539918D6DA9800A3E673 /* IDPBlock.m in Sources */,
 				08A353C618D6DA9800A3E673 /* UIView+IDPExtensions.m in Sources */,
+				082C727D18D97A980098200B /* FFImageModel.m in Sources */,
 				08A3539318D6DA9800A3E673 /* NSFileManager+IDPExtensions.m in Sources */,
 				08A3539B18D6DA9800A3E673 /* IDPKeyPathObserver.m in Sources */,
+				082C728418D98FE40098200B /* FFImageView.m in Sources */,
 				08A3539418D6DA9800A3E673 /* NSObject+IDPExtensions.m in Sources */,
 				08A353C218D6DA9800A3E673 /* UIImage+IDPExtensions.m in Sources */,
 				08A353C118D6DA9800A3E673 /* UIEvent+IDPExtensions.m in Sources */,
@@ -1175,6 +1199,7 @@
 				08A352D318D6D69F00A3E673 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		08A352D418D6D69F00A3E673 /* Build configuration list for PBXNativeTarget "FacebookFriendsTests" */ = {
 			isa = XCConfigurationList;
@@ -1183,6 +1208,7 @@
 				08A352D618D6D69F00A3E673 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

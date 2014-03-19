@@ -10,4 +10,13 @@
 
 @implementation FFMainView
 
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+	self.loginView = nil;
+	
+	[super dealloc];
+}
+
 @end

@@ -24,7 +24,7 @@
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <connections>
-                <outlet property="loginView" destination="8Yu-fx-y2J" id="3oc-fF-5Nh"/>
+                <outlet property="loginView" destination="8Yu-fx-y2J" id="O4M-TK-IJQ"/>
             </connections>
         </view>
     </objects>
