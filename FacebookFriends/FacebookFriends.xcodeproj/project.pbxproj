@@ -11,6 +11,7 @@
 		082C727D18D97A980098200B /* FFImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 082C727B18D97A980098200B /* FFImageModel.m */; };
 		082C728118D983B20098200B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082C728018D983B20098200B /* SystemConfiguration.framework */; };
 		082C728418D98FE40098200B /* FFImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 082C728318D98FE40098200B /* FFImageView.m */; };
+		082C728718D997E60098200B /* FFUserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 082C728618D997E60098200B /* FFUserData.m */; };
 		08A352A918D6D69F00A3E673 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A352A818D6D69F00A3E673 /* Foundation.framework */; };
 		08A352AB18D6D69F00A3E673 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A352AA18D6D69F00A3E673 /* CoreGraphics.framework */; };
 		08A352AD18D6D69F00A3E673 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A352AC18D6D69F00A3E673 /* UIKit.framework */; };
@@ -122,6 +123,8 @@
 		082C728018D983B20098200B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		082C728218D98FE40098200B /* FFImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFImageView.h; sourceTree = "<group>"; };
 		082C728318D98FE40098200B /* FFImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFImageView.m; sourceTree = "<group>"; };
+		082C728518D997E60098200B /* FFUserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFUserData.h; sourceTree = "<group>"; };
+		082C728618D997E60098200B /* FFUserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFUserData.m; sourceTree = "<group>"; };
 		08A352A518D6D69F00A3E673 /* FacebookFriends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookFriends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A352A818D6D69F00A3E673 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		08A352AA18D6D69F00A3E673 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -807,6 +810,8 @@
 				082C727918D97A980098200B /* FFImageCache.m */,
 				082C727A18D97A980098200B /* FFImageModel.h */,
 				082C727B18D97A980098200B /* FFImageModel.m */,
+				082C728518D997E60098200B /* FFUserData.h */,
+				082C728618D997E60098200B /* FFUserData.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -946,6 +951,7 @@
 				08A353AB18D6DA9800A3E673 /* IDPRetainingReference.m in Sources */,
 				08A353AE18D6DA9800A3E673 /* IDPStackArray.m in Sources */,
 				08A353B518D6DA9800A3E673 /* CALayer+RoundedCorners.m in Sources */,
+				082C728718D997E60098200B /* FFUserData.m in Sources */,
 				08A353C818D6DA9800A3E673 /* UIViewController+IDPInitialization.m in Sources */,
 				08A353BD18D6DA9800A3E673 /* IDPLoadingView.m in Sources */,
 				08A353B918D6DA9800A3E673 /* IDPNetworkReachability.m in Sources */,
