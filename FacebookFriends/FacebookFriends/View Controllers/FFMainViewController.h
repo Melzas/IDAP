@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class FFUsersData;
+
 @interface FFMainViewController : UIViewController
+	<IDPModelObserver, UITableViewDataSource, FBLoginViewDelegate>
+@property (nonatomic, retain)	FFUsersData	*usersData;
 
 @end
