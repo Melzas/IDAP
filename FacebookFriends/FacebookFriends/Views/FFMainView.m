@@ -15,6 +15,7 @@
 
 - (void)dealloc {
 	self.loginView = nil;
+	self.tableView = nil;
 	
 	[super dealloc];
 }

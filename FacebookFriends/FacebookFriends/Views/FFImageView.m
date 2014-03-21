@@ -46,7 +46,6 @@
 
 - (void)fillFromModel:(FFImageModel *)model {
 	self.imageView.image = model.image;
-	[model save];
 }
 
 #pragma mark -
