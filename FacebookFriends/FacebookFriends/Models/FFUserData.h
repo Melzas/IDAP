@@ -11,7 +11,8 @@
 @class FFImageModel;
 
 @interface FFUserData : IDPModel <NSCoding>
-@property (nonatomic, readonly)	NSString		*name;
-@property (nonatomic, readonly)	FFImageModel	*photoPreview;
+@property (nonatomic, copy)		NSString		*firstName;
+@property (nonatomic, copy)		NSString		*lastName;
+@property (nonatomic, retain)	FFImageModel	*photoPreview;
 
 @end

@@ -8,14 +8,9 @@
 
 #import "FFUserData.h"
 
-static NSString * const kFFUserNameKey	= @"kFFUserNameKey";
-static NSString * const kFFUserPhotoKey = @"kFFUserPhotoKey";
-
-@interface FFUserData ()
-@property (nonatomic, copy)		NSString		*name;
-@property (nonatomic, retain)	FFImageModel	*photoPreview;
-
-@end
+static NSString * const kFFUserFirstNameKey	= @"kFFUserFirstNameKey";
+static NSString * const kFFUserLastNameKey	= @"kFFUserLastNameKey";
+static NSString * const kFFUserPhotoKey		= @"kFFUserPhotoKey";
 
 @implementation FFUserData
 
@@ -23,7 +18,8 @@ static NSString * const kFFUserPhotoKey = @"kFFUserPhotoKey";
 #pragma mark Initializations and Deallocations
 
 - (void)cleanup {
-	self.name = nil;
+	self.firstName = nil;
+	self.lastName = nil;
 	self.photoPreview = nil;
 }
 
@@ -33,15 +29,17 @@ static NSString * const kFFUserPhotoKey = @"kFFUserPhotoKey";
 - (id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
     if (self) {
-		self.name = [decoder decodeObjectForKey:kFFUserNameKey];
+		self.firstName = [decoder decodeObjectForKey:kFFUserFirstNameKey];
+		self.lastName = [decoder decodeObjectForKey:kFFUserLastNameKey];
 		self.photoPreview = [decoder decodeObjectForKey:kFFUserPhotoKey];
-    }
+	}
 	
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-	[coder encodeObject:self.name forKey:kFFUserNameKey];
+	[coder encodeObject:self.firstName forKey:kFFUserFirstNameKey];
+	[coder encodeObject:self.lastName forKey:kFFUserLastNameKey];
 	[coder encodeObject:self.photoPreview forKey:kFFUserPhotoKey];
 }
 
