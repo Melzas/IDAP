@@ -7,6 +7,4 @@
 + (id)modelWithPath:(NSString *)path;
 - (id)initWithPath:(NSString *)path;
 
-- (void)save;
-
 @end

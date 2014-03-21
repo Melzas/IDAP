@@ -5,22 +5,16 @@
 
 #import "FFImageCache.h"
 
-static NSString * const kFFImagePathKey = @"kFFImagePathKey";
+static NSString * const kFFPathKey	= @"kFFPathKey";
+static NSString	* const kFFImageKey	= @"kFFImageKey";
 
 @interface FFImageModel ()
 @property (nonatomic, retain)	UIImage		*image;
 @property (nonatomic, copy)		NSString	*path;
 
-@property (nonatomic, readonly)	NSString	*cachePath;
-
-- (void)loadFromFile;
-- (void)loadFromURL;
-
 @end
 
 @implementation FFImageModel
-
-@dynamic cachePath;
 
 #pragma mark -
 #pragma mark Class Methods
@@ -33,8 +27,6 @@ static NSString * const kFFImagePathKey = @"kFFImagePathKey";
 #pragma mark Initializations and Deallocations
 
 - (void)cleanup {
-	[self save];
-	
 	self.image = nil;
 	self.path = nil;
 }
@@ -58,23 +50,6 @@ static NSString * const kFFImagePathKey = @"kFFImagePathKey";
 }
 
 #pragma mark -
-#pragma mark Accessors
-
-- (NSString *)cachePath {
-	NSString *fileName = [[self.path componentsSeparatedByString:@"/"] lastObject];
-	NSString *libraryDirectoryPath = [NSFileManager libraryDirectoryPath];
-	NSString *cacheDirectoryPath = [libraryDirectoryPath stringByAppendingPathComponent:@"Caches"];
-	return [cacheDirectoryPath stringByAppendingPathComponent:fileName];
-}
-
-#pragma mark -
-#pragma mark Public
-
-- (void)save {
-	[self.image writeToFile:self.cachePath atomically:YES inFormat:IDPJPEGImageFile];
-}
-
-#pragma mark -
 #pragma mark Private
 
 - (void)performLoading {
@@ -84,20 +59,11 @@ static NSString * const kFFImagePathKey = @"kFFImagePathKey";
 	}
 	
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		IDPNetworkReachability *networkReachability = [IDPNetworkReachability reachability];
-		networkReachability.isReachable ? [self loadFromURL] : [self loadFromFile];
+		NSURL *imageUrl = [NSURL URLWithString:self.path];
+		self.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
 		
-		self.image ? [self finishLoading] : [self failLoading];
+		[self finishLoading];
 	});
-}
-
-- (void)loadFromFile {
-	self.image = [UIImage imageWithContentsOfFile:self.cachePath];
-}
-
-- (void)loadFromURL {
-	NSURL *imageUrl = [NSURL URLWithString:self.path];
-	self.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
 }
 
 #pragma mark -
@@ -106,14 +72,16 @@ static NSString * const kFFImagePathKey = @"kFFImagePathKey";
 - (id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
     if (self) {
-		self.path = [decoder decodeObjectForKey:kFFImagePathKey];
+		self.path = [decoder decodeObjectForKey:kFFPathKey];
+		self.image = [decoder decodeObjectForKey:kFFImageKey];
 	}
 	
 	return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-	[coder encodeObject:self.path forKey:kFFImagePathKey];
+	[coder encodeObject:self.path forKey:kFFPathKey];
+	[coder encodeObject:self.image forKey:kFFImageKey];
 }
 
 @end
