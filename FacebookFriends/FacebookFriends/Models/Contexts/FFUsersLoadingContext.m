@@ -12,12 +12,15 @@
 #import "FFUsersData.h"
 #import "FFImageModel.h"
 
+static NSString * const kFFFacebookHost		   = @"facebook.com";
+static NSString * const kFFGraphPathForRequest = @"/me/friends?fields=first_name,last_name,picture";
+
 @interface FFUsersLoadingContext ()
 @property (nonatomic, assign)	IDPModelState	state;
 @property (nonatomic, retain)	FFUsersData		*usersData;
 
-- (void)loadFromFile;
-- (void)loadFromNetwork;
+- (void)loadFromLocalCache;
+- (void)loadFromFacebook;
 
 - (FFImageModel *)loadPictureFromURL:(NSString *)url;
 
@@ -38,34 +41,25 @@
 - (void)loadUsersToObject:(FFUsersData *)users {
 	self.usersData = users;
 	
-	[self load];
+	[self.usersData prepareForLoad];
+	[self.usersData load];
+
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		IDPNetworkReachability *networkReachability
+		= [IDPNetworkReachability reachabilityWithHostName:kFFFacebookHost];
+		
+		networkReachability.isReachable ? [self loadFromFacebook] : [self loadFromLocalCache];
+	});
 }
 
 #pragma mark -
 #pragma mark Private
 
-- (void)prepareForLoad {
-	[self.usersData prepareForLoad];
-}
-
-- (void)performLoading {
-	self.state = IDPModelLoading;
-	
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		IDPNetworkReachability *networkReachability = [IDPNetworkReachability reachabilityWithHostName:@"facebook.com"];
-		if (networkReachability.isReachable) {
-			[self loadFromNetwork];
-		} else {
-			[self loadFromFile];
-		}
-	});
-}
-
-- (void)loadFromFile {
+- (void)loadFromLocalCache {
 	NSArray *users = [NSKeyedUnarchiver unarchiveObjectWithFile:self.usersData.savePath];
 	
 	if (nil == users) {
-		[self failLoading];
+		[self.usersData failLoading];
 		return;
 	}
 	
@@ -74,13 +68,13 @@
 		[userData finishLoading];
 	}
 	
-	[self finishLoading];
+	[self.usersData finishLoading];
 }
 
-- (void)loadFromNetwork {
+- (void)loadFromFacebook {
 	FBRequestHandler handler = ^(FBRequestConnection *connection, id result, NSError *error) {
 		if (error) {
-			[self failLoading];
+			[self.usersData failLoading];
 			return;
 		}
 		
@@ -103,7 +97,7 @@
 	};
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
-		[FBRequestConnection startWithGraphPath:@"/me/friends?fields=first_name,last_name,picture"
+		[FBRequestConnection startWithGraphPath:kFFGraphPathForRequest
 									 parameters:nil
 									 HTTPMethod:@"GET"
 							  completionHandler:handler];

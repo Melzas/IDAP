@@ -85,8 +85,12 @@ IDPViewControllerViewOfClassGetterSynthesize(FFMainView, mainView);
 	[self.mainView.tableView reloadData];
 }
 
-- (void)modelDidUnload:(id)theModel {
+- (void)modelDidUnload:(id)model {
 	[self.mainView.tableView reloadData];	
+}
+
+- (void)modelDidFailToLoad:(id)model {
+	[UIAlertView showErrorWithMessage:@"Error while retrieving the list of friends"];
 }
 
 @end

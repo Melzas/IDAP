@@ -10,7 +10,7 @@
 
 @class FFUsersData;
 
-@interface FFUsersLoadingContext : IDPModel
+@interface FFUsersLoadingContext : NSObject
 
 - (void)loadUsersToObject:(FFUsersData *)users;
 
