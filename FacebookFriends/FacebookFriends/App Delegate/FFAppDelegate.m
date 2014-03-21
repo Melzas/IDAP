@@ -8,6 +8,8 @@
 
 #import "FFAppDelegate.h"
 
+#import "FFUsersData.h"
+
 #import "FFMainViewController.h"
 
 @implementation FFAppDelegate
@@ -17,6 +19,7 @@
 
 - (void)dealloc {
 	self.window = nil;
+	self.users = nil;
 	
 	[super dealloc];
 }
@@ -29,6 +32,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
 	
 	FFMainViewController *mainViewController = [FFMainViewController defaultNibController];
+	self.users = [FFUsersData object];
+	mainViewController.usersData = self.users;
 	self.window.rootViewController = mainViewController;
 	
     [self.window makeKeyAndVisible];
@@ -49,6 +54,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+	[self.users save];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -60,7 +66,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-
+	[self.users save];
 }
 
 @end
