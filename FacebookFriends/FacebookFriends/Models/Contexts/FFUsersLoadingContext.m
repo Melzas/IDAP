@@ -38,7 +38,7 @@ static NSString * const kFFGraphPathForRequest = @"/me/friends?fields=first_name
 #pragma mark -
 #pragma mark Public
 
-- (void)loadUsersToObject:(FFUsersData *)users {
+- (void)loadUsers:(FFUsersData *)users {
 	self.usersData = users;
 	
 	[self.usersData prepareForLoad];
@@ -78,15 +78,14 @@ static NSString * const kFFGraphPathForRequest = @"/me/friends?fields=first_name
 			return;
 		}
 		
-		NSArray *friends = [result objectForKey:@"data"];
+		NSArray *friends = result[@"data"];
 		
 		for (NSDictionary<FBGraphUser> *friend in friends) {
 			FFUserData *user = [FFUserData object];
 			user.firstName = friend.first_name;
 			user.lastName = friend.last_name;
 			
-			id pictureData = [[friend objectForKey:@"picture"] objectForKey:@"data"];
-			NSString *pictureUrl = [pictureData objectForKey:@"url"];
+			NSString *pictureUrl = friend[@"picture"][@"data"][@"url"];
 			user.photoPreview = [self loadPictureFromURL:pictureUrl];
 			[user finishLoading];
 			

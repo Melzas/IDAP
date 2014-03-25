@@ -40,7 +40,7 @@ static NSString * const kFFStorageFileName = @"kFFStorageFileName.plist";
 
 - (NSString *)savePath {
 	NSString *libraryDirectoryPath = [NSFileManager libraryDirectoryPath];
-	NSString *cacheDirectoryPath = [libraryDirectoryPath stringByAppendingPathComponent:@"caches"];
+	NSString *cacheDirectoryPath = [libraryDirectoryPath stringByAppendingPathComponent:@"Caches"];
 	return [cacheDirectoryPath stringByAppendingPathComponent:kFFStorageFileName];
 }
 

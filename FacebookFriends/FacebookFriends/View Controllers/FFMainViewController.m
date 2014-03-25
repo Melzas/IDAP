@@ -54,7 +54,7 @@ IDPViewControllerViewOfClassGetterSynthesize(FFMainView, mainView);
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
 	FFUsersLoadingContext *usersLoadingContext = [FFUsersLoadingContext object];
-	[usersLoadingContext loadUsersToObject:self.usersData];
+	[usersLoadingContext loadUsers:self.usersData];
 }
 
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {

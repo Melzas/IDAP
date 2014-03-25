@@ -12,6 +12,6 @@
 
 @interface FFUsersLoadingContext : NSObject
 
-- (void)loadUsersToObject:(FFUsersData *)users;
+- (void)loadUsers:(FFUsersData *)users;
 
 @end
