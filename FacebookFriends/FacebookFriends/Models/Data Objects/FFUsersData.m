@@ -11,6 +11,7 @@
 #import "FFUsersData.h"
 
 static NSString * const kFFStorageFileName = @"kFFStorageFileName.plist";
+static NSString * const kFFCacheFolder	   = @"Caches";
 
 @interface FFUsersData ()
 @property (nonatomic, retain)	NSMutableArray	*mutableUsers;
@@ -39,9 +40,10 @@ static NSString * const kFFStorageFileName = @"kFFStorageFileName.plist";
 }
 
 - (NSString *)savePath {
-	NSString *libraryDirectoryPath = [NSFileManager libraryDirectoryPath];
-	NSString *cacheDirectoryPath = [libraryDirectoryPath stringByAppendingPathComponent:@"Caches"];
-	return [cacheDirectoryPath stringByAppendingPathComponent:kFFStorageFileName];
+	NSString *libraryPath = [NSFileManager libraryDirectoryPath];
+	NSString *cachePath = [libraryPath stringByAppendingPathComponent:kFFCacheFolder];
+	
+	return [cachePath stringByAppendingPathComponent:kFFStorageFileName];
 }
 
 #pragma mark -
@@ -72,6 +74,12 @@ static NSString * const kFFStorageFileName = @"kFFStorageFileName.plist";
 
 - (void)save {
 	[NSKeyedArchiver archiveRootObject:self.mutableUsers toFile:self.savePath];
+}
+
+- (void)loadFromFile {
+	self.mutableUsers = [NSKeyedUnarchiver unarchiveObjectWithFile:self.savePath];
+	
+	nil == self.mutableUsers ? [self failLoading] : [self finishLoading];
 }
 
 @end

@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Anton Rayev. All rights reserved.
 //
 
-#import "IDPModel.h"
-
 @class FFImageModel;
 
 @interface FFUserData : IDPModel <NSCoding>

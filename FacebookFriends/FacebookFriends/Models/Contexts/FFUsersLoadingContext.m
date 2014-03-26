@@ -15,14 +15,15 @@
 static NSString * const kFFFacebookHost		   = @"facebook.com";
 static NSString * const kFFGraphPathForRequest = @"/me/friends?fields=first_name,last_name,picture";
 
+static NSString * const kFFDataKey		 = @"data";
+static NSString * const kFFPictureKey	 = @"picture";
+static NSString * const kFFPictureURLKey = @"url";
+
 @interface FFUsersLoadingContext ()
-@property (nonatomic, assign)	IDPModelState	state;
-@property (nonatomic, retain)	FFUsersData		*usersData;
+@property (nonatomic, retain)	FBRequestConnection *requestConnection;
 
 - (void)loadFromLocalCache;
 - (void)loadFromFacebook;
-
-- (FFImageModel *)loadPictureFromURL:(NSString *)url;
 
 @end
 
@@ -31,83 +32,71 @@ static NSString * const kFFGraphPathForRequest = @"/me/friends?fields=first_name
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (void)cleanup {
+- (void)dealloc {
+	[self cancel];
+	
 	self.usersData = nil;
+	self.requestConnection = nil;
+	
+	[super dealloc];
 }
 
 #pragma mark -
 #pragma mark Public
 
-- (void)loadUsers:(FFUsersData *)users {
-	self.usersData = users;
-	
+- (void)load {
 	[self.usersData prepareForLoad];
 	[self.usersData load];
+	
+	self.isNetworkReachable ? [self loadFromFacebook] : [self loadFromLocalCache];
+}
 
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		IDPNetworkReachability *networkReachability
-		= [IDPNetworkReachability reachabilityWithHostName:kFFFacebookHost];
-		
-		networkReachability.isReachable ? [self loadFromFacebook] : [self loadFromLocalCache];
-	});
+- (void)cancel {
+	[self.requestConnection cancel];
 }
 
 #pragma mark -
 #pragma mark Private
 
 - (void)loadFromLocalCache {
-	NSArray *users = [NSKeyedUnarchiver unarchiveObjectWithFile:self.usersData.savePath];
-	
-	if (nil == users) {
-		[self.usersData failLoading];
-		return;
-	}
-	
-	for (FFUserData *userData in users) {
-		[self.usersData addUser:userData];
-		[userData finishLoading];
-	}
-	
-	[self.usersData finishLoading];
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		[self.usersData loadFromFile];
+	});
 }
 
 - (void)loadFromFacebook {
+	self.requestConnection = [FBRequestConnection object];
+	
 	FBRequestHandler handler = ^(FBRequestConnection *connection, id result, NSError *error) {
 		if (error) {
 			[self.usersData failLoading];
 			return;
 		}
 		
-		NSArray *friends = result[@"data"];
+		NSArray *friends = result[kFFDataKey];
 		
 		for (NSDictionary<FBGraphUser> *friend in friends) {
 			FFUserData *user = [FFUserData object];
 			user.firstName = friend.first_name;
 			user.lastName = friend.last_name;
 			
-			NSString *pictureUrl = friend[@"picture"][@"data"][@"url"];
-			user.photoPreview = [self loadPictureFromURL:pictureUrl];
+			NSString *pictureUrl = friend[kFFPictureKey][kFFDataKey][kFFPictureURLKey];
+			user.photoPreview = [FFImageModel modelWithPath:pictureUrl];
 			[user finishLoading];
 			
 			[self.usersData addUser:user];
 		}
 		
 		[self.usersData finishLoading];
+		
+		self.requestConnection = nil;
 	};
 	
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[FBRequestConnection startWithGraphPath:kFFGraphPathForRequest
-									 parameters:nil
-									 HTTPMethod:@"GET"
-							  completionHandler:handler];
-	});
-}
-
-- (FFImageModel *)loadPictureFromURL:(NSString *)url {
-	FFImageModel *pictureModel = [FFImageModel modelWithPath:url];
-	[pictureModel load];
+	FBRequestConnection *requestConnection = self.requestConnection;
+	FBRequest *request = [FBRequest requestForGraphPath:kFFGraphPathForRequest];
 	
-	return pictureModel;
+	[requestConnection addRequest:request completionHandler:handler];
+	[requestConnection start];
 }
 
 @end

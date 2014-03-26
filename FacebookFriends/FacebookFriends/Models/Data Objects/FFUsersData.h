@@ -20,5 +20,6 @@
 - (void)moveUserFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 
 - (void)save;
+- (void)loadFromFile;
 
 @end

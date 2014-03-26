@@ -14,8 +14,12 @@
 #import "FFMainView.h"
 #import "FFCellView.h"
 
+static NSString * const kFFErrorMessage = @"Error while retrieving the list of friends";
+
 @interface FFMainViewController ()
-@property (nonatomic, readonly)	FFMainView	*mainView;
+@property (nonatomic, readonly)	FFMainView				*mainView;
+@property (nonatomic, retain)	FFUsersLoadingContext	*usersLoadingContext;
+@property (nonatomic, retain)	IDPNetworkReachability	*networkReachability;
 
 @end
 
@@ -28,17 +32,31 @@
 
 - (void)dealloc {
 	self.usersData = nil;
+	self.usersLoadingContext = nil;
+	self.networkReachability = nil;
 	
 	[super dealloc];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-
-    }
-    return self;
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+	if (self) {
+		self.usersLoadingContext = [FFUsersLoadingContext object];
+		self.networkReachability = [IDPNetworkReachability reachability];
+	}
+	
+	return self;
 }
+
+#pragma mark -
+#pragma mark View Lifecycle
+
+- (void)viewDidDisappear:(BOOL)animated {
+	[self.usersLoadingContext cancel];
+	
+	[super viewDidDisappear:animated];
+}
+
 
 #pragma mark -
 #pragma mark Accessors
@@ -53,8 +71,11 @@ IDPViewControllerViewOfClassGetterSynthesize(FFMainView, mainView);
 #pragma mark FBLoginViewDelegate
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
-	FFUsersLoadingContext *usersLoadingContext = [FFUsersLoadingContext object];
-	[usersLoadingContext loadUsers:self.usersData];
+	FFUsersLoadingContext *usersLoadingContext = self.usersLoadingContext;
+	usersLoadingContext.networkReachable = self.networkReachability.isReachable;
+	usersLoadingContext.usersData = self.usersData;
+	
+	[usersLoadingContext load];
 }
 
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
@@ -90,7 +111,7 @@ IDPViewControllerViewOfClassGetterSynthesize(FFMainView, mainView);
 }
 
 - (void)modelDidFailToLoad:(id)model {
-	[UIAlertView showErrorWithMessage:@"Error while retrieving the list of friends"];
+	[UIAlertView showErrorWithMessage:kFFErrorMessage];
 }
 
 @end

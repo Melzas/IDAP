@@ -11,7 +11,11 @@
 @class FFUsersData;
 
 @interface FFUsersLoadingContext : NSObject
+@property (nonatomic, retain)	FFUsersData	*usersData;
 
-- (void)loadUsers:(FFUsersData *)users;
+@property (nonatomic, assign, getter = isNetworkReachable)	BOOL	networkReachable;
+
+- (void)load;
+- (void)cancel;
 
 @end
