@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FFMainView : UIView
-@property (nonatomic, retain)	IBOutlet FBLoginView	*loginView;
+@interface FFFriendsView : UIView
 @property (nonatomic, retain)	IBOutlet UITableView	*tableView;
 
 @end

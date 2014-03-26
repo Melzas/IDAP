@@ -1,4 +1,4 @@
-#import "FFImageView.h"
+#import "FFFriendImageView.h"
 
 #import "NSBundle+IDPExtensions.h"
 
@@ -6,14 +6,14 @@
 
 #import "FFImageModel.h"
 
-@interface FFImageView ()
+@interface FFFriendImageView ()
 
 - (void)loadModel;
 - (void)fillFromModel:(FFImageModel *)model;
 
 @end
 
-@implementation FFImageView
+@implementation FFFriendImageView
 
 #pragma mark -
 #pragma mark Initializations and Deallocations

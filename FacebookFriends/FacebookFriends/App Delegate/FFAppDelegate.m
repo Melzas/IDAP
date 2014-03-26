@@ -10,7 +10,7 @@
 
 #import "FFUsersData.h"
 
-#import "FFMainViewController.h"
+#import "FFFriendsViewController.h"
 
 @implementation FFAppDelegate
 
@@ -31,10 +31,10 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.window.backgroundColor = [UIColor whiteColor];
 	
-	FFMainViewController *mainViewController = [FFMainViewController defaultNibController];
+	FFFriendsViewController *friendsViewController = [FFFriendsViewController defaultNibController];
 	self.users = [FFUsersData object];
-	mainViewController.usersData = self.users;
-	self.window.rootViewController = mainViewController;
+	friendsViewController.usersData = self.users;
+	self.window.rootViewController = friendsViewController;
 	
     [self.window makeKeyAndVisible];
 	

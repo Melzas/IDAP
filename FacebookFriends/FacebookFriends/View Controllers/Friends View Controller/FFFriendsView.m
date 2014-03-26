@@ -6,15 +6,14 @@
 //  Copyright (c) 2014 Anton Rayev. All rights reserved.
 //
 
-#import "FFMainView.h"
+#import "FFFriendsView.h"
 
-@implementation FFMainView
+@implementation FFFriendsView
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-	self.loginView = nil;
 	self.tableView = nil;
 	
 	[super dealloc];

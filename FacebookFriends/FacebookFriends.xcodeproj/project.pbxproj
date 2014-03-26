@@ -12,14 +12,18 @@
 		080FAC6118DC4B6A0059F38A /* FFUserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 080FAC5E18DC4B6A0059F38A /* FFUserData.m */; };
 		080FAC6218DC4B6A0059F38A /* FFUsersData.m in Sources */ = {isa = PBXBuildFile; fileRef = 080FAC6018DC4B6A0059F38A /* FFUsersData.m */; };
 		080FAC6518DC4B720059F38A /* FFUsersLoadingContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 080FAC6418DC4B720059F38A /* FFUsersLoadingContext.m */; };
-		0822A20C18E1644C0080CB10 /* FFMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0822A20418E1644C0080CB10 /* FFMainView.m */; };
-		0822A20D18E1644C0080CB10 /* FFMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0822A20518E1644C0080CB10 /* FFMainViewController.xib */; };
-		0822A20E18E1644C0080CB10 /* FFCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0822A20818E1644C0080CB10 /* FFCellView.m */; };
-		0822A20F18E1644C0080CB10 /* FFCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0822A20918E1644C0080CB10 /* FFCellView.xib */; };
-		0822A21018E1644C0080CB10 /* FFImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0822A20B18E1644C0080CB10 /* FFImageView.m */; };
 		082C727C18D97A980098200B /* FFImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 082C727918D97A980098200B /* FFImageCache.m */; };
 		082C727D18D97A980098200B /* FFImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 082C727B18D97A980098200B /* FFImageModel.m */; };
 		082C728118D983B20098200B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082C728018D983B20098200B /* SystemConfiguration.framework */; };
+		083FBA2A18E2BA5F007ED43D /* FFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 083FBA2818E2BA5F007ED43D /* FFLoginViewController.m */; };
+		083FBA2B18E2BA5F007ED43D /* FFLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083FBA2918E2BA5F007ED43D /* FFLoginViewController.xib */; };
+		083FBA2E18E2BB80007ED43D /* FFLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 083FBA2D18E2BB80007ED43D /* FFLoginView.m */; };
+		083FBA3B18E2BCBC007ED43D /* FFFriendsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 083FBA3118E2BCBC007ED43D /* FFFriendsView.m */; };
+		083FBA3C18E2BCBC007ED43D /* FFFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 083FBA3318E2BCBC007ED43D /* FFFriendsViewController.m */; };
+		083FBA3D18E2BCBC007ED43D /* FFFriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083FBA3418E2BCBC007ED43D /* FFFriendsViewController.xib */; };
+		083FBA3E18E2BCBC007ED43D /* FFFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 083FBA3718E2BCBC007ED43D /* FFFriendCell.m */; };
+		083FBA3F18E2BCBC007ED43D /* FFFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083FBA3818E2BCBC007ED43D /* FFFriendCell.xib */; };
+		083FBA4018E2BCBC007ED43D /* FFFriendImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 083FBA3A18E2BCBC007ED43D /* FFFriendImageView.m */; };
 		08A352A918D6D69F00A3E673 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A352A818D6D69F00A3E673 /* Foundation.framework */; };
 		08A352AB18D6D69F00A3E673 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A352AA18D6D69F00A3E673 /* CoreGraphics.framework */; };
 		08A352AD18D6D69F00A3E673 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A352AC18D6D69F00A3E673 /* UIKit.framework */; };
@@ -106,7 +110,6 @@
 		08A353C718D6DA9800A3E673 /* UIViewController+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A3537C18D6DA9800A3E673 /* UIViewController+IDPExtensions.m */; };
 		08A353C818D6DA9800A3E673 /* UIViewController+IDPInitialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A3537E18D6DA9800A3E673 /* UIViewController+IDPInitialization.m */; };
 		08A353CA18D6DD3C00A3E673 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A353C918D6DD3C00A3E673 /* FacebookSDK.framework */; };
-		08A353D418D6E46100A3E673 /* FFMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A353D318D6E46100A3E673 /* FFMainViewController.m */; };
 		08A353DD18D6E4EE00A3E673 /* FFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A353DC18D6E4EE00A3E673 /* FFAppDelegate.m */; };
 /* End PBXBuildFile section */
 
@@ -129,20 +132,27 @@
 		080FAC6018DC4B6A0059F38A /* FFUsersData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFUsersData.m; sourceTree = "<group>"; };
 		080FAC6318DC4B720059F38A /* FFUsersLoadingContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFUsersLoadingContext.h; sourceTree = "<group>"; };
 		080FAC6418DC4B720059F38A /* FFUsersLoadingContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFUsersLoadingContext.m; sourceTree = "<group>"; };
-		0822A20318E1644C0080CB10 /* FFMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFMainView.h; sourceTree = "<group>"; };
-		0822A20418E1644C0080CB10 /* FFMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFMainView.m; sourceTree = "<group>"; };
-		0822A20518E1644C0080CB10 /* FFMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FFMainViewController.xib; sourceTree = "<group>"; };
-		0822A20718E1644C0080CB10 /* FFCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFCellView.h; sourceTree = "<group>"; };
-		0822A20818E1644C0080CB10 /* FFCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFCellView.m; sourceTree = "<group>"; };
-		0822A20918E1644C0080CB10 /* FFCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FFCellView.xib; sourceTree = "<group>"; };
-		0822A20A18E1644C0080CB10 /* FFImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFImageView.h; sourceTree = "<group>"; };
-		0822A20B18E1644C0080CB10 /* FFImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFImageView.m; sourceTree = "<group>"; };
 		082C727818D97A980098200B /* FFImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFImageCache.h; sourceTree = "<group>"; };
 		082C727918D97A980098200B /* FFImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFImageCache.m; sourceTree = "<group>"; };
 		082C727A18D97A980098200B /* FFImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFImageModel.h; sourceTree = "<group>"; };
 		082C727B18D97A980098200B /* FFImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFImageModel.m; sourceTree = "<group>"; };
 		082C727E18D983590098200B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		082C728018D983B20098200B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		083FBA2718E2BA5F007ED43D /* FFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFLoginViewController.h; sourceTree = "<group>"; };
+		083FBA2818E2BA5F007ED43D /* FFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFLoginViewController.m; sourceTree = "<group>"; };
+		083FBA2918E2BA5F007ED43D /* FFLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FFLoginViewController.xib; sourceTree = "<group>"; };
+		083FBA2C18E2BB80007ED43D /* FFLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFLoginView.h; sourceTree = "<group>"; };
+		083FBA2D18E2BB80007ED43D /* FFLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFLoginView.m; sourceTree = "<group>"; };
+		083FBA3018E2BCBC007ED43D /* FFFriendsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFFriendsView.h; sourceTree = "<group>"; };
+		083FBA3118E2BCBC007ED43D /* FFFriendsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFFriendsView.m; sourceTree = "<group>"; };
+		083FBA3218E2BCBC007ED43D /* FFFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFFriendsViewController.h; sourceTree = "<group>"; };
+		083FBA3318E2BCBC007ED43D /* FFFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFFriendsViewController.m; sourceTree = "<group>"; };
+		083FBA3418E2BCBC007ED43D /* FFFriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FFFriendsViewController.xib; sourceTree = "<group>"; };
+		083FBA3618E2BCBC007ED43D /* FFFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFFriendCell.h; sourceTree = "<group>"; };
+		083FBA3718E2BCBC007ED43D /* FFFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFFriendCell.m; sourceTree = "<group>"; };
+		083FBA3818E2BCBC007ED43D /* FFFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FFFriendCell.xib; sourceTree = "<group>"; };
+		083FBA3918E2BCBC007ED43D /* FFFriendImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFFriendImageView.h; sourceTree = "<group>"; };
+		083FBA3A18E2BCBC007ED43D /* FFFriendImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFFriendImageView.m; sourceTree = "<group>"; };
 		08A352A518D6D69F00A3E673 /* FacebookFriends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookFriends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A352A818D6D69F00A3E673 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		08A352AA18D6D69F00A3E673 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -295,8 +305,6 @@
 		08A3537D18D6DA9800A3E673 /* UIViewController+IDPInitialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+IDPInitialization.h"; sourceTree = "<group>"; };
 		08A3537E18D6DA9800A3E673 /* UIViewController+IDPInitialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+IDPInitialization.m"; sourceTree = "<group>"; };
 		08A353C918D6DD3C00A3E673 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		08A353D218D6E46100A3E673 /* FFMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFMainViewController.h; sourceTree = "<group>"; };
-		08A353D318D6E46100A3E673 /* FFMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFMainViewController.m; sourceTree = "<group>"; };
 		08A353DB18D6E4EE00A3E673 /* FFAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFAppDelegate.h; sourceTree = "<group>"; };
 		08A353DC18D6E4EE00A3E673 /* FFAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFAppDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -356,14 +364,39 @@
 			path = Contexts;
 			sourceTree = "<group>";
 		};
-		0822A20618E1644C0080CB10 /* Subviews */ = {
+		083FBA2618E2BA23007ED43D /* Login View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0822A20718E1644C0080CB10 /* FFCellView.h */,
-				0822A20818E1644C0080CB10 /* FFCellView.m */,
-				0822A20918E1644C0080CB10 /* FFCellView.xib */,
-				0822A20A18E1644C0080CB10 /* FFImageView.h */,
-				0822A20B18E1644C0080CB10 /* FFImageView.m */,
+				083FBA2718E2BA5F007ED43D /* FFLoginViewController.h */,
+				083FBA2818E2BA5F007ED43D /* FFLoginViewController.m */,
+				083FBA2918E2BA5F007ED43D /* FFLoginViewController.xib */,
+				083FBA2C18E2BB80007ED43D /* FFLoginView.h */,
+				083FBA2D18E2BB80007ED43D /* FFLoginView.m */,
+			);
+			path = "Login View Controller";
+			sourceTree = "<group>";
+		};
+		083FBA2F18E2BCBC007ED43D /* Friends View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				083FBA3018E2BCBC007ED43D /* FFFriendsView.h */,
+				083FBA3118E2BCBC007ED43D /* FFFriendsView.m */,
+				083FBA3218E2BCBC007ED43D /* FFFriendsViewController.h */,
+				083FBA3318E2BCBC007ED43D /* FFFriendsViewController.m */,
+				083FBA3418E2BCBC007ED43D /* FFFriendsViewController.xib */,
+				083FBA3518E2BCBC007ED43D /* Subviews */,
+			);
+			path = "Friends View Controller";
+			sourceTree = "<group>";
+		};
+		083FBA3518E2BCBC007ED43D /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				083FBA3618E2BCBC007ED43D /* FFFriendCell.h */,
+				083FBA3718E2BCBC007ED43D /* FFFriendCell.m */,
+				083FBA3818E2BCBC007ED43D /* FFFriendCell.xib */,
+				083FBA3918E2BCBC007ED43D /* FFFriendImageView.h */,
+				083FBA3A18E2BCBC007ED43D /* FFFriendImageView.m */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -832,12 +865,8 @@
 		08A353CB18D6E3CC00A3E673 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0822A20618E1644C0080CB10 /* Subviews */,
-				08A353D218D6E46100A3E673 /* FFMainViewController.h */,
-				08A353D318D6E46100A3E673 /* FFMainViewController.m */,
-				0822A20518E1644C0080CB10 /* FFMainViewController.xib */,
-				0822A20318E1644C0080CB10 /* FFMainView.h */,
-				0822A20418E1644C0080CB10 /* FFMainView.m */,
+				083FBA2618E2BA23007ED43D /* Login View Controller */,
+				083FBA2F18E2BCBC007ED43D /* Friends View Controller */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -953,19 +982,20 @@
 				080FAC5918DC2E350059F38A /* Spacer.png in Resources */,
 				08A353B418D6DA9800A3E673 /* README.md in Resources */,
 				08A3538B18D6DA9800A3E673 /* LICENSE in Resources */,
+				083FBA3D18E2BCBC007ED43D /* FFFriendsViewController.xib in Resources */,
 				08A3538C18D6DA9800A3E673 /* README.md in Resources */,
 				08A353B318D6DA9800A3E673 /* LICENSE in Resources */,
 				08A3537F18D6DA9800A3E673 /* .gitignore in Resources */,
 				08A353BB18D6DA9800A3E673 /* LICENSE in Resources */,
 				08A353B618D6DA9800A3E673 /* .gitignore in Resources */,
-				0822A20F18E1644C0080CB10 /* FFCellView.xib in Resources */,
 				08A3538018D6DA9800A3E673 /* .gitmodules in Resources */,
 				08A3538518D6DA9800A3E673 /* README.md in Resources */,
 				08A353B718D6DA9800A3E673 /* LICENSE in Resources */,
 				08A3539718D6DA9800A3E673 /* LICENSE in Resources */,
-				0822A20D18E1644C0080CB10 /* FFMainViewController.xib in Resources */,
+				083FBA3F18E2BCBC007ED43D /* FFFriendCell.xib in Resources */,
 				08A352BB18D6D69F00A3E673 /* Images.xcassets in Resources */,
 				08A3539818D6DA9800A3E673 /* README.md in Resources */,
+				083FBA2B18E2BA5F007ED43D /* FFLoginViewController.xib in Resources */,
 				08A3539618D6DA9800A3E673 /* .gitignore in Resources */,
 				08A3538118D6DA9800A3E673 /* LICENSE in Resources */,
 			);
@@ -987,19 +1017,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				08A3538918D6DA9800A3E673 /* NSManagedObjectID+IDPExtensions.m in Sources */,
-				08A353D418D6E46100A3E673 /* FFMainViewController.m in Sources */,
 				08A353A818D6DA9800A3E673 /* NSObject+IDPOCExtensionsPrivate.m in Sources */,
 				08A3539D18D6DA9800A3E673 /* IDPKVOMutableArray.m in Sources */,
 				08A3538618D6DA9800A3E673 /* IDPCoreDataManager.m in Sources */,
+				083FBA3C18E2BCBC007ED43D /* FFFriendsViewController.m in Sources */,
 				08A353A418D6DA9800A3E673 /* IDPOCContext.m in Sources */,
 				08A353BF18D6DA9800A3E673 /* UIAlertView+IDPExtensions.m in Sources */,
 				08A353A718D6DA9800A3E673 /* NSObject+IDPOCExtensions.m in Sources */,
+				083FBA4018E2BCBC007ED43D /* FFFriendImageView.m in Sources */,
 				08A3539518D6DA9800A3E673 /* NSString+IDPExtensions.m in Sources */,
 				08A3538E18D6DA9800A3E673 /* IDPMath.m in Sources */,
 				08A353A918D6DA9800A3E673 /* IDPObservableObject.m in Sources */,
 				08A353B018D6DA9800A3E673 /* IDPURLRequest.m in Sources */,
 				08A3539E18D6DA9800A3E673 /* IDPMachTimer.m in Sources */,
 				08A353AB18D6DA9800A3E673 /* IDPRetainingReference.m in Sources */,
+				083FBA3E18E2BCBC007ED43D /* FFFriendCell.m in Sources */,
 				08A353AE18D6DA9800A3E673 /* IDPStackArray.m in Sources */,
 				08A353B518D6DA9800A3E673 /* CALayer+RoundedCorners.m in Sources */,
 				08A353C818D6DA9800A3E673 /* UIViewController+IDPInitialization.m in Sources */,
@@ -1011,7 +1043,6 @@
 				08A353C718D6DA9800A3E673 /* UIViewController+IDPExtensions.m in Sources */,
 				08A3539018D6DA9800A3E673 /* NSBundle+IDPExtensions.m in Sources */,
 				08A353C518D6DA9800A3E673 /* UITableView+IDPCellLoading.m in Sources */,
-				0822A20C18E1644C0080CB10 /* FFMainView.m in Sources */,
 				08A353DD18D6E4EE00A3E673 /* FFAppDelegate.m in Sources */,
 				080FAC6118DC4B6A0059F38A /* FFUserData.m in Sources */,
 				08A353AA18D6DA9800A3E673 /* IDPReference.m in Sources */,
@@ -1020,7 +1051,6 @@
 				08A3539F18D6DA9800A3E673 /* IDPModel.m in Sources */,
 				08A3538F18D6DA9800A3E673 /* NSArray+IDPExtensions.m in Sources */,
 				08A353A618D6DA9800A3E673 /* IDPOCStack.m in Sources */,
-				0822A20E18E1644C0080CB10 /* FFCellView.m in Sources */,
 				08A3539C18D6DA9800A3E673 /* IDPKVOContext.m in Sources */,
 				080FAC6218DC4B6A0059F38A /* FFUsersData.m in Sources */,
 				08A353AF18D6DA9800A3E673 /* IDPURLConnection.m in Sources */,
@@ -1032,15 +1062,16 @@
 				08A3538818D6DA9800A3E673 /* NSManagedObjectContext+IDPExtensions.m in Sources */,
 				08A353C018D6DA9800A3E673 /* UIColor+IDPExtensions.m in Sources */,
 				08A353C418D6DA9800A3E673 /* UIStoryboard+IDPExtensions.m in Sources */,
+				083FBA3B18E2BCBC007ED43D /* FFFriendsView.m in Sources */,
 				08A3539A18D6DA9800A3E673 /* IDPBufferArray.m in Sources */,
 				080FAC6518DC4B720059F38A /* FFUsersLoadingContext.m in Sources */,
 				08A3538718D6DA9800A3E673 /* NSManagedObject+IDPExtensions.m in Sources */,
 				08A3538D18D6DA9800A3E673 /* CGGeometry+IDPExtensions.m in Sources */,
-				0822A21018E1644C0080CB10 /* FFImageView.m in Sources */,
 				08A3539918D6DA9800A3E673 /* IDPBlock.m in Sources */,
 				08A353C618D6DA9800A3E673 /* UIView+IDPExtensions.m in Sources */,
 				082C727D18D97A980098200B /* FFImageModel.m in Sources */,
 				08A3539318D6DA9800A3E673 /* NSFileManager+IDPExtensions.m in Sources */,
+				083FBA2A18E2BA5F007ED43D /* FFLoginViewController.m in Sources */,
 				08A3539B18D6DA9800A3E673 /* IDPKeyPathObserver.m in Sources */,
 				08A3539418D6DA9800A3E673 /* NSObject+IDPExtensions.m in Sources */,
 				08A353C218D6DA9800A3E673 /* UIImage+IDPExtensions.m in Sources */,
@@ -1049,6 +1080,7 @@
 				08A353A318D6DA9800A3E673 /* IDPModelMixin.m in Sources */,
 				08A353C318D6DA9800A3E673 /* UINib+IDPExtensions.m in Sources */,
 				08A353AD18D6DA9800A3E673 /* IDPRetainingDictionary.m in Sources */,
+				083FBA2E18E2BB80007ED43D /* FFLoginView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,24 +6,24 @@
 //  Copyright (c) 2014 Anton Rayev. All rights reserved.
 //
 
-#import "FFMainViewController.h"
+#import "FFFriendsViewController.h"
 
 #import "FFUsersData.h"
 #import "FFUsersLoadingContext.h"
 
-#import "FFMainView.h"
-#import "FFCellView.h"
+#import "FFFriendsView.h"
+#import "FFFriendCell.h"
 
 static NSString * const kFFErrorMessage = @"Error while retrieving the list of friends";
 
-@interface FFMainViewController ()
-@property (nonatomic, readonly)	FFMainView				*mainView;
+@interface FFFriendsViewController ()
+@property (nonatomic, readonly)	FFFriendsView				*mainView;
 @property (nonatomic, retain)	FFUsersLoadingContext	*usersLoadingContext;
 @property (nonatomic, retain)	IDPNetworkReachability	*networkReachability;
 
 @end
 
-@implementation FFMainViewController
+@implementation FFFriendsViewController
 
 @dynamic mainView;
 
@@ -61,7 +61,7 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 #pragma mark -
 #pragma mark Accessors
 
-IDPViewControllerViewOfClassGetterSynthesize(FFMainView, mainView);
+IDPViewControllerViewOfClassGetterSynthesize(FFFriendsView, mainView);
 
 - (void)setUsersData:(FFUsersData *)usersData {
 	IDPNonatomicRetainPropertySynthesizeWithObserver(_usersData, usersData);
@@ -92,7 +92,7 @@ IDPViewControllerViewOfClassGetterSynthesize(FFMainView, mainView);
 - (UITableViewCell *)tableView:(UITableView *)tableView
 		 cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	FFCellView *cell = [tableView dequeueCell:[FFCellView class]];
+	FFFriendCell *cell = [tableView dequeueCell:[FFFriendCell class]];
 	FFUserData *dataForCell = self.usersData.users[indexPath.row];
 	cell.userData = dataForCell;
 	

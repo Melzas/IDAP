@@ -1,4 +1,4 @@
-#import "FFCellView.h"
+#import "FFFriendCell.h"
 
 #import "IDPPropertyMacros.h"
 
@@ -6,14 +6,14 @@
 
 #import "FFUserData.h"
 
-@interface FFCellView ()
+@interface FFFriendCell ()
 
 - (void)fillFromModel:(FFUserData *)userData;
 - (void)loadModel;
 
 @end
 
-@implementation FFCellView
+@implementation FFFriendCell
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
