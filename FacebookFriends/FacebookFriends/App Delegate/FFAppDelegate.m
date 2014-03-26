@@ -10,7 +10,7 @@
 
 #import "FFUsersData.h"
 
-#import "FFFriendsViewController.h"
+#import "FFLoginViewController.h"
 
 @implementation FFAppDelegate
 
@@ -19,7 +19,6 @@
 
 - (void)dealloc {
 	self.window = nil;
-	self.users = nil;
 	
 	[super dealloc];
 }
@@ -30,12 +29,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.window.backgroundColor = [UIColor whiteColor];
+
+	FFLoginViewController *loginViewController = [FFLoginViewController defaultNibController];
 	
-	FFFriendsViewController *friendsViewController = [FFFriendsViewController defaultNibController];
-	self.users = [FFUsersData object];
-	friendsViewController.usersData = self.users;
-	self.window.rootViewController = friendsViewController;
+	UINavigationController *navigationController = [UINavigationController object];
+	[navigationController pushViewController:loginViewController animated:NO];
 	
+	self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
 	
     return YES;
@@ -54,7 +54,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-	[self.users save];
+
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -66,7 +66,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-	[self.users save];
+
 }
 
 @end

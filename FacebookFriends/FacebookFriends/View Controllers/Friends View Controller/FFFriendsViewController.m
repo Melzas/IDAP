@@ -41,6 +41,7 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self) {
+		self.usersData = [FFUsersData object];
 		self.usersLoadingContext = [FFUsersLoadingContext object];
 		self.networkReachability = [IDPNetworkReachability reachability];
 	}
@@ -51,8 +52,19 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 #pragma mark -
 #pragma mark View Lifecycle
 
+- (void)viewWillAppear:(BOOL)animated {
+	FFUsersLoadingContext *usersLoadingContext = self.usersLoadingContext;
+	usersLoadingContext.networkReachable = self.networkReachability.isReachable;
+	usersLoadingContext.usersData = self.usersData;
+	
+	[usersLoadingContext load];
+	
+	[super viewWillAppear:animated];
+}
+
 - (void)viewDidDisappear:(BOOL)animated {
 	[self.usersLoadingContext cancel];
+	[self.usersData save];
 	
 	[super viewDidDisappear:animated];
 }
@@ -65,21 +77,6 @@ IDPViewControllerViewOfClassGetterSynthesize(FFFriendsView, mainView);
 
 - (void)setUsersData:(FFUsersData *)usersData {
 	IDPNonatomicRetainPropertySynthesizeWithObserver(_usersData, usersData);
-}
-
-#pragma mark -
-#pragma mark FBLoginViewDelegate
-
-- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
-	FFUsersLoadingContext *usersLoadingContext = self.usersLoadingContext;
-	usersLoadingContext.networkReachable = self.networkReachability.isReachable;
-	usersLoadingContext.usersData = self.usersData;
-	
-	[usersLoadingContext load];
-}
-
-- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
-	[self.usersData dump];
 }
 
 #pragma mark -

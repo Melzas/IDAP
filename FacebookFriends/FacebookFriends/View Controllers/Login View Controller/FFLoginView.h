@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface FFLoginView : UIView
-@property (nonatomic, retain)	IBOutlet FBLoginView	*loginView;
+@property (nonatomic, retain)	IBOutlet UILabel				*usernameLabel;
+@property (nonatomic, retain)	IBOutlet FBProfilePictureView	*profilePictureView;
+@property (nonatomic, retain)	IBOutlet FBLoginView			*loginView;
+@property (nonatomic, retain)	IBOutlet UIButton				*proceedButton;
 
 @end

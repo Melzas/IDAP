@@ -10,7 +10,12 @@
 
 @implementation FFLoginView
 
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
 - (void)dealloc {
+	self.usernameLabel = nil;
+	self.profilePictureView = nil;
 	self.loginView = nil;
 	
 	[super dealloc];

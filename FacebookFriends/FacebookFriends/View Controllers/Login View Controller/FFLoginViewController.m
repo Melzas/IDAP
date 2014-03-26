@@ -10,6 +10,8 @@
 
 #import "FFLoginView.h"
 
+#import "FFFriendsViewController.h"
+
 @interface FFLoginViewController ()
 
 @end
@@ -24,14 +26,34 @@
 IDPViewControllerViewOfClassGetterSynthesize(FFLoginView, loginView);
 
 #pragma mark -
+#pragma mark Interface Handling
+
+- (IBAction)onProceed:(id)sender {
+	FFFriendsViewController *friendsViewController = [FFFriendsViewController defaultNibController];
+	[self.navigationController pushViewController:friendsViewController animated:YES];
+}
+
+#pragma mark -
 #pragma mark FBLoginViewDelegate
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
-
+	self.loginView.proceedButton.enabled = YES;
 }
 
-- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
+- (void)loginViewFetchedUserInfo:(FBLoginView *)fbLoginView user:(id<FBGraphUser>)user {
+	FFLoginView *loginView = self.loginView;
+	
+	loginView.usernameLabel.text = user.name;
+	loginView.profilePictureView.profileID = user.id;
+}
 
+- (void)loginViewShowingLoggedOutUser:(FBLoginView *)fbLoginView {
+	FFLoginView *loginView = self.loginView;
+	
+	loginView.usernameLabel.text = @"You are not logged in";
+	loginView.profilePictureView.profileID = nil;
+	
+	loginView.proceedButton.enabled = NO;
 }
 
 @end

@@ -13,4 +13,6 @@
 @interface FFLoginViewController : UIViewController <FBLoginViewDelegate>
 @property (nonatomic, readonly)	FFLoginView	*loginView;
 
+- (IBAction)onProceed:(id)sender;
+
 @end
