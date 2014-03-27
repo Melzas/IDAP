@@ -11,13 +11,15 @@
 #import "FFUsersData.h"
 #import "FFUsersLoadingContext.h"
 
+#import "FFFriendDetailsViewController.h"
+
 #import "FFFriendsView.h"
 #import "FFFriendCell.h"
 
 static NSString * const kFFErrorMessage = @"Error while retrieving the list of friends";
 
 @interface FFFriendsViewController ()
-@property (nonatomic, readonly)	FFFriendsView				*mainView;
+@property (nonatomic, readonly)	FFFriendsView			*friendsView;
 @property (nonatomic, retain)	FFUsersLoadingContext	*usersLoadingContext;
 @property (nonatomic, retain)	IDPNetworkReachability	*networkReachability;
 
@@ -25,7 +27,7 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 
 @implementation FFFriendsViewController
 
-@dynamic mainView;
+@dynamic friendsView;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -73,7 +75,7 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 #pragma mark -
 #pragma mark Accessors
 
-IDPViewControllerViewOfClassGetterSynthesize(FFFriendsView, mainView);
+IDPViewControllerViewOfClassGetterSynthesize(FFFriendsView, friendsView);
 
 - (void)setUsersData:(FFUsersData *)usersData {
 	IDPNonatomicRetainPropertySynthesizeWithObserver(_usersData, usersData);
@@ -97,14 +99,24 @@ IDPViewControllerViewOfClassGetterSynthesize(FFFriendsView, mainView);
 }
 
 #pragma mark -
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	FFFriendDetailsViewController *friendDetailsViewController
+		= [FFFriendDetailsViewController defaultNibController];
+	friendDetailsViewController.userData = self.usersData.users[indexPath.row];
+	[self.navigationController pushViewController:friendDetailsViewController animated:YES];
+}
+
+#pragma mark -
 #pragma maark IDPModelObserver
 
 - (void)modelDidLoad:(id)model {
-	[self.mainView.tableView reloadData];
+	[self.friendsView.tableView reloadData];
 }
 
 - (void)modelDidUnload:(id)model {
-	[self.mainView.tableView reloadData];	
+	[self.friendsView.tableView reloadData];	
 }
 
 - (void)modelDidFailToLoad:(id)model {

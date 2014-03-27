@@ -20,6 +20,11 @@ static NSString * const kFFPublishPermissions[] = {
 static const NSUInteger kFFPublishPermissionsSize = sizeof(kFFPublishPermissions)
 	/ sizeof(NSString *);
 
+@interface FFLoginViewController ()
+@property (nonatomic, readonly)	FFLoginView	*loginView;
+
+@end
+
 
 @implementation FFLoginViewController
 

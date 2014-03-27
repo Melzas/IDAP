@@ -1,7 +1,5 @@
 #import <UIKit/UIKit.h>
 
-#import "IDPModelObserver.h"
-
 @class FFImageModel;
 
 @interface FFFriendImageView : UIView <IDPModelObserver>

@@ -1,9 +1,5 @@
 #import "FFFriendImageView.h"
 
-#import "NSBundle+IDPExtensions.h"
-
-#import "IDPPropertyMacros.h"
-
 #import "FFImageModel.h"
 
 @interface FFFriendImageView ()

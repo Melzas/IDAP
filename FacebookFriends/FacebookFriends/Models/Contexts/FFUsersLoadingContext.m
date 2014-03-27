@@ -78,6 +78,7 @@ static NSString * const kFFPictureURLKey = @"url";
 		
 		for (NSDictionary<FBGraphUser> *friend in friends) {
 			FFUserData *user = [FFUserData object];
+			user.profileId = friend.id;
 			user.firstName = friend.first_name;
 			user.lastName = friend.last_name;
 			
