@@ -41,19 +41,11 @@ IDPViewControllerViewOfClassGetterSynthesize(FFLoginView, loginView);
 }
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)fbLoginView user:(id<FBGraphUser>)user {
-	FFLoginView *loginView = self.loginView;
-	
-	loginView.usernameLabel.text = user.name;
-	loginView.profilePictureView.profileID = user.id;
+	[self.loginView fillWithUser:user];
 }
 
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)fbLoginView {
-	FFLoginView *loginView = self.loginView;
-	
-	loginView.usernameLabel.text = @"You are not logged in";
-	loginView.profilePictureView.profileID = nil;
-	
-	loginView.proceedButton.enabled = NO;
+	[self.loginView clearUser];
 }
 
 @end
