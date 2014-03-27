@@ -60,7 +60,7 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <connections>
                 <outlet property="loggedInLabel" destination="Va5-wp-Usd" id="g3a-JE-Kas"/>
-                <outlet property="loginView" destination="5og-l5-Gr1" id="xZ9-bp-qFw"/>
+                <outlet property="loginButton" destination="5og-l5-Gr1" id="VGA-aj-vqU"/>
                 <outlet property="proceedButton" destination="TDK-Nv-eHO" id="ZM1-Fe-k2E"/>
                 <outlet property="profilePictureView" destination="1Kv-f5-fGY" id="60z-0c-Vqr"/>
                 <outlet property="usernameLabel" destination="aR0-sM-u4E" id="4pa-RT-t66"/>

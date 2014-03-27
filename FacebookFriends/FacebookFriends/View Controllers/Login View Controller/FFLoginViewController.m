@@ -12,13 +12,30 @@
 
 #import "FFFriendsViewController.h"
 
-@interface FFLoginViewController ()
+static NSString * const kFFPublishPermissions[] = {
+	@"basic_info",
+	@"friends_hometown",
+	@"friends_location"
+};
+static const NSUInteger kFFPublishPermissionsSize = sizeof(kFFPublishPermissions)
+	/ sizeof(NSString *);
 
-@end
 
 @implementation FFLoginViewController
 
 @dynamic loginView;
+
+#pragma mark -
+#pragma mark View Lifecycle
+
+- (void)awakeFromNib {
+	NSArray *publishPermissions = [NSArray arrayWithObjects:kFFPublishPermissions
+													  count:kFFPublishPermissionsSize];
+	
+	self.loginView.loginButton.publishPermissions = publishPermissions;
+	
+	[super awakeFromNib];
+}
 
 #pragma mark -
 #pragma mark Accessors

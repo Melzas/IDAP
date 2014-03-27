@@ -8,9 +8,12 @@
 
 #import "FFUserData.h"
 
-static NSString * const kFFUserFirstNameKey	= @"kFFUserFirstNameKey";
-static NSString * const kFFUserLastNameKey	= @"kFFUserLastNameKey";
-static NSString * const kFFUserPhotoKey		= @"kFFUserPhotoKey";
+static NSString * const kFFProfileIdKey		   = @"kFFProfileIdKey";
+static NSString * const kFFUserFirstNameKey	   = @"kFFUserFirstNameKey";
+static NSString * const kFFUserLastNameKey	   = @"kFFUserLastNameKey";
+static NSString * const kFFUserAddressKey	   = @"kFFUserAddressKey";
+static NSString * const kFFUserPhotoPreviewKey = @"kFFUserPhotoPreviewKey";
+static NSString * const kFFUserPhotoKey		   = @"kFFUserPhotoKey";
 
 @implementation FFUserData
 
@@ -28,19 +31,28 @@ static NSString * const kFFUserPhotoKey		= @"kFFUserPhotoKey";
 
 - (id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
+	
     if (self) {
+		self.profileId = [decoder decodeObjectForKey:kFFProfileIdKey];
 		self.firstName = [decoder decodeObjectForKey:kFFUserFirstNameKey];
 		self.lastName = [decoder decodeObjectForKey:kFFUserLastNameKey];
-		self.photoPreview = [decoder decodeObjectForKey:kFFUserPhotoKey];
+		self.address = [decoder decodeObjectForKey:kFFUserAddressKey];
+		
+		self.photoPreview = [decoder decodeObjectForKey:kFFUserPhotoPreviewKey];
+		self.photo = [decoder decodeObjectForKey:kFFUserPhotoKey];
 	}
 	
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
+	[coder encodeObject:self.profileId forKey:kFFProfileIdKey];
 	[coder encodeObject:self.firstName forKey:kFFUserFirstNameKey];
 	[coder encodeObject:self.lastName forKey:kFFUserLastNameKey];
-	[coder encodeObject:self.photoPreview forKey:kFFUserPhotoKey];
+	[coder encodeObject:self.address forKey:kFFUserAddressKey];
+	
+	[coder encodeObject:self.photoPreview forKey:kFFUserPhotoPreviewKey];
+	[coder encodeObject:self.photo forKey:kFFUserPhotoKey];
 }
 
 @end

@@ -12,7 +12,6 @@
 #import "FFUsersData.h"
 #import "FFImageModel.h"
 
-static NSString * const kFFFacebookHost		   = @"facebook.com";
 static NSString * const kFFGraphPathForRequest = @"/me/friends?fields=first_name,last_name,picture";
 
 static NSString * const kFFDataKey		 = @"data";
@@ -45,8 +44,10 @@ static NSString * const kFFPictureURLKey = @"url";
 #pragma mark Public
 
 - (void)load {
-	[self.usersData prepareForLoad];
-	[self.usersData load];
+	FFUsersData *usersData = self.usersData;
+	
+	[usersData prepareForLoad];
+	[usersData load];
 	
 	self.isNetworkReachable ? [self loadFromFacebook] : [self loadFromLocalCache];
 }

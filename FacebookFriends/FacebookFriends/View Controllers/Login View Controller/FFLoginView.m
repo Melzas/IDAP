@@ -19,7 +19,7 @@ static NSString * const kFFLoggedInMessage	  = @"You are logged in as:";
 - (void)dealloc {
 	self.usernameLabel = nil;
 	self.profilePictureView = nil;
-	self.loginView = nil;
+	self.loginButton = nil;
 	
 	[super dealloc];
 }
