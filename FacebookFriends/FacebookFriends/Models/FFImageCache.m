@@ -7,7 +7,7 @@
 static FFImageCache *IDPSharedImageCache = nil;
 
 @interface FFImageCache ()
-@property (nonatomic, retain)	NSCache	*imageCache;
+@property (nonatomic, retain)	NSMutableDictionary	*imageCache;
 
 @end
 

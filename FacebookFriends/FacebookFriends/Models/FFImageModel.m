@@ -84,4 +84,15 @@ static NSString	* const kFFImageKey	= @"kFFImageKey";
 	[coder encodeObject:self.image forKey:kFFImageKey];
 }
 
+- (oneway void)release {
+    @synchronized (self) {
+        [super release];
+        
+        if (1 == [self retainCount]) {
+            FFImageCache *cache = [FFImageCache sharedObject];
+            [cache removeImage:self];
+        }
+    }
+}
+
 @end

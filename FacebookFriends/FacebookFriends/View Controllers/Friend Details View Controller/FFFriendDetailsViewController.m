@@ -50,11 +50,6 @@
 	[super viewWillAppear:animated];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-	
-	[super viewDidDisappear:animated];
-}
-
 #pragma mark -
 #pragma mark Accesssors
 
