@@ -12,12 +12,12 @@
 
 #import "FFFriendsViewController.h"
 
-static NSString * const kFFPublishPermissions[] = {
+static NSString * const kFFReadPermissions[] = {
 	@"basic_info",
 	@"friends_hometown",
 	@"friends_location"
 };
-static const NSUInteger kFFPublishPermissionsSize = sizeof(kFFPublishPermissions)
+static const NSUInteger kFFReadPermissionsSize = sizeof(kFFReadPermissions)
 	/ sizeof(NSString *);
 
 @interface FFLoginViewController ()
@@ -33,13 +33,13 @@ static const NSUInteger kFFPublishPermissionsSize = sizeof(kFFPublishPermissions
 #pragma mark -
 #pragma mark View Lifecycle
 
-- (void)awakeFromNib {
-	NSArray *publishPermissions = [NSArray arrayWithObjects:kFFPublishPermissions
-													  count:kFFPublishPermissionsSize];
+- (void)viewDidLoad {
+	NSArray *readPermissions = [NSArray arrayWithObjects:kFFReadPermissions
+												   count:kFFReadPermissionsSize];
 	
-	self.loginView.loginButton.publishPermissions = publishPermissions;
+	self.loginView.loginButton.readPermissions = readPermissions;
 	
-	[super awakeFromNib];
+	[super viewDidLoad];
 }
 
 #pragma mark -
