@@ -9,7 +9,6 @@
 @interface FFFriendCell ()
 
 - (void)fillFromModel:(FFUserData *)userData;
-- (void)loadModel;
 
 @end
 
@@ -36,7 +35,7 @@
 - (void)setUserData:(FFUserData *)userData {
 	IDPNonatomicRetainPropertySynthesizeWithObserver(_userData, userData);
 
-	[self loadModel];
+	[self.userData load];
 }
 
 #pragma mark -
@@ -49,10 +48,6 @@
 
 #pragma mark -
 #pragma mark Private
-
-- (void)loadModel {
-	[self.userData load];
-}
 
 #pragma mark -
 #pragma mark IDPModelObserver

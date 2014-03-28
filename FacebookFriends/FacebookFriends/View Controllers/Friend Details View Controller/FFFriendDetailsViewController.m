@@ -45,7 +45,6 @@
 #pragma mark View Lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {
-	self.userDetailsLoadingContext.networkReachable = YES;
 	[self.userDetailsLoadingContext load];
 	
 	[super viewWillAppear:animated];
@@ -61,13 +60,22 @@
 
 IDPViewControllerViewOfClassGetterSynthesize(FFFriendDetailsView, friendDetailsView);
 
-- (void)setUserData:(FFUserData *)userData {
-	self.userDetailsLoadingContext.userData = userData;
-	self.friendDetailsView.userData = userData;
+- (void)setUserDetailsLoadingContext:(FFUserDetailsLoadingContext *)userDetailsLoadingContext {
+	IDPNonatomicRetainPropertySynthesizeWithObserver(_userDetailsLoadingContext,
+													 userDetailsLoadingContext);
 }
 
-- (FFUserData *)userData {
-	return self.userDetailsLoadingContext.userData;
+- (void)setUserData:(FFUserData *)userData {
+	IDPNonatomicRetainPropertySynthesize(_userData, userData);
+	
+	self.userDetailsLoadingContext.userData = userData;
+}
+
+#pragma mark -
+#pragma mark IDPModelObserver
+
+- (void)modelDidLoad:(id)model {
+	[self.friendDetailsView fillFromModel:self.userData];
 }
 
 @end

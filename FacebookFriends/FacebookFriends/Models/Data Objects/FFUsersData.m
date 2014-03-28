@@ -26,10 +26,20 @@ static NSString * const kFFCacheFolder	   = @"Caches";
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (void)cleanup {
+- (void)dealloc {
 	[self save];
-	
 	self.mutableUsers = nil;
+	
+	[super dealloc];
+}
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.mutableUsers = [NSMutableArray array];
+    }
+	
+    return self;
 }
 
 #pragma mark -
@@ -57,20 +67,8 @@ static NSString * const kFFCacheFolder	   = @"Caches";
 	[self.mutableUsers removeObject:user];
 }
 
-- (void)moveUserFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
-	NSMutableArray *users = self.mutableUsers;
-	
-	FFUserData *userToMove = [[[users objectAtIndex:fromIndex] retain] autorelease];
-	[users removeObjectAtIndex:fromIndex];
-	[users insertObject:userToMove atIndex:toIndex];
-}
-
 #pragma mark -
 #pragma mark Private
-
-- (void)prepareForLoad {
-	self.mutableUsers = [NSMutableArray array];
-}
 
 - (void)save {
 	[NSKeyedArchiver archiveRootObject:self.mutableUsers toFile:self.savePath];
@@ -79,7 +77,7 @@ static NSString * const kFFCacheFolder	   = @"Caches";
 - (void)loadFromFile {
 	self.mutableUsers = [NSKeyedUnarchiver unarchiveObjectWithFile:self.savePath];
 	
-	nil == self.mutableUsers ? [self failLoading] : [self finishLoading];
+//	nil == self.mutableUsers ? [self failLoading] : [self finishLoading];
 }
 
 @end

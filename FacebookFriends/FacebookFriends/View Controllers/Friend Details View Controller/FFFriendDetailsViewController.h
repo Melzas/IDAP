@@ -11,7 +11,7 @@
 @class FFUserData;
 @class FFFriendDetailsView;
 
-@interface FFFriendDetailsViewController : UIViewController
+@interface FFFriendDetailsViewController : UIViewController <IDPModelObserver>
 @property (nonatomic, retain)	FFUserData	*userData;
 
 @end

@@ -10,8 +10,8 @@
 
 @class FFUsersData;
 
-@interface FFFriendsViewController : UIViewController
-	<IDPModelObserver, UITableViewDataSource, UITableViewDelegate>
+@interface FFFriendsViewController : UIViewController <IDPModelObserver, UITableViewDataSource,
+	UITableViewDelegate>
 @property (nonatomic, retain)	FFUsersData	*usersData;
 
 @end

@@ -21,9 +21,13 @@ static NSString * const kFFUserPhotoKey		   = @"kFFUserPhotoKey";
 #pragma mark Initializations and Deallocations
 
 - (void)cleanup {
+	self.profileId = nil;
 	self.firstName = nil;
 	self.lastName = nil;
+	self.address = nil;
+	
 	self.photoPreview = nil;
+	self.photo = nil;
 }
 
 #pragma mark -

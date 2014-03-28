@@ -11,12 +11,12 @@
 @class FFFriendImageView;
 @class FFUserData;
 
-@interface FFFriendDetailsView : UIView <IDPModelObserver>
+@interface FFFriendDetailsView : UIView
 @property (nonatomic, retain)	IBOutlet FFFriendImageView	*friendImageView;
 @property (nonatomic, retain)	IBOutlet UILabel			*firstNameLabel;
 @property (nonatomic, retain)	IBOutlet UILabel			*lastNameLabel;
 @property (nonatomic, retain)	IBOutlet UILabel			*locationLabel;
 
-@property (nonatomic, retain)	FFUserData	*userData;
+- (void)fillFromModel:(FFUserData *)userData;
 
 @end

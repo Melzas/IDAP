@@ -77,8 +77,8 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 
 IDPViewControllerViewOfClassGetterSynthesize(FFFriendsView, friendsView);
 
-- (void)setUsersData:(FFUsersData *)usersData {
-	IDPNonatomicRetainPropertySynthesizeWithObserver(_usersData, usersData);
+- (void)setUsersLoadingContext:(FFUsersLoadingContext *)usersLoadingContext {
+	IDPNonatomicRetainPropertySynthesizeWithObserver(_usersLoadingContext, usersLoadingContext);
 }
 
 #pragma mark -
@@ -105,6 +105,7 @@ IDPViewControllerViewOfClassGetterSynthesize(FFFriendsView, friendsView);
 	FFFriendDetailsViewController *friendDetailsViewController
 		= [FFFriendDetailsViewController defaultNibController];
 	friendDetailsViewController.userData = self.usersData.users[indexPath.row];
+	
 	[self.navigationController pushViewController:friendDetailsViewController animated:YES];
 }
 

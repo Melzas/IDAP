@@ -31,24 +31,17 @@ static NSString * const kFFPictureURLKey = @"url";
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (void)dealloc {
+- (void)cleanup {
 	[self cancel];
 	
 	self.usersData = nil;
 	self.requestConnection = nil;
-	
-	[super dealloc];
 }
 
 #pragma mark -
 #pragma mark Public
 
-- (void)load {
-	FFUsersData *usersData = self.usersData;
-	
-	[usersData prepareForLoad];
-	[usersData load];
-	
+- (void)performLoading {
 	self.isNetworkReachable ? [self loadFromFacebook] : [self loadFromLocalCache];
 }
 
@@ -68,9 +61,11 @@ static NSString * const kFFPictureURLKey = @"url";
 - (void)loadFromFacebook {
 	self.requestConnection = [FBRequestConnection object];
 	
+	__block id weakSelf = self;
+	
 	FBRequestHandler handler = ^(FBRequestConnection *connection, id result, NSError *error) {
 		if (error) {
-			[self.usersData failLoading];
+			[weakSelf failLoading];
 			return;
 		}
 		
@@ -89,7 +84,7 @@ static NSString * const kFFPictureURLKey = @"url";
 			[self.usersData addUser:user];
 		}
 		
-		[self.usersData finishLoading];
+		[weakSelf finishLoading];
 		
 		self.requestConnection = nil;
 	};

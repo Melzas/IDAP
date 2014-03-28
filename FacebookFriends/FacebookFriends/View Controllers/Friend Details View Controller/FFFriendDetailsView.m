@@ -12,12 +12,6 @@
 
 #import "FFFriendImageView.h"
 
-@interface FFFriendDetailsView ()
-
-- (void)fillFromModel:(FFUserData *)userData;
-
-@end
-
 @implementation FFFriendDetailsView
 
 #pragma mark -
@@ -28,18 +22,8 @@
 	self.firstNameLabel = nil;
 	self.lastNameLabel = nil;
 	self.locationLabel = nil;
-	self.userData = nil;
 	
 	[super dealloc];
-}
-
-#pragma mark -
-#pragma mark Accessors
-
-- (void)setUserData:(FFUserData *)userData {
-	IDPNonatomicRetainPropertySynthesizeWithObserver(_userData, userData);
-	
-	[userData load];
 }
 
 #pragma mark -
@@ -50,13 +34,6 @@
 	self.firstNameLabel.text = userData.firstName;
 	self.lastNameLabel.text = userData.lastName;
 	self.locationLabel.text = userData.address;
-}
-
-#pragma mark -
-#pragma mark IDPModelObserver
-
-- (void)modelDidLoad:(id)model {
-	[self fillFromModel:model];
 }
 
 @end

@@ -10,12 +10,9 @@
 
 @class FFUserData;
 
-@interface FFUserDetailsLoadingContext : NSObject
+@interface FFUserDetailsLoadingContext : IDPModel
 @property (nonatomic, retain)	FFUserData	*userData;
 
-@property (nonatomic, assign, getter = isNetworkReachable)	BOOL	networkReachable;
-
-- (void)load;
 - (void)cancel;
 
 @end

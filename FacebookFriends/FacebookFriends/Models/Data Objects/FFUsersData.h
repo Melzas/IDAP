@@ -10,14 +10,12 @@
 
 @class FFUserData;
 
-@interface FFUsersData : IDPModel
+@interface FFUsersData : NSObject
 @property (nonatomic, readonly)	NSArray		*users;
 @property (nonatomic, readonly)	NSString	*savePath;
 
 - (void)addUser:(FFUserData *)user;
 - (void)removeUser:(FFUserData *)user;
-
-- (void)moveUserFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 
 - (void)save;
 - (void)loadFromFile;
