@@ -31,6 +31,24 @@ static const NSUInteger kFFReadPermissionsSize = sizeof(kFFReadPermissions)
 @dynamic loginView;
 
 #pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+	self.friendsViewController = nil;
+	
+	[super dealloc];
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+		self.friendsViewController = [FFFriendsViewController defaultNibController];
+    }
+	
+    return self;
+}
+
+#pragma mark -
 #pragma mark View Lifecycle
 
 - (void)viewDidLoad {
@@ -51,8 +69,7 @@ IDPViewControllerViewOfClassGetterSynthesize(FFLoginView, loginView);
 #pragma mark Interface Handling
 
 - (IBAction)onProceed:(id)sender {
-	FFFriendsViewController *friendsViewController = [FFFriendsViewController defaultNibController];
-	[self.navigationController pushViewController:friendsViewController animated:YES];
+	[self.navigationController pushViewController:self.friendsViewController animated:YES];
 }
 
 #pragma mark -

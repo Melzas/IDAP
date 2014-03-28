@@ -11,6 +11,12 @@
 #import "FFUsersData.h"
 
 #import "FFLoginViewController.h"
+#import "FFFriendsViewController.h"
+
+@interface FFAppDelegate ()
+@property (nonatomic, retain)	FFUsersData	*usersData;
+
+@end
 
 @implementation FFAppDelegate
 
@@ -19,6 +25,7 @@
 
 - (void)dealloc {
 	self.window = nil;
+	self.usersData = nil;
 	
 	[super dealloc];
 }
@@ -30,7 +37,10 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.window.backgroundColor = [UIColor whiteColor];
 
+	self.usersData = [FFUsersData object];
+	
 	FFLoginViewController *loginViewController = [FFLoginViewController defaultNibController];
+	loginViewController.friendsViewController.usersData = self.usersData;
 	
 	UINavigationController *navigationController = [UINavigationController object];
 	[navigationController pushViewController:loginViewController animated:NO];
@@ -54,7 +64,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-
+	[self.usersData save];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -66,7 +76,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-
+	[self.usersData save];
 }
 
 @end

@@ -38,7 +38,7 @@ static FFImageCache *IDPSharedImageCache = nil;
 - (id)init {
 	self = [super init];
 	if (self) {
-		self.imageCache = [NSCache object];
+		self.imageCache = [NSMutableDictionary object];
 	}
 	
 	return  self;

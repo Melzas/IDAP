@@ -42,7 +42,7 @@ static NSString * const kFFPictureURLKey = @"url";
 #pragma mark Public
 
 - (void)performLoading {
-	self.isNetworkReachable ? [self loadFromFacebook] : [self loadFromLocalCache];
+	[self loadFromFacebook];
 }
 
 - (void)cancel {
@@ -54,7 +54,21 @@ static NSString * const kFFPictureURLKey = @"url";
 
 - (void)loadFromLocalCache {
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		[self.usersData loadFromFile];
+		FFUsersData *usersData = self.usersData;
+		
+		[usersData loadFromFile];
+		
+		NSArray *users = usersData.users;
+		if (nil == users || 0 == [users count]) {
+			[self failLoading];
+			return;
+		}
+		
+		for (FFUserData *userData in users) {
+			[userData finishLoading];
+		}
+		
+		[self finishLoading];
 	});
 }
 
@@ -65,7 +79,7 @@ static NSString * const kFFPictureURLKey = @"url";
 	
 	FBRequestHandler handler = ^(FBRequestConnection *connection, id result, NSError *error) {
 		if (error) {
-			[weakSelf failLoading];
+			[weakSelf loadFromLocalCache];
 			return;
 		}
 		

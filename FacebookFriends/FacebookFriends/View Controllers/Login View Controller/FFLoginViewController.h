@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @class FFLoginView;
+@class FFFriendsViewController;
 
 @interface FFLoginViewController : UIViewController <FBLoginViewDelegate>
+@property (nonatomic, retain)	FFFriendsViewController	*friendsViewController;
 
 - (IBAction)onProceed:(id)sender;
 

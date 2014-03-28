@@ -76,8 +76,6 @@ static NSString * const kFFCacheFolder	   = @"Caches";
 
 - (void)loadFromFile {
 	self.mutableUsers = [NSKeyedUnarchiver unarchiveObjectWithFile:self.savePath];
-	
-//	nil == self.mutableUsers ? [self failLoading] : [self finishLoading];
 }
 
 @end

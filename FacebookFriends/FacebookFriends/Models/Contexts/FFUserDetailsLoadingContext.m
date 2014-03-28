@@ -23,6 +23,9 @@ static NSString * const kFFPictureURLKey = @"url";
 @interface FFUserDetailsLoadingContext ()
 @property (nonatomic, retain)	FBRequestConnection	*requestConnection;
 
+- (void)loadFromLocalCache;
+- (void)loadFromFacebook;
+
 @end
 
 @implementation FFUserDetailsLoadingContext
@@ -41,6 +44,28 @@ static NSString * const kFFPictureURLKey = @"url";
 #pragma mark Public
 
 - (void)performLoading {
+	[self loadFromFacebook];
+}
+
+- (void)cancel {
+	[self.requestConnection cancel];
+}
+
+#pragma mark -
+#pragma mark Private
+
+- (void)loadFromLocalCache {
+	FFUserData *userData = self.userData;
+	
+	if (nil == userData.address || nil == userData.photo) {
+		[self failLoading];
+		return;
+	}
+	
+	[self finishLoading];
+}
+
+- (void)loadFromFacebook {
 	self.requestConnection = [FBRequestConnection object];
 	
 	__block id weakSelf = self;
@@ -49,7 +74,7 @@ static NSString * const kFFPictureURLKey = @"url";
 		FFUserData *userData = self.userData;
 		
 		if (error) {
-			[weakSelf failLoading];
+			[weakSelf loadFromLocalCache];
 			return;
 		}
 		
@@ -70,10 +95,6 @@ static NSString * const kFFPictureURLKey = @"url";
 	
 	[requestConnection addRequest:request completionHandler:handler];
 	[requestConnection start];
-}
-
-- (void)cancel {
-	[self.requestConnection cancel];
 }
 
 @end

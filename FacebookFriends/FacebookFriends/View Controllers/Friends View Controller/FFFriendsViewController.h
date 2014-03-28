@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class FFUsersData;
+@class FFFriendDetailsViewController;
 
 @interface FFFriendsViewController : UIViewController <IDPModelObserver, UITableViewDataSource,
 	UITableViewDelegate>

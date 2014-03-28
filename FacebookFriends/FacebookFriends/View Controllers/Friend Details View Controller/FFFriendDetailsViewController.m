@@ -12,6 +12,8 @@
 
 #import "FFFriendDetailsView.h"
 
+static NSString * const kFFErrorMessage = @"Error while retreiving friend details";
+
 @interface FFFriendDetailsViewController ()
 @property (nonatomic, readonly)	FFFriendDetailsView			*friendDetailsView;
 @property (nonatomic, retain)	FFUserDetailsLoadingContext	*userDetailsLoadingContext;
@@ -71,6 +73,10 @@ IDPViewControllerViewOfClassGetterSynthesize(FFFriendDetailsView, friendDetailsV
 
 - (void)modelDidLoad:(id)model {
 	[self.friendDetailsView fillFromModel:self.userData];
+}
+
+- (void)modelDidFailToLoad:(id)theModel {
+	[UIAlertView showErrorWithMessage:kFFErrorMessage];
 }
 
 @end

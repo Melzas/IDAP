@@ -21,7 +21,6 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 @interface FFFriendsViewController ()
 @property (nonatomic, readonly)	FFFriendsView			*friendsView;
 @property (nonatomic, retain)	FFUsersLoadingContext	*usersLoadingContext;
-@property (nonatomic, retain)	IDPNetworkReachability	*networkReachability;
 
 @end
 
@@ -35,7 +34,6 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 - (void)dealloc {
 	self.usersData = nil;
 	self.usersLoadingContext = nil;
-	self.networkReachability = nil;
 	
 	[super dealloc];
 }
@@ -43,9 +41,7 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self) {
-		self.usersData = [FFUsersData object];
 		self.usersLoadingContext = [FFUsersLoadingContext object];
-		self.networkReachability = [IDPNetworkReachability reachability];
 	}
 	
 	return self;
@@ -56,7 +52,6 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 
 - (void)viewWillAppear:(BOOL)animated {
 	FFUsersLoadingContext *usersLoadingContext = self.usersLoadingContext;
-	usersLoadingContext.networkReachable = self.networkReachability.isReachable;
 	usersLoadingContext.usersData = self.usersData;
 	
 	[usersLoadingContext load];
@@ -66,7 +61,6 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 
 - (void)viewDidDisappear:(BOOL)animated {
 	[self.usersLoadingContext cancel];
-	[self.usersData save];
 	
 	[super viewDidDisappear:animated];
 }
@@ -104,8 +98,8 @@ IDPViewControllerViewOfClassGetterSynthesize(FFFriendsView, friendsView);
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	FFFriendDetailsViewController *friendDetailsViewController
 		= [FFFriendDetailsViewController defaultNibController];
-	friendDetailsViewController.userData = self.usersData.users[indexPath.row];
 	
+	friendDetailsViewController.userData = self.usersData.users[indexPath.row];
 	[self.navigationController pushViewController:friendDetailsViewController animated:YES];
 }
 

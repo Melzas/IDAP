@@ -27,6 +27,8 @@ static NSString	* const kFFImageKey	= @"kFFImageKey";
 #pragma mark Initializations and Deallocations
 
 - (void)cleanup {
+	NSLog(@"%@", self.path);
+	
 	self.image = nil;
 	self.path = nil;
 }
@@ -84,13 +86,27 @@ static NSString	* const kFFImageKey	= @"kFFImageKey";
 	[coder encodeObject:self.image forKey:kFFImageKey];
 }
 
+-(id)retain {
+	NSString *path = [self.path lastPathComponent];
+	if (![path containString:@"q"]) {
+		NSLog(@"%@: %i", path, [self retainCount]);
+	}
+	
+	return [super retain];
+}
+
 - (oneway void)release {
+	NSString *path = [self.path lastPathComponent];
+	if (![path containString:@"q"]) {
+		NSLog(@"%@: %i", path, [self retainCount]);
+	}
+	
     @synchronized (self) {
         [super release];
         
         if (1 == [self retainCount]) {
             FFImageCache *cache = [FFImageCache sharedObject];
-            [cache removeImage:self];
+ //           [cache removeImage:self];
         }
     }
 }
