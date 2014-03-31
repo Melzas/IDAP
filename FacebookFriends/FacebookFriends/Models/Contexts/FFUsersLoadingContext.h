@@ -13,8 +13,4 @@
 @interface FFUsersLoadingContext : IDPModel
 @property (nonatomic, retain)	FFUsersData	*usersData;
 
-@property (nonatomic, assign, getter = isNetworkReachable)	BOOL	networkReachable;
-
-- (void)cancel;
-
 @end

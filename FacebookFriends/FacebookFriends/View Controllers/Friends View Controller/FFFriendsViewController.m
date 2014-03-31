@@ -53,7 +53,6 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 - (void)viewWillAppear:(BOOL)animated {
 	FFUsersLoadingContext *usersLoadingContext = self.usersLoadingContext;
 	usersLoadingContext.usersData = self.usersData;
-	
 	[usersLoadingContext load];
 	
 	[super viewWillAppear:animated];

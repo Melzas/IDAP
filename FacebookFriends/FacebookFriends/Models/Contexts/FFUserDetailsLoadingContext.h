@@ -13,6 +13,4 @@
 @interface FFUserDetailsLoadingContext : IDPModel
 @property (nonatomic, retain)	FFUserData	*userData;
 
-- (void)cancel;
-
 @end

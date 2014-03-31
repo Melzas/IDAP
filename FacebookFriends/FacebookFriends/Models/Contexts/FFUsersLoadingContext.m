@@ -32,8 +32,6 @@ static NSString * const kFFPictureURLKey = @"url";
 #pragma mark Initializations and Deallocations
 
 - (void)cleanup {
-	[self cancel];
-	
 	self.usersData = nil;
 	self.requestConnection = nil;
 }
@@ -47,6 +45,8 @@ static NSString * const kFFPictureURLKey = @"url";
 
 - (void)cancel {
 	[self.requestConnection cancel];
+	
+	[super cancel];
 }
 
 #pragma mark -
