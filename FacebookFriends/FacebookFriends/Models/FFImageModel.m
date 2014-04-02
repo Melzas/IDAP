@@ -8,9 +8,11 @@
 static NSString * const kFFPathKey	= @"kFFPathKey";
 static NSString	* const kFFImageKey	= @"kFFImageKey";
 
-@interface FFImageModel ()
+@interface FFImageModel () <IDPModelObserver>
 @property (nonatomic, retain)	UIImage		*image;
 @property (nonatomic, copy)		NSString	*path;
+
+@property (nonatomic, retain)	IDPURLConnection	*connection;
 
 @end
 
@@ -29,6 +31,7 @@ static NSString	* const kFFImageKey	= @"kFFImageKey";
 - (void)cleanup {
 	self.image = nil;
 	self.path = nil;
+	self.connection = nil;
 }
 
 - (id)initWithPath:(NSString *)path {
@@ -50,7 +53,24 @@ static NSString	* const kFFImageKey	= @"kFFImageKey";
 }
 
 #pragma mark -
+#pragma mark - Accessors
+
+- (void)setConnection:(IDPURLConnection *)connection {
+	if (connection != _connection) {
+		[_connection cancel];
+	}
+	
+	IDPNonatomicRetainPropertySynthesizeWithObserver(_connection, connection);
+}
+
+#pragma mark -
 #pragma mark Public
+
+- (void)cancel {
+	self.connection = nil;
+	
+	[super cancel];
+}
 
 - (oneway void)release {
     @synchronized (self) {
@@ -71,13 +91,27 @@ static NSString	* const kFFImageKey	= @"kFFImageKey";
 		[self finishLoading];
 		return;
 	}
+
+	NSURL *imageUrl = [NSURL URLWithString:self.path];
+	self.connection = [IDPURLConnection connectionToURL:imageUrl];
+	[self.connection load];
+}
+
+#pragma mark -
+#pragma mark IDPModelObserver
+
+- (void)modelDidLoad:(id)model {
+	IDPURLConnection *connection = self.connection;
+	self.image = [UIImage imageWithData:connection.data];
 	
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		NSURL *imageUrl = [NSURL URLWithString:self.path];
-		self.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
-		
-		[self finishLoading];
-	});
+	[self finishLoading];
+	self.connection = nil;
+}
+
+- (void)modelDidFailToLoad:(id)model {
+	[self failLoading];
+	
+	self.connection = nil;
 }
 
 #pragma mark -
