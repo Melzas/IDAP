@@ -21,8 +21,7 @@ static NSString * const kFFPictureURLKey = @"url";
 @interface FFUsersLoadingContext ()
 @property (nonatomic, retain)	FBRequestConnection *requestConnection;
 
-- (void)loadFromLocalCache;
-- (void)loadFromFacebook;
+- (void)loadFromFile;
 
 @end
 
@@ -33,26 +32,21 @@ static NSString * const kFFPictureURLKey = @"url";
 
 - (void)cleanup {
 	self.usersData = nil;
-	self.requestConnection = nil;
+	
+	[super cleanup];
 }
 
 #pragma mark -
 #pragma mark Public
 
 - (void)performLoading {
-	[self loadFromFacebook];
-}
-
-- (void)cancel {
-	[self.requestConnection cancel];
-	
-	[super cancel];
+	[self loadFromFacebookWithGraphPath:kFFGraphPathForRequest];
 }
 
 #pragma mark -
 #pragma mark Private
 
-- (void)loadFromLocalCache {
+- (void)loadFromFile {
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		FFUsersData *usersData = self.usersData;
 		
@@ -72,42 +66,28 @@ static NSString * const kFFPictureURLKey = @"url";
 	});
 }
 
-- (void)loadFromFacebook {
-	self.requestConnection = [FBRequestConnection object];
+- (void)loadingDidFinishWithResult:(id)result error:(NSError *)error {
+	if (error) {
+		[self loadFromFile];
+		return;
+	}
 	
-	__block id weakSelf = self;
+	NSArray *friends = result[kFFDataKey];
 	
-	FBRequestHandler handler = ^(FBRequestConnection *connection, id result, NSError *error) {
-		if (error) {
-			[weakSelf loadFromLocalCache];
-			return;
-		}
+	for (NSDictionary<FBGraphUser> *friend in friends) {
+		FFUserData *user = [FFUserData object];
+		user.profileId = friend.id;
+		user.firstName = friend.first_name;
+		user.lastName = friend.last_name;
 		
-		NSArray *friends = result[kFFDataKey];
+		NSString *pictureUrl = friend[kFFPictureKey][kFFDataKey][kFFPictureURLKey];
+		user.photoPreview = [FFImageModel modelWithPath:pictureUrl];
+		[user finishLoading];
 		
-		for (NSDictionary<FBGraphUser> *friend in friends) {
-			FFUserData *user = [FFUserData object];
-			user.profileId = friend.id;
-			user.firstName = friend.first_name;
-			user.lastName = friend.last_name;
-			
-			NSString *pictureUrl = friend[kFFPictureKey][kFFDataKey][kFFPictureURLKey];
-			user.photoPreview = [FFImageModel modelWithPath:pictureUrl];
-			[user finishLoading];
-			
-			[self.usersData addUser:user];
-		}
-		
-		[weakSelf finishLoading];
-		
-		self.requestConnection = nil;
-	};
+		[self.usersData addUser:user];
+	}
 	
-	FBRequestConnection *requestConnection = self.requestConnection;
-	FBRequest *request = [FBRequest requestForGraphPath:kFFGraphPathForRequest];
-	
-	[requestConnection addRequest:request completionHandler:handler];
-	[requestConnection start];
+	[self finishLoading];
 }
 
 @end

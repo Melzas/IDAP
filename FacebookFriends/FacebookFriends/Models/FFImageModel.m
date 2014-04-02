@@ -54,8 +54,8 @@ static NSString	* const kFFImageKey	= @"kFFImageKey";
 
 - (oneway void)release {
     @synchronized (self) {
-        [super release];
-        
+		[super release];
+		
         if (1 == [self retainCount] && nil != self.path) {
             FFImageCache *cache = [FFImageCache sharedObject];
             [cache removeImage:self];

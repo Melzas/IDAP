@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Anton Rayev. All rights reserved.
 //
 
-#import "IDPModel.h"
+#import "FFLoadingContext.h"
 
 @class FFUsersData;
 
-@interface FFUsersLoadingContext : IDPModel
+@interface FFUsersLoadingContext : FFLoadingContext
 @property (nonatomic, retain)	FFUsersData	*usersData;
 
 @end

@@ -23,8 +23,7 @@ static NSString * const kFFPictureURLKey = @"url";
 @interface FFUserDetailsLoadingContext ()
 @property (nonatomic, retain)	FBRequestConnection	*requestConnection;
 
-- (void)loadFromLocalCache;
-- (void)loadFromFacebook;
+- (void)loadFromFile;
 
 @end
 
@@ -35,26 +34,22 @@ static NSString * const kFFPictureURLKey = @"url";
 
 - (void)cleanup {
 	self.userData = nil;
-	self.requestConnection = nil;
+	
+	[super cleanup];
 }
 
 #pragma mark -
 #pragma mark Public
 
 - (void)performLoading {
-	[self loadFromFacebook];
-}
-
-- (void)cancel {
-	[self.requestConnection cancel];
-	
-	[super cancel];
+	NSString *graphPath = [NSString stringWithFormat:kFFGraphPathFormat, self.userData.profileId];
+	[self loadFromFacebookWithGraphPath:graphPath];
 }
 
 #pragma mark -
 #pragma mark Private
 
-- (void)loadFromLocalCache {
+- (void)loadFromFile {
 	FFUserData *userData = self.userData;
 	
 	if (nil == userData.address || nil == userData.photo) {
@@ -65,36 +60,22 @@ static NSString * const kFFPictureURLKey = @"url";
 	[self finishLoading];
 }
 
-- (void)loadFromFacebook {
-	self.requestConnection = [FBRequestConnection object];
+- (void)loadingDidFinishWithResult:(id)result error:(NSError *)error {
+	FFUserData *userData = self.userData;
 	
-	__block id weakSelf = self;
+	if (error) {
+		[self loadFromFile];
+		return;
+	}
 	
-	FBRequestHandler handler = ^(FBRequestConnection *connection, id result, NSError *error) {
-		FFUserData *userData = self.userData;
-		
-		if (error) {
-			[weakSelf loadFromLocalCache];
-			return;
-		}
-		
-		userData.address = result[kFFLocationKey][kFFCityNameKey];
-		
-		NSString *pictureUrl = result[kFFPictureKey][kFFDataKey][kFFPictureURLKey];
-		userData.photo = [FFImageModel modelWithPath:pictureUrl];
-		
-		[weakSelf finishLoading];
-		
-		self.requestConnection = nil;
-	};
+	userData.address = result[kFFLocationKey][kFFCityNameKey];
 	
-	NSString *graphPath = [NSString stringWithFormat:kFFGraphPathFormat, self.userData.profileId];
+	NSString *pictureUrl = result[kFFPictureKey][kFFDataKey][kFFPictureURLKey];
+	userData.photo = [FFImageModel modelWithPath:pictureUrl];
 	
-	FBRequestConnection *requestConnection = self.requestConnection;
-	FBRequest *request = [FBRequest requestForGraphPath:graphPath];
+	[self finishLoading];
 	
-	[requestConnection addRequest:request completionHandler:handler];
-	[requestConnection start];
+	self.requestConnection = nil;
 }
 
 @end
