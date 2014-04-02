@@ -50,12 +50,16 @@ static FFImageCache *IDPSharedImageCache = nil;
 - (void)addImage:(FFImageModel *)imageModel {
 	@synchronized(self) {
 		[self.imageCache setObject:imageModel forKey:imageModel.path];
+		
+		imageModel.cache = self;
 	}
 }
 
 - (void)removeImage:(FFImageModel *)imageModel {
 	@synchronized(self) {
 		[self.imageCache removeObjectForKey:imageModel.path];
+		
+		imageModel.cache = nil;
 	}
 }
 

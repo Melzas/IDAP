@@ -64,7 +64,6 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 	[super viewDidDisappear:animated];
 }
 
-
 #pragma mark -
 #pragma mark Accessors
 

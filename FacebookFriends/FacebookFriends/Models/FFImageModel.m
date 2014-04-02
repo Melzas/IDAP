@@ -35,8 +35,8 @@ static NSString	* const kFFImageKey	= @"kFFImageKey";
 }
 
 - (id)initWithPath:(NSString *)path {
-	FFImageCache *sharedImageCache = [FFImageCache sharedObject];
-	FFImageModel *imageModel = [sharedImageCache cachedImageForPath:path];
+	FFImageCache *cache = [FFImageCache sharedObject];
+	FFImageModel *imageModel = [cache cachedImageForPath:path];
 	
 	if (nil != imageModel) {
 		[self autorelease];
@@ -46,7 +46,7 @@ static NSString	* const kFFImageKey	= @"kFFImageKey";
     self = [super init];
     if (self) {
 		self.path = path;
-		[sharedImageCache addImage:self];
+		[cache addImage:self];
     }
 	
     return self;
@@ -77,8 +77,7 @@ static NSString	* const kFFImageKey	= @"kFFImageKey";
 		[super release];
 		
         if (1 == [self retainCount] && nil != self.path) {
-            FFImageCache *cache = [FFImageCache sharedObject];
-            [cache removeImage:self];
+            [self.cache removeImage:self];
         }
     }
 }
