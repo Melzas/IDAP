@@ -40,7 +40,7 @@
 	self.usersData = [FFUsersData object];
 	
 	FFLoginViewController *loginViewController = [FFLoginViewController defaultNibController];
-	loginViewController.friendsViewController.usersData = self.usersData;
+	loginViewController.usersData = self.usersData;
 	
 	UINavigationController *navigationController = [UINavigationController object];
 	[navigationController pushViewController:loginViewController animated:NO];

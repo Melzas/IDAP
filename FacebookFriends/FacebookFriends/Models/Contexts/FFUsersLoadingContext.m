@@ -19,7 +19,6 @@ static NSString * const kFFPictureKey	 = @"picture";
 static NSString * const kFFPictureURLKey = @"url";
 
 @interface FFUsersLoadingContext ()
-@property (nonatomic, retain)	FBRequestConnection *requestConnection;
 
 - (void)loadFromFile;
 
@@ -40,6 +39,11 @@ static NSString * const kFFPictureURLKey = @"url";
 #pragma mark Public
 
 - (void)performLoading {
+	if (IDPModelFinished == self.usersData.state) {
+		[self finishLoading];
+		return;
+	}
+	
 	[self loadFromFacebookWithGraphPath:kFFGraphPathForRequest];
 }
 
@@ -88,6 +92,15 @@ static NSString * const kFFPictureURLKey = @"url";
 	}
 	
 	[self finishLoading];
+}
+
+#pragma mark -
+#pragma mark IDPModel
+
+- (void)finishLoading {
+	[self.usersData finishLoading];
+	
+	[super finishLoading];
 }
 
 @end

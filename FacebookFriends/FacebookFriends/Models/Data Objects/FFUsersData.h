@@ -10,7 +10,7 @@
 
 @class FFUserData;
 
-@interface FFUsersData : NSObject
+@interface FFUsersData : IDPModel
 @property (nonatomic, readonly)	NSArray		*users;
 @property (nonatomic, readonly)	NSString	*savePath;
 

@@ -26,11 +26,9 @@ static NSString * const kFFCacheFolder	   = @"Caches";
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (void)dealloc {
+- (void)cleanup {
 	[self save];
 	self.mutableUsers = nil;
-	
-	[super dealloc];
 }
 
 - (id)init {

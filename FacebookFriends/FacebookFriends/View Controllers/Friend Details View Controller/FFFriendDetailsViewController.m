@@ -52,12 +52,22 @@ static NSString * const kFFErrorMessage = @"Error while retreiving friend detail
 	[super viewWillAppear:animated];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+	self.userDetailsLoadingContext = nil;
+	
+	[super viewDidDisappear:animated];
+}
+
 #pragma mark -
 #pragma mark Accesssors
 
 IDPViewControllerViewOfClassGetterSynthesize(FFFriendDetailsView, friendDetailsView);
 
 - (void)setUserDetailsLoadingContext:(FFUserDetailsLoadingContext *)userDetailsLoadingContext {
+	if (userDetailsLoadingContext != _userDetailsLoadingContext) {
+		[_userDetailsLoadingContext cancel];
+	}
+	
 	IDPNonatomicRetainPropertySynthesizeWithObserver(_userDetailsLoadingContext,
 													 userDetailsLoadingContext);
 }

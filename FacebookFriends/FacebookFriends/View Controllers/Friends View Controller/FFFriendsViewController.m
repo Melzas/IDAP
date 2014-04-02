@@ -59,7 +59,7 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-	[self.usersLoadingContext cancel];
+	self.usersLoadingContext = nil;
 	
 	[super viewDidDisappear:animated];
 }
@@ -71,6 +71,10 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 IDPViewControllerViewOfClassGetterSynthesize(FFFriendsView, friendsView);
 
 - (void)setUsersLoadingContext:(FFUsersLoadingContext *)usersLoadingContext {
+	if (usersLoadingContext != _usersLoadingContext) {
+		[_usersLoadingContext cancel];
+	}
+	
 	IDPNonatomicRetainPropertySynthesizeWithObserver(_usersLoadingContext, usersLoadingContext);
 }
 

@@ -21,9 +21,8 @@ static NSString * const kFFPictureKey	 = @"picture";
 static NSString * const kFFPictureURLKey = @"url";
 
 @interface FFUserDetailsLoadingContext ()
-@property (nonatomic, retain)	FBRequestConnection	*requestConnection;
 
-- (void)loadFromFile;
+- (BOOL)isDetailsLoaded;
 
 @end
 
@@ -42,6 +41,11 @@ static NSString * const kFFPictureURLKey = @"url";
 #pragma mark Public
 
 - (void)performLoading {
+	if ([self isDetailsLoaded]) {
+		[self finishLoading];
+		return;
+	}
+	
 	NSString *graphPath = [NSString stringWithFormat:kFFGraphPathFormat, self.userData.profileId];
 	[self loadFromFacebookWithGraphPath:graphPath];
 }
@@ -49,22 +53,21 @@ static NSString * const kFFPictureURLKey = @"url";
 #pragma mark -
 #pragma mark Private
 
-- (void)loadFromFile {
+- (BOOL)isDetailsLoaded {
 	FFUserData *userData = self.userData;
 	
 	if (nil == userData.address || nil == userData.photo) {
-		[self failLoading];
-		return;
+		return NO;
 	}
 	
-	[self finishLoading];
+	return YES;
 }
 
 - (void)loadingDidFinishWithResult:(id)result error:(NSError *)error {
 	FFUserData *userData = self.userData;
 	
 	if (error) {
-		[self loadFromFile];
+		[self failLoading];
 		return;
 	}
 	
@@ -74,8 +77,6 @@ static NSString * const kFFPictureURLKey = @"url";
 	userData.photo = [FFImageModel modelWithPath:pictureUrl];
 	
 	[self finishLoading];
-	
-	self.requestConnection = nil;
 }
 
 @end
