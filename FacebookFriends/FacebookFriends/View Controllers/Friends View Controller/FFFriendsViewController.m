@@ -38,24 +38,17 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 	[super dealloc];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-	if (self) {
-		self.usersLoadingContext = [FFUsersLoadingContext object];
-	}
-	
-	return self;
-}
-
 #pragma mark -
 #pragma mark View Lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {
-	FFUsersLoadingContext *usersLoadingContext = self.usersLoadingContext;
+	[super viewWillAppear:animated];
+	
+	FFUsersLoadingContext *usersLoadingContext = [FFUsersLoadingContext object];
+	self.usersLoadingContext = usersLoadingContext;
+	
 	usersLoadingContext.usersData = self.usersData;
 	[usersLoadingContext load];
-	
-	[super viewWillAppear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -109,7 +102,10 @@ IDPViewControllerViewOfClassGetterSynthesize(FFFriendsView, friendsView);
 #pragma maark IDPModelObserver
 
 - (void)modelDidLoad:(id)model {
-	[self.friendsView.tableView reloadData];
+	FFFriendsView *friendsView = self.friendsView;
+	
+	[friendsView.tableView reloadData];
+	[friendsView.loadingView removeFromSuperview];
 }
 
 - (void)modelDidUnload:(id)model {

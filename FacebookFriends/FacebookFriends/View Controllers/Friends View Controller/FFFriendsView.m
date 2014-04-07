@@ -19,4 +19,10 @@
 	[super dealloc];
 }
 
+- (void)awakeFromNib {
+	[super awakeFromNib];
+	
+	self.loadingView = [IDPLoadingView loadingViewInView:self];
+}
+
 @end

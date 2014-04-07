@@ -10,5 +10,6 @@
 
 @interface FFFriendsView : UIView
 @property (nonatomic, retain)	IBOutlet UITableView	*tableView;
+@property (nonatomic, retain)	IDPLoadingView			*loadingView;
 
 @end
