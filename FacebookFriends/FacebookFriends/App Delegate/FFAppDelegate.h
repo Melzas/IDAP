@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class FFUsersData;
+@class FFUsers;
 
 @interface FFAppDelegate : UIResponder <UIApplicationDelegate>
 @property (nonatomic, retain)	UIWindow	*window;

@@ -8,8 +8,8 @@
 
 #import "FFFriendsViewController.h"
 
-#import "FFUsersData.h"
-#import "FFUsersLoadingContext.h"
+#import "FFUsers.h"
+#import "FFFacebookUsersContext.h"
 
 #import "FFFriendDetailsViewController.h"
 
@@ -20,7 +20,7 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 
 @interface FFFriendsViewController ()
 @property (nonatomic, readonly)	FFFriendsView			*friendsView;
-@property (nonatomic, retain)	FFUsersLoadingContext	*usersLoadingContext;
+@property (nonatomic, retain)	FFFacebookUsersContext	*facebookUsersContext;
 
 @end
 
@@ -32,8 +32,8 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-	self.usersData = nil;
-	self.usersLoadingContext = nil;
+	self.users = nil;
+	self.facebookUsersContext = nil;
 	
 	[super dealloc];
 }
@@ -44,15 +44,15 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
-	FFUsersLoadingContext *usersLoadingContext = [FFUsersLoadingContext object];
-	self.usersLoadingContext = usersLoadingContext;
+	FFFacebookUsersContext *facebookUsersContext = [FFFacebookUsersContext object];
+	self.facebookUsersContext = facebookUsersContext;
 	
-	usersLoadingContext.usersData = self.usersData;
-	[usersLoadingContext load];
+	facebookUsersContext.users = self.users;
+	[facebookUsersContext load];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-	self.usersLoadingContext = nil;
+	self.facebookUsersContext = nil;
 	
 	[super viewDidDisappear:animated];
 }
@@ -62,27 +62,23 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 
 IDPViewControllerViewOfClassGetterSynthesize(FFFriendsView, friendsView);
 
-- (void)setUsersLoadingContext:(FFUsersLoadingContext *)usersLoadingContext {
-	if (usersLoadingContext != _usersLoadingContext) {
-		[_usersLoadingContext cancel];
-	}
-	
-	IDPNonatomicRetainPropertySynthesizeWithObserver(_usersLoadingContext, usersLoadingContext);
+- (void)setFacebookUsersContext:(FFFacebookUsersContext *)facebookUsersContext {	
+	IDPNonatomicRetainPropertySynthesizeWithObserver(_facebookUsersContext, facebookUsersContext);
 }
 
 #pragma mark -
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [self.usersData.users count];
+	return [self.users.users count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
 		 cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	FFFriendCell *cell = [tableView dequeueCell:[FFFriendCell class]];
-	FFUserData *dataForCell = self.usersData.users[indexPath.row];
-	cell.userData = dataForCell;
+	FFUser *dataForCell = self.users.users[indexPath.row];
+	cell.user = dataForCell;
 	
 	return cell;
 }
@@ -94,7 +90,7 @@ IDPViewControllerViewOfClassGetterSynthesize(FFFriendsView, friendsView);
 	FFFriendDetailsViewController *friendDetailsViewController
 		= [FFFriendDetailsViewController defaultNibController];
 	
-	friendDetailsViewController.userData = self.usersData.users[indexPath.row];
+	friendDetailsViewController.user = self.users.users[indexPath.row];
 	[self.navigationController pushViewController:friendDetailsViewController animated:YES];
 }
 

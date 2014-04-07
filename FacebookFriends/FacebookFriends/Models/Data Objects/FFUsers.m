@@ -6,19 +6,19 @@
 //  Copyright (c) 2014 Anton Rayev. All rights reserved.
 //
 
-#import "FFUsersData.h"
+#import "FFUsers.h"
 
-#import "FFUsersData.h"
+#import "FFUsers.h"
 
 static NSString * const kFFStorageFileName = @"kFFStorageFileName.plist";
 static NSString * const kFFCacheFolder	   = @"Caches";
 
-@interface FFUsersData ()
+@interface FFUsers ()
 @property (nonatomic, retain)	NSMutableArray	*mutableUsers;
 
 @end
 
-@implementation FFUsersData
+@implementation FFUsers
 
 @dynamic users;
 @dynamic savePath;
@@ -57,23 +57,25 @@ static NSString * const kFFCacheFolder	   = @"Caches";
 #pragma mark -
 #pragma mark Public
 
-- (void)addUser:(FFUserData *)user {
+- (void)addUser:(FFUser *)user {
 	[self.mutableUsers addObject:user];
 }
 
-- (void)removeUser:(FFUserData *)user {
+- (void)removeUser:(FFUser *)user {
 	[self.mutableUsers removeObject:user];
 }
 
 #pragma mark -
 #pragma mark Private
 
-- (void)save {
-	[NSKeyedArchiver archiveRootObject:self.mutableUsers toFile:self.savePath];
+- (void)performLoading {
+	self.mutableUsers = [NSKeyedUnarchiver unarchiveObjectWithFile:self.savePath];
+	
+	[self finishLoading];
 }
 
-- (void)loadFromFile {
-	self.mutableUsers = [NSKeyedUnarchiver unarchiveObjectWithFile:self.savePath];
+- (void)save {
+	[NSKeyedArchiver archiveRootObject:self.mutableUsers toFile:self.savePath];
 }
 
 @end

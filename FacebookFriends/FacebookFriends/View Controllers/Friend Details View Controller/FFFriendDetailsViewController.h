@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class FFUserData;
+@class FFUser;
 @class FFFriendDetailsView;
 
 @interface FFFriendDetailsViewController : UIViewController <IDPModelObserver>
-@property (nonatomic, retain)	FFUserData	*userData;
+@property (nonatomic, retain)	FFUser	*user;
 
 @end

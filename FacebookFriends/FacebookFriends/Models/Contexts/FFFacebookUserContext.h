@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Anton Rayev. All rights reserved.
 //
 
-#import "FFLoadingContext.h"
+#import "FFFacebookContext.h"
 
-@class FFUserData;
+@class FFUser;
 
-@interface FFUserDetailsLoadingContext : FFLoadingContext
-@property (nonatomic, retain)	FFUserData	*userData;
+@interface FFFacebookUserContext : FFFacebookContext
+@property (nonatomic, retain)	FFUser	*user;
 
 @end

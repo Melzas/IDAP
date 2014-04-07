@@ -8,7 +8,7 @@
 
 @class FFImageModel;
 
-@interface FFUserData : IDPModel <NSCoding>
+@interface FFUser : IDPModel <NSCoding>
 @property (nonatomic, copy)		NSString		*profileId;
 @property (nonatomic, copy)		NSString		*firstName;
 @property (nonatomic, copy)		NSString		*lastName;

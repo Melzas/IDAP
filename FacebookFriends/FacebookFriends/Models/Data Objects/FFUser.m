@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Anton Rayev. All rights reserved.
 //
 
-#import "FFUserData.h"
+#import "FFUser.h"
 
 static NSString * const kFFProfileIdKey		   = @"kFFProfileIdKey";
 static NSString * const kFFUserFirstNameKey	   = @"kFFUserFirstNameKey";
@@ -15,7 +15,7 @@ static NSString * const kFFUserAddressKey	   = @"kFFUserAddressKey";
 static NSString * const kFFUserPhotoPreviewKey = @"kFFUserPhotoPreviewKey";
 static NSString * const kFFUserPhotoKey		   = @"kFFUserPhotoKey";
 
-@implementation FFUserData
+@implementation FFUser
 
 #pragma mark -
 #pragma mark Initializations and Deallocations

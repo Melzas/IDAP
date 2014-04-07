@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @class FFLoginView;
-@class FFUsersData;
+@class FFUsers;
 
 @interface FFLoginViewController : UIViewController <FBLoginViewDelegate>
-@property (nonatomic, retain)	FFUsersData	*usersData;
+@property (nonatomic, retain)	FFUsers	*users;
 
 - (IBAction)onProceed:(id)sender;
 

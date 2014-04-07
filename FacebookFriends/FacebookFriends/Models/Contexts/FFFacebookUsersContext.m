@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Anton Rayev. All rights reserved.
 //
 
-#import "FFUsersLoadingContext.h"
+#import "FFFacebookUsersContext.h"
 
-#import "FFUserData.h"
-#import "FFUsersData.h"
+#import "FFUser.h"
+#import "FFUsers.h"
 #import "FFImageModel.h"
 
 static NSString * const kFFGraphPathForRequest = @"/me/friends?fields=first_name,last_name,picture";
@@ -18,19 +18,19 @@ static NSString * const kFFDataKey		 = @"data";
 static NSString * const kFFPictureKey	 = @"picture";
 static NSString * const kFFPictureURLKey = @"url";
 
-@interface FFUsersLoadingContext ()
+@interface FFFacebookUsersContext ()
 
 - (void)loadFromFile;
 
 @end
 
-@implementation FFUsersLoadingContext
+@implementation FFFacebookUsersContext
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (void)cleanup {
-	self.usersData = nil;
+	self.users = nil;
 	
 	[super cleanup];
 }
@@ -39,12 +39,12 @@ static NSString * const kFFPictureURLKey = @"url";
 #pragma mark Public
 
 - (void)performLoading {
-	if (IDPModelFinished == self.usersData.state) {
+	if (IDPModelFinished == self.users.state) {
 		[self finishLoading];
 		return;
 	}
 	
-	[self loadFromFacebookWithGraphPath:kFFGraphPathForRequest];
+	[self loadWithGraphPath:kFFGraphPathForRequest];
 }
 
 #pragma mark -
@@ -52,9 +52,9 @@ static NSString * const kFFPictureURLKey = @"url";
 
 - (void)loadFromFile {
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		FFUsersData *usersData = self.usersData;
+		FFUsers *usersData = self.users;
 		
-		[usersData loadFromFile];
+		[usersData load];
 		
 		NSArray *users = usersData.users;
 		if (nil == users || 0 == [users count]) {
@@ -62,8 +62,8 @@ static NSString * const kFFPictureURLKey = @"url";
 			return;
 		}
 		
-		for (FFUserData *userData in users) {
-			[userData finishLoading];
+		for (FFUser *user in users) {
+			[user finishLoading];
 		}
 		
 		[self finishLoading];
@@ -79,7 +79,7 @@ static NSString * const kFFPictureURLKey = @"url";
 	NSArray *friends = result[kFFDataKey];
 	
 	for (NSDictionary<FBGraphUser> *friend in friends) {
-		FFUserData *user = [FFUserData object];
+		FFUser *user = [FFUser object];
 		user.profileId = friend.id;
 		user.firstName = friend.first_name;
 		user.lastName = friend.last_name;
@@ -88,7 +88,7 @@ static NSString * const kFFPictureURLKey = @"url";
 		user.photoPreview = [FFImageModel modelWithPath:pictureUrl];
 		[user finishLoading];
 		
-		[self.usersData addUser:user];
+		[self.users addUser:user];
 	}
 	
 	[self finishLoading];
@@ -98,7 +98,7 @@ static NSString * const kFFPictureURLKey = @"url";
 #pragma mark IDPModel
 
 - (void)finishLoading {
-	[self.usersData finishLoading];
+	[self.users finishLoading];
 	
 	[super finishLoading];
 }

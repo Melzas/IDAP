@@ -2,13 +2,13 @@
 
 #import "IDPModelObserver.h"
 
-#import "FFFriendImageView.h"
+#import "FFImageView.h"
 
-@class FFUserData;
+@class FFUser;
 
 @interface FFFriendCell : UITableViewCell <IDPModelObserver>
-@property (nonatomic, retain)	IBOutlet UILabel			*label;
-@property (nonatomic, retain)	IBOutlet FFFriendImageView	*pictureView;
-@property (nonatomic, retain)	FFUserData					*userData;
+@property (nonatomic, retain)	IBOutlet UILabel		*label;
+@property (nonatomic, retain)	IBOutlet FFImageView	*pictureView;
+@property (nonatomic, retain)	FFUser					*user;
 
 @end

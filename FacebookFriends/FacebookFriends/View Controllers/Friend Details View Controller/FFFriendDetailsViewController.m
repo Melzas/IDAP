@@ -8,15 +8,15 @@
 
 #import "FFFriendDetailsViewController.h"
 
-#import "FFUserDetailsLoadingContext.h"
+#import "FFFacebookUserContext.h"
 
 #import "FFFriendDetailsView.h"
 
 static NSString * const kFFErrorMessage = @"Error while retreiving friend details";
 
 @interface FFFriendDetailsViewController ()
-@property (nonatomic, readonly)	FFFriendDetailsView			*friendDetailsView;
-@property (nonatomic, retain)	FFUserDetailsLoadingContext	*userDetailsLoadingContext;
+@property (nonatomic, readonly)	FFFriendDetailsView		*friendDetailsView;
+@property (nonatomic, retain)	FFFacebookUserContext	*facebookUserContext;
 
 @end
 
@@ -28,32 +28,24 @@ static NSString * const kFFErrorMessage = @"Error while retreiving friend detail
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-	self.userDetailsLoadingContext = nil;
-	self.userData = nil;
+	self.facebookUserContext = nil;
+	self.user = nil;
 	
 	[super dealloc];
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-		self.userDetailsLoadingContext = [FFUserDetailsLoadingContext object];
-    }
-	
-    return self;
 }
 
 #pragma mark -
 #pragma mark View Lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {
-	[self.userDetailsLoadingContext load];
-	
 	[super viewWillAppear:animated];
+	
+	self.facebookUserContext = [FFFacebookUserContext object];
+	[self.facebookUserContext load];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-	self.userDetailsLoadingContext = nil;
+	self.facebookUserContext = nil;
 	
 	[super viewDidDisappear:animated];
 }
@@ -63,26 +55,21 @@ static NSString * const kFFErrorMessage = @"Error while retreiving friend detail
 
 IDPViewControllerViewOfClassGetterSynthesize(FFFriendDetailsView, friendDetailsView);
 
-- (void)setUserDetailsLoadingContext:(FFUserDetailsLoadingContext *)userDetailsLoadingContext {
-	if (userDetailsLoadingContext != _userDetailsLoadingContext) {
-		[_userDetailsLoadingContext cancel];
-	}
+- (void)setFacebookUserContext:(FFFacebookUserContext *)facebookUserContext {
+	IDPNonatomicRetainPropertySynthesizeWithObserver(_facebookUserContext, facebookUserContext);
 	
-	IDPNonatomicRetainPropertySynthesizeWithObserver(_userDetailsLoadingContext,
-													 userDetailsLoadingContext);
+	facebookUserContext.user = self.user;
 }
 
-- (void)setUserData:(FFUserData *)userData {
-	IDPNonatomicRetainPropertySynthesize(_userData, userData);
-	
-	self.userDetailsLoadingContext.userData = userData;
+- (void)setUser:(FFUser *)user {
+	IDPNonatomicRetainPropertySynthesize(_user, user);
 }
 
 #pragma mark -
 #pragma mark IDPModelObserver
 
 - (void)modelDidLoad:(id)model {
-	[self.friendDetailsView fillFromModel:self.userData];
+	[self.friendDetailsView fillFromModel:self.user];
 }
 
 - (void)modelDidFailToLoad:(id)theModel {

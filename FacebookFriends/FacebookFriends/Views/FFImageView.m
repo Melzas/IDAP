@@ -1,15 +1,15 @@
-#import "FFFriendImageView.h"
+#import "FFImageView.h"
 
 #import "FFImageModel.h"
 
-@interface FFFriendImageView ()
+@interface FFImageView ()
 
 - (void)loadModel;
 - (void)fillFromModel:(FFImageModel *)model;
 
 @end
 
-@implementation FFFriendImageView
+@implementation FFImageView
 
 #pragma mark -
 #pragma mark Initializations and Deallocations

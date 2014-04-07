@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Anton Rayev. All rights reserved.
 //
 
-@interface FFLoadingContext : IDPModel
+@interface FFFacebookContext : IDPModel
 @property (nonatomic, readonly)	FBRequestConnection *requestConnection;
 
-- (void)loadFromFacebookWithGraphPath:(NSString *)graphPath;
+- (void)loadWithGraphPath:(NSString *)graphPath;
 
 // intended for subclassing
 // never call this method directly

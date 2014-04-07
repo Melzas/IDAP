@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Anton Rayev. All rights reserved.
 //
 
-#import "FFLoadingContext.h"
+#import "FFFacebookContext.h"
 
-@interface FFLoadingContext ()
+@interface FFFacebookContext ()
 @property (nonatomic, retain)	FBRequestConnection *requestConnection;
 
 @end
 
-@implementation FFLoadingContext
+@implementation FFFacebookContext
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -42,10 +42,10 @@
 	[super cancel];
 }
 
-- (void)loadFromFacebookWithGraphPath:(NSString *)graphPath {
+- (void)loadWithGraphPath:(NSString *)graphPath {
 	self.requestConnection = [FBRequestConnection object];
 	
-	__block FFLoadingContext *weakSelf = self;
+	__block FFFacebookContext *weakSelf = self;
 	
 	FBRequestHandler handler = ^(FBRequestConnection *connection, id result, NSError *error) {
 		[weakSelf loadingDidFinishWithResult:result error:error];

@@ -8,9 +8,9 @@
 
 #import "FFFriendDetailsView.h"
 
-#import "FFUserData.h"
+#import "FFUser.h"
 
-#import "FFFriendImageView.h"
+#import "FFImageView.h"
 
 @implementation FFFriendDetailsView
 
@@ -29,11 +29,11 @@
 #pragma mark -
 #pragma mark Private
 
-- (void)fillFromModel:(FFUserData *)userData {
-	self.friendImageView.model = userData.photo;
-	self.firstNameLabel.text = userData.firstName;
-	self.lastNameLabel.text = userData.lastName;
-	self.locationLabel.text = userData.address;
+- (void)fillFromModel:(FFUser *)user {
+	self.friendImageView.model = user.photo;
+	self.firstNameLabel.text = user.firstName;
+	self.lastNameLabel.text = user.lastName;
+	self.locationLabel.text = user.address;
 }
 
 @end

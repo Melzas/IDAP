@@ -8,13 +8,13 @@
 
 #import "FFAppDelegate.h"
 
-#import "FFUsersData.h"
+#import "FFUsers.h"
 
 #import "FFLoginViewController.h"
 #import "FFFriendsViewController.h"
 
 @interface FFAppDelegate ()
-@property (nonatomic, retain)	FFUsersData	*usersData;
+@property (nonatomic, retain)	FFUsers	*users;
 
 @end
 
@@ -25,7 +25,7 @@
 
 - (void)dealloc {
 	self.window = nil;
-	self.usersData = nil;
+	self.users = nil;
 	
 	[super dealloc];
 }
@@ -34,19 +34,20 @@
 #pragma mark UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    self.window.backgroundColor = [UIColor whiteColor];
+    UIWindow *window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+	window.backgroundColor = [UIColor whiteColor];
+	self.window = window;
 
-	self.usersData = [FFUsersData object];
+	self.users = [FFUsers object];
 	
 	FFLoginViewController *loginViewController = [FFLoginViewController defaultNibController];
-	loginViewController.usersData = self.usersData;
+	loginViewController.users = self.users;
 	
 	UINavigationController *navigationController = [UINavigationController object];
 	[navigationController pushViewController:loginViewController animated:NO];
 	
-	self.window.rootViewController = navigationController;
-    [self.window makeKeyAndVisible];
+	window.rootViewController = navigationController;
+    [window makeKeyAndVisible];
 	
     return YES;
 }
@@ -64,7 +65,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-	[self.usersData save];
+	[self.users save];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -76,7 +77,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-	[self.usersData save];
+	[self.users save];
 }
 
 @end

@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Anton Rayev. All rights reserved.
 //
 
-#import "FFUserDetailsLoadingContext.h"
+#import "FFFacebookUserContext.h"
 
-#import "FFUserData.h"
+#import "FFUser.h"
 #import "FFImageModel.h"
 
 static NSString * const kFFGraphPathFormat = @"/%@?fields=location,picture.type(large)";
@@ -20,19 +20,19 @@ static NSString * const kFFDataKey		 = @"data";
 static NSString * const kFFPictureKey	 = @"picture";
 static NSString * const kFFPictureURLKey = @"url";
 
-@interface FFUserDetailsLoadingContext ()
+@interface FFFacebookUserContext ()
 
 - (BOOL)isDetailsLoaded;
 
 @end
 
-@implementation FFUserDetailsLoadingContext
+@implementation FFFacebookUserContext
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (void)cleanup {
-	self.userData = nil;
+	self.user = nil;
 	
 	[super cleanup];
 }
@@ -46,17 +46,17 @@ static NSString * const kFFPictureURLKey = @"url";
 		return;
 	}
 	
-	NSString *graphPath = [NSString stringWithFormat:kFFGraphPathFormat, self.userData.profileId];
-	[self loadFromFacebookWithGraphPath:graphPath];
+	NSString *graphPath = [NSString stringWithFormat:kFFGraphPathFormat, self.user.profileId];
+	[self loadWithGraphPath:graphPath];
 }
 
 #pragma mark -
 #pragma mark Private
 
 - (BOOL)isDetailsLoaded {
-	FFUserData *userData = self.userData;
+	FFUser *user = self.user;
 	
-	if (nil == userData.address || nil == userData.photo) {
+	if (nil == user.address || nil == user.photo) {
 		return NO;
 	}
 	
@@ -64,17 +64,17 @@ static NSString * const kFFPictureURLKey = @"url";
 }
 
 - (void)loadingDidFinishWithResult:(id)result error:(NSError *)error {
-	FFUserData *userData = self.userData;
+	FFUser *user = self.user;
 	
 	if (error) {
 		[self failLoading];
 		return;
 	}
 	
-	userData.address = result[kFFLocationKey][kFFCityNameKey];
+	user.address = result[kFFLocationKey][kFFCityNameKey];
 	
 	NSString *pictureUrl = result[kFFPictureKey][kFFDataKey][kFFPictureURLKey];
-	userData.photo = [FFImageModel modelWithPath:pictureUrl];
+	user.photo = [FFImageModel modelWithPath:pictureUrl];
 	
 	[self finishLoading];
 }

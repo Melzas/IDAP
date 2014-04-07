@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@class FFFriendImageView;
-@class FFUserData;
+@class FFImageView;
+@class FFUser;
 
 @interface FFFriendDetailsView : UIView
-@property (nonatomic, retain)	IBOutlet FFFriendImageView	*friendImageView;
-@property (nonatomic, retain)	IBOutlet UILabel			*firstNameLabel;
-@property (nonatomic, retain)	IBOutlet UILabel			*lastNameLabel;
-@property (nonatomic, retain)	IBOutlet UILabel			*locationLabel;
+@property (nonatomic, retain)	IBOutlet FFImageView	*friendImageView;
+@property (nonatomic, retain)	IBOutlet UILabel		*firstNameLabel;
+@property (nonatomic, retain)	IBOutlet UILabel		*lastNameLabel;
+@property (nonatomic, retain)	IBOutlet UILabel		*locationLabel;
 
-- (void)fillFromModel:(FFUserData *)userData;
+- (void)fillFromModel:(FFUser *)user;
 
 @end

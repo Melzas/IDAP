@@ -4,11 +4,11 @@
 
 #import "FFImageModel.h"
 
-#import "FFUserData.h"
+#import "FFUser.h"
 
 @interface FFFriendCell ()
 
-- (void)fillFromModel:(FFUserData *)userData;
+- (void)fillFromModel:(FFUser *)user;
 
 @end
 
@@ -20,7 +20,7 @@
 - (void)dealloc {
 	self.label = nil;
 	self.pictureView = nil;
-	self.userData = nil;
+	self.user = nil;
 	
 	[super dealloc];
 }
@@ -32,22 +32,19 @@
 	return NSStringFromClass([self class]);
 }
 
-- (void)setUserData:(FFUserData *)userData {
-	IDPNonatomicRetainPropertySynthesizeWithObserver(_userData, userData);
+- (void)setUser:(FFUser *)user {
+	IDPNonatomicRetainPropertySynthesizeWithObserver(_user, user);
 
-	[self.userData load];
+	[user load];
 }
 
 #pragma mark -
 #pragma mark Public
 
-- (void)fillFromModel:(FFUserData *)userData {
-	self.label.text = [NSString stringWithFormat:@"%@ %@", userData.firstName, userData.lastName];
-	self.pictureView.model = userData.photoPreview;
+- (void)fillFromModel:(FFUser *)user {
+	self.label.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
+	self.pictureView.model = user.photoPreview;
 }
-
-#pragma mark -
-#pragma mark Private
 
 #pragma mark -
 #pragma mark IDPModelObserver

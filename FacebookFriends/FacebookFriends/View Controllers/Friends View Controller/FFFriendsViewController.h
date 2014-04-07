@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@class FFUsersData;
+@class FFUsers;
 @class FFFriendDetailsViewController;
 
-@interface FFFriendsViewController : UIViewController <IDPModelObserver, UITableViewDataSource,
-	UITableViewDelegate>
-@property (nonatomic, retain)	FFUsersData	*usersData;
+@interface FFFriendsViewController : UIViewController <IDPModelObserver,
+													   UITableViewDataSource,
+													   UITableViewDelegate>
+
+@property (nonatomic, retain)	FFUsers	*users;
 
 @end

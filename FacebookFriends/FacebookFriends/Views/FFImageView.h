@@ -2,7 +2,7 @@
 
 @class FFImageModel;
 
-@interface FFFriendImageView : UIView <IDPModelObserver>
+@interface FFImageView : UIView <IDPModelObserver>
 @property (nonatomic, retain)	IBOutlet UIActivityIndicatorView	*spinner;
 @property (nonatomic, retain)	IBOutlet UIImageView				*imageView;
 

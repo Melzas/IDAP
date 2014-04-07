@@ -8,16 +8,15 @@
 
 #import "IDPModel.h"
 
-@class FFUserData;
+@class FFUser;
 
-@interface FFUsersData : IDPModel
+@interface FFUsers : IDPModel
 @property (nonatomic, readonly)	NSArray		*users;
 @property (nonatomic, readonly)	NSString	*savePath;
 
-- (void)addUser:(FFUserData *)user;
-- (void)removeUser:(FFUserData *)user;
+- (void)addUser:(FFUser *)user;
+- (void)removeUser:(FFUser *)user;
 
 - (void)save;
-- (void)loadFromFile;
 
 @end

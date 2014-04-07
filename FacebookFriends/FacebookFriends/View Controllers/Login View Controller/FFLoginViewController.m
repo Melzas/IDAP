@@ -34,7 +34,7 @@ static const NSUInteger kFFReadPermissionsSize = sizeof(kFFReadPermissions)
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-	self.usersData = nil;
+	self.users = nil;
 	
 	[super dealloc];
 }
@@ -61,7 +61,7 @@ IDPViewControllerViewOfClassGetterSynthesize(FFLoginView, loginView);
 
 - (IBAction)onProceed:(id)sender {
 	FFFriendsViewController *friendsViewController = [FFFriendsViewController defaultNibController];
-	friendsViewController.usersData = self.usersData;
+	friendsViewController.users = self.users;
 	
 	[self.navigationController pushViewController:friendsViewController animated:YES];
 }
