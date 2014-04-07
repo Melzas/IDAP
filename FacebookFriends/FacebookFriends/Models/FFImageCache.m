@@ -30,6 +30,10 @@ static FFImageCache *IDPSharedImageCache = nil;
 #pragma mark Initializatins and Deallocations
 
 - (void)dealloc {
+	for (FFImageModel *imageModel in self.imageCache) {
+		imageModel.cache = nil;
+	}
+	
 	self.imageCache = nil;
 	
 	[super dealloc];

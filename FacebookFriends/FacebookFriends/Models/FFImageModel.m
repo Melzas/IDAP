@@ -76,7 +76,7 @@ static NSString	* const kFFImageKey	= @"kFFImageKey";
     @synchronized (self) {
 		[super release];
 		
-        if (1 == [self retainCount] && nil != self.path) {
+        if (1 == [self retainCount]) {
             [self.cache removeImage:self];
         }
     }
