@@ -5,18 +5,24 @@
 
 #import "FFImageCache.h"
 
-static NSString * const kFFPathKey	= @"kFFPathKey";
-static NSString	* const kFFImageKey	= @"kFFImageKey";
+#import "FFUser.h"
+
+static NSString * const kFFCacheFolder	= @"Caches";
 
 @interface FFImageModel () <IDPModelObserver>
-@property (nonatomic, retain)	UIImage		*image;
 @property (nonatomic, copy)		NSString	*path;
+@property (nonatomic, retain)	UIImage		*image;
 
 @property (nonatomic, retain)	IDPURLConnection	*connection;
+@property (nonatomic, retain)	NSData				*imageData;
+@property (nonatomic, readonly)	NSString			*savePath;
 
 @end
 
 @implementation FFImageModel
+
+@dynamic image;
+@dynamic savePath;
 
 #pragma mark -
 #pragma mark Class Methods
@@ -29,7 +35,7 @@ static NSString	* const kFFImageKey	= @"kFFImageKey";
 #pragma mark Initializations and Deallocations
 
 - (void)cleanup {
-	self.image = nil;
+	self.imageData = nil;
 	self.path = nil;
 	self.connection = nil;
 }
@@ -56,15 +62,37 @@ static NSString	* const kFFImageKey	= @"kFFImageKey";
 #pragma mark - Accessors
 
 - (void)setConnection:(IDPURLConnection *)connection {
-	if (connection != _connection) {
-		[_connection cancel];
-	}
-	
 	IDPNonatomicRetainPropertySynthesizeWithObserver(_connection, connection);
+}
+
+- (UIImage *)image {
+	return [UIImage imageWithData:self.imageData];
+}
+
+- (NSString *)savePath {
+	NSString *libraryPath = [NSFileManager libraryDirectoryPath];
+	NSString *cachePath = [libraryPath stringByAppendingPathComponent:kFFCacheFolder];
+	NSString *imageName = [self.path lastPathComponent];
+	
+	return [cachePath stringByAppendingPathComponent:imageName];
 }
 
 #pragma mark -
 #pragma mark Public
+
+- (void)save {
+	[self.imageData writeToFile:self.savePath atomically:YES];
+}
+
+- (void)loadFromFile {
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		if (nil == self.imageData) {
+			self.imageData = [NSData dataWithContentsOfFile:self.savePath];
+		}
+		
+		nil == self.imageData ? [self failLoading] : [self finishLoading];
+	});
+}
 
 - (void)cancel {
 	self.connection = nil;
@@ -86,11 +114,11 @@ static NSString	* const kFFImageKey	= @"kFFImageKey";
 #pragma mark Private
 
 - (void)performLoading {
-	if (nil != self.image) {
+	if (nil != self.imageData) {
 		[self finishLoading];
 		return;
 	}
-
+	
 	NSURL *imageUrl = [NSURL URLWithString:self.path];
 	self.connection = [IDPURLConnection connectionToURL:imageUrl];
 	[self.connection load];
@@ -101,34 +129,16 @@ static NSString	* const kFFImageKey	= @"kFFImageKey";
 
 - (void)modelDidLoad:(id)model {
 	IDPURLConnection *connection = self.connection;
-	self.image = [UIImage imageWithData:connection.data];
+	self.imageData = connection.data;
 	
 	[self finishLoading];
 	self.connection = nil;
 }
 
 - (void)modelDidFailToLoad:(id)model {
-	[self failLoading];
+	[self loadFromFile];
 	
 	self.connection = nil;
-}
-
-#pragma mark -
-#pragma mark NSCoding
-
-- (id)initWithCoder:(NSCoder *)decoder {
-    self = [super init];
-    if (self) {
-		self.path = [decoder decodeObjectForKey:kFFPathKey];
-		self.image = [decoder decodeObjectForKey:kFFImageKey];
-	}
-	
-	return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)coder {
-	[coder encodeObject:self.path forKey:kFFPathKey];
-	[coder encodeObject:self.image forKey:kFFImageKey];
 }
 
 @end

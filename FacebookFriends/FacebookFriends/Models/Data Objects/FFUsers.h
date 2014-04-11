@@ -11,12 +11,9 @@
 @class FFUser;
 
 @interface FFUsers : IDPModel
-@property (nonatomic, readonly)	NSArray		*users;
-@property (nonatomic, readonly)	NSString	*savePath;
+@property (nonatomic, readonly)	NSArray		*models;
 
 - (void)addUser:(FFUser *)user;
 - (void)removeUser:(FFUser *)user;
-
-- (void)save;
 
 @end

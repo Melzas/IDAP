@@ -9,6 +9,7 @@
 #import "FFFriendDetailsView.h"
 
 #import "FFUser.h"
+#import "FFImage.h"
 
 #import "FFImageView.h"
 
@@ -30,7 +31,7 @@
 #pragma mark Private
 
 - (void)fillFromModel:(FFUser *)user {
-	self.friendImageView.model = user.photo;
+	self.friendImageView.model = user.photo.model;
 	self.firstNameLabel.text = user.firstName;
 	self.lastNameLabel.text = user.lastName;
 	self.locationLabel.text = user.address;

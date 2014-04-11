@@ -6,14 +6,17 @@
 //  Copyright (c) 2014 Anton Rayev. All rights reserved.
 //
 
-@class FFImageModel;
+#import <CoreData/NSManagedObject.h>
 
-@interface FFUser : IDPModel <NSCoding>
-@property (nonatomic, copy)		NSString		*profileId;
-@property (nonatomic, copy)		NSString		*firstName;
-@property (nonatomic, copy)		NSString		*lastName;
-@property (nonatomic, copy)		NSString		*address;
-@property (nonatomic, retain)	FFImageModel	*photoPreview;
-@property (nonatomic, retain)	FFImageModel	*photo;
+@class FFImage;
+
+@interface FFUser : NSManagedObject <IDPModel>
+@property (nonatomic, copy)		NSString	*profileID;
+@property (nonatomic, copy)		NSString	*firstName;
+@property (nonatomic, copy)		NSString	*lastName;
+@property (nonatomic, copy)		NSString	*address;
+
+@property (nonatomic, retain)	FFImage		*photoPreview;
+@property (nonatomic, retain)	FFImage		*photo;
 
 @end

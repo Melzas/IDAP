@@ -10,6 +10,7 @@
 
 #import "FFUsers.h"
 #import "FFFacebookUsersContext.h"
+#import "FFDatabaseUsersContext.h"
 
 #import "FFFriendDetailsViewController.h"
 
@@ -38,16 +39,25 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 	[super dealloc];
 }
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+		self.users = [FFUsers object];
+	}
+	
+	return self;
+}
+
 #pragma mark -
 #pragma mark View Lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
+	FFUsers *users = self.users;
+	
 	FFFacebookUsersContext *facebookUsersContext = [FFFacebookUsersContext object];
 	self.facebookUsersContext = facebookUsersContext;
-	
-	facebookUsersContext.users = self.users;
+	facebookUsersContext.users = users;
 	[facebookUsersContext load];
 }
 
@@ -70,14 +80,14 @@ IDPViewControllerViewOfClassGetterSynthesize(FFFriendsView, friendsView);
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [self.users.users count];
+	return [self.users.models count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
 		 cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	FFFriendCell *cell = [tableView dequeueCell:[FFFriendCell class]];
-	FFUser *dataForCell = self.users.users[indexPath.row];
+	FFUser *dataForCell = self.users.models[indexPath.row];
 	cell.user = dataForCell;
 	
 	return cell;
@@ -90,7 +100,7 @@ IDPViewControllerViewOfClassGetterSynthesize(FFFriendsView, friendsView);
 	FFFriendDetailsViewController *friendDetailsViewController
 		= [FFFriendDetailsViewController defaultNibController];
 	
-	friendDetailsViewController.user = self.users.users[indexPath.row];
+	friendDetailsViewController.user = self.users.models[indexPath.row];
 	[self.navigationController pushViewController:friendDetailsViewController animated:YES];
 }
 

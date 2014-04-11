@@ -12,8 +12,9 @@
 - (void)loadWithGraphPath:(NSString *)graphPath;
 
 // intended for subclassing
-// never call this method directly
-// called when loading from facebook is finished
-- (void)loadingDidFinishWithResult:(id)result error:(NSError *)error;
+// never call this methods directly
+// called when loading from facebook is finished or failed
+- (void)loadingDidFinishWithResult:(id)result;
+- (void)loadingDidFail;
 
 @end

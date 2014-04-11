@@ -18,5 +18,6 @@
 	#import "IDPCommonKit.h"
 	#import "IDPDataKit.h"
 	#import "IDPUIKit.h"
+	#import "IDPActiveRecordKit.h"
 	#import "IDPSystemConfigKit.h"
 #endif

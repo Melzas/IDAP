@@ -14,7 +14,6 @@
 @interface FFFriendsViewController : UIViewController <IDPModelObserver,
 													   UITableViewDataSource,
 													   UITableViewDelegate>
-
 @property (nonatomic, retain)	FFUsers	*users;
 
 @end

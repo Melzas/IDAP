@@ -9,7 +9,7 @@
 #import "FFFacebookUserContext.h"
 
 #import "FFUser.h"
-#import "FFImageModel.h"
+#import "FFImage.h"
 
 static NSString * const kFFGraphPathFormat = @"/%@?fields=location,picture.type(large)";
 
@@ -46,7 +46,7 @@ static NSString * const kFFPictureURLKey = @"url";
 		return;
 	}
 	
-	NSString *graphPath = [NSString stringWithFormat:kFFGraphPathFormat, self.user.profileId];
+	NSString *graphPath = [NSString stringWithFormat:kFFGraphPathFormat, self.user.profileID];
 	[self loadWithGraphPath:graphPath];
 }
 
@@ -63,20 +63,18 @@ static NSString * const kFFPictureURLKey = @"url";
 	return YES;
 }
 
-- (void)loadingDidFinishWithResult:(id)result error:(NSError *)error {
+- (void)loadingDidFinishWithResult:(id)result {
 	FFUser *user = self.user;
 	
-	if (error) {
-		[self failLoading];
-		return;
-	}
-	
 	user.address = result[kFFLocationKey][kFFCityNameKey];
-	
 	NSString *pictureUrl = result[kFFPictureKey][kFFDataKey][kFFPictureURLKey];
-	user.photo = [FFImageModel modelWithPath:pictureUrl];
+	user.photo = [FFImage managedObjectWithPath:pictureUrl];
 	
 	[self finishLoading];
+}
+
+- (void)loadingDidFail {
+	[self failLoading];
 }
 
 @end
