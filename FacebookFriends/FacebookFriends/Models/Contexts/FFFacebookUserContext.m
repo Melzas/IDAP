@@ -46,7 +46,7 @@ static NSString * const kFFPictureURLKey = @"url";
 		return;
 	}
 	
-	NSString *graphPath = [NSString stringWithFormat:kFFGraphPathFormat, self.user.profileId];
+	NSString *graphPath = [NSString stringWithFormat:kFFGraphPathFormat, self.user.profileID];
 	[self loadWithGraphPath:graphPath];
 }
 
@@ -74,7 +74,7 @@ static NSString * const kFFPictureURLKey = @"url";
 	user.address = result[kFFLocationKey][kFFCityNameKey];
 	
 	NSString *pictureUrl = result[kFFPictureKey][kFFDataKey][kFFPictureURLKey];
-	user.photo = [FFImageModel modelWithPath:pictureUrl];
+	user.photo = [FFImageModel managedObjectWithPath:pictureUrl];
 	
 	[self finishLoading];
 }

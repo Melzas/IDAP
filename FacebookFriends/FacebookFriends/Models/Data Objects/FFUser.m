@@ -8,55 +8,56 @@
 
 #import "FFUser.h"
 
-static NSString * const kFFProfileIdKey		   = @"kFFProfileIdKey";
-static NSString * const kFFUserFirstNameKey	   = @"kFFUserFirstNameKey";
-static NSString * const kFFUserLastNameKey	   = @"kFFUserLastNameKey";
-static NSString * const kFFUserAddressKey	   = @"kFFUserAddressKey";
-static NSString * const kFFUserPhotoPreviewKey = @"kFFUserPhotoPreviewKey";
-static NSString * const kFFUserPhotoKey		   = @"kFFUserPhotoKey";
+#import "FFImageModel.h"
+
+@interface FFUser ()
+@property (nonatomic, retain)	NSSet	*photos;
+
+@end
 
 @implementation FFUser
 
-#pragma mark -
-#pragma mark Initializations and Deallocations
+@dynamic profileID;
+@dynamic firstName;
+@dynamic lastName;
+@dynamic address;
+@dynamic photos;
 
-- (void)cleanup {
-	self.profileId = nil;
-	self.firstName = nil;
-	self.lastName = nil;
-	self.address = nil;
+@synthesize photoPreview = _photoPreview;
+@synthesize photo = _photo;
+
+#pragma mark -
+#pragma mark Private
+
+- (void)awakeFromInsert {
+	[super awakeFromInsert];
 	
-	self.photoPreview = nil;
-	self.photo = nil;
+	IDPModelMixin *modelMixin = [IDPModelMixin modelWithTarget:self];
+	[self extendWithObject:modelMixin];
 }
 
 #pragma mark -
-#pragma mark NSCoding
+#pragma mark Acessors
 
-- (id)initWithCoder:(NSCoder *)decoder {
-    self = [super init];
-	
-    if (self) {
-		self.profileId = [decoder decodeObjectForKey:kFFProfileIdKey];
-		self.firstName = [decoder decodeObjectForKey:kFFUserFirstNameKey];
-		self.lastName = [decoder decodeObjectForKey:kFFUserLastNameKey];
-		self.address = [decoder decodeObjectForKey:kFFUserAddressKey];
-		
-		self.photoPreview = [decoder decodeObjectForKey:kFFUserPhotoPreviewKey];
-		self.photo = [decoder decodeObjectForKey:kFFUserPhotoKey];
+- (FFImageModel *)photoPreview {
+	if (nil != _photoPreview) {
+		return _photoPreview;
 	}
 	
-    return self;
+	NSSet *photos = self.photos;
+	for (FFImageModel *photo in photos) {
+		if (kFFIcon == photo.type) {
+			return photo;
+		}
+	}
+	
+	return nil;
 }
 
-- (void)encodeWithCoder:(NSCoder *)coder {
-	[coder encodeObject:self.profileId forKey:kFFProfileIdKey];
-	[coder encodeObject:self.firstName forKey:kFFUserFirstNameKey];
-	[coder encodeObject:self.lastName forKey:kFFUserLastNameKey];
-	[coder encodeObject:self.address forKey:kFFUserAddressKey];
+- (FFImageModel *)photo {
+	NSArray *result = [self primitiveValueForKey:NSStringFromSelector(@selector(photo))];
 	
-	[coder encodeObject:self.photoPreview forKey:kFFUserPhotoPreviewKey];
-	[coder encodeObject:self.photo forKey:kFFUserPhotoKey];
+	return [result firstObject];
 }
 
 @end

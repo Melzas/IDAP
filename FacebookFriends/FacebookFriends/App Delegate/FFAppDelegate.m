@@ -13,6 +13,8 @@
 #import "FFLoginViewController.h"
 #import "FFFriendsViewController.h"
 
+static NSString * const kFFMomName = @"FacebookFriends";
+
 @interface FFAppDelegate ()
 @property (nonatomic, retain)	FFUsers	*users;
 
@@ -40,6 +42,8 @@
 
 	self.users = [FFUsers object];
 	
+	[IDPCoreDataManager sharedManagerWithMomName:kFFMomName];
+	
 	FFLoginViewController *loginViewController = [FFLoginViewController defaultNibController];
 	loginViewController.users = self.users;
 	
@@ -65,7 +69,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-	[self.users save];
+	[NSManagedObjectContext saveManagedObjectContext];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -77,7 +81,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-	[self.users save];
+	[NSManagedObjectContext saveManagedObjectContext];
 }
 
 @end

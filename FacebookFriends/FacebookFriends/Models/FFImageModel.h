@@ -1,14 +1,17 @@
-#import "IDPModel.h"
+
+typedef enum FFImageTypeInternal : int16_t {
+	kFFIcon,
+	kFFFull
+} FFImageType;
 
 @class FFImageCache;
 
-@interface FFImageModel : IDPModel <NSCoding>
-@property (nonatomic, readonly)	UIImage		*image;
-@property (nonatomic, readonly)	NSString	*path;
-
+@interface FFImageModel : NSManagedObject <IDPModel>
+@property (nonatomic, readonly)	NSString		*path;
+@property (nonatomic, assign)	FFImageType		type;
+@property (nonatomic, readonly)	UIImage			*image;
 @property (nonatomic, assign)	FFImageCache	*cache;
 
-+ (id)modelWithPath:(NSString *)path;
-- (id)initWithPath:(NSString *)path;
++ (id)managedObjectWithPath:(NSString *)path;
 
 @end

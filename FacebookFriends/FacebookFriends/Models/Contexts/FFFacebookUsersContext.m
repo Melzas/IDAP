@@ -79,13 +79,13 @@ static NSString * const kFFPictureURLKey = @"url";
 	NSArray *friends = result[kFFDataKey];
 	
 	for (NSDictionary<FBGraphUser> *friend in friends) {
-		FFUser *user = [FFUser object];
-		user.profileId = friend.id;
+		FFUser *user = [FFUser managedObject];
+		user.profileID = friend.id;
 		user.firstName = friend.first_name;
 		user.lastName = friend.last_name;
 		
 		NSString *pictureUrl = friend[kFFPictureKey][kFFDataKey][kFFPictureURLKey];
-		user.photoPreview = [FFImageModel modelWithPath:pictureUrl];
+		user.photoPreview = [FFImageModel managedObjectWithPath:pictureUrl];
 		[user finishLoading];
 		
 		[self.users addUser:user];

@@ -5,24 +5,37 @@
 
 #import "FFImageCache.h"
 
-static NSString * const kFFPathKey	= @"kFFPathKey";
-static NSString	* const kFFImageKey	= @"kFFImageKey";
+#import "FFUser.h"
 
 @interface FFImageModel () <IDPModelObserver>
-@property (nonatomic, retain)	UIImage		*image;
 @property (nonatomic, copy)		NSString	*path;
+@property (nonatomic, retain)	UIImage		*image;
+@property (nonatomic, retain)	FFUser		*user;
 
+@property (nonatomic, retain)	IDPModelMixin		*model;
 @property (nonatomic, retain)	IDPURLConnection	*connection;
 
 @end
 
 @implementation FFImageModel
 
+@dynamic path;
+@dynamic type;
+@dynamic user;
+
+@synthesize image = _image;
+@synthesize cache = _cache;
+@synthesize model = _model;
+@synthesize connection = _connection;
+
 #pragma mark -
 #pragma mark Class Methods
 
-+ (id)modelWithPath:(NSString *)path {
-	return [[[self alloc] initWithPath:path] autorelease];
++ (id)managedObjectWithPath:(NSString *)path {
+	FFImageModel *imageModel = [FFImageModel managedObject];
+	imageModel.path = path;
+	
+	return imageModel;
 }
 
 #pragma mark -
@@ -30,36 +43,21 @@ static NSString	* const kFFImageKey	= @"kFFImageKey";
 
 - (void)cleanup {
 	self.image = nil;
-	self.path = nil;
 	self.connection = nil;
+	self.model = nil;
 }
 
-- (id)initWithPath:(NSString *)path {
-	FFImageCache *cache = [FFImageCache sharedObject];
-	FFImageModel *imageModel = [cache cachedImageForPath:path];
+- (void)awakeFromInsert {
+	[super awakeFromInsert];
 	
-	if (nil != imageModel) {
-		[self autorelease];
-		return [imageModel retain];
-	}
-	
-    self = [super init];
-    if (self) {
-		self.path = path;
-		[cache addImage:self];
-    }
-	
-    return self;
+	self.model = [IDPModelMixin modelWithTarget:self];
+	[self extendWithObject:self.model];
 }
 
 #pragma mark -
 #pragma mark - Accessors
 
 - (void)setConnection:(IDPURLConnection *)connection {
-	if (connection != _connection) {
-		[_connection cancel];
-	}
-	
 	IDPNonatomicRetainPropertySynthesizeWithObserver(_connection, connection);
 }
 
@@ -69,31 +67,33 @@ static NSString	* const kFFImageKey	= @"kFFImageKey";
 - (void)cancel {
 	self.connection = nil;
 	
-	[super cancel];
-}
-
-- (oneway void)release {
-    @synchronized (self) {
-		[super release];
-		
-        if (1 == [self retainCount]) {
-            [self.cache removeImage:self];
-        }
-    }
+	[self.model cancel];
 }
 
 #pragma mark -
 #pragma mark Private
 
-- (void)performLoading {
+- (void)didTurnIntoFault {
+	[self cleanup];
+	
+	[super didTurnIntoFault];
+}
+
+- (BOOL)load {
+	if (![self.model load]) {
+		return NO;
+	}
+	
 	if (nil != self.image) {
 		[self finishLoading];
-		return;
+		return YES;
 	}
 
 	NSURL *imageUrl = [NSURL URLWithString:self.path];
 	self.connection = [IDPURLConnection connectionToURL:imageUrl];
 	[self.connection load];
+	
+	return YES;
 }
 
 #pragma mark -
@@ -111,24 +111,6 @@ static NSString	* const kFFImageKey	= @"kFFImageKey";
 	[self failLoading];
 	
 	self.connection = nil;
-}
-
-#pragma mark -
-#pragma mark NSCoding
-
-- (id)initWithCoder:(NSCoder *)decoder {
-    self = [super init];
-    if (self) {
-		self.path = [decoder decodeObjectForKey:kFFPathKey];
-		self.image = [decoder decodeObjectForKey:kFFImageKey];
-	}
-	
-	return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)coder {
-	[coder encodeObject:self.path forKey:kFFPathKey];
-	[coder encodeObject:self.image forKey:kFFImageKey];
 }
 
 @end
