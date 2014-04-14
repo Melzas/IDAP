@@ -16,7 +16,6 @@
 static NSString * const kFFMomName = @"FacebookFriends";
 
 @interface FFAppDelegate ()
-@property (nonatomic, retain)	FFUsers	*users;
 
 @end
 
@@ -27,7 +26,6 @@ static NSString * const kFFMomName = @"FacebookFriends";
 
 - (void)dealloc {
 	self.window = nil;
-	self.users = nil;
 	
 	[super dealloc];
 }
@@ -39,13 +37,10 @@ static NSString * const kFFMomName = @"FacebookFriends";
     UIWindow *window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 	window.backgroundColor = [UIColor whiteColor];
 	self.window = window;
-
-	self.users = [FFUsers object];
 	
 	[IDPCoreDataManager sharedManagerWithMomName:kFFMomName];
 	
 	FFLoginViewController *loginViewController = [FFLoginViewController defaultNibController];
-	loginViewController.users = self.users;
 	
 	UINavigationController *navigationController = [UINavigationController object];
 	[navigationController pushViewController:loginViewController animated:NO];

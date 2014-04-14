@@ -8,10 +8,7 @@
 
 #import "FFUsers.h"
 
-#import "FFUsers.h"
-
-static NSString * const kFFStorageFileName = @"kFFStorageFileName.plist";
-static NSString * const kFFCacheFolder	   = @"Caches";
+#import "FFUser.h"
 
 @interface FFUsers ()
 @property (nonatomic, retain)	NSMutableArray	*mutableUsers;
@@ -21,13 +18,11 @@ static NSString * const kFFCacheFolder	   = @"Caches";
 @implementation FFUsers
 
 @dynamic users;
-@dynamic savePath;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (void)cleanup {
-	[self save];
 	self.mutableUsers = nil;
 }
 
@@ -47,35 +42,34 @@ static NSString * const kFFCacheFolder	   = @"Caches";
 	return [[self.mutableUsers copy] autorelease];
 }
 
-- (NSString *)savePath {
-	NSString *libraryPath = [NSFileManager libraryDirectoryPath];
-	NSString *cachePath = [libraryPath stringByAppendingPathComponent:kFFCacheFolder];
-	
-	return [cachePath stringByAppendingPathComponent:kFFStorageFileName];
-}
-
 #pragma mark -
 #pragma mark Public
 
 - (void)addUser:(FFUser *)user {
-	[self.mutableUsers addObject:user];
+	@synchronized(self) {
+		[self.mutableUsers addObject:user];
+	}
 }
 
 - (void)removeUser:(FFUser *)user {
-	[self.mutableUsers removeObject:user];
+	@synchronized(self) {
+		[self.mutableUsers removeObject:user];
+	}
 }
 
 #pragma mark -
 #pragma mark Private
 
 - (void)performLoading {
-	self.mutableUsers = [NSKeyedUnarchiver unarchiveObjectWithFile:self.savePath];
+	NSArray *users = [FFUser fetchEntityWithSortDescriptors:nil predicate:nil prefetchPaths:nil];
 	
+	if (nil == users) {
+		[self failLoading];
+		return;
+	}
+	
+	self.mutableUsers = [NSMutableArray arrayWithArray:users];
 	[self finishLoading];
-}
-
-- (void)save {
-	[NSKeyedArchiver archiveRootObject:self.mutableUsers toFile:self.savePath];
 }
 
 @end

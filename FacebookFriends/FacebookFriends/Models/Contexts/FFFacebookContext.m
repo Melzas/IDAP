@@ -37,7 +37,7 @@
 #pragma mark Public
 
 - (void)cancel {
-	[self.requestConnection cancel];
+	self.requestConnection = nil;
 	
 	[super cancel];
 }

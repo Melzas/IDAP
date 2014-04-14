@@ -13,6 +13,9 @@
 @interface FFUser ()
 @property (nonatomic, retain)	NSSet	*photos;
 
+- (void)extendWithObservableModel;
+- (FFImageModel *)photoForType:(FFImageType)imageType;
+
 @end
 
 @implementation FFUser
@@ -23,30 +26,45 @@
 @dynamic address;
 @dynamic photos;
 
-@synthesize photoPreview = _photoPreview;
-@synthesize photo = _photo;
+@dynamic photoPreview;
+@dynamic photo;
+
+#pragma mark -
+#pragma mark Accessors
+
+- (void)setPhotoPreview:(FFImageModel *)photoPreview {
+	photoPreview.type = kFFIcon;
+	
+	[self addCustomValue:photoPreview inMutableSetForKey:NSStringFromSelector(@selector(photos))];
+}
+
+- (FFImageModel *)photoPreview {	
+	return [self photoForType:kFFIcon];
+}
+
+- (void)setPhoto:(FFImageModel *)photo {
+	photo.type = kFFFull;
+	
+	[self addCustomValue:photo inMutableSetForKey:NSStringFromSelector(@selector(photos))];
+}
+
+- (FFImageModel *)photo {
+	return [self photoForType:kFFFull];
+}
 
 #pragma mark -
 #pragma mark Private
 
-- (void)awakeFromInsert {
-	[super awakeFromInsert];
-	
+- (void)extendWithObservableModel {
 	IDPModelMixin *modelMixin = [IDPModelMixin modelWithTarget:self];
 	[self extendWithObject:modelMixin];
 }
 
-#pragma mark -
-#pragma mark Acessors
-
-- (FFImageModel *)photoPreview {
-	if (nil != _photoPreview) {
-		return _photoPreview;
-	}
-	
+- (FFImageModel *)photoForType:(FFImageType)imageType {
 	NSSet *photos = self.photos;
+	
 	for (FFImageModel *photo in photos) {
-		if (kFFIcon == photo.type) {
+		if (imageType == photo.type) {
 			return photo;
 		}
 	}
@@ -54,10 +72,17 @@
 	return nil;
 }
 
-- (FFImageModel *)photo {
-	NSArray *result = [self primitiveValueForKey:NSStringFromSelector(@selector(photo))];
+- (void)awakeFromInsert {
+	[super awakeFromInsert];
 	
-	return [result firstObject];
+	[self extendWithObservableModel];
+	self.photos = [NSSet set];
+}
+
+- (void)awakeFromFetch {
+	[super awakeFromFetch];
+
+	[self extendWithObservableModel];
 }
 
 @end

@@ -7,6 +7,8 @@
 
 #import "FFUser.h"
 
+static NSString * const kFFCacheFolder	= @"Caches/Images";
+
 @interface FFImageModel () <IDPModelObserver>
 @property (nonatomic, copy)		NSString	*path;
 @property (nonatomic, retain)	UIImage		*image;
@@ -14,19 +16,25 @@
 
 @property (nonatomic, retain)	IDPModelMixin		*model;
 @property (nonatomic, retain)	IDPURLConnection	*connection;
+@property (nonatomic, retain)	NSData				*imageData;
+@property (nonatomic, readonly)	NSString			*savePath;
+
+- (void)extendWithObservableModel;
 
 @end
 
 @implementation FFImageModel
 
 @dynamic path;
+@dynamic image;
 @dynamic type;
 @dynamic user;
+@dynamic savePath;
 
-@synthesize image = _image;
 @synthesize cache = _cache;
 @synthesize model = _model;
 @synthesize connection = _connection;
+@synthesize imageData = _imageData;
 
 #pragma mark -
 #pragma mark Class Methods
@@ -42,16 +50,9 @@
 #pragma mark Initializations and Deallocations
 
 - (void)cleanup {
-	self.image = nil;
-	self.connection = nil;
 	self.model = nil;
-}
-
-- (void)awakeFromInsert {
-	[super awakeFromInsert];
-	
-	self.model = [IDPModelMixin modelWithTarget:self];
-	[self extendWithObject:self.model];
+	self.connection = nil;
+	self.imageData = nil;
 }
 
 #pragma mark -
@@ -59,6 +60,18 @@
 
 - (void)setConnection:(IDPURLConnection *)connection {
 	IDPNonatomicRetainPropertySynthesizeWithObserver(_connection, connection);
+}
+
+- (UIImage *)image {
+	return [UIImage imageWithData:self.imageData];
+}
+
+- (NSString *)savePath {
+	NSString *libraryPath = [NSFileManager libraryDirectoryPath];
+	NSString *cachePath = [libraryPath stringByAppendingPathComponent:kFFCacheFolder];
+	NSString *imageName = [self.path lastPathComponent];
+	
+	return [cachePath stringByAppendingPathComponent:imageName];
 }
 
 #pragma mark -
@@ -73,10 +86,34 @@
 #pragma mark -
 #pragma mark Private
 
+- (void)extendWithObservableModel {
+	self.model = [IDPModelMixin modelWithTarget:self];
+	[self extendWithObject:self.model];
+}
+
+- (void)awakeFromInsert {
+	[super awakeFromInsert];
+	
+	[self extendWithObservableModel];
+}
+
+- (void)awakeFromFetch {
+	[super awakeFromFetch];
+	
+	[self extendWithObservableModel];
+	self.imageData = [NSData dataWithContentsOfFile:self.savePath];
+}
+
 - (void)didTurnIntoFault {
 	[self cleanup];
 	
 	[super didTurnIntoFault];
+}
+
+- (void)didSave {
+	[self.imageData writeToFile:self.savePath atomically:YES];
+	
+	[super didSave];
 }
 
 - (BOOL)load {
@@ -101,7 +138,7 @@
 
 - (void)modelDidLoad:(id)model {
 	IDPURLConnection *connection = self.connection;
-	self.image = [UIImage imageWithData:connection.data];
+	self.imageData = connection.data;
 	
 	[self finishLoading];
 	self.connection = nil;

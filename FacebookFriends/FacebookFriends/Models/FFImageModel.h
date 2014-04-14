@@ -1,5 +1,5 @@
 
-typedef enum FFImageTypeInternal : int16_t {
+typedef enum FFImageType : int16_t {
 	kFFIcon,
 	kFFFull
 } FFImageType;

@@ -38,6 +38,14 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 	[super dealloc];
 }
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+		self.users = [FFUsers object];
+	}
+	
+	return self;
+}
+
 #pragma mark -
 #pragma mark View Lifecycle
 
