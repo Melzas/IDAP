@@ -53,6 +53,13 @@
 }
 
 #pragma mark -
+#pragma mark Public
+
+- (NSComparisonResult)compare:(FFUser *)user {
+	return [self.profileID compare:user.profileID];
+}
+
+#pragma mark -
 #pragma mark Private
 
 - (void)extendWithObservableModel {

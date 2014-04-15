@@ -43,21 +43,23 @@
 }
 
 - (void)loadWithGraphPath:(NSString *)graphPath {
-	self.requestConnection = [FBRequestConnection object];
-	
-	__block FFFacebookContext *weakSelf = self;
-	
-	FBRequestHandler handler = ^(FBRequestConnection *connection, id result, NSError *error) {
-		[weakSelf loadingDidFinishWithResult:result error:error];
+	dispatch_async(dispatch_get_main_queue(), ^{
+		self.requestConnection = [FBRequestConnection object];
 		
-		weakSelf.requestConnection = nil;
-	};
-	
-	FBRequestConnection *requestConnection = self.requestConnection;
-	FBRequest *request = [FBRequest requestForGraphPath:graphPath];
-	
-	[requestConnection addRequest:request completionHandler:handler];
-	[requestConnection start];
+		__block FFFacebookContext *weakSelf = self;
+		
+		FBRequestHandler handler = ^(FBRequestConnection *connection, id result, NSError *error) {
+			[weakSelf loadingDidFinishWithResult:result error:error];
+			
+			weakSelf.requestConnection = nil;
+		};
+		
+		FBRequestConnection *requestConnection = self.requestConnection;
+		FBRequest *request = [FBRequest requestForGraphPath:graphPath];
+		
+		[requestConnection addRequest:request completionHandler:handler];
+		[requestConnection start];
+	});
 }
 
 #pragma mark -

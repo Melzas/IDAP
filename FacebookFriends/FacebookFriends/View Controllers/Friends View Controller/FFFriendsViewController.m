@@ -10,6 +10,7 @@
 
 #import "FFUsers.h"
 #import "FFFacebookUsersContext.h"
+#import "FFDatabaseUsersContext.h"
 
 #import "FFFriendDetailsViewController.h"
 
@@ -21,6 +22,7 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 @interface FFFriendsViewController ()
 @property (nonatomic, readonly)	FFFriendsView			*friendsView;
 @property (nonatomic, retain)	FFFacebookUsersContext	*facebookUsersContext;
+@property (nonatomic, retain)	FFDatabaseUsersContext	*databaseUsersContext;
 
 @end
 
@@ -52,10 +54,17 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
+	FFUsers *users = self.users;
+	
 	FFFacebookUsersContext *facebookUsersContext = [FFFacebookUsersContext object];
 	self.facebookUsersContext = facebookUsersContext;
 	
-	facebookUsersContext.users = self.users;
+	FFDatabaseUsersContext *databaseUsersContext = [FFDatabaseUsersContext object];
+	databaseUsersContext.users = users;
+	self.databaseUsersContext = databaseUsersContext;
+	
+	facebookUsersContext.users = users;
+	facebookUsersContext.databaseUsersContext = databaseUsersContext;
 	[facebookUsersContext load];
 }
 
@@ -72,6 +81,10 @@ IDPViewControllerViewOfClassGetterSynthesize(FFFriendsView, friendsView);
 
 - (void)setFacebookUsersContext:(FFFacebookUsersContext *)facebookUsersContext {	
 	IDPNonatomicRetainPropertySynthesizeWithObserver(_facebookUsersContext, facebookUsersContext);
+}
+
+- (void)setDatabaseUsersContext:(FFDatabaseUsersContext *)databaseUsersContext {
+	IDPNonatomicRetainPropertySynthesizeWithObserver(_databaseUsersContext, databaseUsersContext);
 }
 
 #pragma mark -
@@ -117,7 +130,13 @@ IDPViewControllerViewOfClassGetterSynthesize(FFFriendsView, friendsView);
 }
 
 - (void)modelDidFailToLoad:(id)model {
-	[UIAlertView showErrorWithMessage:kFFErrorMessage];
+	FFDatabaseUsersContext *databaseUsersContext = self.databaseUsersContext;
+	
+	if (IDPModelFailed == databaseUsersContext.state) {
+		[UIAlertView showErrorWithMessage:kFFErrorMessage];
+	} else {
+		[databaseUsersContext load];
+	}
 }
 
 @end

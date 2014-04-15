@@ -12,15 +12,22 @@
 #import "FFUsers.h"
 #import "FFImageModel.h"
 
+#import "FFDatabaseUsersContext.h"
+
 static NSString * const kFFGraphPathForRequest = @"/me/friends?fields=first_name,last_name,picture";
 
 static NSString * const kFFDataKey		 = @"data";
 static NSString * const kFFPictureKey	 = @"picture";
 static NSString * const kFFPictureURLKey = @"url";
+static NSString * const kFFIDKey = @"id";
+
+typedef FFUser *(^FFUserBlock)(id<FBGraphUser> facebookUser);
 
 @interface FFFacebookUsersContext ()
 
-- (void)loadFromFile;
+- (void)fetchUsersFromDatabase;
+- (void)createUsersWithFacebookData:(id)facebookData usingBlock:(FFUserBlock)block;
+- (FFUser *)fillUser:(FFUser *)user withFacebookUser:(id<FBGraphUser>)facebookUserData;
 
 @end
 
@@ -31,6 +38,7 @@ static NSString * const kFFPictureURLKey = @"url";
 
 - (void)cleanup {
 	self.users = nil;
+	self.databaseUsersContext = nil;
 	
 	[super cleanup];
 }
@@ -50,48 +58,75 @@ static NSString * const kFFPictureURLKey = @"url";
 #pragma mark -
 #pragma mark Private
 
-- (void)loadFromFile {
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		FFUsers *usersData = self.users;
-		
-		[usersData load];
-		
-		NSArray *users = usersData.users;
-		if (nil == users || 0 == [users count]) {
-			[self failLoading];
-			return;
-		}
-		
-		for (FFUser *user in users) {
-			[user finishLoading];
-		}
-		
-		[self finishLoading];
-	});
-}
-
 - (void)loadingDidFinishWithResult:(id)result error:(NSError *)error {
 	if (error) {
-		[self loadFromFile];
+		[self failLoading];
 		return;
 	}
 	
-	NSArray *friends = result[kFFDataKey];
+	[self fetchUsersFromDatabase];
 	
-	for (NSDictionary<FBGraphUser> *friend in friends) {
+	__block FFUsers *usersData = self.users;
+	__block NSUInteger userIndex = 0;
+	
+	FFUserBlock createBlock = ^FFUser *(id<FBGraphUser> facebookUser) {
 		FFUser *user = [FFUser managedObject];
-		user.profileID = friend.id;
-		user.firstName = friend.first_name;
-		user.lastName = friend.last_name;
+		[usersData addUser:user];
 		
-		NSString *pictureUrl = friend[kFFPictureKey][kFFDataKey][kFFPictureURLKey];
-		user.photoPreview = [FFImageModel managedObjectWithPath:pictureUrl];
-		[user finishLoading];
+		return [[user retain] autorelease];
+	};
+	
+	FFUserBlock findOrCreateBlock = ^FFUser *(id<FBGraphUser> facebookUser) {
+		FFUser *user = usersData.users[userIndex];
 		
-		[self.users addUser:user];
+		if(![user.profileID isEqualToString:facebookUser.id]) {
+			user = [[[FFUser managedObject] retain] autorelease];
+			[usersData addUser:user];
+		} else {
+			++userIndex;
+		}
+		
+		return [[user retain] autorelease];
+	};
+	
+	if (0 == [usersData.users count]) {
+		[self createUsersWithFacebookData:result usingBlock:createBlock];
+	} else {
+		[self createUsersWithFacebookData:result usingBlock:findOrCreateBlock];
 	}
 	
 	[self finishLoading];
+}
+
+- (void)fetchUsersFromDatabase {
+	FFDatabaseUsersContext *databaseLoadingContext = self.databaseUsersContext;
+	databaseLoadingContext.users = self.users;
+	[databaseLoadingContext load];
+}
+
+- (void)createUsersWithFacebookData:(id)facebookData usingBlock:(FFUserBlock)block {
+	NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:kFFIDKey
+																    ascending:YES] autorelease];
+	NSArray *friends = [facebookData[kFFDataKey] sortedArrayUsingDescriptors:@[sortDescriptor]];
+	
+	for (NSDictionary<FBGraphUser> *friend in friends) {
+		FFUser *user = block(friend);
+		
+		[self fillUser:user withFacebookUser:friend];
+		[user finishLoading];
+	}
+}
+
+- (FFUser *)fillUser:(FFUser *)user withFacebookUser:(id<FBGraphUser>)facebookUserData {
+	user.profileID = facebookUserData.id;
+	user.firstName = facebookUserData.first_name;
+	user.lastName = facebookUserData.last_name;
+	
+	NSString *pictureUrl = facebookUserData[kFFPictureKey][kFFDataKey][kFFPictureURLKey];
+	user.photoPreview = [FFImageModel managedObjectWithPath:pictureUrl];
+	[user finishLoading];
+	
+	return [[user retain] autorelease];
 }
 
 #pragma mark -

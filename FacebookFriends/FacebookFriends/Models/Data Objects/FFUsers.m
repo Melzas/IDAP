@@ -61,8 +61,12 @@
 #pragma mark Private
 
 - (void)performLoading {
-	NSArray *users = [FFUser fetchEntityWithSortDescriptors:nil predicate:nil prefetchPaths:nil];
+	NSString *sortKey = NSStringFromSelector(@selector(profileID));
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:sortKey ascending:YES];
 	
+	NSArray *users = [FFUser fetchEntityWithSortDescriptors:@[sortDescriptor]
+												  predicate:nil
+											  prefetchPaths:nil];
 	if (nil == users) {
 		[self failLoading];
 		return;

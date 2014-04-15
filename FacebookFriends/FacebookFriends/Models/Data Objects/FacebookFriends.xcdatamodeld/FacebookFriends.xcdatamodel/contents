@@ -13,7 +13,7 @@
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FFImageModel" inverseName="user" inverseEntity="FFImageModel" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FFImageModel" positionX="16" positionY="38" width="128" height="88"/>
-        <element name="FFUser" positionX="-279" positionY="8" width="128" height="118"/>
+        <element name="FFImageModel" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="FFUser" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>
