@@ -10,7 +10,7 @@
 
 #import "FFUser.h"
 #import "FFUsers.h"
-#import "FFImageModel.h"
+#import "FFImage.h"
 
 #import "FFDatabaseUsersContext.h"
 
@@ -123,7 +123,7 @@ typedef FFUser *(^FFUserBlock)(id<FBGraphUser> facebookUser);
 	user.lastName = facebookUserData.last_name;
 	
 	NSString *pictureUrl = facebookUserData[kFFPictureKey][kFFDataKey][kFFPictureURLKey];
-	user.photoPreview = [FFImageModel managedObjectWithPath:pictureUrl];
+	user.photoPreview = [FFImage managedObjectWithPath:pictureUrl];
 	[user finishLoading];
 	
 	return [[user retain] autorelease];

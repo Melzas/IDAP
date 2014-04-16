@@ -61,9 +61,9 @@ static FFImageCache *IDPSharedImageCache = nil;
 
 - (void)removeImage:(FFImageModel *)imageModel {
 	@synchronized(self) {
-		[self.imageCache removeObjectForKey:imageModel.path];
-		
 		imageModel.cache = nil;
+		
+		[self.imageCache removeObjectForKey:imageModel.path];
 	}
 }
 

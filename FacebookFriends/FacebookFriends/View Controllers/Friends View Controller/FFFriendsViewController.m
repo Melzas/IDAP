@@ -36,6 +36,7 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 - (void)dealloc {
 	self.users = nil;
 	self.facebookUsersContext = nil;
+	self.databaseUsersContext = nil;
 	
 	[super dealloc];
 }
@@ -70,6 +71,7 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 
 - (void)viewDidDisappear:(BOOL)animated {
 	self.facebookUsersContext = nil;
+	self.databaseUsersContext = nil;
 	
 	[super viewDidDisappear:animated];
 }

@@ -8,7 +8,7 @@
 
 #import <CoreData/NSManagedObject.h>
 
-@class FFImageModel;
+@class FFImage;
 
 @interface FFUser : NSManagedObject <IDPModel>
 @property (nonatomic, copy)		NSString	*profileID;
@@ -16,7 +16,7 @@
 @property (nonatomic, copy)		NSString	*lastName;
 @property (nonatomic, copy)		NSString	*address;
 
-@property (nonatomic, retain)	FFImageModel	*photoPreview;
-@property (nonatomic, retain)	FFImageModel	*photo;
+@property (nonatomic, retain)	FFImage		*photoPreview;
+@property (nonatomic, retain)	FFImage		*photo;
 
 @end

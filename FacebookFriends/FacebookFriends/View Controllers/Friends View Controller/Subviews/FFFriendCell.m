@@ -2,7 +2,7 @@
 
 #import "IDPPropertyMacros.h"
 
-#import "FFImageModel.h"
+#import "FFImage.h"
 
 #import "FFUser.h"
 
@@ -43,7 +43,7 @@
 
 - (void)fillFromModel:(FFUser *)user {
 	self.label.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
-	self.pictureView.model = user.photoPreview;
+	self.pictureView.model = user.photoPreview.model;
 }
 
 #pragma mark -

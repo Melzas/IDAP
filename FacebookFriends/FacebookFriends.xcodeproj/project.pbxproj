@@ -114,6 +114,7 @@
 		08A353C818D6DA9800A3E673 /* UIViewController+IDPInitialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A3537E18D6DA9800A3E673 /* UIViewController+IDPInitialization.m */; };
 		08A353CA18D6DD3C00A3E673 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A353C918D6DD3C00A3E673 /* FacebookSDK.framework */; };
 		08A353DD18D6E4EE00A3E673 /* FFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A353DC18D6E4EE00A3E673 /* FFAppDelegate.m */; };
+		08C9CF2D18FE5B9A00220902 /* FFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C9CF2C18FE5B9A00220902 /* FFImage.m */; };
 		08CE311E18E418F00040FEF7 /* FFFacebookUserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CE311D18E418F00040FEF7 /* FFFacebookUserContext.m */; };
 		08CE312518E429470040FEF7 /* FFFriendDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CE312318E429470040FEF7 /* FFFriendDetailsViewController.m */; };
 		08CE312618E429470040FEF7 /* FFFriendDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08CE312418E429470040FEF7 /* FFFriendDetailsViewController.xib */; };
@@ -319,6 +320,8 @@
 		08A353C918D6DD3C00A3E673 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		08A353DB18D6E4EE00A3E673 /* FFAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFAppDelegate.h; sourceTree = "<group>"; };
 		08A353DC18D6E4EE00A3E673 /* FFAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFAppDelegate.m; sourceTree = "<group>"; };
+		08C9CF2B18FE5B9A00220902 /* FFImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FFImage.h; path = FacebookFriends/FFImage.h; sourceTree = SOURCE_ROOT; };
+		08C9CF2C18FE5B9A00220902 /* FFImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FFImage.m; path = FacebookFriends/FFImage.m; sourceTree = SOURCE_ROOT; };
 		08CE311C18E418F00040FEF7 /* FFFacebookUserContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFFacebookUserContext.h; sourceTree = "<group>"; };
 		08CE311D18E418F00040FEF7 /* FFFacebookUserContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFFacebookUserContext.m; sourceTree = "<group>"; };
 		08CE312218E429470040FEF7 /* FFFriendDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFFriendDetailsViewController.h; sourceTree = "<group>"; };
@@ -374,6 +377,8 @@
 				080FAC5F18DC4B6A0059F38A /* FFUsers.h */,
 				080FAC6018DC4B6A0059F38A /* FFUsers.m */,
 				087F077518F29E3500331FD2 /* FacebookFriends.xcdatamodeld */,
+				08C9CF2B18FE5B9A00220902 /* FFImage.h */,
+				08C9CF2C18FE5B9A00220902 /* FFImage.m */,
 			);
 			path = "Data Objects";
 			sourceTree = "<group>";
@@ -1075,6 +1080,7 @@
 				083FBA3C18E2BCBC007ED43D /* FFFriendsViewController.m in Sources */,
 				08CE312518E429470040FEF7 /* FFFriendDetailsViewController.m in Sources */,
 				08A353A418D6DA9800A3E673 /* IDPOCContext.m in Sources */,
+				08C9CF2D18FE5B9A00220902 /* FFImage.m in Sources */,
 				08A353BF18D6DA9800A3E673 /* UIAlertView+IDPExtensions.m in Sources */,
 				08A353A718D6DA9800A3E673 /* NSObject+IDPOCExtensions.m in Sources */,
 				08A3539518D6DA9800A3E673 /* NSString+IDPExtensions.m in Sources */,

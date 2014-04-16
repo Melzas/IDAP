@@ -8,12 +8,12 @@
 
 #import "FFUser.h"
 
-#import "FFImageModel.h"
+#import "FFImage.h"
 
 @interface FFUser ()
 @property (nonatomic, retain)	NSSet	*photos;
 
-- (FFImageModel *)photoForType:(FFImageType)imageType;
+- (FFImage *)photoForType:(FFImageType)imageType;
 
 @end
 
@@ -42,33 +42,33 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setPhotoPreview:(FFImageModel *)photoPreview {
+- (void)setPhotoPreview:(FFImage *)photoPreview {
 	photoPreview.type = kFFIcon;
 	
 	[self addCustomValue:photoPreview inMutableSetForKey:NSStringFromSelector(@selector(photos))];
 }
 
-- (FFImageModel *)photoPreview {	
+- (FFImage *)photoPreview {
 	return [self photoForType:kFFIcon];
 }
 
-- (void)setPhoto:(FFImageModel *)photo {
+- (void)setPhoto:(FFImage *)photo {
 	photo.type = kFFFull;
 	
 	[self addCustomValue:photo inMutableSetForKey:NSStringFromSelector(@selector(photos))];
 }
 
-- (FFImageModel *)photo {
+- (FFImage *)photo {
 	return [self photoForType:kFFFull];
 }
 
 #pragma mark -
 #pragma mark Private
 
-- (FFImageModel *)photoForType:(FFImageType)imageType {
+- (FFImage *)photoForType:(FFImageType)imageType {
 	NSSet *photos = self.photos;
 	
-	for (FFImageModel *photo in photos) {
+	for (FFImage *photo in photos) {
 		if (imageType == photo.type) {
 			return photo;
 		}

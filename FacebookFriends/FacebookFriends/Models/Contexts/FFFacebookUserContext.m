@@ -9,7 +9,7 @@
 #import "FFFacebookUserContext.h"
 
 #import "FFUser.h"
-#import "FFImageModel.h"
+#import "FFImage.h"
 
 static NSString * const kFFGraphPathFormat = @"/%@?fields=location,picture.type(large)";
 
@@ -74,7 +74,7 @@ static NSString * const kFFPictureURLKey = @"url";
 	user.address = result[kFFLocationKey][kFFCityNameKey];
 	
 	NSString *pictureUrl = result[kFFPictureKey][kFFDataKey][kFFPictureURLKey];
-	user.photo = [FFImageModel managedObjectWithPath:pictureUrl];
+	user.photo = [FFImage managedObjectWithPath:pictureUrl];
 	
 	[self finishLoading];
 }
