@@ -39,7 +39,6 @@
 	[super awakeFromFetch];
 	
 	self.model = [FFImageModel modelWithPath:self.path];
-	[self.model loadFromFile];
 }
 
 - (void)didSave {

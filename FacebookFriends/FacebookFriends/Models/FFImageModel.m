@@ -7,7 +7,7 @@
 
 #import "FFUser.h"
 
-static NSString * const kFFCacheFolder	= @"Caches/Images";
+static NSString * const kFFCacheFolder	= @"Caches";
 
 @interface FFImageModel () <IDPModelObserver>
 @property (nonatomic, copy)		NSString	*path;
@@ -85,9 +85,13 @@ static NSString * const kFFCacheFolder	= @"Caches/Images";
 }
 
 - (void)loadFromFile {
-	if (nil == self.imageData) {
-		self.imageData = [NSData dataWithContentsOfFile:self.savePath];
-	}
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		if (nil == self.imageData) {
+			self.imageData = [NSData dataWithContentsOfFile:self.savePath];
+		}
+		
+		nil == self.imageData ? [self failLoading] : [self finishLoading];
+	});
 }
 
 - (void)cancel {
@@ -132,7 +136,7 @@ static NSString * const kFFCacheFolder	= @"Caches/Images";
 }
 
 - (void)modelDidFailToLoad:(id)model {
-	[self failLoading];
+	[self loadFromFile];
 	
 	self.connection = nil;
 }

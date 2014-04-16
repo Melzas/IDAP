@@ -57,23 +57,4 @@
 	}
 }
 
-#pragma mark -
-#pragma mark Private
-
-- (void)performLoading {
-	NSString *sortKey = NSStringFromSelector(@selector(profileID));
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:sortKey ascending:YES];
-	
-	NSArray *users = [FFUser fetchEntityWithSortDescriptors:@[sortDescriptor]
-												  predicate:nil
-											  prefetchPaths:nil];
-	if (nil == users) {
-		[self failLoading];
-		return;
-	}
-	
-	self.mutableUsers = [NSMutableArray arrayWithArray:users];
-	[self finishLoading];
-}
-
 @end

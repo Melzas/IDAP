@@ -19,7 +19,7 @@ static NSString * const kFFGraphPathForRequest = @"/me/friends?fields=first_name
 static NSString * const kFFDataKey		 = @"data";
 static NSString * const kFFPictureKey	 = @"picture";
 static NSString * const kFFPictureURLKey = @"url";
-static NSString * const kFFIDKey = @"id";
+static NSString * const kFFIDKey		 = @"id";
 
 typedef FFUser *(^FFUserBlock)(id<FBGraphUser> facebookUser);
 
@@ -30,6 +30,7 @@ typedef FFUser *(^FFUserBlock)(id<FBGraphUser> facebookUser);
 - (FFUser *)fillUser:(FFUser *)user withFacebookUser:(id<FBGraphUser>)facebookUserData;
 
 @end
+
 
 @implementation FFFacebookUsersContext
 
@@ -73,20 +74,19 @@ typedef FFUser *(^FFUserBlock)(id<FBGraphUser> facebookUser);
 		FFUser *user = [FFUser managedObject];
 		[usersData addUser:user];
 		
-		return [[user retain] autorelease];
+		return user;
 	};
 	
 	FFUserBlock findOrCreateBlock = ^FFUser *(id<FBGraphUser> facebookUser) {
 		FFUser *user = usersData.users[userIndex];
 		
 		if(![user.profileID isEqualToString:facebookUser.id]) {
-			user = [[[FFUser managedObject] retain] autorelease];
-			[usersData addUser:user];
+			createBlock(facebookUser);
 		} else {
 			++userIndex;
 		}
 		
-		return [[user retain] autorelease];
+		return user;
 	};
 	
 	if (0 == [usersData.users count]) {
@@ -126,7 +126,7 @@ typedef FFUser *(^FFUserBlock)(id<FBGraphUser> facebookUser);
 	user.photoPreview = [FFImage managedObjectWithPath:pictureUrl];
 	[user finishLoading];
 	
-	return [[user retain] autorelease];
+	return user;
 }
 
 #pragma mark -

@@ -17,9 +17,11 @@ static NSString * const kFFLoggedInMessage	  = @"You are logged in as:";
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
+	self.loggedInLabel = nil;
 	self.usernameLabel = nil;
 	self.profilePictureView = nil;
 	self.loginButton = nil;
+	self.proceedButton = nil;
 	
 	[super dealloc];
 }

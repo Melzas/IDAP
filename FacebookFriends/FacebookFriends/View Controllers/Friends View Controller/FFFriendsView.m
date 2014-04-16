@@ -15,6 +15,7 @@
 
 - (void)dealloc {
 	self.tableView = nil;
+	self.loadingView = nil;
 	
 	[super dealloc];
 }
