@@ -13,7 +13,6 @@
 @interface FFUser ()
 @property (nonatomic, retain)	NSSet	*photos;
 
-- (void)extendWithObservableModel;
 - (FFImageModel *)photoForType:(FFImageType)imageType;
 
 @end
@@ -28,6 +27,17 @@
 
 @dynamic photoPreview;
 @dynamic photo;
+
+- (id)				initWithEntity:(NSEntityDescription *)entity
+	insertIntoManagedObjectContext:(NSManagedObjectContext *)context
+{
+	if (self = [super initWithEntity:entity insertIntoManagedObjectContext:context]) {
+		IDPModelMixin *modelMixin = [IDPModelMixin modelWithTarget:self];
+		[self extendWithObject:modelMixin];
+	}
+	
+	return self;
+}
 
 #pragma mark -
 #pragma mark Accessors
@@ -53,19 +63,7 @@
 }
 
 #pragma mark -
-#pragma mark Public
-
-- (NSComparisonResult)compare:(FFUser *)user {
-	return [self.profileID compare:user.profileID];
-}
-
-#pragma mark -
 #pragma mark Private
-
-- (void)extendWithObservableModel {
-	IDPModelMixin *modelMixin = [IDPModelMixin modelWithTarget:self];
-	[self extendWithObject:modelMixin];
-}
 
 - (FFImageModel *)photoForType:(FFImageType)imageType {
 	NSSet *photos = self.photos;
@@ -81,15 +79,8 @@
 
 - (void)awakeFromInsert {
 	[super awakeFromInsert];
-	
-	[self extendWithObservableModel];
+
 	self.photos = [NSSet set];
-}
-
-- (void)awakeFromFetch {
-	[super awakeFromFetch];
-
-	[self extendWithObservableModel];
 }
 
 @end

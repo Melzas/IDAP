@@ -12,14 +12,11 @@ static NSString * const kFFCacheFolder	= @"Caches/Images";
 @interface FFImageModel () <IDPModelObserver>
 @property (nonatomic, copy)		NSString	*path;
 @property (nonatomic, retain)	UIImage		*image;
-@property (nonatomic, retain)	FFUser		*user;
 
 @property (nonatomic, retain)	IDPModelMixin		*model;
 @property (nonatomic, retain)	IDPURLConnection	*connection;
 @property (nonatomic, retain)	NSData				*imageData;
 @property (nonatomic, readonly)	NSString			*savePath;
-
-- (void)extendWithObservableModel;
 
 @end
 
@@ -28,7 +25,6 @@ static NSString * const kFFCacheFolder	= @"Caches/Images";
 @dynamic path;
 @dynamic image;
 @dynamic type;
-@dynamic user;
 @dynamic savePath;
 
 @synthesize cache = _cache;
@@ -53,6 +49,17 @@ static NSString * const kFFCacheFolder	= @"Caches/Images";
 	self.model = nil;
 	self.connection = nil;
 	self.imageData = nil;
+}
+
+- (id)				initWithEntity:(NSEntityDescription *)entity
+	insertIntoManagedObjectContext:(NSManagedObjectContext *)context
+{
+	if (self = [super initWithEntity:entity insertIntoManagedObjectContext:context]) {
+		self.model = [IDPModelMixin modelWithTarget:self];
+		[self extendWithObject:self.model];
+	}
+	
+	return self;
 }
 
 #pragma mark -
@@ -86,21 +93,9 @@ static NSString * const kFFCacheFolder	= @"Caches/Images";
 #pragma mark -
 #pragma mark Private
 
-- (void)extendWithObservableModel {
-	self.model = [IDPModelMixin modelWithTarget:self];
-	[self extendWithObject:self.model];
-}
-
-- (void)awakeFromInsert {
-	[super awakeFromInsert];
-	
-	[self extendWithObservableModel];
-}
-
 - (void)awakeFromFetch {
 	[super awakeFromFetch];
 	
-	[self extendWithObservableModel];
 	self.imageData = [NSData dataWithContentsOfFile:self.savePath];
 }
 

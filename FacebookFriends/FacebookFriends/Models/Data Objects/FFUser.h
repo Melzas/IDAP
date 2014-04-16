@@ -19,6 +19,4 @@
 @property (nonatomic, retain)	FFImageModel	*photoPreview;
 @property (nonatomic, retain)	FFImageModel	*photo;
 
-- (NSComparisonResult)compare:(FFUser *)user;
-
 @end
