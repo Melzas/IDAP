@@ -17,7 +17,7 @@
 
 @implementation FFUsers
 
-@dynamic users;
+@dynamic models;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -38,7 +38,7 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (NSArray *)users {
+- (NSArray *)models {
 	return [[self.mutableUsers copy] autorelease];
 }
 

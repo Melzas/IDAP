@@ -31,7 +31,7 @@
 	NSArray *users = [FFUser fetchEntityWithSortDescriptors:@[sortDescriptor]
 												  predicate:nil
 											  prefetchPaths:nil];
-	if (nil == users) {
+	if (0 == [users count]) {
 		[self failLoading];
 		return;
 	}

@@ -9,10 +9,8 @@
 #import "FFFacebookContext.h"
 
 @class FFUsers;
-@class FFDatabaseUsersContext;
 
 @interface FFFacebookUsersContext : FFFacebookContext
 @property (nonatomic, retain)	FFUsers	*users;
-@property (nonatomic, retain)	FFDatabaseUsersContext	*databaseUsersContext;
 
 @end

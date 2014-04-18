@@ -15,6 +15,7 @@
 		082C727C18D97A980098200B /* FFImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 082C727918D97A980098200B /* FFImageCache.m */; };
 		082C727D18D97A980098200B /* FFImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 082C727B18D97A980098200B /* FFImageModel.m */; };
 		082C728118D983B20098200B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082C728018D983B20098200B /* SystemConfiguration.framework */; };
+		083873D21900FFF20040B996 /* IDPNetworkReachability+FacebookReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 083873D11900FFF20040B996 /* IDPNetworkReachability+FacebookReachability.m */; };
 		083FBA2A18E2BA5F007ED43D /* FFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 083FBA2818E2BA5F007ED43D /* FFLoginViewController.m */; };
 		083FBA2B18E2BA5F007ED43D /* FFLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083FBA2918E2BA5F007ED43D /* FFLoginViewController.xib */; };
 		083FBA2E18E2BB80007ED43D /* FFLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 083FBA2D18E2BB80007ED43D /* FFLoginView.m */; };
@@ -147,6 +148,8 @@
 		082C727B18D97A980098200B /* FFImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFImageModel.m; sourceTree = "<group>"; };
 		082C727E18D983590098200B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		082C728018D983B20098200B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		083873D01900FFF20040B996 /* IDPNetworkReachability+FacebookReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IDPNetworkReachability+FacebookReachability.h"; path = "Categories/IDPNetworkReachability+FacebookReachability.h"; sourceTree = "<group>"; };
+		083873D11900FFF20040B996 /* IDPNetworkReachability+FacebookReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IDPNetworkReachability+FacebookReachability.m"; path = "Categories/IDPNetworkReachability+FacebookReachability.m"; sourceTree = "<group>"; };
 		083FBA2718E2BA5F007ED43D /* FFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFLoginViewController.h; sourceTree = "<group>"; };
 		083FBA2818E2BA5F007ED43D /* FFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFLoginViewController.m; sourceTree = "<group>"; };
 		083FBA2918E2BA5F007ED43D /* FFLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FFLoginViewController.xib; sourceTree = "<group>"; };
@@ -398,6 +401,15 @@
 			path = Contexts;
 			sourceTree = "<group>";
 		};
+		083873D31900FFFD0040B996 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				083873D01900FFF20040B996 /* IDPNetworkReachability+FacebookReachability.h */,
+				083873D11900FFF20040B996 /* IDPNetworkReachability+FacebookReachability.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		083FBA2618E2BA23007ED43D /* Login View Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -472,6 +484,7 @@
 			isa = PBXGroup;
 			children = (
 				08A353DA18D6E4EE00A3E673 /* App Delegate */,
+				083873D31900FFFD0040B996 /* Categories */,
 				08A353E118D6EF9600A3E673 /* Models */,
 				08A353CB18D6E3CC00A3E673 /* View Controllers */,
 				08CE312A18E42A820040FEF7 /* Views */,
@@ -1122,6 +1135,7 @@
 				08A3539218D6DA9800A3E673 /* NSDateComponents+IDPExtinsions.m in Sources */,
 				08A3538818D6DA9800A3E673 /* NSManagedObjectContext+IDPExtensions.m in Sources */,
 				08A353C018D6DA9800A3E673 /* UIColor+IDPExtensions.m in Sources */,
+				083873D21900FFF20040B996 /* IDPNetworkReachability+FacebookReachability.m in Sources */,
 				08A353C418D6DA9800A3E673 /* UIStoryboard+IDPExtensions.m in Sources */,
 				083FBA3B18E2BCBC007ED43D /* FFFriendsView.m in Sources */,
 				08A3539A18D6DA9800A3E673 /* IDPBufferArray.m in Sources */,

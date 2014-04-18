@@ -8,8 +8,11 @@
 
 #import "FFFacebookContext.h"
 
+#import "IDPNetworkReachability+FacebookReachability.h"
+
 @interface FFFacebookContext ()
-@property (nonatomic, retain)	FBRequestConnection *requestConnection;
+@property (nonatomic, retain)	FBRequestConnection		*requestConnection;
+@property (nonatomic, retain)	IDPNetworkReachability	*networkReachability;
 
 @end
 
@@ -20,6 +23,15 @@
 
 - (void)cleanup {
 	self.requestConnection = nil;
+	self.networkReachability = nil;
+}
+
+- (id)init {
+    self = [super init];
+    if (self) {
+		self.networkReachability = [IDPNetworkReachability facebookReachabilty];
+    }
+    return self;
 }
 
 #pragma mark -
@@ -44,13 +56,22 @@
 
 - (void)loadWithGraphPath:(NSString *)graphPath {
 	dispatch_async(dispatch_get_main_queue(), ^{
+		if (!self.networkReachability.isReachable) {
+			[self loadingDidFail];
+			return;
+		}
+		
 		self.requestConnection = [FBRequestConnection object];
 		
 		__block FFFacebookContext *weakSelf = self;
 		
 		FBRequestHandler handler = ^(FBRequestConnection *connection, id result, NSError *error) {
-			[weakSelf loadingDidFinishWithResult:result error:error];
+			if (nil != error) {
+				[weakSelf loadingDidFail];
+				return;
+			}
 			
+			[weakSelf loadingDidFinishWithResult:result];
 			weakSelf.requestConnection = nil;
 		};
 		
@@ -65,7 +86,11 @@
 #pragma mark -
 #pragma mark Private
 
-- (void)loadingDidFinishWithResult:(id)result error:(NSError *)error {
+- (void)loadingDidFinishWithResult:(id)result {
+	
+}
+
+- (void)loadingDidFail {
 	
 }
 

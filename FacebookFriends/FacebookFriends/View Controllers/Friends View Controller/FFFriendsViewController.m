@@ -22,7 +22,6 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 @interface FFFriendsViewController ()
 @property (nonatomic, readonly)	FFFriendsView			*friendsView;
 @property (nonatomic, retain)	FFFacebookUsersContext	*facebookUsersContext;
-@property (nonatomic, retain)	FFDatabaseUsersContext	*databaseUsersContext;
 
 @end
 
@@ -36,7 +35,6 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 - (void)dealloc {
 	self.users = nil;
 	self.facebookUsersContext = nil;
-	self.databaseUsersContext = nil;
 	
 	[super dealloc];
 }
@@ -59,19 +57,12 @@ static NSString * const kFFErrorMessage = @"Error while retrieving the list of f
 	
 	FFFacebookUsersContext *facebookUsersContext = [FFFacebookUsersContext object];
 	self.facebookUsersContext = facebookUsersContext;
-	
-	FFDatabaseUsersContext *databaseUsersContext = [FFDatabaseUsersContext object];
-	databaseUsersContext.users = users;
-	self.databaseUsersContext = databaseUsersContext;
-	
 	facebookUsersContext.users = users;
-	facebookUsersContext.databaseUsersContext = databaseUsersContext;
 	[facebookUsersContext load];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
 	self.facebookUsersContext = nil;
-	self.databaseUsersContext = nil;
 	
 	[super viewDidDisappear:animated];
 }
@@ -85,22 +76,18 @@ IDPViewControllerViewOfClassGetterSynthesize(FFFriendsView, friendsView);
 	IDPNonatomicRetainPropertySynthesizeWithObserver(_facebookUsersContext, facebookUsersContext);
 }
 
-- (void)setDatabaseUsersContext:(FFDatabaseUsersContext *)databaseUsersContext {
-	IDPNonatomicRetainPropertySynthesizeWithObserver(_databaseUsersContext, databaseUsersContext);
-}
-
 #pragma mark -
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [self.users.users count];
+	return [self.users.models count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
 		 cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	FFFriendCell *cell = [tableView dequeueCell:[FFFriendCell class]];
-	FFUser *dataForCell = self.users.users[indexPath.row];
+	FFUser *dataForCell = self.users.models[indexPath.row];
 	cell.user = dataForCell;
 	
 	return cell;
@@ -113,7 +100,7 @@ IDPViewControllerViewOfClassGetterSynthesize(FFFriendsView, friendsView);
 	FFFriendDetailsViewController *friendDetailsViewController
 		= [FFFriendDetailsViewController defaultNibController];
 	
-	friendDetailsViewController.user = self.users.users[indexPath.row];
+	friendDetailsViewController.user = self.users.models[indexPath.row];
 	[self.navigationController pushViewController:friendDetailsViewController animated:YES];
 }
 
@@ -132,13 +119,7 @@ IDPViewControllerViewOfClassGetterSynthesize(FFFriendsView, friendsView);
 }
 
 - (void)modelDidFailToLoad:(id)model {
-	FFDatabaseUsersContext *databaseUsersContext = self.databaseUsersContext;
-	
-	if (IDPModelFailed == databaseUsersContext.state) {
-		[UIAlertView showErrorWithMessage:kFFErrorMessage];
-	} else {
-		[databaseUsersContext load];
-	}
+	[UIAlertView showErrorWithMessage:kFFErrorMessage];
 }
 
 @end

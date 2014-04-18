@@ -23,16 +23,23 @@ static NSString * const kFFIDKey		 = @"id";
 
 typedef FFUser *(^FFUserBlock)(id<FBGraphUser> facebookUser);
 
-@interface FFFacebookUsersContext ()
+@interface FFFacebookUsersContext () <IDPModelObserver>
+@property (nonatomic, retain)		FFDatabaseUsersContext	*databaseUsersContext;
+@property (nonatomic, readonly)		FFUserBlock				createBlock;
+@property (nonatomic, readonly)		FFUserBlock				findOrCreateBlock;
+@property (nonatomic, copy)			FFUserBlock				userBlock;
 
 - (void)fetchUsersFromDatabase;
-- (void)createUsersWithFacebookData:(id)facebookData usingBlock:(FFUserBlock)block;
-- (FFUser *)fillUser:(FFUser *)user withFacebookUser:(id<FBGraphUser>)facebookUserData;
+- (void)createUsersWithFacebookData:(id)facebookData;
+- (FFUser *)fillUser:(FFUser *)user withFacebookUser:(id<FBGraphUser>)facebookUser;
 
 @end
 
 
 @implementation FFFacebookUsersContext
+
+@dynamic createBlock;
+@dynamic findOrCreateBlock;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -40,8 +47,46 @@ typedef FFUser *(^FFUserBlock)(id<FBGraphUser> facebookUser);
 - (void)cleanup {
 	self.users = nil;
 	self.databaseUsersContext = nil;
+	self.userBlock = nil;
 	
 	[super cleanup];
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (void)setDatabaseUsersContext:(FFDatabaseUsersContext *)databaseUsersContext {
+	IDPNonatomicRetainPropertySynthesizeWithObserver(_databaseUsersContext, databaseUsersContext);
+}
+
+- (FFUserBlock)createBlock {
+	FFUserBlock createBlock = ^FFUser *(id<FBGraphUser> facebookUser) {
+		FFUser *user = [FFUser managedObject];
+		[self.users addUser:user];
+		
+		return user;
+	};
+	
+	return [[createBlock copy] autorelease];
+}
+
+- (FFUserBlock)findOrCreateBlock {
+	__block NSUInteger userIndex = 0;
+	NSArray *users = self.users.models;
+	
+	FFUserBlock findOrCreateBlock = ^FFUser *(id<FBGraphUser> facebookUser) {
+		FFUser *user = users[userIndex];
+		
+		if(![user.profileID isEqualToString:facebookUser.id]) {
+			self.createBlock(facebookUser);
+		} else {
+			++userIndex;
+		}
+		
+		return user;
+	};
+	
+	return [[findOrCreateBlock copy] autorelease];
 }
 
 #pragma mark -
@@ -53,49 +98,26 @@ typedef FFUser *(^FFUserBlock)(id<FBGraphUser> facebookUser);
 		return;
 	}
 	
-	[self loadWithGraphPath:kFFGraphPathForRequest];
+	self.databaseUsersContext = [FFDatabaseUsersContext object];
+	[self fetchUsersFromDatabase];
 }
 
 #pragma mark -
 #pragma mark Private
 
-- (void)loadingDidFinishWithResult:(id)result error:(NSError *)error {
-	if (error) {
-		[self failLoading];
-		return;
-	}
-	
-	[self fetchUsersFromDatabase];
-	
-	__block FFUsers *usersData = self.users;
-	__block NSUInteger userIndex = 0;
-	
-	FFUserBlock createBlock = ^FFUser *(id<FBGraphUser> facebookUser) {
-		FFUser *user = [FFUser managedObject];
-		[usersData addUser:user];
-		
-		return user;
-	};
-	
-	FFUserBlock findOrCreateBlock = ^FFUser *(id<FBGraphUser> facebookUser) {
-		FFUser *user = usersData.users[userIndex];
-		
-		if(![user.profileID isEqualToString:facebookUser.id]) {
-			createBlock(facebookUser);
-		} else {
-			++userIndex;
-		}
-		
-		return user;
-	};
-	
-	if (0 == [usersData.users count]) {
-		[self createUsersWithFacebookData:result usingBlock:createBlock];
-	} else {
-		[self createUsersWithFacebookData:result usingBlock:findOrCreateBlock];
-	}
+- (void)loadingDidFinishWithResult:(id)result {
+	[self createUsersWithFacebookData:result];
 	
 	[self finishLoading];
+	[self.users finishLoading];
+}
+
+- (void)loadingDidFail {
+	if (IDPModelFailed == self.databaseUsersContext.state) {
+		[self failLoading];
+	} else {
+		[self finishLoading];
+	}
 }
 
 - (void)fetchUsersFromDatabase {
@@ -104,25 +126,24 @@ typedef FFUser *(^FFUserBlock)(id<FBGraphUser> facebookUser);
 	[databaseLoadingContext load];
 }
 
-- (void)createUsersWithFacebookData:(id)facebookData usingBlock:(FFUserBlock)block {
+- (void)createUsersWithFacebookData:(id)facebookData {
 	NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:kFFIDKey
 																    ascending:YES] autorelease];
 	NSArray *friends = [facebookData[kFFDataKey] sortedArrayUsingDescriptors:@[sortDescriptor]];
 	
 	for (NSDictionary<FBGraphUser> *friend in friends) {
-		FFUser *user = block(friend);
+		FFUser *user = self.userBlock(friend);
 		
 		[self fillUser:user withFacebookUser:friend];
-		[user finishLoading];
 	}
 }
 
-- (FFUser *)fillUser:(FFUser *)user withFacebookUser:(id<FBGraphUser>)facebookUserData {
-	user.profileID = facebookUserData.id;
-	user.firstName = facebookUserData.first_name;
-	user.lastName = facebookUserData.last_name;
+- (FFUser *)fillUser:(FFUser *)user withFacebookUser:(id<FBGraphUser>)facebookUser {
+	user.profileID = facebookUser.id;
+	user.firstName = facebookUser.first_name;
+	user.lastName = facebookUser.last_name;
 	
-	NSString *pictureUrl = facebookUserData[kFFPictureKey][kFFDataKey][kFFPictureURLKey];
+	NSString *pictureUrl = facebookUser[kFFPictureKey][kFFDataKey][kFFPictureURLKey];
 	user.photoPreview = [FFImage managedObjectWithPath:pictureUrl];
 	[user finishLoading];
 	
@@ -130,12 +151,18 @@ typedef FFUser *(^FFUserBlock)(id<FBGraphUser> facebookUser);
 }
 
 #pragma mark -
-#pragma mark IDPModel
+#pragma mark IDPModelObserver
 
-- (void)finishLoading {
-	[self.users finishLoading];
+- (void)modelDidLoad:(id)model {
+	self.userBlock = self.findOrCreateBlock;
 	
-	[super finishLoading];
+	[self loadWithGraphPath:kFFGraphPathForRequest];
+}
+
+- (void)modelDidFailToLoad:(id)model {
+	self.userBlock = self.createBlock;
+	
+	[self loadWithGraphPath:kFFGraphPathForRequest];
 }
 
 @end

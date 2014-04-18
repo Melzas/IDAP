@@ -63,20 +63,18 @@ static NSString * const kFFPictureURLKey = @"url";
 	return YES;
 }
 
-- (void)loadingDidFinishWithResult:(id)result error:(NSError *)error {
+- (void)loadingDidFinishWithResult:(id)result {
 	FFUser *user = self.user;
 	
-	if (error) {
-		[self failLoading];
-		return;
-	}
-	
 	user.address = result[kFFLocationKey][kFFCityNameKey];
-	
 	NSString *pictureUrl = result[kFFPictureKey][kFFDataKey][kFFPictureURLKey];
 	user.photo = [FFImage managedObjectWithPath:pictureUrl];
 	
 	[self finishLoading];
+}
+
+- (void)loadingDidFail {
+	[self failLoading];
 }
 
 @end
