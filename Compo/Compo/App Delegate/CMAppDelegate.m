@@ -8,6 +8,10 @@
 
 #import "CMAppDelegate.h"
 
+#import "CMMapViewController.h"
+
+static NSString * const kCMTabBarNibName = @"CMTabBarController";
+
 @implementation CMAppDelegate
 
 #pragma mark -
@@ -25,6 +29,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	UIWindow *window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     window.backgroundColor = [UIColor whiteColor];
+	
+//	window.rootViewController = [CMMapViewController defaultNibController];
+	window.rootViewController = [NSBundle loadClass:[UITabBarController class]
+									   fromNibNamed:kCMTabBarNibName
+											  owner:self];
+	
     [window makeKeyAndVisible];
 	self.window = window;
 	

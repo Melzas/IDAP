@@ -12,13 +12,18 @@
 		083873E5190116540040B996 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083873E4190116540040B996 /* UIKit.framework */; };
 		083873EB190116540040B996 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 083873E9190116540040B996 /* InfoPlist.strings */; };
 		083873ED190116540040B996 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 083873EC190116540040B996 /* main.m */; };
-		083873F1190116540040B996 /* CMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 083873F0190116540040B996 /* CMAppDelegate.m */; };
 		083873F3190116540040B996 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 083873F2190116540040B996 /* Images.xcassets */; };
 		083873FA190116540040B996 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083873F9190116540040B996 /* XCTest.framework */; };
 		083873FB190116540040B996 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083873E0190116540040B996 /* Foundation.framework */; };
 		083873FC190116540040B996 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083873E4190116540040B996 /* UIKit.framework */; };
 		08387404190116540040B996 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08387402190116540040B996 /* InfoPlist.strings */; };
 		08387406190116540040B996 /* CompoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 08387405190116540040B996 /* CompoTests.m */; };
+		0844334319067468000931A1 /* CMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0844334219067468000931A1 /* CMAppDelegate.m */; };
+		0844334719067472000931A1 /* CMTabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0844334619067472000931A1 /* CMTabBarController.xib */; };
+		0844334B19067644000931A1 /* CMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0844334919067644000931A1 /* CMMapViewController.m */; };
+		0844334C19067644000931A1 /* CMMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0844334A19067644000931A1 /* CMMapViewController.xib */; };
+		08443350190676D3000931A1 /* CMMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0844334F190676D3000931A1 /* CMMapView.m */; };
+		0844335219067803000931A1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0844335119067803000931A1 /* MapKit.framework */; };
 		088323201905A03100B66F48 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 088322791905A03000B66F48 /* .gitignore */; };
 		088323211905A03100B66F48 /* .gitmodules in Resources */ = {isa = PBXBuildFile; fileRef = 0883227A1905A03000B66F48 /* .gitmodules */; };
 		088323221905A03100B66F48 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0883227B1905A03000B66F48 /* LICENSE */; };
@@ -114,14 +119,21 @@
 		083873EA190116540040B996 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		083873EC190116540040B996 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		083873EE190116540040B996 /* Compo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Compo-Prefix.pch"; sourceTree = "<group>"; };
-		083873EF190116540040B996 /* CMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMAppDelegate.h; sourceTree = "<group>"; };
-		083873F0190116540040B996 /* CMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMAppDelegate.m; sourceTree = "<group>"; };
 		083873F2190116540040B996 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		083873F8190116540040B996 /* CompoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CompoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		083873F9190116540040B996 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		08387401190116540040B996 /* CompoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CompoTests-Info.plist"; sourceTree = "<group>"; };
 		08387403190116540040B996 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		08387405190116540040B996 /* CompoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompoTests.m; sourceTree = "<group>"; };
+		0844334119067468000931A1 /* CMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMAppDelegate.h; sourceTree = "<group>"; };
+		0844334219067468000931A1 /* CMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMAppDelegate.m; sourceTree = "<group>"; };
+		0844334619067472000931A1 /* CMTabBarController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CMTabBarController.xib; sourceTree = "<group>"; };
+		0844334819067644000931A1 /* CMMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMMapViewController.h; path = "Map View Controller/CMMapViewController.h"; sourceTree = "<group>"; };
+		0844334919067644000931A1 /* CMMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CMMapViewController.m; path = "Map View Controller/CMMapViewController.m"; sourceTree = "<group>"; };
+		0844334A19067644000931A1 /* CMMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CMMapViewController.xib; path = "Map View Controller/CMMapViewController.xib"; sourceTree = "<group>"; };
+		0844334E190676D3000931A1 /* CMMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMMapView.h; path = "Map View Controller/CMMapView.h"; sourceTree = "<group>"; };
+		0844334F190676D3000931A1 /* CMMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CMMapView.m; path = "Map View Controller/CMMapView.m"; sourceTree = "<group>"; };
+		0844335119067803000931A1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		088322791905A03000B66F48 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		0883227A1905A03000B66F48 /* .gitmodules */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitmodules; sourceTree = "<group>"; };
 		0883227B1905A03000B66F48 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -266,6 +278,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0844335219067803000931A1 /* MapKit.framework in Frameworks */,
 				083873E3190116540040B996 /* CoreGraphics.framework in Frameworks */,
 				083873E5190116540040B996 /* UIKit.framework in Frameworks */,
 				083873E1190116540040B996 /* Foundation.framework in Frameworks */,
@@ -308,6 +321,7 @@
 		083873DF190116540040B996 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0844335119067803000931A1 /* MapKit.framework */,
 				083873E0190116540040B996 /* Foundation.framework */,
 				083873E2190116540040B996 /* CoreGraphics.framework */,
 				083873E4190116540040B996 /* UIKit.framework */,
@@ -319,8 +333,8 @@
 		083873E6190116540040B996 /* Compo */ = {
 			isa = PBXGroup;
 			children = (
-				083873EF190116540040B996 /* CMAppDelegate.h */,
-				083873F0190116540040B996 /* CMAppDelegate.m */,
+				0844334019067468000931A1 /* App Delegate */,
+				0844334419067472000931A1 /* View Controllers */,
 				083873F2190116540040B996 /* Images.xcassets */,
 				083873E7190116540040B996 /* Supporting Files */,
 			);
@@ -354,6 +368,44 @@
 				08387402190116540040B996 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0844334019067468000931A1 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				0844334119067468000931A1 /* CMAppDelegate.h */,
+				0844334219067468000931A1 /* CMAppDelegate.m */,
+			);
+			path = "App Delegate";
+			sourceTree = "<group>";
+		};
+		0844334419067472000931A1 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0844334519067472000931A1 /* Tab Bar Controller */,
+				0844334D19067654000931A1 /* Map View Controller */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		0844334519067472000931A1 /* Tab Bar Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0844334619067472000931A1 /* CMTabBarController.xib */,
+			);
+			path = "Tab Bar Controller";
+			sourceTree = "<group>";
+		};
+		0844334D19067654000931A1 /* Map View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0844334819067644000931A1 /* CMMapViewController.h */,
+				0844334919067644000931A1 /* CMMapViewController.m */,
+				0844334A19067644000931A1 /* CMMapViewController.xib */,
+				0844334E190676D3000931A1 /* CMMapView.h */,
+				0844334F190676D3000931A1 /* CMMapView.m */,
+			);
+			name = "Map View Controller";
 			sourceTree = "<group>";
 		};
 		088322781905A03000B66F48 /* IDPKit */ = {
@@ -786,7 +838,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = CM;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Anton Rayev";
 				TargetAttributes = {
 					083873F7190116540040B996 = {
@@ -818,6 +870,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				088323571905A03100B66F48 /* .gitignore in Resources */,
+				0844334719067472000931A1 /* CMTabBarController.xib in Resources */,
 				088323241905A03100B66F48 /* .gitignore in Resources */,
 				088323221905A03100B66F48 /* LICENSE in Resources */,
 				088323581905A03100B66F48 /* LICENSE in Resources */,
@@ -841,6 +894,7 @@
 				088323251905A03100B66F48 /* LICENSE in Resources */,
 				088323591905A03100B66F48 /* README.md in Resources */,
 				083873F3190116540040B996 /* Images.xcassets in Resources */,
+				0844334C19067644000931A1 /* CMMapViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -865,7 +919,6 @@
 				088323271905A03100B66F48 /* IDPCoreDataManager.m in Sources */,
 				088323451905A03100B66F48 /* IDPOCContext.m in Sources */,
 				088323601905A03100B66F48 /* UIAlertView+IDPExtensions.m in Sources */,
-				083873F1190116540040B996 /* CMAppDelegate.m in Sources */,
 				088323481905A03100B66F48 /* NSObject+IDPOCExtensions.m in Sources */,
 				088323361905A03100B66F48 /* NSString+IDPExtensions.m in Sources */,
 				0883232F1905A03100B66F48 /* IDPMath.m in Sources */,
@@ -883,6 +936,7 @@
 				088323411905A03100B66F48 /* IDPSingletonModel.m in Sources */,
 				088323681905A03100B66F48 /* UIViewController+IDPExtensions.m in Sources */,
 				088323311905A03100B66F48 /* NSBundle+IDPExtensions.m in Sources */,
+				08443350190676D3000931A1 /* CMMapView.m in Sources */,
 				088323661905A03100B66F48 /* UITableView+IDPCellLoading.m in Sources */,
 				0883234B1905A03100B66F48 /* IDPReference.m in Sources */,
 				088323421905A03100B66F48 /* IDPMutableArray.m in Sources */,
@@ -890,6 +944,7 @@
 				088323401905A03100B66F48 /* IDPModel.m in Sources */,
 				088323301905A03100B66F48 /* NSArray+IDPExtensions.m in Sources */,
 				088323471905A03100B66F48 /* IDPOCStack.m in Sources */,
+				0844334319067468000931A1 /* CMAppDelegate.m in Sources */,
 				0883233D1905A03100B66F48 /* IDPKVOContext.m in Sources */,
 				088323501905A03100B66F48 /* IDPURLConnection.m in Sources */,
 				083873ED190116540040B996 /* main.m in Sources */,
@@ -905,6 +960,7 @@
 				0883233A1905A03100B66F48 /* IDPBlock.m in Sources */,
 				088323671905A03100B66F48 /* UIView+IDPExtensions.m in Sources */,
 				088323341905A03100B66F48 /* NSFileManager+IDPExtensions.m in Sources */,
+				0844334B19067644000931A1 /* CMMapViewController.m in Sources */,
 				0883233C1905A03100B66F48 /* IDPKeyPathObserver.m in Sources */,
 				088323351905A03100B66F48 /* NSObject+IDPExtensions.m in Sources */,
 				088323631905A03100B66F48 /* UIImage+IDPExtensions.m in Sources */,
@@ -958,7 +1014,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -997,7 +1052,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1057,7 +1111,6 @@
 		0838740D190116540040B996 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Compo.app/Compo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1080,7 +1133,6 @@
 		0838740E190116540040B996 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Compo.app/Compo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
