@@ -10,4 +10,6 @@
 
 @interface CMMapViewController : UIViewController
 
+- (NSArray *)createAnnotationsAroundCoordinate:(CLLocationCoordinate2D)coordinate;
+
 @end

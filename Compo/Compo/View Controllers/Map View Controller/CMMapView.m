@@ -10,4 +10,13 @@
 
 @implementation CMMapView
 
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+	self.mapView = nil;
+	
+	[super dealloc];
+}
+
 @end
