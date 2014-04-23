@@ -8,13 +8,18 @@
 
 #import "CMAnnotation.h"
 
+static const double kCMDegreesInPI = 180.f;
+
 @interface CMAnnotation ()
 @property (nonatomic, assign)	CLLocationCoordinate2D	coordinate;
 @property (nonatomic, copy)		NSString				*title;
 
-- (CGPoint)convertFromDistance:(CGFloat)distance degrees:(CGFloat)degrees;
+- (CLLocationDirection)convertToRadiansFromDegrees:(CLLocationDirection)degrees;
+- (CLLocationDistance2D)convertFromDistance:(CLLocationDistance)distance
+									radians:(CLLocationDirection)radians;
+
 - (CLLocationCoordinate2D)translateCoordinate:(CLLocationCoordinate2D)coordinate
-									  toPoint:(CGPoint)point;
+								   toDistance:(CLLocationDistance2D)distance;
 
 @end
 
@@ -23,8 +28,8 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (id)annotationWithDistance:(CGFloat)distance
-					 degrees:(CGFloat)degrees
++ (id)annotationWithDistance:(CLLocationDistance)distance
+					 degrees:(CLLocationDirection)degrees
 			  fromCoordinate:(CLLocationCoordinate2D)coordinate
 {
 	return [[[self alloc] initWithDistance:distance
@@ -41,16 +46,20 @@
 	[super dealloc];
 }
 
-- (id)initWithDistance:(CGFloat)distance
-			   degrees:(CGFloat)degrees
+- (id)initWithDistance:(CLLocationDistance)distance
+			   degrees:(CLLocationDirection)degrees
 		fromCoordinate:(CLLocationCoordinate2D)coordinate
 {
     self = [super init];
     if (self) {
-        CGPoint point = [self convertFromDistance:distance degrees:degrees];
-		self.coordinate = [self translateCoordinate:coordinate toPoint:point];
+		CLLocationDirection radians = [self convertToRadiansFromDegrees:degrees];
+        CLLocationDistance2D distance2D = [self convertFromDistance:distance radians:radians];
+		self.coordinate = [self translateCoordinate:coordinate toDistance:distance2D];
 		
-		self.title = [NSString stringWithFormat:@"%f m", distance];
+		MKDistanceFormatter *formatter = [MKDistanceFormatter object];
+		formatter.unitStyle = MKDistanceFormatterUnitStyleAbbreviated;
+		
+		self.title = [formatter stringFromDistance:distance];
     }
 	
     return self;
@@ -59,18 +68,24 @@
 #pragma mark -
 #pragma mark Private
 
-- (CGPoint)convertFromDistance:(CGFloat)distance degrees:(CGFloat)degrees {
-	CGPoint coordinates;
-	coordinates.x = distance * cos(degrees);
-	coordinates.y = distance * sin(degrees);
+- (CLLocationDirection)convertToRadiansFromDegrees:(CLLocationDirection)degrees {
+	return degrees / kCMDegreesInPI * M_PI;
+}
+
+- (CLLocationDistance2D)convertFromDistance:(CLLocationDistance)distance
+									radians:(CLLocationDirection)radians
+{
+	CLLocationDistance2D distance2D;
+	distance2D.x = distance * cos(radians);
+	distance2D.y = distance * sin(radians);
 	
-	return coordinates;
+	return distance2D;
 }
 
 - (CLLocationCoordinate2D)translateCoordinate:(CLLocationCoordinate2D)coordinate
-									  toPoint:(CGPoint)point
+								   toDistance:(CLLocationDistance2D)distance
 {
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, point.x, point.y);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, distance.x, distance.y);
     MKCoordinateSpan span = region.span;
 	
 	CLLocationCoordinate2D newCoordinate;

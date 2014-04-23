@@ -11,15 +11,14 @@
 #import "CMAnnotation.h"
 
 #import "CMMapView.h"
+#import "CMPinView.h"
 
 static NSString * const kCMLocationError = @"Could not retrieve user's location";
 
-static const CGFloat	kCMAnnotationDistances[] = {100, 200, 1000, 2000};
-static const NSUInteger	kCMAnnotationCount		 = sizeof(kCMAnnotationDistances) / sizeof(CGFloat);
-
-@interface CMMapViewController () <MKMapViewDelegate>
-
-@end
+static const double				kCMMaxDegrees			 = 360.f;
+static const CLLocationDistance	kCMAnnotationDistances[] = {100.f, 500.f, 1000.f, 2000.f};
+static const NSUInteger			kCMAnnotationCount		 = sizeof(kCMAnnotationDistances)
+	/ sizeof(CLLocationDistance);
 
 @implementation CMMapViewController
 
@@ -35,8 +34,8 @@ IDPViewControllerViewOfClassGetterSynthesize(CMMapView, mapView);
 	NSMutableArray *annotations = [NSMutableArray arrayWithCapacity:kCMAnnotationCount];
 	
 	for (NSUInteger i = 0; i < kCMAnnotationCount; ++i) {
-		CGFloat distance = kCMAnnotationDistances[i];
-		CGFloat degrees = arc4random_uniform(2 * M_PI);
+		CLLocationDistance distance = kCMAnnotationDistances[i];
+		CLLocationDirection degrees = arc4random_uniform(kCMMaxDegrees);
 		CMAnnotation *annotation = [CMAnnotation annotationWithDistance:distance
 																degrees:degrees
 														 fromCoordinate:coordinate];
@@ -53,8 +52,8 @@ IDPViewControllerViewOfClassGetterSynthesize(CMMapView, mapView);
 	CLLocationCoordinate2D userCoordinate = userLocation.coordinate;
 	[mapView setCenterCoordinate:userCoordinate animated:YES];
 	
-//	[mapView addAnnotations:[self createAnnotationsAroundCoordinate:userCoordinate]];
-	[mapView showAnnotations:[self createAnnotationsAroundCoordinate:userCoordinate] animated:YES];
+	[mapView removeAnnotations:mapView.annotations];
+	[mapView addAnnotations:[self createAnnotationsAroundCoordinate:userCoordinate]];
 }
 
 - (void)mapView:(MKMapView *)mapView didFailToLocateUserWithError:(NSError *)error {

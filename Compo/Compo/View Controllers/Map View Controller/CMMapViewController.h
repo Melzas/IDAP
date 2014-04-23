@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CMMapViewController : UIViewController
+@interface CMMapViewController : UIViewController <MKMapViewDelegate>
 
 - (NSArray *)createAnnotationsAroundCoordinate:(CLLocationCoordinate2D)coordinate;
 

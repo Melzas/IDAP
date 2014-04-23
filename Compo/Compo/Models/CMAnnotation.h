@@ -8,16 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+typedef struct {
+	CLLocationDistance x;
+	CLLocationDistance y;
+} CLLocationDistance2D;
+
 @interface CMAnnotation : NSObject <MKAnnotation>
 @property (nonatomic, readonly)			CLLocationCoordinate2D	coordinate;
 @property (nonatomic, copy, readonly)	NSString				*title;
 
-+ (id)annotationWithDistance:(CGFloat)distance
-					 degrees:(CGFloat)degrees
++ (id)annotationWithDistance:(CLLocationDistance)distance
+					 degrees:(CLLocationDirection)degrees
 			  fromCoordinate:(CLLocationCoordinate2D)coordinate;
 
-- (id)initWithDistance:(CGFloat)distance
-			   degrees:(CGFloat)degrees
+- (id)initWithDistance:(CLLocationDistance)distance
+			   degrees:(CLLocationDirection)degrees
 		fromCoordinate:(CLLocationCoordinate2D)coordinate;
 
 @end
