@@ -8,6 +8,8 @@
 
 #import "CMMapViewController.h"
 
+#import "MKMapView+CMExtensions.h"
+
 #import "CMAnnotation.h"
 
 #import "CMMapView.h"
@@ -58,6 +60,14 @@ IDPViewControllerViewOfClassGetterSynthesize(CMMapView, mapView);
 
 - (void)mapView:(MKMapView *)mapView didFailToLocateUserWithError:(NSError *)error {
 	[UIAlertView showErrorWithMessage:kCMLocationError];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+	if ([annotation isKindOfClass:[CMAnnotation class]]) {
+		return [mapView pinForClass:[CMPinView class] withAnnotation:annotation];
+	}
+	
+	return nil;
 }
 
 @end
