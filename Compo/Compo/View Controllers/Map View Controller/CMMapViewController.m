@@ -11,18 +11,38 @@
 #import "MKMapView+CMExtensions.h"
 
 #import "CMAnnotation.h"
+#import "CMUser.h"
 
 #import "CMMapView.h"
 #import "CMPinView.h"
 
 static NSString * const kCMLocationError = @"Could not retrieve user's location";
 
-static const double				kCMMaxDegrees			 = 360.f;
-static const CLLocationDistance	kCMAnnotationDistances[] = {100.f, 500.f, 1000.f, 2000.f};
-static const NSUInteger			kCMAnnotationCount		 = sizeof(kCMAnnotationDistances)
-	/ sizeof(CLLocationDistance);
-
 @implementation CMMapViewController
+
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+	self.user = nil;
+	
+	[super dealloc];
+}
+
+#pragma mark -
+#pragma mark View Lifecycle
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewDidDisappear:animated];
+	
+	self.mapView.map.showsUserLocation = YES;
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+	self.mapView.map.showsUserLocation = NO;
+	
+	[super viewDidDisappear:animated];
+}
 
 #pragma mark -
 #pragma mark Accessors
@@ -33,29 +53,27 @@ IDPViewControllerViewOfClassGetterSynthesize(CMMapView, mapView);
 #pragma mark Public
 
 - (NSArray *)createAnnotationsAroundCoordinate:(CLLocationCoordinate2D)coordinate {
-	NSMutableArray *annotations = [NSMutableArray arrayWithCapacity:kCMAnnotationCount];
-	
-	for (NSUInteger i = 0; i < kCMAnnotationCount; ++i) {
-		CLLocationDistance distance = kCMAnnotationDistances[i];
-		CLLocationDirection degrees = arc4random_uniform(kCMMaxDegrees);
-		CMAnnotation *annotation = [CMAnnotation annotationWithDistance:distance
-																degrees:degrees
-														 fromCoordinate:coordinate];
-		[annotations addObject:annotation];
-	}
+	NSMutableArray *annotations = [NSMutableArray arrayWithCapacity:0];
 		
 	return annotations;
+}
+
+- (UITabBarItem *)tabBarItem {
+	return [[UITabBarItem alloc] initWithTitle:@"Map" image:nil selectedImage:nil];
 }
 
 #pragma mark -
 #pragma mark MKMapViewDelegate
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
-	CLLocationCoordinate2D userCoordinate = userLocation.coordinate;
-	[mapView setCenterCoordinate:userCoordinate animated:YES];
+	CMUser *user = self.user;
 	
-	[mapView removeAnnotations:mapView.annotations];
-	[mapView addAnnotations:[self createAnnotationsAroundCoordinate:userCoordinate]];
+	user.coordinate = userLocation.coordinate;
+	[mapView setCenterCoordinate:user.coordinate animated:YES];
+	
+	[mapView removeAnnotations:user.annotations];
+	[user createAnnotations];
+	[mapView addAnnotations:user.annotations];
 }
 
 - (void)mapView:(MKMapView *)mapView didFailToLocateUserWithError:(NSError *)error {

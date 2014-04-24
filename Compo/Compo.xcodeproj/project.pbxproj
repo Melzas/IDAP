@@ -27,6 +27,7 @@
 		0844335619068CE1000931A1 /* CMAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0844335519068CE1000931A1 /* CMAnnotation.m */; };
 		084C24B319079A200014F04D /* CMPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 084C24B219079A200014F04D /* CMPinView.m */; };
 		084D6D8A1908EE6E00182693 /* MKMapView+CMExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 084D6D891908EE6E00182693 /* MKMapView+CMExtensions.m */; };
+		084D6D8D1908F10100182693 /* CMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 084D6D8C1908F10100182693 /* CMUser.m */; };
 		088323201905A03100B66F48 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 088322791905A03000B66F48 /* .gitignore */; };
 		088323211905A03100B66F48 /* .gitmodules in Resources */ = {isa = PBXBuildFile; fileRef = 0883227A1905A03000B66F48 /* .gitmodules */; };
 		088323221905A03100B66F48 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0883227B1905A03000B66F48 /* LICENSE */; };
@@ -143,6 +144,8 @@
 		084C24B219079A200014F04D /* CMPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPinView.m; sourceTree = "<group>"; };
 		084D6D881908EE6E00182693 /* MKMapView+CMExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+CMExtensions.h"; sourceTree = "<group>"; };
 		084D6D891908EE6E00182693 /* MKMapView+CMExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+CMExtensions.m"; sourceTree = "<group>"; };
+		084D6D8B1908F10100182693 /* CMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMUser.h; sourceTree = "<group>"; };
+		084D6D8C1908F10100182693 /* CMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMUser.m; sourceTree = "<group>"; };
 		088322791905A03000B66F48 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		0883227A1905A03000B66F48 /* .gitmodules */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitmodules; sourceTree = "<group>"; };
 		0883227B1905A03000B66F48 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -425,6 +428,8 @@
 			children = (
 				0844335419068CE1000931A1 /* CMAnnotation.h */,
 				0844335519068CE1000931A1 /* CMAnnotation.m */,
+				084D6D8B1908F10100182693 /* CMUser.h */,
+				084D6D8C1908F10100182693 /* CMUser.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -987,6 +992,7 @@
 				088323301905A03100B66F48 /* NSArray+IDPExtensions.m in Sources */,
 				088323471905A03100B66F48 /* IDPOCStack.m in Sources */,
 				0844334319067468000931A1 /* CMAppDelegate.m in Sources */,
+				084D6D8D1908F10100182693 /* CMUser.m in Sources */,
 				0883233D1905A03100B66F48 /* IDPKVOContext.m in Sources */,
 				088323501905A03100B66F48 /* IDPURLConnection.m in Sources */,
 				083873ED190116540040B996 /* main.m in Sources */,

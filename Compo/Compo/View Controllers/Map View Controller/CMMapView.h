@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CMMapView : UIView
-@property (nonatomic, retain)	IBOutlet MKMapView	*mapView;
+@property (nonatomic, retain)	IBOutlet MKMapView	*map;
 
 @end

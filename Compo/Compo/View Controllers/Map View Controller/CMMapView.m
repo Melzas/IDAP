@@ -14,7 +14,7 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-	self.mapView = nil;
+	self.map = nil;
 	
 	[super dealloc];
 }

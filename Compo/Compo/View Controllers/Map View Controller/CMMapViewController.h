@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class CMUser;
+
 @interface CMMapViewController : UIViewController <MKMapViewDelegate>
+@property (nonatomic, retain)	CMUser	*user;
 
 - (NSArray *)createAnnotationsAroundCoordinate:(CLLocationCoordinate2D)coordinate;
 

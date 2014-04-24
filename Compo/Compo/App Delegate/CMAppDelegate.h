@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class CMUser;
+
 @interface CMAppDelegate : UIResponder <UIApplicationDelegate>
 @property (nonatomic, retain)	UIWindow	*window;
 
