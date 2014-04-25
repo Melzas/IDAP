@@ -26,7 +26,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <nil key="simulatedDestinationMetrics"/>
                 </viewController>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="rDK-eo-6b2">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="rDK-eo-6b2" customClass="CMLocationViewController">
                     <tabBarItem key="tabBarItem" title="Location" id="Z5V-uM-4mV"/>
                     <toolbarItems/>
                     <nil key="simulatedStatusBarMetrics"/>

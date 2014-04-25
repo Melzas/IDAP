@@ -50,19 +50,6 @@ static NSString * const kCMLocationError = @"Could not retrieve user's location"
 IDPViewControllerViewOfClassGetterSynthesize(CMMapView, mapView);
 
 #pragma mark -
-#pragma mark Public
-
-- (NSArray *)createAnnotationsAroundCoordinate:(CLLocationCoordinate2D)coordinate {
-	NSMutableArray *annotations = [NSMutableArray arrayWithCapacity:0];
-		
-	return annotations;
-}
-
-- (UITabBarItem *)tabBarItem {
-	return [[UITabBarItem alloc] initWithTitle:@"Map" image:nil selectedImage:nil];
-}
-
-#pragma mark -
 #pragma mark MKMapViewDelegate
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
