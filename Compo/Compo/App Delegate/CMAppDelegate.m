@@ -11,6 +11,7 @@
 #import "CMUser.h"
 
 #import "CMMapViewController.h"
+#import "CMLocationViewController.h"
 
 static NSString * const kCMTabBarNibName = @"CMTabBarController";
 
@@ -39,6 +40,9 @@ static NSString * const kCMTabBarNibName = @"CMTabBarController";
 														owner:nil];
 	CMMapViewController *mapViewController = tabBarController.viewControllers[0];
 	mapViewController.user = user;
+	
+	CMLocationViewController *locationViewController = tabBarController.viewControllers[1];
+	locationViewController.user = user;
 	
 	window.rootViewController = tabBarController;
 	

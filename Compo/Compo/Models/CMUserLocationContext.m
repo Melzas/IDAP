@@ -83,6 +83,8 @@
 	CMUserGeocodingContext *geocodingContext = [CMUserGeocodingContext object];
 	geocodingContext.user = user;
 	geocodingContext.coordinate = coordinate;
+	self.geocodingContext = geocodingContext;
+	
 	[geocodingContext load];
 }
 

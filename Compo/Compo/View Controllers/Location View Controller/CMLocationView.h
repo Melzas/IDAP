@@ -11,10 +11,12 @@
 @interface CMLocationView : UIView
 @property (nonatomic, retain)	IBOutlet UILabel	*coordinateLabel;
 @property (nonatomic, retain)	IBOutlet UILabel	*countryLabel;
-@property (nonatomic, retain)	IBOutlet UILabel	*stateLabel;
+@property (nonatomic, retain)	IBOutlet UILabel	*regionLabel;
 @property (nonatomic, retain)	IBOutlet UILabel	*cityLabel;
 @property (nonatomic, retain)	IBOutlet UILabel	*streetLabel;
 @property (nonatomic, retain)	IBOutlet UILabel	*postalCodeLabel;
+
+@property (nonatomic, assign, getter = isLoading)	BOOL loading;
 
 - (void)fillWithUser:(CMUser *)user;
 

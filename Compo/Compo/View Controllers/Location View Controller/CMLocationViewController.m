@@ -12,6 +12,8 @@
 
 #import "CMUserLocationContext.h"
 
+#import "CMLocationView.h"
+
 static NSString * const kCMLocationError = @"Could not retrieve user's location";
 
 @interface CMLocationViewController () <IDPModelObserver>
@@ -37,6 +39,8 @@ static NSString * const kCMLocationError = @"Could not retrieve user's location"
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
+	self.locationView.loading = YES;
+	
 	CMUserLocationContext *userLocationContext = [CMUserLocationContext object];
 	userLocationContext.user = self.user;
 	
@@ -53,6 +57,8 @@ static NSString * const kCMLocationError = @"Could not retrieve user's location"
 #pragma mark -
 #pragma mark Accessors
 
+IDPViewControllerViewOfClassGetterSynthesize(CMLocationView, locationView);
+
 - (void)setUserLocationContext:(CMUserLocationContext *)userLocationContext {
 	IDPNonatomicRetainPropertySynthesizeWithObserver(_userLocationContext, userLocationContext);
 }
@@ -61,10 +67,16 @@ static NSString * const kCMLocationError = @"Could not retrieve user's location"
 #pragma mark IDPModelObserver
 
 - (void)modelDidLoad:(id)model {
+	self.userLocationContext = nil;
+	
+	CMLocationView *locationView = self.locationView;
+	[locationView fillWithUser:self.user];
+	locationView.loading = NO;
 	
 }
 
 - (void)modelDidFailToLoad:(id)model {
+	self.locationView.loading = NO;
 	[UIAlertView showErrorWithMessage:kCMLocationError];
 }
 

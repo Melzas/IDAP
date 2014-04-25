@@ -10,6 +10,11 @@
 
 #import "CMUser.h"
 
+@interface CMLocationView ()
+@property (nonatomic, retain)	IDPLoadingView		*loadingView;
+
+@end
+
 @implementation CMLocationView
 
 #pragma mark -
@@ -18,13 +23,30 @@
 - (void)dealloc {
 	self.coordinateLabel = nil;
 	self.countryLabel = nil;
-	self.stateLabel = nil;
+	self.regionLabel = nil;
 	self.cityLabel = nil;
 	self.streetLabel = nil;
 	self.postalCodeLabel = nil;
+	self.loadingView = nil;
 	
 	[super dealloc];
 }
+
+#pragma mark -
+#pragma mark Accessors
+
+- (void)setLoading:(BOOL)loading {
+	if (loading) {
+		self.loadingView = [IDPLoadingView loadingViewInView:self];
+	} else {
+		[self.loadingView removeFromSuperview];
+	}
+	
+	IDPNonatomicAssignPropertySynthesize(_loading, loading);
+}
+
+#pragma mark -
+#pragma mark Public
 
 - (void)fillWithUser:(CMUser *)user {
 	CLLocationCoordinate2D coordinate = user.coordinate;
@@ -34,10 +56,12 @@
 	self.coordinateLabel.text = coordinateText;
 	
 	self.countryLabel.text = user.country;
-	self.stateLabel.text = user.region;
+	self.regionLabel.text = user.region;
 	self.cityLabel.text = user.city;
 	self.streetLabel.text = user.street;
 	self.postalCodeLabel.text = user.postalCode;
+	
+	[self.loadingView removeFromSuperview];
 }
 
 @end
