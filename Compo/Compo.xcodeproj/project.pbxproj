@@ -28,6 +28,11 @@
 		084C24B319079A200014F04D /* CMPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 084C24B219079A200014F04D /* CMPinView.m */; };
 		084D6D8A1908EE6E00182693 /* MKMapView+CMExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 084D6D891908EE6E00182693 /* MKMapView+CMExtensions.m */; };
 		084D6D8D1908F10100182693 /* CMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 084D6D8C1908F10100182693 /* CMUser.m */; };
+		084D6D921909098500182693 /* CMLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 084D6D901909098500182693 /* CMLocationViewController.m */; };
+		084D6D931909098500182693 /* CMLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 084D6D911909098500182693 /* CMLocationViewController.xib */; };
+		084D6D9619090CA300182693 /* CMUserGeocodingContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 084D6D9519090CA300182693 /* CMUserGeocodingContext.m */; };
+		084D6D99190910C400182693 /* CMUserLocationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 084D6D98190910C400182693 /* CMUserLocationContext.m */; };
+		084D6D9B190917EC00182693 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 084D6D9A190917EC00182693 /* CoreLocation.framework */; };
 		088323201905A03100B66F48 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 088322791905A03000B66F48 /* .gitignore */; };
 		088323211905A03100B66F48 /* .gitmodules in Resources */ = {isa = PBXBuildFile; fileRef = 0883227A1905A03000B66F48 /* .gitmodules */; };
 		088323221905A03100B66F48 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0883227B1905A03000B66F48 /* LICENSE */; };
@@ -146,6 +151,14 @@
 		084D6D891908EE6E00182693 /* MKMapView+CMExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+CMExtensions.m"; sourceTree = "<group>"; };
 		084D6D8B1908F10100182693 /* CMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMUser.h; sourceTree = "<group>"; };
 		084D6D8C1908F10100182693 /* CMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMUser.m; sourceTree = "<group>"; };
+		084D6D8F1909098500182693 /* CMLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMLocationViewController.h; sourceTree = "<group>"; };
+		084D6D901909098500182693 /* CMLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMLocationViewController.m; sourceTree = "<group>"; };
+		084D6D911909098500182693 /* CMLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CMLocationViewController.xib; sourceTree = "<group>"; };
+		084D6D9419090CA300182693 /* CMUserGeocodingContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMUserGeocodingContext.h; sourceTree = "<group>"; };
+		084D6D9519090CA300182693 /* CMUserGeocodingContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMUserGeocodingContext.m; sourceTree = "<group>"; };
+		084D6D97190910C400182693 /* CMUserLocationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMUserLocationContext.h; sourceTree = "<group>"; };
+		084D6D98190910C400182693 /* CMUserLocationContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMUserLocationContext.m; sourceTree = "<group>"; };
+		084D6D9A190917EC00182693 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		088322791905A03000B66F48 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		0883227A1905A03000B66F48 /* .gitmodules */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitmodules; sourceTree = "<group>"; };
 		0883227B1905A03000B66F48 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -290,6 +303,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				084D6D9B190917EC00182693 /* CoreLocation.framework in Frameworks */,
 				0844335219067803000931A1 /* MapKit.framework in Frameworks */,
 				083873E3190116540040B996 /* CoreGraphics.framework in Frameworks */,
 				083873E5190116540040B996 /* UIKit.framework in Frameworks */,
@@ -333,6 +347,7 @@
 		083873DF190116540040B996 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				084D6D9A190917EC00182693 /* CoreLocation.framework */,
 				0844335119067803000931A1 /* MapKit.framework */,
 				083873E0190116540040B996 /* Foundation.framework */,
 				083873E2190116540040B996 /* CoreGraphics.framework */,
@@ -398,6 +413,7 @@
 			children = (
 				0844334519067472000931A1 /* Tab Bar Controller */,
 				0844334D19067654000931A1 /* Map View Controller */,
+				084D6D8E1909095D00182693 /* Location View Controller */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -430,6 +446,10 @@
 				0844335519068CE1000931A1 /* CMAnnotation.m */,
 				084D6D8B1908F10100182693 /* CMUser.h */,
 				084D6D8C1908F10100182693 /* CMUser.m */,
+				084D6D97190910C400182693 /* CMUserLocationContext.h */,
+				084D6D98190910C400182693 /* CMUserLocationContext.m */,
+				084D6D9419090CA300182693 /* CMUserGeocodingContext.h */,
+				084D6D9519090CA300182693 /* CMUserGeocodingContext.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -451,6 +471,16 @@
 				084D6D891908EE6E00182693 /* MKMapView+CMExtensions.m */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		084D6D8E1909095D00182693 /* Location View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				084D6D8F1909098500182693 /* CMLocationViewController.h */,
+				084D6D901909098500182693 /* CMLocationViewController.m */,
+				084D6D911909098500182693 /* CMLocationViewController.xib */,
+			);
+			path = "Location View Controller";
 			sourceTree = "<group>";
 		};
 		088322781905A03000B66F48 /* IDPKit */ = {
@@ -923,6 +953,7 @@
 				0883235B1905A03100B66F48 /* .gitignore in Resources */,
 				088323201905A03100B66F48 /* .gitignore in Resources */,
 				088323531905A03100B66F48 /* .gitignore in Resources */,
+				084D6D931909098500182693 /* CMLocationViewController.xib in Resources */,
 				0883232D1905A03100B66F48 /* README.md in Resources */,
 				088323541905A03100B66F48 /* LICENSE in Resources */,
 				0883232B1905A03100B66F48 /* .gitignore in Resources */,
@@ -958,6 +989,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				084D6D921909098500182693 /* CMLocationViewController.m in Sources */,
 				0883232A1905A03100B66F48 /* NSManagedObjectID+IDPExtensions.m in Sources */,
 				088323491905A03100B66F48 /* NSObject+IDPOCExtensionsPrivate.m in Sources */,
 				0883233E1905A03100B66F48 /* IDPKVOMutableArray.m in Sources */,
@@ -966,6 +998,7 @@
 				088323601905A03100B66F48 /* UIAlertView+IDPExtensions.m in Sources */,
 				088323481905A03100B66F48 /* NSObject+IDPOCExtensions.m in Sources */,
 				088323361905A03100B66F48 /* NSString+IDPExtensions.m in Sources */,
+				084D6D99190910C400182693 /* CMUserLocationContext.m in Sources */,
 				0883232F1905A03100B66F48 /* IDPMath.m in Sources */,
 				0883234A1905A03100B66F48 /* IDPObservableObject.m in Sources */,
 				088323511905A03100B66F48 /* IDPURLRequest.m in Sources */,
@@ -995,6 +1028,7 @@
 				084D6D8D1908F10100182693 /* CMUser.m in Sources */,
 				0883233D1905A03100B66F48 /* IDPKVOContext.m in Sources */,
 				088323501905A03100B66F48 /* IDPURLConnection.m in Sources */,
+				084D6D9619090CA300182693 /* CMUserGeocodingContext.m in Sources */,
 				083873ED190116540040B996 /* main.m in Sources */,
 				0883234D1905A03100B66F48 /* IDPWeakReference.m in Sources */,
 				088323461905A03100B66F48 /* IDPOCImplementation.m in Sources */,
