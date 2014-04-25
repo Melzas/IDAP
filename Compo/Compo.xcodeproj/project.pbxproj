@@ -108,6 +108,9 @@
 		088323681905A03100B66F48 /* UIViewController+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0883231D1905A03100B66F48 /* UIViewController+IDPExtensions.m */; };
 		088323691905A03100B66F48 /* UIViewController+IDPInitialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 0883231F1905A03100B66F48 /* UIViewController+IDPInitialization.m */; };
 		08BC5D0B190A3D500030B93F /* CMLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08BC5D0A190A3D500030B93F /* CMLocationView.m */; };
+		08BC5D10190A4B140030B93F /* CMCompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08BC5D0E190A4B140030B93F /* CMCompassViewController.m */; };
+		08BC5D11190A4B140030B93F /* CMCompassViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08BC5D0F190A4B140030B93F /* CMCompassViewController.xib */; };
+		08BC5D14190A4B2C0030B93F /* CMCompassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08BC5D13190A4B2C0030B93F /* CMCompassView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -299,6 +302,11 @@
 		0883231F1905A03100B66F48 /* UIViewController+IDPInitialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+IDPInitialization.m"; sourceTree = "<group>"; };
 		08BC5D09190A3D500030B93F /* CMLocationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMLocationView.h; sourceTree = "<group>"; };
 		08BC5D0A190A3D500030B93F /* CMLocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMLocationView.m; sourceTree = "<group>"; };
+		08BC5D0D190A4B140030B93F /* CMCompassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMCompassViewController.h; sourceTree = "<group>"; };
+		08BC5D0E190A4B140030B93F /* CMCompassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMCompassViewController.m; sourceTree = "<group>"; };
+		08BC5D0F190A4B140030B93F /* CMCompassViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CMCompassViewController.xib; sourceTree = "<group>"; };
+		08BC5D12190A4B2C0030B93F /* CMCompassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMCompassView.h; sourceTree = "<group>"; };
+		08BC5D13190A4B2C0030B93F /* CMCompassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMCompassView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -417,6 +425,7 @@
 				0844334519067472000931A1 /* Tab Bar Controller */,
 				0844334D19067654000931A1 /* Map View Controller */,
 				084D6D8E1909095D00182693 /* Location View Controller */,
+				08BC5D0C190A4AFB0030B93F /* Compass View Controller */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -873,6 +882,18 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		08BC5D0C190A4AFB0030B93F /* Compass View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				08BC5D0D190A4B140030B93F /* CMCompassViewController.h */,
+				08BC5D0E190A4B140030B93F /* CMCompassViewController.m */,
+				08BC5D0F190A4B140030B93F /* CMCompassViewController.xib */,
+				08BC5D12190A4B2C0030B93F /* CMCompassView.h */,
+				08BC5D13190A4B2C0030B93F /* CMCompassView.m */,
+			);
+			path = "Compass View Controller";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -954,6 +975,7 @@
 				088323241905A03100B66F48 /* .gitignore in Resources */,
 				088323221905A03100B66F48 /* LICENSE in Resources */,
 				088323581905A03100B66F48 /* LICENSE in Resources */,
+				08BC5D11190A4B140030B93F /* CMCompassViewController.xib in Resources */,
 				088323261905A03100B66F48 /* README.md in Resources */,
 				0883235B1905A03100B66F48 /* .gitignore in Resources */,
 				088323201905A03100B66F48 /* .gitignore in Resources */,
@@ -1019,6 +1041,7 @@
 				0883235F1905A03100B66F48 /* IDPShareObject.m in Sources */,
 				0844335619068CE1000931A1 /* CMAnnotation.m in Sources */,
 				088323411905A03100B66F48 /* IDPSingletonModel.m in Sources */,
+				08BC5D14190A4B2C0030B93F /* CMCompassView.m in Sources */,
 				088323681905A03100B66F48 /* UIViewController+IDPExtensions.m in Sources */,
 				088323311905A03100B66F48 /* NSBundle+IDPExtensions.m in Sources */,
 				08443350190676D3000931A1 /* CMMapView.m in Sources */,
@@ -1029,6 +1052,7 @@
 				088323431905A03100B66F48 /* IDPMutableDictionary.m in Sources */,
 				088323401905A03100B66F48 /* IDPModel.m in Sources */,
 				088323301905A03100B66F48 /* NSArray+IDPExtensions.m in Sources */,
+				08BC5D10190A4B140030B93F /* CMCompassViewController.m in Sources */,
 				088323471905A03100B66F48 /* IDPOCStack.m in Sources */,
 				0844334319067468000931A1 /* CMAppDelegate.m in Sources */,
 				084D6D8D1908F10100182693 /* CMUser.m in Sources */,

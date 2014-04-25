@@ -35,7 +35,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <nil key="simulatedDestinationMetrics"/>
                 </viewController>
-                <viewController id="oMH-Kr-Ggb">
+                <viewController id="oMH-Kr-Ggb" customClass="CMCompassViewController">
                     <tabBarItem key="tabBarItem" title="Compass" id="Q4q-bk-Vdg"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
