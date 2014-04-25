@@ -111,6 +111,7 @@
 		08BC5D10190A4B140030B93F /* CMCompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08BC5D0E190A4B140030B93F /* CMCompassViewController.m */; };
 		08BC5D11190A4B140030B93F /* CMCompassViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08BC5D0F190A4B140030B93F /* CMCompassViewController.xib */; };
 		08BC5D14190A4B2C0030B93F /* CMCompassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08BC5D13190A4B2C0030B93F /* CMCompassView.m */; };
+		08BC5D18190A51890030B93F /* CMCompass.m in Sources */ = {isa = PBXBuildFile; fileRef = 08BC5D17190A51890030B93F /* CMCompass.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -307,6 +308,8 @@
 		08BC5D0F190A4B140030B93F /* CMCompassViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CMCompassViewController.xib; sourceTree = "<group>"; };
 		08BC5D12190A4B2C0030B93F /* CMCompassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMCompassView.h; sourceTree = "<group>"; };
 		08BC5D13190A4B2C0030B93F /* CMCompassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMCompassView.m; sourceTree = "<group>"; };
+		08BC5D16190A51890030B93F /* CMCompass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMCompass.h; sourceTree = "<group>"; };
+		08BC5D17190A51890030B93F /* CMCompass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMCompass.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -890,8 +893,18 @@
 				08BC5D0F190A4B140030B93F /* CMCompassViewController.xib */,
 				08BC5D12190A4B2C0030B93F /* CMCompassView.h */,
 				08BC5D13190A4B2C0030B93F /* CMCompassView.m */,
+				08BC5D15190A51780030B93F /* Subviews */,
 			);
 			path = "Compass View Controller";
+			sourceTree = "<group>";
+		};
+		08BC5D15190A51780030B93F /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				08BC5D16190A51890030B93F /* CMCompass.h */,
+				08BC5D17190A51890030B93F /* CMCompass.m */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1060,6 +1073,7 @@
 				088323501905A03100B66F48 /* IDPURLConnection.m in Sources */,
 				084D6D9619090CA300182693 /* CMUserGeocodingContext.m in Sources */,
 				083873ED190116540040B996 /* main.m in Sources */,
+				08BC5D18190A51890030B93F /* CMCompass.m in Sources */,
 				0883234D1905A03100B66F48 /* IDPWeakReference.m in Sources */,
 				088323461905A03100B66F48 /* IDPOCImplementation.m in Sources */,
 				088323331905A03100B66F48 /* NSDateComponents+IDPExtinsions.m in Sources */,
