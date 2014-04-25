@@ -1,0 +1,71 @@
+//
+//  CMLocationViewController.m
+//  Compo
+//
+//  Created by Anton Rayev on 4/24/14.
+//  Copyright (c) 2014 Anton Rayev. All rights reserved.
+//
+
+#import "CMLocationViewController.h"
+
+#import "CMUser.h"
+
+#import "CMUserLocationContext.h"
+
+static NSString * const kCMLocationError = @"Could not retrieve user's location";
+
+@interface CMLocationViewController () <IDPModelObserver>
+@property (nonatomic, retain)	CMUserLocationContext	*userLocationContext;
+
+@end
+
+@implementation CMLocationViewController
+
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+	self.user = nil;
+	self.userLocationContext = nil;
+	
+	[super dealloc];
+}
+
+#pragma mark -
+#pragma mark View Lifecycle
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	
+	CMUserLocationContext *userLocationContext = [CMUserLocationContext object];
+	userLocationContext.user = self.user;
+	
+	self.userLocationContext = userLocationContext;
+	[userLocationContext load];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+	[self.userLocationContext cancel];
+	
+	[super viewDidDisappear:animated];
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (void)setUserLocationContext:(CMUserLocationContext *)userLocationContext {
+	IDPNonatomicRetainPropertySynthesizeWithObserver(_userLocationContext, userLocationContext);
+}
+
+#pragma mark -
+#pragma mark IDPModelObserver
+
+- (void)modelDidLoad:(id)model {
+	
+}
+
+- (void)modelDidFailToLoad:(id)model {
+	[UIAlertView showErrorWithMessage:kCMLocationError];
+}
+
+@end

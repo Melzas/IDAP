@@ -107,6 +107,7 @@
 		088323671905A03100B66F48 /* UIView+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0883231B1905A03100B66F48 /* UIView+IDPExtensions.m */; };
 		088323681905A03100B66F48 /* UIViewController+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0883231D1905A03100B66F48 /* UIViewController+IDPExtensions.m */; };
 		088323691905A03100B66F48 /* UIViewController+IDPInitialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 0883231F1905A03100B66F48 /* UIViewController+IDPInitialization.m */; };
+		08BC5D0B190A3D500030B93F /* CMLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08BC5D0A190A3D500030B93F /* CMLocationView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -296,6 +297,8 @@
 		0883231D1905A03100B66F48 /* UIViewController+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+IDPExtensions.m"; sourceTree = "<group>"; };
 		0883231E1905A03100B66F48 /* UIViewController+IDPInitialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+IDPInitialization.h"; sourceTree = "<group>"; };
 		0883231F1905A03100B66F48 /* UIViewController+IDPInitialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+IDPInitialization.m"; sourceTree = "<group>"; };
+		08BC5D09190A3D500030B93F /* CMLocationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMLocationView.h; sourceTree = "<group>"; };
+		08BC5D0A190A3D500030B93F /* CMLocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMLocationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -479,6 +482,8 @@
 				084D6D8F1909098500182693 /* CMLocationViewController.h */,
 				084D6D901909098500182693 /* CMLocationViewController.m */,
 				084D6D911909098500182693 /* CMLocationViewController.xib */,
+				08BC5D09190A3D500030B93F /* CMLocationView.h */,
+				08BC5D0A190A3D500030B93F /* CMLocationView.m */,
 			);
 			path = "Location View Controller";
 			sourceTree = "<group>";
@@ -1004,6 +1009,7 @@
 				088323511905A03100B66F48 /* IDPURLRequest.m in Sources */,
 				0883233F1905A03100B66F48 /* IDPMachTimer.m in Sources */,
 				0883234C1905A03100B66F48 /* IDPRetainingReference.m in Sources */,
+				08BC5D0B190A3D500030B93F /* CMLocationView.m in Sources */,
 				0883234F1905A03100B66F48 /* IDPStackArray.m in Sources */,
 				088323561905A03100B66F48 /* CALayer+RoundedCorners.m in Sources */,
 				088323691905A03100B66F48 /* UIViewController+IDPInitialization.m in Sources */,
