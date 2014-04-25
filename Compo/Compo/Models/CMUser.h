@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Anton Rayev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @interface CMUser : NSObject
 @property (nonatomic, assign)	CLLocationCoordinate2D	coordinate;
 @property (nonatomic, copy)		NSString				*country;

@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Anton Rayev. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface CMMapView : UIView
 @property (nonatomic, retain)	IBOutlet MKMapView	*map;
 

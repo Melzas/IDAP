@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Anton Rayev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 typedef struct {
 	CLLocationDistance x;
 	CLLocationDistance y;
