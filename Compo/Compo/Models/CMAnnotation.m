@@ -8,13 +8,10 @@
 
 #import "CMAnnotation.h"
 
-static const double kCMDegreesInPI = 180.f;
-
 @interface CMAnnotation ()
 @property (nonatomic, assign)	CLLocationCoordinate2D	coordinate;
 @property (nonatomic, copy)		NSString				*title;
 
-- (CLLocationDirection)convertToRadiansFromDegrees:(CLLocationDirection)degrees;
 - (CLLocationDistance2D)convertFromDistance:(CLLocationDistance)distance
 									radians:(CLLocationDirection)radians;
 
@@ -52,7 +49,7 @@ static const double kCMDegreesInPI = 180.f;
 {
     self = [super init];
     if (self) {
-		CLLocationDirection radians = [self convertToRadiansFromDegrees:degrees];
+		CLLocationDirection radians = DEGREES_TO_RADIANS(degrees);
         CLLocationDistance2D distance2D = [self convertFromDistance:distance radians:radians];
 		self.coordinate = [self translateCoordinate:coordinate toDistance:distance2D];
 		
@@ -67,10 +64,6 @@ static const double kCMDegreesInPI = 180.f;
 
 #pragma mark -
 #pragma mark Private
-
-- (CLLocationDirection)convertToRadiansFromDegrees:(CLLocationDirection)degrees {
-	return degrees / kCMDegreesInPI * M_PI;
-}
 
 - (CLLocationDistance2D)convertFromDistance:(CLLocationDistance)distance
 									radians:(CLLocationDirection)radians
