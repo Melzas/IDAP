@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Anton Rayev. All rights reserved.
 //
 
-#import "CMCompass.h"
+#import "CMCompassCircle.h"
 
 static const CGFloat kCMDefaultThickness = 3.f;
 static const CGFloat kCMDegreesInCircle  = 360.f;
@@ -16,8 +16,7 @@ static const CGFloat kCMSmallSerifAngle = 6.f;
 static const CGFloat kCMLargeSerifSize  = 15.f;
 static const CGFloat kCMLargeSerifAngle = 30.f;
 
-@interface CMCompass ()
-@property (nonatomic, assign)	CGRect	circleRect;
+@interface CMCompassCircle ()
 @property (nonatomic, assign)	CGFloat	halfThickness;
 
 - (void)strokeSerifsWithSize:(CGFloat)serifSize
@@ -29,24 +28,28 @@ static const CGFloat kCMLargeSerifAngle = 30.f;
 
 @end
 
-@implementation CMCompass
+@implementation CMCompassCircle
 
-@dynamic circleRect;
+@dynamic rect;
 @dynamic halfThickness;
 
 #pragma mark -
-#pragma mark View Lifecycle
+#pragma mark Initializations and Deallocations
 
-- (void)awakeFromNib {
-	[super awakeFromNib];
+- (id)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+		self.thickness = kCMDefaultThickness;
+		self.backgroundColor = [UIColor clearColor];
+	}
 	
-	self.thickness = kCMDefaultThickness;
+    return self;
 }
 
 #pragma mark -
 #pragma mark Accessors
 
-- (CGRect)circleRect {
+- (CGRect)rect {
 	CGRect viewBounds = self.bounds;
 	CGPoint viewOrigin = viewBounds.origin;
 	CGSize viewSize = viewBounds.size;
@@ -71,10 +74,12 @@ static const CGFloat kCMLargeSerifAngle = 30.f;
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	
     CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
+	CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
 	CGContextSetLineWidth(context, self.thickness);
 	
-	CGRect circleRect = self.circleRect;
+	CGRect circleRect = self.rect;
 	CGContextStrokeEllipseInRect(context, circleRect);
+	CGContextFillEllipseInRect(context, circleRect);
 	
 	[self strokeSerifsWithSize:kCMSmallSerifSize angleOffset:kCMSmallSerifAngle context:context];
 	[self strokeSerifsWithSize:kCMLargeSerifSize angleOffset:kCMLargeSerifAngle context:context];
@@ -88,7 +93,7 @@ static const CGFloat kCMLargeSerifAngle = 30.f;
 	NSUInteger pointCount = kCMDegreesInCircle / angleOffset * pointsInSerif;
 	CGPoint *pointsOfSerifs = malloc(pointCount * sizeof(CGPoint));
 	
-	CGRect circleRect = self.circleRect;
+	CGRect circleRect = self.rect;
 	CGRect innerCircleRect = [self innerCircleForSerifsWithSize:serifSize];
 	
 	for (NSUInteger i = 0; i < pointCount; i += pointsInSerif) {
@@ -119,7 +124,7 @@ static const CGFloat kCMLargeSerifAngle = 30.f;
 }
 
 - (CGRect)innerCircleForSerifsWithSize:(CGFloat)serifSize {
-	CGRect circleRect = self.circleRect;
+	CGRect circleRect = self.rect;
 	
 	CGPoint innerCircleOrigin = {circleRect.origin.x + serifSize,
 								 circleRect.origin.y + serifSize};

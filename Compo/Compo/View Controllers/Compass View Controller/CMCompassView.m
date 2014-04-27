@@ -8,10 +8,29 @@
 
 #import "CMCompassView.h"
 
+#import "CMCompass.h"
+
+static const CGSize		kCMShadowSize	 = {10, 10};
+static const CGFloat	kCMShadowOpacity = 0.7;
+
 @implementation CMCompassView
 
-- (void)drawRect:(CGRect)rect {
+#pragma mark -
+#pragma mark Initializations and Deallocations
 
+- (void)dealloc {
+	self.compass = nil;
+	
+	[super dealloc];
+}
+
+#pragma mark -
+#pragma mark View Lifecycle
+
+- (void)awakeFromNib {
+	[super awakeFromNib];
+	
+	[self.compass setShadowWithSize:kCMShadowSize opacity:kCMShadowOpacity];
 }
 
 @end

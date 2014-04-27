@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CMCompass : UIView
+@interface CMCompassCircle : UIView
 @property (nonatomic, assign)	CGFloat	thickness;
+@property (nonatomic, assign)	CGRect	rect;
 
 @end
