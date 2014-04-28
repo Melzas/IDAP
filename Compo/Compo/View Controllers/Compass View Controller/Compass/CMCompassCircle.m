@@ -15,7 +15,6 @@ static const CGFloat kCMLargeSerifSize  = 15.f;
 static const CGFloat kCMLargeSerifAngle = 30.f;
 
 @interface CMCompassCircle ()
-@property (nonatomic, assign)	CGFloat	halfThickness;
 
 - (void)strokeSerifsWithSize:(CGFloat)serifSize
 				 angleOffset:(CGFloat)angleOffset
@@ -30,7 +29,6 @@ static const CGFloat kCMLargeSerifAngle = 30.f;
 @implementation CMCompassCircle
 
 @dynamic rect;
-@dynamic halfThickness;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -49,11 +47,7 @@ static const CGFloat kCMLargeSerifAngle = 30.f;
 #pragma mark Accessors
 
 - (CGRect)rect {
-	return [self circleWithOffset:self.thickness];
-}
-
-- (CGFloat)halfThickness {
-	return self.thickness / 2;
+	return [self circleWithOffset:self.thickness / 2];
 }
 
 #pragma mark -
@@ -83,7 +77,7 @@ static const CGFloat kCMLargeSerifAngle = 30.f;
 	CGPoint *pointsOfSerifs = malloc(pointCount * sizeof(CGPoint));
 	
 	CGRect circleRect = self.rect;
-	CGRect innerCircleRect = [self circleWithOffset:serifSize + self.thickness];
+	CGRect innerCircleRect = [self circleWithOffset:serifSize + self.thickness / 2];
 	
 	for (NSUInteger i = 0; i < pointCount; i += pointsInSerif) {
 		CGFloat angle = i / pointsInSerif * angleOffset;
@@ -92,7 +86,7 @@ static const CGFloat kCMLargeSerifAngle = 30.f;
 		pointsOfSerifs[i + 1] = [self pointForAngle:angle inCircle:innerCircleRect];
 	}
 	
-	CGContextSetLineWidth(context, self.halfThickness);
+	CGContextSetLineWidth(context, self.thickness / 2);
 	CGContextStrokeLineSegments(context, pointsOfSerifs, pointCount);
 	
 	free(pointsOfSerifs);
