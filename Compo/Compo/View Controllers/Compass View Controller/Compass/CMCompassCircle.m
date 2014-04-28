@@ -22,7 +22,8 @@ static const CGFloat kCMLargeSerifAngle = 30.f;
 					 context:(CGContextRef)context;
 
 - (CGPoint)pointForAngle:(CGFloat)angle inCircle:(CGRect)circleRect;
-- (CGRect)innerCircleForSerifsWithSize:(CGFloat)serifSize;
+- (CGRect)circleWithOffset:(CGFloat)offset;
+- (CGRect)circleInRect:(CGRect)rect withOffset:(CGFloat)offset;
 
 @end
 
@@ -48,17 +49,7 @@ static const CGFloat kCMLargeSerifAngle = 30.f;
 #pragma mark Accessors
 
 - (CGRect)rect {
-	CGRect viewBounds = self.bounds;
-	CGPoint viewOrigin = viewBounds.origin;
-	CGSize viewSize = viewBounds.size;
-	
-	CGFloat thickness = self.thickness;
-	CGFloat halfThickness = self.halfThickness;
-	
-	CGPoint origin = CGPointMake(viewOrigin.x + halfThickness, viewOrigin.y + halfThickness);
-	CGSize size = CGSizeMake(viewSize.width - thickness, viewSize.height - thickness);
-	
-	return (CGRect){origin, size};
+	return [self circleWithOffset:self.thickness];
 }
 
 - (CGFloat)halfThickness {
@@ -92,7 +83,7 @@ static const CGFloat kCMLargeSerifAngle = 30.f;
 	CGPoint *pointsOfSerifs = malloc(pointCount * sizeof(CGPoint));
 	
 	CGRect circleRect = self.rect;
-	CGRect innerCircleRect = [self innerCircleForSerifsWithSize:serifSize];
+	CGRect innerCircleRect = [self circleWithOffset:serifSize + self.thickness];
 	
 	for (NSUInteger i = 0; i < pointCount; i += pointsInSerif) {
 		CGFloat angle = i / pointsInSerif * angleOffset;
@@ -123,16 +114,15 @@ static const CGFloat kCMLargeSerifAngle = 30.f;
 	return point;
 }
 
-- (CGRect)innerCircleForSerifsWithSize:(CGFloat)serifSize {
-	CGRect circleRect = self.rect;
+- (CGRect)circleWithOffset:(CGFloat)offset {
+	return [self circleInRect:self.bounds withOffset:offset];
+}
+
+- (CGRect)circleInRect:(CGRect)rect withOffset:(CGFloat)offset  {
+	CGPoint circleOrigin = {rect.origin.x + offset, rect.origin.y + offset};
+	CGSize circleSize = {rect.size.width - 2 * offset, rect.size.height - 2 * offset};
 	
-	CGPoint innerCircleOrigin = {circleRect.origin.x + serifSize,
-								 circleRect.origin.y + serifSize};
-	
-	CGSize innerCircleSize = {circleRect.size.width - 2 * serifSize,
-							  circleRect.size.height - 2 * serifSize};
-	
-	return (CGRect){innerCircleOrigin, innerCircleSize};
+	return (CGRect){circleOrigin, circleSize};
 }
 
 @end

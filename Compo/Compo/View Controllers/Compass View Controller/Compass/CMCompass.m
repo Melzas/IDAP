@@ -58,16 +58,11 @@ static const CGFloat kCMAnimationDuration = 2;
 }
 
 - (void)setAngle:(CGFloat)angle animated:(BOOL)animated {
-	CGFloat angleDifference = CGAngleDifference(_angle, angle);
 	NSTimeInterval animationDuration = animated ? kCMAnimationDuration : 0;
 	
 	[UIView animateWithDuration:animationDuration animations:^{
 		CMCompassCircle *circle = self.circle;
-		CGFloat angleInRadians = DEGREES_TO_RADIANS(angleDifference);
-		
-		circle.transform = CGOriginAffineTransformAddRotation(circle.transform,
-															  circle.bounds.origin,
-															  angleInRadians);
+		circle.transform = CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(-angle));
 		
 		IDPNonatomicAssignPropertySynthesize(_angle, angle);
 	}];
