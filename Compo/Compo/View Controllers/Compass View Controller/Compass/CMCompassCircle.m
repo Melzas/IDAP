@@ -14,7 +14,15 @@ static const CGFloat kCMSmallSerifAngle = 6.f;
 static const CGFloat kCMLargeSerifSize  = 15.f;
 static const CGFloat kCMLargeSerifAngle = 30.f;
 
+static NSString * const kCMCDirections[]	 = {@"N", @"E", @"S", @"W"};
+static const CGFloat	kCMDirectionAngles[] = {270.f, 0.f, 90.f, 180.f};
+static const NSUInteger kCMDirectionCount	 =	sizeof(kCMCDirections) / sizeof(NSString *);
+
+static const CGFloat	kCMDirectionLabelOffset = 15.f;
+
 @interface CMCompassCircle ()
+
+- (void)setupSubviews;
 
 - (void)strokeSerifsWithSize:(CGFloat)serifSize
 				 angleOffset:(CGFloat)angleOffset
@@ -38,6 +46,8 @@ static const CGFloat kCMLargeSerifAngle = 30.f;
     if (self) {
 		self.thickness = kCMDefaultThickness;
 		self.backgroundColor = [UIColor clearColor];
+		
+		[self setupSubviews];
 	}
 	
     return self;
@@ -77,7 +87,7 @@ static const CGFloat kCMLargeSerifAngle = 30.f;
 	CGPoint *pointsOfSerifs = malloc(pointCount * sizeof(CGPoint));
 	
 	CGRect circleRect = self.rect;
-	CGRect innerCircleRect = [self circleWithOffset:serifSize + self.thickness / 2];
+	CGRect innerCircleRect = [self circleInRect:circleRect withOffset:serifSize];
 	
 	for (NSUInteger i = 0; i < pointCount; i += pointsInSerif) {
 		CGFloat angle = i / pointsInSerif * angleOffset;
@@ -94,6 +104,21 @@ static const CGFloat kCMLargeSerifAngle = 30.f;
 
 #pragma mark -
 #pragma mark Private
+
+- (void)setupSubviews {
+	for (NSUInteger i = 0; i < kCMDirectionCount; ++i) {
+		UILabel *directionLabel = [UILabel object];
+		directionLabel.text = kCMCDirections[i];
+		[directionLabel sizeToFit];
+		
+		CGFloat rotationAngle = DEGREES_TO_RADIANS(kCMDirectionAngles[(i + 1) % kCMDirectionCount]);
+		directionLabel.transform = CGAffineTransformMakeRotation(rotationAngle);
+		
+		CGRect innerCircle = [self circleWithOffset:kCMLargeSerifSize + kCMDirectionLabelOffset];
+		directionLabel.center = [self pointForAngle:kCMDirectionAngles[i] inCircle:innerCircle];
+		[self addSubview:directionLabel];
+	}
+}
 
 - (CGPoint)pointForAngle:(CGFloat)angle inCircle:(CGRect)circleRect {
 	CGFloat angleInRadians = DEGREES_TO_RADIANS(angle);
