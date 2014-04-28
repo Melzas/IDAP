@@ -10,6 +10,8 @@
 
 #import "CMCompassCircle.h"
 
+static const CGFloat kCMAnimationDuration = 2;
+
 @interface CMCompass ()
 @property (nonatomic, retain)	CMCompassCircle	*circle;
 @property (nonatomic, retain)	UIView			*shadow;
@@ -46,6 +48,29 @@
     }
 	
     return self;
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (void)setAngle:(CGFloat)angle {
+	[self setAngle:angle animated:NO];
+}
+
+- (void)setAngle:(CGFloat)angle animated:(BOOL)animated {
+	CGFloat angleDifference = CGAngleDifference(_angle, angle);
+	NSTimeInterval animationDuration = animated ? kCMAnimationDuration : 0;
+	
+	[UIView animateWithDuration:animationDuration animations:^{
+		CMCompassCircle *circle = self.circle;
+		CGFloat angleInRadians = DEGREES_TO_RADIANS(angleDifference);
+		
+		circle.transform = CGOriginAffineTransformAddRotation(circle.transform,
+															  circle.bounds.origin,
+															  angleInRadians);
+		
+		IDPNonatomicAssignPropertySynthesize(_angle, angle);
+	}];
 }
 
 #pragma mark -

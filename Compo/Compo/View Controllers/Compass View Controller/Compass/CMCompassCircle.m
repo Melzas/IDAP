@@ -9,8 +9,6 @@
 #import "CMCompassCircle.h"
 
 static const CGFloat kCMDefaultThickness = 3.f;
-static const CGFloat kCMDegreesInCircle  = 360.f;
-
 static const CGFloat kCMSmallSerifSize  = 5.f;
 static const CGFloat kCMSmallSerifAngle = 6.f;
 static const CGFloat kCMLargeSerifSize  = 15.f;
@@ -97,7 +95,7 @@ static const CGFloat kCMLargeSerifAngle = 30.f;
 	CGRect innerCircleRect = [self innerCircleForSerifsWithSize:serifSize];
 	
 	for (NSUInteger i = 0; i < pointCount; i += pointsInSerif) {
-		CGFloat angle = DEGREES_TO_RADIANS(i / pointsInSerif * angleOffset);
+		CGFloat angle = i / pointsInSerif * angleOffset;
 		
 		pointsOfSerifs[i] = [self pointForAngle:angle inCircle:circleRect];
 		pointsOfSerifs[i + 1] = [self pointForAngle:angle inCircle:innerCircleRect];
@@ -113,12 +111,14 @@ static const CGFloat kCMLargeSerifAngle = 30.f;
 #pragma mark Private
 
 - (CGPoint)pointForAngle:(CGFloat)angle inCircle:(CGRect)circleRect {
+	CGFloat angleInRadians = DEGREES_TO_RADIANS(angle);
+	
 	CGPoint circleCenter = CGRectGetCenter(circleRect);
 	CGFloat circleRadius = CGMidX(circleRect) - CGMinX(circleRect);
 	
 	CGPoint point;
-	point.x = circleCenter.x + circleRadius * cos(angle);
-	point.y = circleCenter.y + circleRadius * sin(angle);
+	point.x = circleCenter.x + circleRadius * cos(angleInRadians);
+	point.y = circleCenter.y + circleRadius * sin(angleInRadians);
 	
 	return point;
 }
