@@ -24,6 +24,7 @@ static const NSUInteger			kCMAnnotationCount		 = sizeof(kCMAnnotationDistances)
 
 @dynamic annotations;
 
+#pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {

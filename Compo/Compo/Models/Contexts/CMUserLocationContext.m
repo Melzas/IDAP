@@ -59,6 +59,11 @@
 #pragma mark Private
 
 - (void)performLoading {
+	if (![CLLocationManager locationServicesEnabled]) {
+		[self failLoading];
+		return;
+	}
+	
 	CLLocationManager *locationManager = [CLLocationManager object];
 	locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
 	locationManager.distanceFilter = kCLDistanceFilterNone;
