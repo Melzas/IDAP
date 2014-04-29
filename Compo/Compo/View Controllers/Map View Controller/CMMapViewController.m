@@ -16,7 +16,7 @@
 #import "CMMapView.h"
 #import "CMPinView.h"
 
-static NSString * const kCMLocationError = @"Could not retrieve user's location";
+static NSString * const kCMLocationError = @"Failed to retrieve user's location";
 
 @implementation CMMapViewController
 

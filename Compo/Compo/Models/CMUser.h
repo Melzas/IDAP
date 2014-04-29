@@ -15,6 +15,7 @@
 @property (nonatomic, copy)		NSString				*postalCode;
 
 @property (nonatomic, readonly)	NSArray					*annotations;
+@property (nonatomic, assign)	CLLocationDirection		heading;
 
 - (void)createAnnotations;
 

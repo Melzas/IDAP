@@ -8,6 +8,8 @@
 
 #import "CMCompassView.h"
 
+#import "CMUser.h"
+
 #import "CMCompass.h"
 
 static const CGSize		kCMShadowSize	 = {10, 10};
@@ -31,6 +33,13 @@ static const CGFloat	kCMShadowOpacity = 0.7;
 	[super awakeFromNib];
 	
 	[self.compass setShadowWithSize:kCMShadowSize opacity:kCMShadowOpacity];
+}
+
+#pragma mark -
+#pragma mark Public
+
+- (void)fillWithUser:(CMUser *)user {
+	[self.compass setAngle:user.heading animated:YES];
 }
 
 @end

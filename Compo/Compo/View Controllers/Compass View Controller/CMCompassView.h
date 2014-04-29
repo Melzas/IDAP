@@ -7,8 +7,11 @@
 //
 
 @class CMCompass;
+@class CMUser;
 
 @interface CMCompassView : UIView
 @property (nonatomic, retain)	IBOutlet CMCompass	*compass;
+
+- (void)fillWithUser:(CMUser *)user;
 
 @end
