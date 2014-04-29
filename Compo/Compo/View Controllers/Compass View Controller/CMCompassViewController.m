@@ -75,7 +75,7 @@ IDPViewControllerViewOfClassGetterSynthesize(CMCompassView, compassView);
 #pragma mark IDPModelObserver
 
 - (void)modelDidLoad:(id)model {
-	[self.compassView fillWithUser:self.user];
+	[self.compassView.compass setAngle:self.user.heading animated:YES];
 }
 
 - (void)modelDidFailToLoad:(id)model {

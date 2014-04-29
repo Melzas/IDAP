@@ -36,11 +36,4 @@ static const CGFloat	kCMShadowOpacity = 0.7;
 	[self.compass setShadowWithSize:kCMShadowSize opacity:kCMShadowOpacity];
 }
 
-#pragma mark -
-#pragma mark Public
-
-- (void)fillWithUser:(CMUser *)user {
-	[self.compass setAngle:user.heading animated:YES];
-}
-
 @end
