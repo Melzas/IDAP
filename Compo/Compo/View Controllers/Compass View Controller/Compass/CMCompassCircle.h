@@ -12,6 +12,7 @@ static const CGFloat kCMDegreesInCircle  = 360.f;
 
 @interface CMCompassCircle : UIView
 @property (nonatomic, assign)	CGFloat	thickness;
-@property (nonatomic, assign)	CGRect	rect;
+@property (nonatomic, readonly)	CGRect	rect;
+@property (nonatomic, readonly)	CGFloat	radius;
 
 @end

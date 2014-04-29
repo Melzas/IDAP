@@ -8,6 +8,8 @@
 
 #import "CMCompassCircle.h"
 
+#import "CGGeometry+CMExtensions.h"
+
 static const CGFloat kCMDefaultThickness = 3.f;
 static const CGFloat kCMSmallSerifSize  = 8.f;
 static const CGFloat kCMSmallSerifAngle = 6.f;
@@ -28,15 +30,14 @@ static const CGFloat	kCMDirectionLabelOffset = 15.f;
 				 angleOffset:(CGFloat)angleOffset
 					 context:(CGContextRef)context;
 
-- (CGPoint)pointForAngle:(CGFloat)angle inCircle:(CGRect)circleRect;
 - (CGRect)circleWithOffset:(CGFloat)offset;
-- (CGRect)circleInRect:(CGRect)rect withOffset:(CGFloat)offset;
 
 @end
 
 @implementation CMCompassCircle
 
 @dynamic rect;
+@dynamic radius;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -60,6 +61,10 @@ static const CGFloat	kCMDirectionLabelOffset = 15.f;
 	return [self circleWithOffset:self.thickness];
 }
 
+- (CGFloat)radius {
+	return CGRadius(self.rect);
+}
+
 #pragma mark -
 #pragma mark Drawing
 
@@ -73,9 +78,7 @@ static const CGFloat	kCMDirectionLabelOffset = 15.f;
 	CGRect circleRect = self.rect;
 	CGContextFillEllipseInRect(context, circleRect);
 	CGContextStrokeEllipseInRect(context, circleRect);
-	
-	CGFloat circleRadius = CGMidX(circleRect) - CGMinX(circleRect);
-	CGContextStrokeEllipseInRect(context, [self circleWithOffset:circleRadius + 1]);
+	CGContextStrokeEllipseInRect(context, [self circleWithOffset:self.radius + 1]);
 	
 	[self strokeSerifsWithSize:kCMSmallSerifSize angleOffset:kCMSmallSerifAngle context:context];
 	[self strokeSerifsWithSize:kCMLargeSerifSize angleOffset:kCMLargeSerifAngle context:context];
@@ -90,13 +93,13 @@ static const CGFloat	kCMDirectionLabelOffset = 15.f;
 	CGPoint *pointsOfSerifs = malloc(pointCount * sizeof(CGPoint));
 	
 	CGRect circleRect = self.rect;
-	CGRect innerCircleRect = [self circleInRect:circleRect withOffset:serifSize];
+	CGRect innerCircleRect = CGCircleInRectWithOffset(circleRect, serifSize);
 	
 	for (NSUInteger i = 0; i < pointCount; i += pointsInSerif) {
 		CGFloat angle = i / pointsInSerif * angleOffset;
 		
-		pointsOfSerifs[i] = [self pointForAngle:angle inCircle:circleRect];
-		pointsOfSerifs[i + 1] = [self pointForAngle:angle inCircle:innerCircleRect];
+		pointsOfSerifs[i] = CGPointForAngleInCircle(angle, circleRect);
+		pointsOfSerifs[i + 1] = CGPointForAngleInCircle(angle, innerCircleRect);
 	}
 	
 	CGContextSetLineWidth(context, self.thickness / 2);
@@ -118,33 +121,13 @@ static const CGFloat	kCMDirectionLabelOffset = 15.f;
 		directionLabel.transform = CGAffineTransformMakeRotation(rotationAngle);
 		
 		CGRect innerCircle = [self circleWithOffset:kCMLargeSerifSize + kCMDirectionLabelOffset];
-		directionLabel.center = [self pointForAngle:kCMDirectionAngles[i] inCircle:innerCircle];
+		directionLabel.center = CGPointForAngleInCircle(kCMDirectionAngles[i], innerCircle);
 		[self addSubview:directionLabel];
 	}
 }
 
-- (CGPoint)pointForAngle:(CGFloat)angle inCircle:(CGRect)circleRect {
-	CGFloat angleInRadians = DEGREES_TO_RADIANS(angle);
-	
-	CGPoint circleCenter = CGRectGetCenter(circleRect);
-	CGFloat circleRadius = CGMidX(circleRect) - CGMinX(circleRect);
-	
-	CGPoint point;
-	point.x = circleCenter.x + circleRadius * cos(angleInRadians);
-	point.y = circleCenter.y + circleRadius * sin(angleInRadians);
-	
-	return point;
-}
-
 - (CGRect)circleWithOffset:(CGFloat)offset {
-	return [self circleInRect:self.bounds withOffset:offset];
-}
-
-- (CGRect)circleInRect:(CGRect)rect withOffset:(CGFloat)offset  {
-	CGPoint circleOrigin = {rect.origin.x + offset, rect.origin.y + offset};
-	CGSize circleSize = {rect.size.width - 2 * offset, rect.size.height - 2 * offset};
-	
-	return (CGRect){circleOrigin, circleSize};
+	return CGCircleInRectWithOffset(self.bounds, offset);
 }
 
 @end

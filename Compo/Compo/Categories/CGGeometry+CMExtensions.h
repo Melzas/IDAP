@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Anton Rayev. All rights reserved.
 //
 
+#pragma mark -
+#pragma mark Vector Maths
+
 typedef struct {
 	CGPoint start;
 	CGPoint end;
@@ -36,6 +39,21 @@ CGFloat CGDotProduct(CGVector2D firstVector2D, CGVector2D secondVector2D) {
 	return firstVector.dx * secondVector.dx + firstVector.dy * secondVector.dy;
 }
 
-// returns angle in radians
+// This method returns the angle in radians between two 2D vectors
 CG_EXTERN
 CGFloat CGAngleBetweenVectors(CGVector2D firstVector2D, CGVector2D secondVector2D);
+
+#pragma mark -
+#pragma mark Circle Maths
+
+CG_INLINE
+CGFloat CGRadius(CGRect circleRect) {
+	return circleRect.size.width / 2.f;
+}
+
+// This method creates a rect for circle inside given |rect|
+CG_EXTERN
+CGRect CGCircleInRectWithOffset(CGRect rect, CGFloat offset);
+
+CG_EXTERN
+CGPoint CGPointForAngleInCircle(CGFloat angleInDegrees, CGRect circleRect);
