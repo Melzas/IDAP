@@ -14,33 +14,13 @@ typedef struct {
 	CGPoint end;
 } CGVector2D;
 
-CG_INLINE
-CGVector2D CGVector2DMake(CGPoint startPoint, CGPoint endPoint) {
-	CGVector2D vector2D;
-	vector2D.start = startPoint;
-	vector2D.end = endPoint;
-	
-	return vector2D;
-}
+CGVector2D CGVector2DMake(CGPoint startPoint, CGPoint endPoint);
 
-CG_INLINE
-CGVector CGVectorMakeFrom2D(CGVector2D vector2D) {
-	CGFloat dx = vector2D.end.x - vector2D.start.x;
-	CGFloat dy = vector2D.end.y - vector2D.start.y;
-	
-	return CGVectorMake(dx, dy);
-}
+CGVector CGVectorMakeFrom2D(CGVector2D vector2D);
 
-CG_INLINE
-CGFloat CGDotProduct(CGVector2D firstVector2D, CGVector2D secondVector2D) {
-	CGVector firstVector = CGVectorMakeFrom2D(firstVector2D);
-	CGVector secondVector = CGVectorMakeFrom2D(secondVector2D);
-	
-	return firstVector.dx * secondVector.dx + firstVector.dy * secondVector.dy;
-}
+CGFloat CGDotProduct(CGVector2D firstVector2D, CGVector2D secondVector2D);
 
 // This method returns the angle in radians between two 2D vectors
-CG_EXTERN
 CGFloat CGAngleBetweenVectors(CGVector2D firstVector2D, CGVector2D secondVector2D);
 
 #pragma mark -
@@ -52,8 +32,6 @@ CGFloat CGRadius(CGRect circleRect) {
 }
 
 // This method creates a rect for circle inside given |rect|
-CG_EXTERN
 CGRect CGCircleInRectWithOffset(CGRect rect, CGFloat offset);
 
-CG_EXTERN
 CGPoint CGPointForAngleInCircle(CGFloat angleInDegrees, CGRect circleRect);

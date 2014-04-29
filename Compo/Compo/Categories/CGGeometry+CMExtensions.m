@@ -11,18 +11,33 @@
 #pragma mark -
 #pragma mark Vector Maths
 
+CGVector2D CGVector2DMake(CGPoint startPoint, CGPoint endPoint) {
+	CGVector2D vector2D;
+	vector2D.start = startPoint;
+	vector2D.end = endPoint;
+	
+	return vector2D;
+}
+
+CGVector CGVectorMakeFrom2D(CGVector2D vector2D) {
+	CGFloat dx = vector2D.end.x - vector2D.start.x;
+	CGFloat dy = vector2D.end.y - vector2D.start.y;
+	
+	return CGVectorMake(dx, dy);
+}
+
+CGFloat CGDotProduct(CGVector2D firstVector2D, CGVector2D secondVector2D) {
+	CGVector firstVector = CGVectorMakeFrom2D(firstVector2D);
+	CGVector secondVector = CGVectorMakeFrom2D(secondVector2D);
+	
+	return firstVector.dx * secondVector.dx + firstVector.dy * secondVector.dy;
+}
+
 CGFloat CGAngleBetweenVectors(CGVector2D firstVector2D, CGVector2D secondVector2D) {
-	CGFloat dotProduct = CGDotProduct(firstVector2D, secondVector2D);
+	CGVector firstVector = CGVectorMakeFrom2D(firstVector2D);
+	CGVector secondVector = CGVectorMakeFrom2D(secondVector2D);
 	
-	CGFloat firstVectorSize = CGDistance(firstVector2D.start, firstVector2D.end);
-	CGFloat secondVectorSize = CGDistance(secondVector2D.start, secondVector2D.end);
-	CGFloat sizeProduct = firstVectorSize * secondVectorSize;
-	
-	if (0 == sizeProduct) {
-		return 0;
-	}
-	
-	return acos(dotProduct / sizeProduct);
+	return atan2(secondVector.dy, secondVector.dx) - atan2(firstVector.dy, firstVector.dx);
 }
 
 #pragma mark -
@@ -38,7 +53,7 @@ CGRect CGCircleInRectWithOffset(CGRect rect, CGFloat offset) {
 CGPoint CGPointForAngleInCircle(CGFloat angleInDegrees, CGRect circleRect) {
 	CGFloat angleInRadians = DEGREES_TO_RADIANS(angleInDegrees);
 	
-	CGPoint circleCenter = CGRectGetCenter(circleRect);
+	CGPoint circleCenter = CGCenter(circleRect);
 	CGFloat circleRadius = CGRadius(circleRect);
 	
 	CGPoint point;
