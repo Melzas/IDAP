@@ -9,9 +9,9 @@
 #import "CMCompassCircle.h"
 
 static const CGFloat kCMDefaultThickness = 3.f;
-static const CGFloat kCMSmallSerifSize  = 5.f;
+static const CGFloat kCMSmallSerifSize  = 8.f;
 static const CGFloat kCMSmallSerifAngle = 6.f;
-static const CGFloat kCMLargeSerifSize  = 15.f;
+static const CGFloat kCMLargeSerifSize  = 18.f;
 static const CGFloat kCMLargeSerifAngle = 30.f;
 
 static NSString * const kCMCDirections[]	 = {@"N", @"E", @"S", @"W"};
@@ -57,7 +57,7 @@ static const CGFloat	kCMDirectionLabelOffset = 15.f;
 #pragma mark Accessors
 
 - (CGRect)rect {
-	return [self circleWithOffset:self.thickness / 2];
+	return [self circleWithOffset:self.thickness];
 }
 
 #pragma mark -
@@ -71,8 +71,11 @@ static const CGFloat	kCMDirectionLabelOffset = 15.f;
 	CGContextSetLineWidth(context, self.thickness);
 	
 	CGRect circleRect = self.rect;
-	CGContextStrokeEllipseInRect(context, circleRect);
 	CGContextFillEllipseInRect(context, circleRect);
+	CGContextStrokeEllipseInRect(context, circleRect);
+	
+	CGFloat circleRadius = CGMidX(circleRect) - CGMinX(circleRect);
+	CGContextStrokeEllipseInRect(context, [self circleWithOffset:circleRadius + 1]);
 	
 	[self strokeSerifsWithSize:kCMSmallSerifSize angleOffset:kCMSmallSerifAngle context:context];
 	[self strokeSerifsWithSize:kCMLargeSerifSize angleOffset:kCMLargeSerifAngle context:context];
