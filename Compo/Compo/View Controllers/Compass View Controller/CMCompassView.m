@@ -11,6 +11,9 @@
 #import "CMUser.h"
 
 #import "CMCompass.h"
+#import "CMCompassCircle.h"
+
+#import "CMSwirlGestureRecognizer.h"
 
 static const CGSize		kCMShadowSize	 = {10, 10};
 static const CGFloat	kCMShadowOpacity = 0.7;
@@ -22,6 +25,7 @@ static const CGFloat	kCMShadowOpacity = 0.7;
 
 - (void)dealloc {
 	self.compass = nil;
+	self.swirlGestureRecognizer = nil;
 	
 	[super dealloc];
 }
@@ -33,6 +37,15 @@ static const CGFloat	kCMShadowOpacity = 0.7;
 	[super awakeFromNib];
 	
 	[self.compass setShadowWithSize:kCMShadowSize opacity:kCMShadowOpacity];
+	
+	CMCompassCircle *compassCircle = self.compass.circle;
+	CMSwirlGestureRecognizer *gestureRecognizer = [CMSwirlGestureRecognizer object];
+	gestureRecognizer.center = CGCenter(compassCircle.rect);
+	gestureRecognizer.innerRadius = 1.f;
+	gestureRecognizer.outerRadius = 220.f;
+	
+	[self addGestureRecognizer:gestureRecognizer];
+	self.swirlGestureRecognizer = gestureRecognizer;
 }
 
 #pragma mark -

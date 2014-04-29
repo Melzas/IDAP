@@ -7,10 +7,12 @@
 //
 
 @class CMUser;
+@class CMSwirlGestureRecognizer;
 
 @interface CMCompassViewController : UIViewController
 @property (nonatomic, retain)	CMUser	*user;
 
-- (IBAction)handleGesture:(UIRotationGestureRecognizer *)gestureRecognizer;
+- (IBAction)handleRotationGesture:(UIRotationGestureRecognizer *)gestureRecognizer;
+- (void)handleSwirlGesture:(CMSwirlGestureRecognizer *)gestureRecognizer;
 
 @end

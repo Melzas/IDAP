@@ -15,10 +15,12 @@
 #import "CMCompassView.h"
 #import "CMCompass.h"
 
+#import "CMSwirlGestureRecognizer.h"
+
 static NSString * const kCMErrorMessage = @"Failed to retrieve user's heading";
 
 @interface CMCompassViewController () <IDPModelObserver>
-@property (nonatomic, retain)	CMUserHeadingContext	*headingContext;
+@property (nonatomic, retain)	CMUserHeadingContext		*headingContext;
 
 @end
 
@@ -39,6 +41,8 @@ static NSString * const kCMErrorMessage = @"Failed to retrieve user's heading";
 
 -(void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+	
+	[self.compassView.swirlGestureRecognizer addTarget:self action:@selector(handleSwirlGesture:)];
 	
 	CMUserHeadingContext *headingContext = [CMUserHeadingContext object];
 	headingContext.user = self.user;
@@ -65,9 +69,14 @@ IDPViewControllerViewOfClassGetterSynthesize(CMCompassView, compassView);
 #pragma mark -
 #pragma mark Interface Handling
 
-- (void)handleGesture:(UIRotationGestureRecognizer *)gestureRecognizer {
+- (void)handleRotationGesture:(UIRotationGestureRecognizer *)gestureRecognizer {
 	CGFloat angle = RADIANS_TO_DEGREES(gestureRecognizer.rotation);
-	NSLog(@"%f", angle);
+	
+	[self.compassView.compass setAngle:angle animated:YES];
+}
+
+- (void)handleSwirlGesture:(CMSwirlGestureRecognizer *)gestureRecognizer {
+	CGFloat angle = RADIANS_TO_DEGREES(gestureRecognizer.rotation);
 	
 	[self.compassView.compass setAngle:angle animated:YES];
 }

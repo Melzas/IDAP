@@ -10,7 +10,7 @@
 
 #import "CMCompassCircle.h"
 
-static const CGFloat kCMAnimationDuration = 2;
+static const CGFloat kCMAnimationDuration = 1;
 
 @interface CMCompass ()
 @property (nonatomic, retain)	CMCompassCircle	*circle;

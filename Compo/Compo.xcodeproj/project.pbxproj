@@ -11,6 +11,7 @@
 		0813C788190F7F580035F2A5 /* CMUserLocationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 0813C786190F7F580035F2A5 /* CMUserLocationContext.m */; };
 		0813C78B190F80390035F2A5 /* CMUserHeadingContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 0813C78A190F80390035F2A5 /* CMUserHeadingContext.m */; };
 		0813C791190F96A60035F2A5 /* CGGeometry+CMExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0813C790190F96A60035F2A5 /* CGGeometry+CMExtensions.m */; };
+		0813C795190F9E800035F2A5 /* CMSwirlGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0813C794190F9E800035F2A5 /* CMSwirlGestureRecognizer.m */; };
 		083873E1190116540040B996 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083873E0190116540040B996 /* Foundation.framework */; };
 		083873E3190116540040B996 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083873E2190116540040B996 /* CoreGraphics.framework */; };
 		083873E5190116540040B996 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083873E4190116540040B996 /* UIKit.framework */; };
@@ -136,6 +137,8 @@
 		0813C78A190F80390035F2A5 /* CMUserHeadingContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMUserHeadingContext.m; sourceTree = "<group>"; };
 		0813C78F190F96A60035F2A5 /* CGGeometry+CMExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGGeometry+CMExtensions.h"; sourceTree = "<group>"; };
 		0813C790190F96A60035F2A5 /* CGGeometry+CMExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGGeometry+CMExtensions.m"; sourceTree = "<group>"; };
+		0813C793190F9E800035F2A5 /* CMSwirlGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMSwirlGestureRecognizer.h; sourceTree = "<group>"; };
+		0813C794190F9E800035F2A5 /* CMSwirlGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMSwirlGestureRecognizer.m; sourceTree = "<group>"; };
 		083873DD190116540040B996 /* Compo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Compo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		083873E0190116540040B996 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		083873E2190116540040B996 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -358,6 +361,15 @@
 				0813C78A190F80390035F2A5 /* CMUserHeadingContext.m */,
 			);
 			path = Contexts;
+			sourceTree = "<group>";
+		};
+		0813C792190F9E370035F2A5 /* Swirl Gesture Recognizer */ = {
+			isa = PBXGroup;
+			children = (
+				0813C793190F9E800035F2A5 /* CMSwirlGestureRecognizer.h */,
+				0813C794190F9E800035F2A5 /* CMSwirlGestureRecognizer.m */,
+			);
+			path = "Swirl Gesture Recognizer";
 			sourceTree = "<group>";
 		};
 		083873D4190116540040B996 = {
@@ -926,6 +938,7 @@
 				08BC5D12190A4B2C0030B93F /* CMCompassView.h */,
 				08BC5D13190A4B2C0030B93F /* CMCompassView.m */,
 				089547ED190D0DFB00AF497E /* Compass */,
+				0813C792190F9E370035F2A5 /* Swirl Gesture Recognizer */,
 			);
 			path = "Compass View Controller";
 			sourceTree = "<group>";
@@ -1070,6 +1083,7 @@
 				08BC5D0B190A3D500030B93F /* CMLocationView.m in Sources */,
 				0883234F1905A03100B66F48 /* IDPStackArray.m in Sources */,
 				088323561905A03100B66F48 /* CALayer+RoundedCorners.m in Sources */,
+				0813C795190F9E800035F2A5 /* CMSwirlGestureRecognizer.m in Sources */,
 				088323691905A03100B66F48 /* UIViewController+IDPInitialization.m in Sources */,
 				0883235E1905A03100B66F48 /* IDPLoadingView.m in Sources */,
 				0883235A1905A03100B66F48 /* IDPNetworkReachability.m in Sources */,

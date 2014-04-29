@@ -19,5 +19,5 @@ CGFloat CGAngleBetweenVectors(CGVector2D firstVector2D, CGVector2D secondVector2
 		return 0;
 	}
 	
-	return acos(dotProduct / (firstVectorSize * secondVectorSize));
+	return acos(dotProduct / sizeProduct);
 }

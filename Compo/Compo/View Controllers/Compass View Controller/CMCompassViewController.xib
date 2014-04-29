@@ -33,7 +33,7 @@
         </view>
         <rotationGestureRecognizer id="vUg-R3-hH6">
             <connections>
-                <action selector="handleGesture:" destination="-1" id="TEh-xF-hBg"/>
+                <action selector="handleRotationGesture:" destination="-1" id="btk-gr-XF6"/>
             </connections>
         </rotationGestureRecognizer>
     </objects>
