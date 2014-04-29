@@ -10,6 +10,7 @@
 		0813C787190F7F580035F2A5 /* CMUserGeocodingContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 0813C784190F7F580035F2A5 /* CMUserGeocodingContext.m */; };
 		0813C788190F7F580035F2A5 /* CMUserLocationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 0813C786190F7F580035F2A5 /* CMUserLocationContext.m */; };
 		0813C78B190F80390035F2A5 /* CMUserHeadingContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 0813C78A190F80390035F2A5 /* CMUserHeadingContext.m */; };
+		0813C791190F96A60035F2A5 /* CGGeometry+CMExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0813C790190F96A60035F2A5 /* CGGeometry+CMExtensions.m */; };
 		083873E1190116540040B996 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083873E0190116540040B996 /* Foundation.framework */; };
 		083873E3190116540040B996 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083873E2190116540040B996 /* CoreGraphics.framework */; };
 		083873E5190116540040B996 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083873E4190116540040B996 /* UIKit.framework */; };
@@ -133,6 +134,8 @@
 		0813C786190F7F580035F2A5 /* CMUserLocationContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMUserLocationContext.m; sourceTree = "<group>"; };
 		0813C789190F80390035F2A5 /* CMUserHeadingContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMUserHeadingContext.h; sourceTree = "<group>"; };
 		0813C78A190F80390035F2A5 /* CMUserHeadingContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMUserHeadingContext.m; sourceTree = "<group>"; };
+		0813C78F190F96A60035F2A5 /* CGGeometry+CMExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGGeometry+CMExtensions.h"; sourceTree = "<group>"; };
+		0813C790190F96A60035F2A5 /* CGGeometry+CMExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGGeometry+CMExtensions.m"; sourceTree = "<group>"; };
 		083873DD190116540040B996 /* Compo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Compo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		083873E0190116540040B996 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		083873E2190116540040B996 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -500,6 +503,8 @@
 			children = (
 				084D6D881908EE6E00182693 /* MKMapView+CMExtensions.h */,
 				084D6D891908EE6E00182693 /* MKMapView+CMExtensions.m */,
+				0813C78F190F96A60035F2A5 /* CGGeometry+CMExtensions.h */,
+				0813C790190F96A60035F2A5 /* CGGeometry+CMExtensions.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1102,6 +1107,7 @@
 				089547F3190D0E6700AF497E /* CMCompass.m in Sources */,
 				088323281905A03100B66F48 /* NSManagedObject+IDPExtensions.m in Sources */,
 				0883232E1905A03100B66F48 /* CGGeometry+IDPExtensions.m in Sources */,
+				0813C791190F96A60035F2A5 /* CGGeometry+CMExtensions.m in Sources */,
 				0883233A1905A03100B66F48 /* IDPBlock.m in Sources */,
 				088323671905A03100B66F48 /* UIView+IDPExtensions.m in Sources */,
 				088323341905A03100B66F48 /* NSFileManager+IDPExtensions.m in Sources */,
