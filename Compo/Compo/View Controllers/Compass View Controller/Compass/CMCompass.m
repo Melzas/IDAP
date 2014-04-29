@@ -10,13 +10,16 @@
 
 #import "CMCompassCircle.h"
 
+#import "CMSwirlGestureRecognizer.h"
+
 static const CGFloat kCMAnimationDuration = 1;
 
 @interface CMCompass ()
 @property (nonatomic, retain)	CMCompassCircle	*circle;
 @property (nonatomic, retain)	UIView			*shadow;
 
-- (void)setupSubviews;
+- (void)setup;
+- (void)handleSwirlGesture:(CMSwirlGestureRecognizer *)gestureRecognizer;
 
 @end
 
@@ -35,7 +38,7 @@ static const CGFloat kCMAnimationDuration = 1;
 - (id)initWithCoder:(NSCoder *)decoder {
     self = [super initWithCoder:decoder];
     if (self) {
-		[self setupSubviews];
+		[self setup];
     }
 	
     return self;
@@ -44,7 +47,7 @@ static const CGFloat kCMAnimationDuration = 1;
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-		[self setupSubviews];
+		[self setup];
     }
 	
     return self;
@@ -69,6 +72,15 @@ static const CGFloat kCMAnimationDuration = 1;
 }
 
 #pragma mark -
+#pragma mark Interface Handling
+
+- (void)handleSwirlGesture:(CMSwirlGestureRecognizer *)gestureRecognizer {
+	CGFloat angle = RADIANS_TO_DEGREES(gestureRecognizer.rotation);
+	
+	[self setAngle:angle animated:YES];
+}
+
+#pragma mark -
 #pragma mark Public
 
 - (void)setShadowWithSize:(CGSize)size opacity:(CGFloat)opacity {
@@ -83,14 +95,23 @@ static const CGFloat kCMAnimationDuration = 1;
 #pragma mark -
 #pragma mark Private
 
-- (void)setupSubviews {
+- (void)setup {
 	UIView *shadow = [[[UIView alloc] initWithFrame:self.bounds] autorelease];
 	shadow.backgroundColor = [UIColor clearColor];
 	[self addSubview:shadow];
 	self.shadow = shadow;
 	
-	self.circle = [[[CMCompassCircle alloc] initWithFrame:self.bounds] autorelease];
-	[self addSubview:self.circle];
+	CMCompassCircle *circle = [[[CMCompassCircle alloc] initWithFrame:self.bounds] autorelease];
+	[self addSubview:circle];
+	self.circle = circle;
+	
+	CMSwirlGestureRecognizer *gestureRecognizer = [CMSwirlGestureRecognizer object];
+	gestureRecognizer.center = CGCenter(circle.rect);
+	gestureRecognizer.innerRadius = circle.radius / 3;
+	gestureRecognizer.outerRadius = circle.radius;
+	[gestureRecognizer addTarget:self action:@selector(handleSwirlGesture:)];
+	
+	[self addGestureRecognizer:gestureRecognizer];
 }
 
 @end

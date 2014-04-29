@@ -13,6 +13,5 @@
 @property (nonatomic, retain)	CMUser	*user;
 
 - (IBAction)handleRotationGesture:(UIRotationGestureRecognizer *)gestureRecognizer;
-- (void)handleSwirlGesture:(CMSwirlGestureRecognizer *)gestureRecognizer;
 
 @end

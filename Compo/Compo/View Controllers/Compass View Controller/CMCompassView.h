@@ -8,11 +8,9 @@
 
 @class CMCompass;
 @class CMUser;
-@class CMSwirlGestureRecognizer;
 
 @interface CMCompassView : UIView
 @property (nonatomic, retain)	IBOutlet CMCompass			*compass;
-@property (nonatomic, retain)	CMSwirlGestureRecognizer	*swirlGestureRecognizer;
 
 - (void)fillWithUser:(CMUser *)user;
 
