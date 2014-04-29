@@ -13,6 +13,7 @@
 #import "CMUserHeadingContext.h"
 
 #import "CMCompassView.h"
+#import "CMCompass.h"
 
 static NSString * const kCMErrorMessage = @"Failed to retrieve user's heading";
 
@@ -59,6 +60,16 @@ IDPViewControllerViewOfClassGetterSynthesize(CMCompassView, compassView);
 
 - (void)setHeadingContext:(CMUserHeadingContext *)headingContext {
 	IDPNonatomicRetainPropertySynthesizeWithObserver(_headingContext, headingContext);
+}
+
+#pragma mark -
+#pragma mark Interface Handling
+
+- (void)handleGesture:(UIRotationGestureRecognizer *)gestureRecognizer {
+	CGFloat angle = RADIANS_TO_DEGREES(gestureRecognizer.rotation);
+	NSLog(@"%f", angle);
+	
+	[self.compassView.compass setAngle:angle animated:YES];
 }
 
 #pragma mark -
