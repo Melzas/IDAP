@@ -9,6 +9,23 @@
 #import "CGGeometry+CMExtensions.h"
 
 #pragma mark -
+#pragma mark Coordinate Convertion
+
+CGPoint CGOriginPolarToCarthesian(CGPoint origin, CGFloat distance, CGFloat angleInDegrees) {
+	CGFloat angleInRadians = DEGREES_TO_RADIANS(angleInDegrees);
+	
+	CGPoint point;
+	point.x = origin.x + distance * cos(angleInRadians);
+	point.y = origin.y + distance * sin(angleInRadians);
+	
+	return point;
+}
+
+CGPoint CGPolarToCarthesian(CGFloat distance, CGFloat angleInDegrees) {
+	return CGOriginPolarToCarthesian(CGPointMake(0.f, 0.f), distance, angleInDegrees);
+}
+
+#pragma mark -
 #pragma mark Vector Maths
 
 CGVector2D CGVector2DMake(CGPoint startPoint, CGPoint endPoint) {
@@ -44,21 +61,12 @@ CGFloat CGAngleBetweenVectors(CGVector2D firstVector2D, CGVector2D secondVector2
 #pragma mark Circle Maths
 
 CGRect CGCircleInRectWithOffset(CGRect rect, CGFloat offset) {
-	CGPoint circleOrigin = {rect.origin.x + offset, rect.origin.y + offset};
-	CGSize circleSize = {rect.size.width - 2 * offset, rect.size.height - 2 * offset};
-	
-	return (CGRect){circleOrigin, circleSize};
+	return CGRectInset(rect, offset, offset);
 }
 
 CGPoint CGPointForAngleInCircle(CGFloat angleInDegrees, CGRect circleRect) {
-	CGFloat angleInRadians = DEGREES_TO_RADIANS(angleInDegrees);
-	
 	CGPoint circleCenter = CGCenter(circleRect);
 	CGFloat circleRadius = CGRadius(circleRect);
 	
-	CGPoint point;
-	point.x = circleCenter.x + circleRadius * cos(angleInRadians);
-	point.y = circleCenter.y + circleRadius * sin(angleInRadians);
-	
-	return point;
+	return CGOriginPolarToCarthesian(circleCenter, circleRadius, angleInDegrees);
 }

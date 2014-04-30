@@ -7,6 +7,13 @@
 //
 
 #pragma mark -
+#pragma mark Coordinate Convertion
+
+CGPoint CGOriginPolarToCarthesian(CGPoint origin, CGFloat distance, CGFloat angleInDegrees);
+
+CGPoint CGPolarToCarthesian(CGFloat distance, CGFloat angleInDegrees);
+
+#pragma mark -
 #pragma mark Vector Maths
 
 typedef struct {
@@ -32,6 +39,8 @@ CGFloat CGRadius(CGRect circleRect) {
 }
 
 // This method creates a rect for circle inside given |rect|
+// with |offset| from |rect| bounds
 CGRect CGCircleInRectWithOffset(CGRect rect, CGFloat offset);
 
+// This method returns a point of circle at given angle in degrees
 CGPoint CGPointForAngleInCircle(CGFloat angleInDegrees, CGRect circleRect);
