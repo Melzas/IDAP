@@ -6,10 +6,7 @@
 //  Copyright (c) 2014 Anton Rayev. All rights reserved.
 //
 
-typedef struct {
-	CLLocationDistance x;
-	CLLocationDistance y;
-} CLLocationDistance2D;
+#import "CLLocation+CMExtensions.h"
 
 @interface CMAnnotation : NSObject <MKAnnotation>
 @property (nonatomic, readonly)			CLLocationCoordinate2D	coordinate;

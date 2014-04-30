@@ -12,12 +12,6 @@
 @property (nonatomic, assign)	CLLocationCoordinate2D	coordinate;
 @property (nonatomic, copy)		NSString				*title;
 
-- (CLLocationDistance2D)convertFromDistance:(CLLocationDistance)distance
-									radians:(CLLocationDirection)radians;
-
-- (CLLocationCoordinate2D)translateCoordinate:(CLLocationCoordinate2D)coordinate
-								   toDistance:(CLLocationDistance2D)distance;
-
 @end
 
 @implementation CMAnnotation
@@ -30,8 +24,8 @@
 			  fromCoordinate:(CLLocationCoordinate2D)coordinate
 {
 	return [[[self alloc] initWithDistance:distance
-								  degrees:degrees
-						   fromCoordinate:coordinate] autorelease];
+								   degrees:degrees
+							fromCoordinate:coordinate] autorelease];
 }
 
 #pragma mark -
@@ -50,8 +44,9 @@
     self = [super init];
     if (self) {
 		CLLocationDirection radians = DEGREES_TO_RADIANS(degrees);
-        CLLocationDistance2D distance2D = [self convertFromDistance:distance radians:radians];
-		self.coordinate = [self translateCoordinate:coordinate toDistance:distance2D];
+		
+        CLLocationDistance2D distance2D = CLLocationDistance2DConvert(distance, radians);
+		self.coordinate = CLCoordinateTranslateToDistance(coordinate, distance2D);
 		
 		MKDistanceFormatter *formatter = [MKDistanceFormatter object];
 		formatter.unitStyle = MKDistanceFormatterUnitStyleAbbreviated;
@@ -60,32 +55,6 @@
     }
 	
     return self;
-}
-
-#pragma mark -
-#pragma mark Private
-
-- (CLLocationDistance2D)convertFromDistance:(CLLocationDistance)distance
-									radians:(CLLocationDirection)radians
-{
-	CLLocationDistance2D distance2D;
-	distance2D.x = distance * cos(radians);
-	distance2D.y = distance * sin(radians);
-	
-	return distance2D;
-}
-
-- (CLLocationCoordinate2D)translateCoordinate:(CLLocationCoordinate2D)coordinate
-								   toDistance:(CLLocationDistance2D)distance
-{
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, distance.x, distance.y);
-    MKCoordinateSpan span = region.span;
-	
-	CLLocationCoordinate2D newCoordinate;
-    newCoordinate.latitude = coordinate.latitude + span.latitudeDelta;
-    newCoordinate.longitude = coordinate.longitude + span.longitudeDelta;
-	
-    return newCoordinate;
 }
 
 @end
