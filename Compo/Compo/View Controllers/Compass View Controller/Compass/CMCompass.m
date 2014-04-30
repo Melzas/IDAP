@@ -76,8 +76,13 @@ static const CGFloat kCMAnimationDuration = 1;
 
 - (void)handleSwirlGesture:(CMSwirlGestureRecognizer *)gestureRecognizer {
 	CGFloat angle = RADIANS_TO_DEGREES(gestureRecognizer.rotation);
+	UIGestureRecognizerState state = gestureRecognizer.state;
 	
-	[self setAngle:angle animated:YES];
+	if (UIGestureRecognizerStateEnded == state || UIGestureRecognizerStateCancelled == state) {
+		[self setAngle:self.angle - angle animated:YES];
+	} else {
+		[self setAngle:angle animated:YES];
+	}
 }
 
 #pragma mark -
