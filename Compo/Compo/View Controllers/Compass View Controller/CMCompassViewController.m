@@ -63,15 +63,6 @@ IDPViewControllerViewOfClassGetterSynthesize(CMCompassView, compassView);
 }
 
 #pragma mark -
-#pragma mark Interface Handling
-
-- (void)handleRotationGesture:(UIRotationGestureRecognizer *)gestureRecognizer {
-	CGFloat angle = RADIANS_TO_DEGREES(gestureRecognizer.rotation);
-	
-	[self.compassView.compass setAngle:angle animated:YES];
-}
-
-#pragma mark -
 #pragma mark IDPModelObserver
 
 - (void)modelDidLoad:(id)model {

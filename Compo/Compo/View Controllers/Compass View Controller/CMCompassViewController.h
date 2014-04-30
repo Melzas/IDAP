@@ -12,6 +12,4 @@
 @interface CMCompassViewController : UIViewController
 @property (nonatomic, retain)	CMUser	*user;
 
-- (IBAction)handleRotationGesture:(UIRotationGestureRecognizer *)gestureRecognizer;
-
 @end

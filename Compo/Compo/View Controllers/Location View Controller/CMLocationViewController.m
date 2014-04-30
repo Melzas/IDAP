@@ -49,7 +49,7 @@ static NSString * const kCMLocationError = @"Failed to retrieve user's location"
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-	[self.userLocationContext cancel];
+	self.userLocationContext = nil;
 	self.locationView.loading = NO;
 	
 	[super viewDidDisappear:animated];

@@ -19,9 +19,6 @@
                     <autoresizingMask key="autoresizingMask"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="vUg-R3-hH6" appends="YES" id="gVg-8g-OMa"/>
-                    </connections>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -31,10 +28,5 @@
                 <outlet property="compass" destination="aka-NP-Iq2" id="zfy-EV-LFn"/>
             </connections>
         </view>
-        <rotationGestureRecognizer id="vUg-R3-hH6">
-            <connections>
-                <action selector="handleRotationGesture:" destination="-1" id="btk-gr-XF6"/>
-            </connections>
-        </rotationGestureRecognizer>
     </objects>
 </document>

@@ -24,7 +24,7 @@
 
 - (void)dealloc {
 	self.user = nil;
-	self.geocoder = nil;
+	[self cancel];
 	
 	[super dealloc];
 }
@@ -60,6 +60,7 @@
 	
 	CLGeocoder *geocoder = [CLGeocoder object];
 	[geocoder reverseGeocodeLocation:location completionHandler:completionHandler];
+	self.geocoder = geocoder;
 }
 
 - (void)geocodeDidFinishedWithPlacemark:(CLPlacemark *)placemark error:(NSError *)error {
