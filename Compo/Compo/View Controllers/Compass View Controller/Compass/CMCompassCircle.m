@@ -10,17 +10,17 @@
 
 #import "CGGeometry+CMExtensions.h"
 
-static const CGFloat kCMDefaultThickness = 3.f;
-static const CGFloat kCMSmallSerifSize  = 8.f;
-static const CGFloat kCMSmallSerifAngle = 6.f;
-static const CGFloat kCMLargeSerifSize  = 18.f;
-static const CGFloat kCMLargeSerifAngle = 30.f;
+static const CGFloat kCMDefaultThickness	= 3.0f;
+static const CGFloat kCMSmallSerifSize		= 8.0f;
+static const CGFloat kCMSmallSerifAngle		= 6.0f;
+static const CGFloat kCMLargeSerifSize		= 18.0f;
+static const CGFloat kCMLargeSerifAngle		= 30.0f;
 
 static NSString * const kCMCDirections[]	 = {@"N", @"E", @"S", @"W"};
-static const CGFloat	kCMDirectionAngles[] = {270.f, 0.f, 90.f, 180.f};
+static const CGFloat	kCMDirectionAngles[] = {270.0f, 0.0f, 90.0f, 180.0f};
 static const NSUInteger kCMDirectionCount	 =	sizeof(kCMCDirections) / sizeof(NSString *);
 
-static const CGFloat	kCMDirectionLabelOffset = 15.f;
+static const CGFloat	kCMDirectionLabelOffset = 15.0f;
 
 @interface CMCompassCircle ()
 

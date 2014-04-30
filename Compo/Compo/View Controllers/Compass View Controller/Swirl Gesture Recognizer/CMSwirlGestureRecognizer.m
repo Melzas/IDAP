@@ -8,6 +8,8 @@
 
 #import "CMSwirlGestureRecognizer.h"
 
+#import <UIKit/UIGestureRecognizerSubclass.h>
+
 #import "CGGeometry+CMExtensions.h"
 
 @implementation CMSwirlGestureRecognizer

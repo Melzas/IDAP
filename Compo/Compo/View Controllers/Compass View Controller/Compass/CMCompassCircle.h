@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-static const CGFloat kCMDegreesInCircle  = 360.f;
+static const CGFloat kCMDegreesInCircle  = 360.0f;
 
 @interface CMCompassCircle : UIView
 @property (nonatomic, assign)	CGFloat	thickness;

@@ -28,7 +28,7 @@ static const CGFloat kCMAnimationDuration = 1;
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
--(void)dealloc {
+- (void)dealloc {
 	self.circle = nil;
 	self.shadow = nil;
 	

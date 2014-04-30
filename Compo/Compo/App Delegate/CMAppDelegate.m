@@ -39,18 +39,14 @@ static NSString * const kCMTabBarNibName = @"CMTabBarController";
 	UITabBarController *tabBarController = [NSBundle loadClass:[UITabBarController class]
 												  fromNibNamed:kCMTabBarNibName
 														owner:nil];
-	CMMapViewController *mapViewController = tabBarController.viewControllers[0];
-	mapViewController.user = user;
 	
-	CMLocationViewController *locationViewController = tabBarController.viewControllers[1];
-	locationViewController.user = user;
-	
-	CMCompassViewController *compassViewController = tabBarController.viewControllers[2];
-	compassViewController.user = user;
+	[tabBarController.viewControllers makeObjectsPerformSelector:@selector(setUser:)
+													  withObject:user];
 	
 	window.rootViewController = tabBarController;
 	
     [window makeKeyAndVisible];
+	
 	self.window = window;
 	
     return YES;
@@ -65,6 +61,7 @@ static NSString * const kCMTabBarNibName = @"CMTabBarController";
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+	
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

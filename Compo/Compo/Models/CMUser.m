@@ -10,8 +10,8 @@
 
 #import "CMAnnotation.h"
 
-static const double				kCMMaxDegrees			 = 360.f;
-static const CLLocationDistance	kCMAnnotationDistances[] = {100.f, 500.f, 1000.f, 2000.f};
+static const double				kCMMaxDegrees			 = 360.0f;
+static const CLLocationDistance	kCMAnnotationDistances[] = {100.0f, 500.0f, 1000.0f, 2000.0f};
 static const NSUInteger			kCMAnnotationCount		 = sizeof(kCMAnnotationDistances)
 	/ sizeof(CLLocationDistance);
 
@@ -39,12 +39,12 @@ static const NSUInteger			kCMAnnotationCount		 = sizeof(kCMAnnotationDistances)
 	[super dealloc];
 }
 
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self) {
         self.mutableAnnotations = [NSMutableArray arrayWithCapacity:kCMAnnotationCount];
     }
+	
     return self;
 }
 

@@ -14,7 +14,7 @@
 #import "CMCompassCircle.h"
 
 static const CGSize		kCMShadowSize	 = {10, 10};
-static const CGFloat	kCMShadowOpacity = 0.7;
+static const CGFloat	kCMShadowOpacity = 0.7f;
 
 @implementation CMCompassView
 

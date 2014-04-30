@@ -12,12 +12,14 @@
 
 - (id)pinForClass:(Class)class withAnnotation:(id<MKAnnotation>)annotation {
 	NSString *reuseIdentifier = NSStringFromClass(class);
-	id pin = [self dequeueReusableAnnotationViewWithIdentifier:reuseIdentifier];
+	MKAnnotationView *pin = [self dequeueReusableAnnotationViewWithIdentifier:reuseIdentifier];
 	
 	if (nil == pin) {
 		pin = [[[class alloc] initWithAnnotation:annotation
 								 reuseIdentifier:reuseIdentifier] autorelease];
 	}
+	
+	pin.annotation = annotation;
 	
 	return pin;
 }
