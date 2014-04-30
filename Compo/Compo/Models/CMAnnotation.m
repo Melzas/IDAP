@@ -20,11 +20,11 @@
 #pragma mark Class Methods
 
 + (id)annotationWithDistance:(CLLocationDistance)distance
-					 degrees:(CLLocationDirection)degrees
+					   angle:(CLLocationDirection)angleInDegrees
 			  fromCoordinate:(CLLocationCoordinate2D)coordinate
 {
 	return [[[self alloc] initWithDistance:distance
-								   degrees:degrees
+									 angle:angleInDegrees
 							fromCoordinate:coordinate] autorelease];
 }
 
@@ -38,14 +38,12 @@
 }
 
 - (id)initWithDistance:(CLLocationDistance)distance
-			   degrees:(CLLocationDirection)degrees
+				 angle:(CLLocationDirection)angleInDegrees
 		fromCoordinate:(CLLocationCoordinate2D)coordinate
 {
     self = [super init];
     if (self) {
-		CLLocationDirection radians = DEGREES_TO_RADIANS(degrees);
-		
-        CLLocationDistance2D distance2D = CLLocationDistance2DConvert(distance, radians);
+        CLLocationDistance2D distance2D = CLLocationDistance2DConvert(distance, angleInDegrees);
 		self.coordinate = CLCoordinateTranslateToDistance(coordinate, distance2D);
 		
 		MKDistanceFormatter *formatter = [MKDistanceFormatter object];

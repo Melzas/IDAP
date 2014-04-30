@@ -13,11 +13,11 @@
 @property (nonatomic, copy, readonly)	NSString				*title;
 
 + (id)annotationWithDistance:(CLLocationDistance)distance
-					 degrees:(CLLocationDirection)degrees
+					   angle:(CLLocationDirection)angleInDegrees
 			  fromCoordinate:(CLLocationCoordinate2D)coordinate;
 
 - (id)initWithDistance:(CLLocationDistance)distance
-			   degrees:(CLLocationDirection)degrees
+				 angle:(CLLocationDirection)angleInDegrees
 		fromCoordinate:(CLLocationCoordinate2D)coordinate;
 
 @end

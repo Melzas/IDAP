@@ -67,7 +67,7 @@ static const NSUInteger			kCMAnnotationCount		 = sizeof(kCMAnnotationDistances)
 		CLLocationDirection degrees = arc4random_uniform(kCMMaxDegrees);
 		
 		CMAnnotation *annotation = [CMAnnotation annotationWithDistance:distance
-																degrees:degrees
+																  angle:degrees
 														 fromCoordinate:self.coordinate];
 		[annotations addObject:annotation];
 	}
