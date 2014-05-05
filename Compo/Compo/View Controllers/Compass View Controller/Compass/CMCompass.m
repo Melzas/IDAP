@@ -16,7 +16,7 @@ static const CGFloat kCMAnimationDuration = 1;
 
 @interface CMCompass ()
 @property (nonatomic, retain)	CMCompassCircle	*circle;
-@property (nonatomic, retain)	UIView			*shadow;
+@property (nonatomic, retain)	CALayer			*shadow;
 
 - (void)setup;
 - (void)handleSwirlGesture:(CMSwirlGestureRecognizer *)gestureRecognizer;
@@ -89,21 +89,20 @@ static const CGFloat kCMAnimationDuration = 1;
 #pragma mark Public
 
 - (void)setShadowWithSize:(CGSize)size opacity:(CGFloat)opacity {
-	CALayer *layer = self.shadow.layer;
+	CALayer *shadow = self.shadow;
 	
-	layer.shadowColor = [UIColor blackColor].CGColor;
-	layer.shadowOffset = size;
-	layer.shadowOpacity = opacity;
-	layer.shadowPath = [UIBezierPath bezierPathWithOvalInRect:self.circle.rect].CGPath;
+	shadow.shadowColor = [UIColor blackColor].CGColor;
+	shadow.shadowOffset = size;
+	shadow.shadowOpacity = opacity;
+	shadow.shadowPath = [UIBezierPath bezierPathWithOvalInRect:self.circle.rect].CGPath;
 }
 
 #pragma mark -
 #pragma mark Private
 
 - (void)setup {
-	UIView *shadow = [[[UIView alloc] initWithFrame:self.bounds] autorelease];
-	shadow.backgroundColor = [UIColor clearColor];
-	[self addSubview:shadow];
+	CALayer *shadow = [CALayer object];
+	[self.layer addSublayer:shadow];
 	self.shadow = shadow;
 	
 	CMCompassCircle *circle = [[[CMCompassCircle alloc] initWithFrame:self.bounds] autorelease];
