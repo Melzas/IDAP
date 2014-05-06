@@ -38,8 +38,9 @@
 		return;
 	}
 	
-	CGPoint currentPoint = [[touches anyObject] locationInView:self.view];
-	CGPoint previousPoint = [[touches anyObject] previousLocationInView:self.view];
+	UIView *view = self.view;
+	CGPoint currentPoint = [[touches anyObject] locationInView:view];
+	CGPoint previousPoint = [[touches anyObject] previousLocationInView:view];
 	
 	CGPoint center = self.center;
 	CGFloat distance = CGDistance(currentPoint, center);

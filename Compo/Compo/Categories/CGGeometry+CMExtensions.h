@@ -17,8 +17,8 @@ CGPoint CGPolarToCarthesian(CGFloat distance, CGFloat angleInDegrees);
 #pragma mark Vector Maths
 
 typedef struct {
-	CGPoint start;
-	CGPoint end;
+	CGPoint origin;
+	CGPoint direction;
 } CGVector2D;
 
 CGVector2D CGVector2DMake(CGPoint startPoint, CGPoint endPoint);

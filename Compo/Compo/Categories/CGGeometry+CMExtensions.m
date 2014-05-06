@@ -28,17 +28,17 @@ CGPoint CGPolarToCarthesian(CGFloat distance, CGFloat angleInDegrees) {
 #pragma mark -
 #pragma mark Vector Maths
 
-CGVector2D CGVector2DMake(CGPoint startPoint, CGPoint endPoint) {
+CGVector2D CGVector2DMake(CGPoint origin, CGPoint direction) {
 	CGVector2D vector2D;
-	vector2D.start = startPoint;
-	vector2D.end = endPoint;
+	vector2D.origin = origin;
+	vector2D.direction = direction;
 	
 	return vector2D;
 }
 
 CGVector CGVectorMakeFrom2D(CGVector2D vector2D) {
-	CGFloat dx = vector2D.end.x - vector2D.start.x;
-	CGFloat dy = vector2D.end.y - vector2D.start.y;
+	CGFloat dx = vector2D.direction.x - vector2D.origin.x;
+	CGFloat dy = vector2D.direction.y - vector2D.origin.y;
 	
 	return CGVectorMake(dx, dy);
 }
